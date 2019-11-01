@@ -1,0 +1,36 @@
+import { StyleSheet } from 'react-native';
+import Constant from '../../utils/constants';
+
+const styles =  StyleSheet.create({
+  safeAreaView: {
+    backgroundColor: Constant.WHITE_COLOR,
+    flex: 1,
+    paddingVertical: 10,
+  },
+  inputLine: {
+    borderRadius: 3,
+    backgroundColor: Constant.SUB_COLOR,
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderColor: Constant.HIGHLIGHT_SUB_COLOR,
+    paddingHorizontal: 10,
+  },
+  inputBox: {
+    borderRadius: 3,
+    backgroundColor: Constant.SUB_COLOR,
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderColor: Constant.HIGHLIGHT_SUB_COLOR,
+    padding: 10,
+  },
+  input: {
+    minHeight: 50,
+  },
+  dateText: {
+    fontSize: 18,
+    fontWeight: '600',
+    textDecorationLine: 'underline',
+  },
+});
+
+export default styles;
