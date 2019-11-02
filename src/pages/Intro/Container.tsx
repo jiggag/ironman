@@ -18,21 +18,29 @@ const Container = () => {
 
   const onPress = async type => {
     await setIsLoading(true);
-    await RNKakaoLogins.getProfile((err, result) => {
+    await RNKakaoLogins.login((err, res) => {
       if (err) {
         console.log('%c%s', 'background: #00ff00; color: #ffffff', '카카오 로그인 실패', err.toString());
         return;
       }
-      // 가져온 토큰으로 회원가입 혹은 로그인
-      switch (type) {
-        case kakaoType.JOIN:
-          onJoin(result);
-          break;
-        case kakaoType.LOGIN:
-          onLogin(result);
-          break;
-        default:
-          break;
+      if (res) {
+        RNKakaoLogins.getProfile((error, result) => {
+          if (error) {
+            console.log('%c%s', 'background: #00ff00; color: #ffffff', '카카오 프로필조회 실패', error.toString());
+            return;
+          }
+          // 가져온 토큰으로 회원가입 혹은 로그인
+          switch (type) {
+            case kakaoType.JOIN:
+              onJoin(result);
+              break;
+            case kakaoType.LOGIN:
+              onLogin(result);
+              break;
+            default:
+              break;
+          }
+        })
       }
     });
     setIsLoading(false);

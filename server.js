@@ -96,6 +96,7 @@ const saveFile = (json, filepath, filename) => {
     try {
       const exportPath = path.join(__dirname, filepath, filename);
       fs.writeFileSync(exportPath, JSON.stringify(json), 'utf8');
+      sendSlackOmf(`saveFile: ${JSON.stringify(json)}`);
       resolve();
     } catch (err) {
       reject(err);
