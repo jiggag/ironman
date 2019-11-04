@@ -197,6 +197,7 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-sensitive-info')
     implementation project(':react-native-fast-image')
     implementation project(':react-native-config')
 //    implementation project(':react-native-image-picker') // 아직 사용하지 않는 라이브러리

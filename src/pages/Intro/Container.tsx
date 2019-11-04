@@ -6,6 +6,7 @@ import RNKakaoLogins from 'react-native-kakao-logins';
 import { RESTful, handleAlert } from '../../utils';
 import styles from './styles';
 import Presenter from './Presenter';
+import { setKakaoToken } from '../../utils/auth';
 
 export const kakaoType = {
   JOIN: 'join',
@@ -48,7 +49,8 @@ const Container = () => {
 
   const onLogin = async ({ id: kakaoId }) => {
     try {
-      const { return_code, return_message, return_data } = await RESTful('GET', `/user?kakaoId=${kakaoId}`);
+      await setKakaoToken(kakaoId);
+      const { return_code, return_message, return_data } = await RESTful('GET', `/user`);
       console.log('%c%s', 'background: #00ff00; color: #ffffff', { return_code, return_message, return_data });
       if (return_code === 200) {
         return setUserInfo({ user: { ...return_data }});
@@ -60,7 +62,8 @@ const Container = () => {
   };
   const onJoin = async ({ id: kakaoId, email, phone_number: phone }) => {
     try {
-      const { return_code, return_message, return_data } = await RESTful('POST', '/user', { kakaoId, email, phone });
+      await setKakaoToken(kakaoId);
+      const { return_code, return_message, return_data } = await RESTful('POST', '/user', { email, phone });
       console.log('%c%s', 'background: #00ff00; color: #ffffff', return_code, return_message, return_data);
       if (return_code === 200) {
         return setUserInfo({ user: { ...return_data }});

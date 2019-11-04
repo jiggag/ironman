@@ -1,6 +1,7 @@
 import axios, { Method } from 'axios';
 import Q from 'q';
 import Config from 'react-native-config';
+import { getKakaoToken } from './auth';
 
 export const METHOD = Object.freeze({
   GET: 'GET',
@@ -8,12 +9,15 @@ export const METHOD = Object.freeze({
   PUT: 'PUT',
 });
 const createInstance = async () => {
+  const token = await getKakaoToken();
+  console.log(token);
   try {
     const instance = axios.create({
       baseURL: Config.API_URL,
       headers: {
         'Content-Type': 'application/json;charset=UTF-8',
         Accept: 'application/json;charset=UTF-8',
+        token,
       }
     });
     return instance;
@@ -47,12 +51,9 @@ export default (method: Method, url: string, params?: object) => {
         }
       })
       .then(({ data }) => {
-      // console.log('suc', data);
-      // data: { return_code, return_message, return_data }
         deferred.resolve(data);
       })
       .catch(err => {
-      // console.error('err', err);
         deferred.reject(err);
       });
     return deferred.promise;

@@ -153,7 +153,7 @@ const saveFile = (json, filepath, filename) => {
 app.get('/omf/user', (req, res) => {
   const result = {};
   sendSlackOmf(`get omf/user = ${req.url}`);
-  readUser(req.query.kakaoId)
+  readUser(req.headers.token)
   .then(data => {
     result.return_message = 'response success';
     result.return_code = 200;
@@ -172,7 +172,7 @@ app.get('/omf/user', (req, res) => {
 });
 app.post('/omf/user', (req, res) => {
   const result = {};
-  writeUser(req.body.kakaoId, {})
+  writeUser(req.headers.token, {})
   .then(data => {
     result.return_message = 'response success';
     result.return_code = 200;
@@ -191,7 +191,7 @@ app.post('/omf/user', (req, res) => {
 });
 app.get('/omf/list', (req, res) => {
   const result = {};
-  readUser(req.query.kakaoId)
+  readUser(req.headers.token)
   .then(data => {
     result.return_message = 'response success';
     result.return_code = 200;
@@ -210,7 +210,7 @@ app.get('/omf/list', (req, res) => {
 });
 app.get('/omf/note', (req, res) => {
   const result = {};
-  readNote(req.query.kakaoId, req.query.id)
+  readNote(req.headers.token, req.query.id)
   .then(data => {
     result.return_message = 'response success';
     result.return_code = 200;
@@ -229,7 +229,7 @@ app.get('/omf/note', (req, res) => {
 });
 app.post('/omf/note', (req, res) => {
   const result = {};
-  writeNote(req.query.kakaoId, req.body.data)
+  writeNote(req.headers.token, req.body.data)
   .then(data => {
     result.return_message = 'response success';
     result.return_code = 200;
