@@ -31,6 +31,7 @@ const sendSlackOmf = message => {
   });
 };
 const ROOT = '.';
+const FILE_PATH = '.';
 const readNote = (userId, noteId) => {
   return new Promise((resolve, reject) => {
     try {
@@ -65,7 +66,7 @@ const writeNote = (userId, data) => {
         } else {
           response[userId] = [data];
         }
-        saveFile(response, ROOT, 'user.json')
+        saveFile(response, FILE_PATH, 'user.json')
           .then(() => resolve())
           .catch(() => reject('Err: write note'))
           .finally(() => sendSlackOmf(`new user: ${JSON.stringify(response)}`));
@@ -104,7 +105,7 @@ const writeUser = (userId, data) => {
         } else {
           response[userId] = [data];
         }
-        saveFile(response, ROOT, 'user.json')
+        saveFile(response, FILE_PATH, 'user.json')
           .then(() => resolve())
           .catch(() => reject('Err: write user'))
           .finally(() => sendSlackOmf(`new user: ${JSON.stringify(response)}`));
@@ -128,7 +129,7 @@ const writeLog = log => {
         } else {
           response[todayKey].push(log);
         }
-        saveFile(response, ROOT, 'log.json')
+        saveFile(response, FILE_PATH, 'log.json')
           .then(() => resolve())
           .catch(() => reject('Err: write log -> save log'))
           .finally(() => sendSlackOmf(`new log: ${JSON.stringify(response)}`));

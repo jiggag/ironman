@@ -10,6 +10,7 @@ import android.util.Log;
 import com.facebook.react.ReactApplication;
 import com.dylanvann.fastimage.FastImageViewPackage;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
+import br.com.classapp.RNSensitiveInfo.RNSensitiveInfoPackage;
 //import com.imagepicker.ImagePickerPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
