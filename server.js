@@ -151,99 +151,92 @@ const saveFile = (json, filepath, filename) => {
   });
 };
 
+
+// API 리턴 객체
+function Return(code, message, data) {
+  this.return_code = code;
+  this.return_message = message;
+  this.return_data = data;
+  this.setCode = code => {
+    this.return_code = code;
+    return this;
+  };
+  this.setMessage = message => {
+    this.return_message = message;
+    return this;
+  };
+  this.setData = data => {
+    this.return_data = data;
+    return this;
+  };
+}
 app.get('/omf/user', (req, res) => {
-  const result = {};
-  sendSlackOmf(`get omf/user = ${req.url}`);
+  const result = new Return();
   readUser(req.headers.token)
-  .then(data => {
-    result.return_message = 'response success';
-    result.return_code = 200;
-    result.return_data = data;
-  }).catch(err => {
-    result.return_message = 'response error';
-    result.return_code = 500;
-  }).finally(() => {
-    writeLog({
-      date: moment().format('YYYY.MM.DD HH:mm:SS'),
-      host: req.headers.host,
-      url: req.url,
-      method: req.method,
-    }).finally(() => res.send(result));
-  });
+    .then(data => result.setCode(200).setMessage('response success'))
+    .catch(err => result.setCode(500).setMessage('response error'))
+    .finally(() => {
+      writeLog({
+        date: moment().format('YYYY.MM.DD HH:mm:SS'),
+        host: req.headers.host,
+        url: req.url,
+        method: req.method,
+      }).finally(() => res.send(result));
+    });
 });
 app.post('/omf/user', (req, res) => {
-  const result = {};
+  const result = new Return();
   writeUser(req.headers.token, {})
-  .then(data => {
-    result.return_message = 'response success';
-    result.return_code = 200;
-    result.return_data = 'join';
-  }).catch(err => {
-    result.return_message = 'response error';
-    result.return_code = 500;
-  }).finally(() => {
-    writeLog({
-      date: moment().format('YYYY.MM.DD HH:mm:SS'),
-      host: req.headers.host,
-      url: req.url,
-      method: req.method,
-    }).finally(() => res.send(result));
-  });
+    .then(data => result.setCode(200).setMessage('response success'))
+    .catch(err => result.setCode(500).setMessage('response error'))
+    .finally(() => {
+      writeLog({
+        date: moment().format('YYYY.MM.DD HH:mm:SS'),
+        host: req.headers.host,
+        url: req.url,
+        method: req.method,
+      }).finally(() => res.send(result));
+    });
 });
 app.get('/omf/list', (req, res) => {
-  const result = {};
+  const result = new Return();
   readUser(req.headers.token)
-  .then(data => {
-    result.return_message = 'response success';
-    result.return_code = 200;
-    result.return_data = data;
-  }).catch(err => {
-    result.return_message = 'response error';
-    result.return_code = 500;
-  }).finally(() => {
-    writeLog({
-      date: moment().format('YYYY.MM.DD HH:mm:SS'),
-      host: req.headers.host,
-      url: req.url,
-      method: req.method,
-    }).finally(() => res.send(result));
-  });
+    .then(data => result.setCode(200).setMessage('response success').setData(data))
+    .catch(err => result.setCode(500).setMessage('response error'))
+    .finally(() => {
+      writeLog({
+        date: moment().format('YYYY.MM.DD HH:mm:SS'),
+        host: req.headers.host,
+        url: req.url,
+        method: req.method,
+      }).finally(() => res.send(result));
+    });
 });
 app.get('/omf/note', (req, res) => {
-  const result = {};
+  const result = new Return();
   readNote(req.headers.token, req.query.id)
-  .then(data => {
-    result.return_message = 'response success';
-    result.return_code = 200;
-    result.return_data = data;
-  }).catch(err => {
-    result.return_message = 'response error';
-    result.return_code = 500;
-  }).finally(() => {
-    writeLog({
-      date: moment().format('YYYY.MM.DD HH:mm:SS'),
-      host: req.headers.host,
-      url: req.url,
-      method: req.method,
-    }).finally(() => res.send(result));
-  });
+    .then(data => result.setCode(200).setMessage('response success').setData(data))
+    .catch(err => result.setCode(500).setMessage('response error'))
+    .finally(() => {
+      writeLog({
+        date: moment().format('YYYY.MM.DD HH:mm:SS'),
+        host: req.headers.host,
+        url: req.url,
+        method: req.method,
+      }).finally(() => res.send(result));
+    });
 });
 app.post('/omf/note', (req, res) => {
-  const result = {};
+  const result = new Return();
   writeNote(req.headers.token, req.body.data)
-  .then(data => {
-    result.return_message = 'response success';
-    result.return_code = 200;
-    result.return_data = data;
-  }).catch(err => {
-    result.return_message = 'response error';
-    result.return_code = 500;
-  }).finally(() => {
-    writeLog({
-      date: moment().format('YYYY.MM.DD HH:mm:SS'),
-      host: req.headers.host,
-      url: req.url,
-      method: req.method,
-    }).finally(() => res.send(result));
-  });
+    .then(data => result.setCode(200).setMessage('response success'))
+    .catch(err => result.setCode(500).setMessage('response error'))
+    .finally(() => {
+      writeLog({
+        date: moment().format('YYYY.MM.DD HH:mm:SS'),
+        host: req.headers.host,
+        url: req.url,
+        method: req.method,
+      }).finally(() => res.send(result));
+    });
 });
