@@ -4,7 +4,6 @@ const fs = require('fs');
 const path = require('path');
 const moment = require('moment');
 const Slack = require('slack-node');
-const bodyParser = require('body-parser');
 
 const slack = new Slack();
 const app = express();
@@ -15,8 +14,7 @@ slack.setWebhook(WEBHOOK_URL);
 require('dotenv').config();
 
 app.listen(PORT);
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(express.json());
 
 const sendSlackOmf = message => {
   slack.webhook({
@@ -35,7 +33,7 @@ const FILE_PATH = '.';
 const readNote = (userId, noteId) => {
   return new Promise((resolve, reject) => {
     try {
-      fs.readFile(`${ROOT}/user.json`, (err, data) => {
+      fs.readFile(`${ROOT}/user.json`, 'utf8', (err, data) => {
         if (err) {
           reject(err);
         }
@@ -56,7 +54,7 @@ const readNote = (userId, noteId) => {
 const writeNote = (userId, data) => {
   return new Promise((resolve, reject) => {
     try {
-      fs.readFile(`${ROOT}/user.json`, (err, res) => {
+      fs.readFile(`${ROOT}/user.json`, 'utf8',(err, res) => {
         if (err) {
           reject(err);
         }
@@ -80,7 +78,7 @@ const writeNote = (userId, data) => {
 const readUser = userId => {
   return new Promise((resolve, reject) => {
     try {
-      fs.readFile(`${ROOT}/user.json`, (err, data) => {
+      fs.readFile(`${ROOT}/user.json`, 'utf8',(err, data) => {
         if (err) {
           reject(err);
         }
@@ -95,7 +93,7 @@ const readUser = userId => {
 const writeUser = (userId, data) => {
   return new Promise((resolve, reject) => {
     try {
-      fs.readFile(`${ROOT}/user.json`, (err, res) => {
+      fs.readFile(`${ROOT}/user.json`, 'utf8',(err, res) => {
         if (err) {
           reject(err);
         }
@@ -119,7 +117,7 @@ const writeLog = log => {
   const todayKey = moment().format('YYYY-MM-DD');
   return new Promise((resolve, reject) => {
     try {
-      fs.readFile(`${ROOT}/log.json`, (err, data) => {
+      fs.readFile(`${ROOT}/log.json`, 'utf8',(err, data) => {
         if (err) {
           reject(err);
         }
@@ -153,10 +151,10 @@ const saveFile = (json, filepath, filename) => {
 
 
 // API 리턴 객체
-function Return(code, message, data) {
-  this.return_code = code;
-  this.return_message = message;
-  this.return_data = data;
+function Return() {
+  this.return_code = null;
+  this.return_message = null;
+  this.return_data = null;
   this.setCode = code => {
     this.return_code = code;
     return this;
@@ -228,7 +226,7 @@ app.get('/omf/note', (req, res) => {
 });
 app.post('/omf/note', (req, res) => {
   const result = new Return();
-  writeNote(req.headers.token, req.body.data)
+  writeNote(req.headers.token, req.body)
     .then(data => result.setCode(200).setMessage('response success'))
     .catch(err => result.setCode(500).setMessage('response error'))
     .finally(() => {
