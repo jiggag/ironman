@@ -19,13 +19,13 @@ const Container = ({ id }) => {
     state: 0,
   });
   const [isLoading, setIsLoading] = useState(false);
-  
+
   const onPress = async () => {
-  }
+  };
 
   const onPressBack = () => {
     Actions.pop();
-  }
+  };
 
   const init = async () => {
     await setIsLoading(true);
@@ -40,8 +40,8 @@ const Container = ({ id }) => {
     } finally {
       setIsLoading(false);
     }
-  }
-  
+  };
+
   useEffect(() => {
     init();
   }, []);
@@ -56,6 +56,6 @@ const Container = ({ id }) => {
       <Spinner visible={isLoading} />
     </SafeAreaView>
   );
-    
-}
+
+};
 export default Container;

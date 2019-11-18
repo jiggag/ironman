@@ -10,7 +10,6 @@ export const METHOD = Object.freeze({
 });
 const createInstance = async () => {
   const token = await getKakaoToken();
-  console.log(token);
   try {
     const instance = axios.create({
       baseURL: Config.API_URL,

@@ -41,10 +41,10 @@ const readNote = (userId, noteId) => {
         if (!response.hasOwnProperty(userId)) {
           reject('Not Found User');
         }
-        if (!response[userId].hasOwnProperty(noteId)) {
+        if (!response[userId].length < noteId) {
           reject('Not Found Note');
         }
-        resolve(response[userId][noteId]);
+        resolve(response[userId][noteId - 1]);
       });
     } catch (err) {
       reject(err);

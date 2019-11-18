@@ -27,7 +27,7 @@ const Container = () => {
   });
   const [image, setImage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  
+
   const onPress = async () => {
     await setIsLoading(true);
     try {
@@ -35,7 +35,7 @@ const Container = () => {
       const { return_code, return_message } = await RESTful('POST', '/note', { ...note, image: !!image && image.name });
       console.log('%c%s', 'background: #00ff00; color: #ffffff', { return_code, return_message });
       if (return_code === 200) {
-        return handleAlert("노트 생성", return_message, () => Actions.listNote({ type: ActionConst.POP_TO }));
+        return handleAlert("노트 생성", return_message, () => Actions.listNote({ type: ActionConst.POP_TO, refresh: { update: true } }));
       }
       return handleAlert("노트 생성 실패", return_message, () => null);
     } catch (error) {
@@ -44,7 +44,7 @@ const Container = () => {
       setIsLoading(false);
     }
   };
-  
+
   const onChangeNote = value => {
     setNote({ ...note, ...value });
   };
@@ -99,6 +99,6 @@ const Container = () => {
       <Spinner visible={isLoading} />
     </SafeAreaView>
   );
-    
+
 };
 export default Container;
