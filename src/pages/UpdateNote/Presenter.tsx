@@ -8,7 +8,7 @@ import { BigButton, RadioButton, SubTitle, Header } from '../../components';
 import { stateList, weatherList } from '../../utils/common';
 import Constant from '../../utils/constants';
 
-const Presenter = ({ onPressBack, note: { title, date, food, done, etc, state, weather }, image, onPress, onChangeNote, onPressImage })=> (
+const Presenter = ({ onPressBack, note: { title, date, food, done, etc, state, weather }, onPress, onChangeNote })=> (
   <>
     <Header onPress={onPressBack} />
     <ScrollView style={styles.container}>
@@ -104,30 +104,10 @@ const Presenter = ({ onPressBack, note: { title, date, food, done, etc, state, w
           </View>
         </View>
       </View>
-      {/* <View marginB-10>
-        <View style={styles.cameraView}>
-          <TouchableOpacity activeOpacity={0.5} onPress={onPressImage}>
-            {
-              !!image ?
-              <FastImage
-                source={image}
-                resizeMode={FastImage.resizeMode.cover}
-                style={{ width: '100%', height: '100%' }}
-              /> :
-              <FastImage
-                source={require('../../assets/camera.png')}
-                resizeMode={FastImage.resizeMode.center}
-                style={{ width: '100%', height: '100%' }}
-              />
-
-            }
-          </TouchableOpacity>
-        </View>
-      </View> */}
     </ScrollView>
     <BigButton
       onPress={onPress}
-      text="저장"
+      text="수정"
       underlayColor={Constant.WHITE_COLOR}
       buttonStyle={{ backgroundColor: Constant.MAIN_COLOR }}
     />

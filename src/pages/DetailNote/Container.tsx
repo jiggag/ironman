@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { SafeAreaView, ActionSheetIOS } from 'react-native';
+import { SafeAreaView } from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
 import _find from 'lodash/find';
 import { RESTful } from '../../utils';
@@ -20,8 +20,7 @@ const Container = ({ id }) => {
   });
   const [isLoading, setIsLoading] = useState(false);
 
-  const onPress = async () => {
-  };
+  const onPress = () => Actions.updateNote({ originNote: { ...note, id } });
 
   const onPressBack = () => {
     Actions.pop();

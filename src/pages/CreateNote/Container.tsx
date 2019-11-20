@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Platform, SafeAreaView } from 'react-native';
+import { SafeAreaView } from 'react-native';
 import { Actions, ActionConst } from 'react-native-router-flux';
 import Spinner from 'react-native-loading-spinner-overlay';
 // import ImagePicker from 'react-native-image-picker';
@@ -18,7 +18,7 @@ const Container = () => {
   */
   const [note, setNote] = useState({
     title: null,
-    date: moment(),
+    date: moment().valueOf(),
     weather: 4,
     food: null,
     done: null,
@@ -35,7 +35,7 @@ const Container = () => {
       const { return_code, return_message } = await RESTful('POST', '/note', { ...note, image: !!image && image.name });
       console.log('%c%s', 'background: #00ff00; color: #ffffff', { return_code, return_message });
       if (return_code === 200) {
-        return handleAlert("노트 생성", return_message, () => Actions.listNote({ type: ActionConst.POP_TO, refresh: { update: true } }));
+        return Actions.listNote({ type: ActionConst.REPLACE, update: true });
       }
       return handleAlert("노트 생성 실패", return_message, () => null);
     } catch (error) {

@@ -5,7 +5,9 @@ const styles =  StyleSheet.create({
   safeAreaView: {
     backgroundColor: Constant.WHITE_COLOR,
     flex: 1,
-    paddingVertical: 10,
+  },
+  container: {
+    flex: 1,
   },
   inputLine: {
     borderRadius: 3,
@@ -30,6 +32,7 @@ const styles =  StyleSheet.create({
     fontSize: 18,
     fontWeight: '600',
     textDecorationLine: 'underline',
+    height: 40,
   },
 });
 

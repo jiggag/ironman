@@ -75,6 +75,32 @@ const writeNote = (userId, data) => {
   });
 };
 
+const updateNote = (userId, data) => {
+  return new Promise((resolve, reject) => {
+    try {
+      const { id, ...rest } = data;
+      fs.readFile(`${ROOT}/user.json`, 'utf8',(err, res) => {
+        if (err) {
+          reject(err);
+        }
+        const response = JSON.parse(res);
+        if (!response.hasOwnProperty(userId)) {
+          reject('Not Found User');
+        }
+        if (!response[userId][id - 1]) {
+          reject('Not Found Note');
+        }
+        response[userId][id - 1] = { ...rest };
+        saveFile(response, FILE_PATH, 'user.json')
+          .then(() => resolve())
+          .catch(() => reject('Err: update note'))
+          .finally(() => sendSlackOmf(`update note: ${JSON.stringify(response)}`));
+      });
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
 const readUser = userId => {
   return new Promise((resolve, reject) => {
     try {
@@ -230,4 +256,13 @@ app.post('/omf/note', (req, res) => {
         .finally(() => res.send(result));
     });
 });
-
+app.put('/omf/note', (req, res) => {
+  const result = new Return();
+  updateNote(req.headers.token, req.body)
+    .then(data => result.setCode(200).setMessage('response success'))
+    .catch(err => result.setCode(500).setMessage('response error'))
+    .finally(() => {
+      writeLog(Log(req, result))
+        .finally(() => res.send(result));
+    });
+});

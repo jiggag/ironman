@@ -4,9 +4,9 @@ import { SafeAreaView } from 'react-native';
 import styles from './styles';
 import Presenter from './Presenter';
 import { Actions } from 'react-native-router-flux';
-import { handleAlert, RESTful } from '../../utils';
+import { RESTful } from '../../utils';
 
-const Container = ({ update = false }) => {
+const Container = ({ update = false, ...rest }) => {
   const [list, setList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -19,11 +19,13 @@ const Container = ({ update = false }) => {
   };
 
   const init = async () => {
+    await Actions.refresh({ update: false });
     await setIsLoading(true);
     try {
       const { return_code, return_data } = await RESTful('GET', '/list');
       if (return_code === 200) {
-        setList(format(return_data));
+        const list = format(return_data);
+        await setList(list.concat(list).concat(list));
       }
       console.log('%c%s', 'background: #00ff00; color: #ffffff', return_data);
     } catch (error) {
@@ -44,7 +46,7 @@ const Container = ({ update = false }) => {
   }, []);
 
   const onActionToCreate = () => Actions.createNote();
-  const onPress = id => handleAlert(`id= ${id}`, `${id}노트상세보기`, () => {});
+  const onPress = id => Actions.detailNote({ id });
   const onPressBack = () => Actions.pop();
 
   return (

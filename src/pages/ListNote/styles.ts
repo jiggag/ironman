@@ -5,7 +5,6 @@ const styles =  StyleSheet.create({
   safeAreaView: {
     backgroundColor: Constant.WHITE_COLOR,
     flex: 1,
-    paddingVertical: 10,
   },
   container: {
     flex: 1,

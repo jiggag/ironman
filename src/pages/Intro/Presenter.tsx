@@ -4,7 +4,7 @@ import { BigButton } from '../../components';
 import { kakaoType } from './Container';
 
 const Presenter = ({ onPress }) => (
-  <View>
+  <View style={{ flex: 1, justifyContent: 'center' }}>
     <BigButton
       onPress={() => onPress(kakaoType.LOGIN)}
       text={'카카오 로그인'}
