@@ -41,7 +41,7 @@ const readNote = (userId, noteId) => {
         if (!response.hasOwnProperty(userId)) {
           reject('Not Found User');
         }
-        if (!response[userId].length < noteId) {
+        if (response[userId].length < noteId) {
           reject('Not Found Note');
         }
         resolve(response[userId][noteId - 1]);
@@ -150,6 +150,18 @@ const saveFile = (json, filepath, filename) => {
 };
 
 
+// LOG 객체
+const Log = (req, result) => {
+  return {
+    date: moment().format('YYYY.MM.DD HH:mm:SS'),
+    host: req.headers.host,
+    url: req.url,
+    method: req.method,
+    code: result.return_code,
+    message: result.return_message,
+    data: result.return_data,
+  }
+};
 // API 리턴 객체
 function Return() {
   this.return_code = null;
@@ -168,18 +180,15 @@ function Return() {
     return this;
   };
 }
+
 app.get('/omf/user', (req, res) => {
   const result = new Return();
   readUser(req.headers.token)
     .then(data => result.setCode(200).setMessage('response success'))
     .catch(err => result.setCode(500).setMessage('response error'))
     .finally(() => {
-      writeLog({
-        date: moment().format('YYYY.MM.DD HH:mm:SS'),
-        host: req.headers.host,
-        url: req.url,
-        method: req.method,
-      }).finally(() => res.send(result));
+      writeLog(Log(req, result))
+        .finally(() => res.send(result));
     });
 });
 app.post('/omf/user', (req, res) => {
@@ -188,12 +197,8 @@ app.post('/omf/user', (req, res) => {
     .then(data => result.setCode(200).setMessage('response success'))
     .catch(err => result.setCode(500).setMessage('response error'))
     .finally(() => {
-      writeLog({
-        date: moment().format('YYYY.MM.DD HH:mm:SS'),
-        host: req.headers.host,
-        url: req.url,
-        method: req.method,
-      }).finally(() => res.send(result));
+      writeLog(Log(req, result))
+        .finally(() => res.send(result));
     });
 });
 app.get('/omf/list', (req, res) => {
@@ -202,12 +207,8 @@ app.get('/omf/list', (req, res) => {
     .then(data => result.setCode(200).setMessage('response success').setData(data))
     .catch(err => result.setCode(500).setMessage('response error'))
     .finally(() => {
-      writeLog({
-        date: moment().format('YYYY.MM.DD HH:mm:SS'),
-        host: req.headers.host,
-        url: req.url,
-        method: req.method,
-      }).finally(() => res.send(result));
+      writeLog(Log(req, result))
+        .finally(() => res.send(result));
     });
 });
 app.get('/omf/note', (req, res) => {
@@ -216,12 +217,7 @@ app.get('/omf/note', (req, res) => {
     .then(data => result.setCode(200).setMessage('response success').setData(data))
     .catch(err => result.setCode(500).setMessage('response error'))
     .finally(() => {
-      writeLog({
-        date: moment().format('YYYY.MM.DD HH:mm:SS'),
-        host: req.headers.host,
-        url: req.url,
-        method: req.method,
-      }).finally(() => res.send(result));
+      writeLog(Log(req, result)).finally(() => res.send(result));
     });
 });
 app.post('/omf/note', (req, res) => {
@@ -230,11 +226,8 @@ app.post('/omf/note', (req, res) => {
     .then(data => result.setCode(200).setMessage('response success'))
     .catch(err => result.setCode(500).setMessage('response error'))
     .finally(() => {
-      writeLog({
-        date: moment().format('YYYY.MM.DD HH:mm:SS'),
-        host: req.headers.host,
-        url: req.url,
-        method: req.method,
-      }).finally(() => res.send(result));
+      writeLog(Log(req, result))
+        .finally(() => res.send(result));
     });
 });
+
