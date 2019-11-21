@@ -25,7 +25,7 @@ const Presenter = ({ onPressBack, note: { title, date, food, done, etc, state, w
               dateInput: styles.dateInput,
               dateText: styles.dateText
             }}
-            onDateChange={date => onChangeNote({ date: moment(date).valueOf() })}
+            onDateChange={date => onChangeNote({ date: moment(date, 'YYYY.MM.DD').valueOf() })}
           />
         </View>
         <View marginB-10>

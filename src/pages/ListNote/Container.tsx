@@ -6,7 +6,7 @@ import Presenter from './Presenter';
 import { Actions } from 'react-native-router-flux';
 import { RESTful } from '../../utils';
 
-const Container = ({ update = false, ...rest }) => {
+const Container = ({ update = false }) => {
   const [list, setList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -24,8 +24,7 @@ const Container = ({ update = false, ...rest }) => {
     try {
       const { return_code, return_data } = await RESTful('GET', '/list');
       if (return_code === 200) {
-        const list = format(return_data);
-        await setList(list.concat(list).concat(list));
+        await setList(format(return_data));
       }
       console.log('%c%s', 'background: #00ff00; color: #ffffff', return_data);
     } catch (error) {
