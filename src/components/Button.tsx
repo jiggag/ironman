@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Constant from '../utils/constants';
 
-const BigButton = ({ onPress, text, buttonStyle, ...rest }) => (
+const Button = ({ onPress, text, buttonStyle, ...rest }) => (
   <TouchableOpacity
     onPress={onPress}
     activeOpacity={0.5}
@@ -15,15 +15,13 @@ const BigButton = ({ onPress, text, buttonStyle, ...rest }) => (
   </TouchableOpacity>
 );
 
-export default BigButton;
+export default Button;
 
 const styles =  StyleSheet.create({
   button: {
     backgroundColor: Constant.MAIN_COLOR,
     paddingVertical: 14,
     alignItems: 'center',
-    marginHorizontal: 20,
-    marginVertical: 8,
   },
   buttonText: {
     color: Constant.WHITE_COLOR,
