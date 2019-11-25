@@ -3,10 +3,10 @@ import { TextInput, Text, ScrollView } from 'react-native';
 import { View } from 'react-native-ui-lib';
 import styles from './styles';
 import moment from 'moment';
-import { BigButton, SubTitle, Header } from '../../components';
+import { Button, SubTitle, Header } from '../../components';
 import Constant from '../../utils/constants';
 
-const Presenter = ({ onPressBack, note: { title, date, food, done, etc, state, weather }, onPress })=> (
+const Presenter = ({ onPressBack, note: { title, date, food, done, etc, state, weather }, onPressDelete, onPressUpdate })=> (
   <>
     <Header onPress={onPressBack} />
     <ScrollView style={styles.container}>
@@ -85,12 +85,20 @@ const Presenter = ({ onPressBack, note: { title, date, food, done, etc, state, w
         </View>
       </View>
     </ScrollView>
-    <BigButton
-      onPress={onPress}
-      text="수정"
-      underlayColor={Constant.WHITE_COLOR}
-      buttonStyle={{ backgroundColor: Constant.MAIN_COLOR }}
-    />
+    <View row paddingH-20 marginV-8>
+        <Button
+          onPress={onPressDelete}
+          text="삭제"
+          underlayColor={Constant.WHITE_COLOR}
+          buttonStyle={{ backgroundColor: Constant.MAIN_COLOR, flex: 1, marginRight: 3 }}
+        />
+        <Button
+          onPress={onPressUpdate}
+          text="수정"
+          underlayColor={Constant.WHITE_COLOR}
+          buttonStyle={{ backgroundColor: Constant.MAIN_COLOR, flex: 2, marginLeft: 3 }}
+        />
+    </View>
   </>
 );
 

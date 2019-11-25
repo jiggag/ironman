@@ -16,11 +16,25 @@ require('dotenv').config();
 app.listen(PORT);
 app.use(express.json());
 
-const sendSlackOmf = message => {
+const sendSlackOmf = log => {
+  const formatting = ({ title, json }) => {
+    const response = [];
+    for (const key in json) {
+      response.push(`\t{ ${key}: ${JSON.stringify(json[key])} },\n`);
+    }
+    return `
+\`\`\`
+${title}
+{
+${response.join('')}
+}
+\`\`\`
+    `;
+  };
   slack.webhook({
     channel: '#logs',
     username: 'OMF',
-    text: message,
+    text: formatting(log),
     icon_emoji: ':dog:',
   }, (err, res) => {
     if (err) {
@@ -67,7 +81,10 @@ const writeNote = (userId, data) => {
         saveFile(response, FILE_PATH, 'user.json')
           .then(() => resolve())
           .catch(() => reject('Err: write note'))
-          .finally(() => sendSlackOmf(`new user: ${JSON.stringify(response)}`));
+          .finally(() => sendSlackOmf({
+            title: 'New User',
+            json: response,
+          }));
       });
     } catch (err) {
       reject(err);
@@ -94,7 +111,39 @@ const updateNote = (userId, data) => {
         saveFile(response, FILE_PATH, 'user.json')
           .then(() => resolve())
           .catch(() => reject('Err: update note'))
-          .finally(() => sendSlackOmf(`update note: ${JSON.stringify(response)}`));
+          .finally(() => sendSlackOmf({
+            title: 'Update Note',
+            json: response,
+          }));
+      });
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
+const deleteNote = (userId, data) => {
+  return new Promise((resolve, reject) => {
+    try {
+      const { id } = data;
+      fs.readFile(`${ROOT}/user.json`, 'utf8',(err, res) => {
+        if (err) {
+          reject(err);
+        }
+        const response = JSON.parse(res);
+        if (!response.hasOwnProperty(userId)) {
+          reject('Not Found User');
+        }
+        if (!response[userId][id - 1]) {
+          reject('Not Found Note');
+        }
+        response[userId].splice(id - 1, 1);
+        saveFile(response, FILE_PATH, 'user.json')
+          .then(() => resolve())
+          .catch(() => reject('Err: delete note'))
+          .finally(() => sendSlackOmf({
+            title: 'Delete Note',
+            json: response,
+          }));
       });
     } catch (err) {
       reject(err);
@@ -132,7 +181,10 @@ const writeUser = (userId, data) => {
         saveFile(response, FILE_PATH, 'user.json')
           .then(() => resolve())
           .catch(() => reject('Err: write user'))
-          .finally(() => sendSlackOmf(`new user: ${JSON.stringify(response)}`));
+          .finally(() => sendSlackOmf({
+            title: 'New User',
+            json: response,
+          }));
       });
     } catch (err) {
       reject(err);
@@ -156,7 +208,10 @@ const writeLog = log => {
         saveFile(response, FILE_PATH, 'log.json')
           .then(() => resolve())
           .catch(() => reject('Err: write log -> save log'))
-          .finally(() => sendSlackOmf(`new log: ${JSON.stringify(response)}`));
+          .finally(() => sendSlackOmf({
+            title: 'New Log',
+            json: response,
+          }));
       });
     } catch (err) {
       reject(err);
@@ -259,6 +314,16 @@ app.post('/omf/note', (req, res) => {
 app.put('/omf/note', (req, res) => {
   const result = new Return();
   updateNote(req.headers.token, req.body)
+    .then(data => result.setCode(200).setMessage('response success'))
+    .catch(err => result.setCode(500).setMessage('response error'))
+    .finally(() => {
+      writeLog(Log(req, result))
+        .finally(() => res.send(result));
+    });
+});
+app.post('/omf/deleteNote', (req, res) => {
+  const result = new Return();
+  deleteNote(req.headers.token, req.body)
     .then(data => result.setCode(200).setMessage('response success'))
     .catch(err => result.setCode(500).setMessage('response error'))
     .finally(() => {

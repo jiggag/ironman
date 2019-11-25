@@ -6,7 +6,7 @@ import { RESTful } from '../../utils';
 import Presenter from './Presenter';
 import styles from './styles';
 import { stateList, weatherList } from '../../utils/common';
-import { Actions } from 'react-native-router-flux';
+import {ActionConst, Actions} from 'react-native-router-flux';
 
 const Container = ({ id }) => {
   const [note, setNote] = useState({
@@ -20,7 +20,20 @@ const Container = ({ id }) => {
   });
   const [isLoading, setIsLoading] = useState(false);
 
-  const onPress = () => Actions.updateNote({ originNote: { ...note, id } });
+  const onPressDelete = async () => {
+    await setIsLoading(true);
+    try {
+      const { return_code } = await RESTful('POST', `/deleteNote`, { id });
+      if (return_code === 200) {
+        return Actions.listNote({ type: ActionConst.PUSH_OR_POP, update: true });
+      }
+    } catch (error) {
+      console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (/note)', '\n', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  const onPressUpdate = () => Actions.updateNote({ originNote: { ...note, id } });
 
   const onPressBack = () => {
     Actions.pop();
@@ -35,7 +48,7 @@ const Container = ({ id }) => {
       setNote({ ...return_data, state, weather });
       console.log('%c%s', 'background: #00ff00; color: #ffffff', return_data);
     } catch (error) {
-      console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (/note)', '\n', error);
+      console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (detail note)', '\n', error);
     } finally {
       setIsLoading(false);
     }
@@ -49,7 +62,8 @@ const Container = ({ id }) => {
     <SafeAreaView style={styles.safeAreaView}>
       <Presenter
         note={note}
-        onPress={onPress}
+        onPressDelete={onPressDelete}
+        onPressUpdate={onPressUpdate}
         onPressBack={onPressBack}
       />
       <Spinner visible={isLoading} />
