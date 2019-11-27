@@ -35,6 +35,8 @@
     "react-native-router-flux": "^4.0.6",
     "react-native-sensitive-info": "^5.5.3",
     "react-native-ui-lib": "^3.34.3",
+    "react-navigation": "^4.0.10",
+    "react-navigation-stack": "^1.10.3",
     "react-redux": "^7.1.0",
     "redux": "^4.0.4",
     "redux-saga": "^1.1.3",
