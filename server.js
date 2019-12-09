@@ -4,6 +4,9 @@ const fs = require('fs');
 const path = require('path');
 const moment = require('moment');
 const Slack = require('slack-node');
+const mapper = require('./common/database');
+
+require('dotenv').config();
 
 const slack = new Slack();
 const app = express();
@@ -11,10 +14,11 @@ const PORT = process.env.PORT;
 const WEBHOOK_URL = process.env.WEBHOOK_URL;
 slack.setWebhook(WEBHOOK_URL);
 
-require('dotenv').config();
+const log = console.log;
 
 app.listen(PORT);
 app.use(express.json());
+mapper('select * from user')(log);
 
 const sendSlackOmf = log => {
   const formatting = ({ title, json }) => {
