@@ -1,4 +1,5 @@
-require('dotenv').config();
+const env = require('dotenv');
+env.config();
 
 const {
   DB_HOST,
@@ -6,7 +7,8 @@ const {
   DB_PASSWORD,
   DB_PORT,
   DB_NAME,
-  PORT: APP_PORT,
+  APP_NAME,
+  APP_PORT,
   WEBHOOK_URL,
 } = process.env;
 
@@ -16,6 +18,7 @@ module.exports = {
   DB_PASSWORD,
   DB_PORT,
   DB_NAME,
+  APP_NAME,
   APP_PORT,
   WEBHOOK_URL,
 }

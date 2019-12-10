@@ -13,7 +13,8 @@
     "android:live-build": "cd android && ENVFILE=.env.production ./gradlew assembleRelease && cd ..",
     "test": "jest",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix"
+    "lint:fix": "eslint --fix",
+    "server": "node ./common/server.js"
   },
   "dependencies": {
     "@slack/client": "^5.0.2",
@@ -43,7 +44,6 @@
     "xml-js": "^1.6.11"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.5",
     "@babel/runtime": "^7.5.5",
     "@types/react": "^16.8.23",
     "@types/react-native": "^0.60.2",

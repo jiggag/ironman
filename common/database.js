@@ -11,9 +11,12 @@ const connection = mysql.createConnection({
 
 connection.connect();
 
-const mapper = sql => res => {
-  connection.query(sql, function (err, rows) {
-    res(err || rows);
+const mapper = sql => resolve => reject => {
+  return connection.query(sql, function (err, rows) {
+    if (!err) {
+      return resolve(rows);
+    }
+    return reject(err);
   })
 };
 
