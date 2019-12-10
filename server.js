@@ -1,24 +1,23 @@
-
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const moment = require('moment');
 const Slack = require('slack-node');
-const mapper = require('./common/database');
-
-require('dotenv').config();
+const env = require('dotenv');
+const database = require('./common/database');
+const { APP_PORT, WEBHOOK_URL } = require('./common/constant');
+const { GET_USER } = require('./common/sql');
+const { Log, Return } = require('./common/response');
 
 const slack = new Slack();
 const app = express();
-const PORT = process.env.PORT;
-const WEBHOOK_URL = process.env.WEBHOOK_URL;
-slack.setWebhook(WEBHOOK_URL);
-
 const log = console.log;
 
-app.listen(PORT);
+env.config();
+app.listen(APP_PORT);
 app.use(express.json());
-mapper('select * from user')(log);
+slack.setWebhook(WEBHOOK_URL);
+database(GET_USER)(log);
 
 const sendSlackOmf = log => {
   const formatting = ({ title, json }) => {
@@ -234,37 +233,6 @@ const saveFile = (json, filepath, filename) => {
   });
 };
 
-
-// LOG 객체
-const Log = (req, result) => {
-  return {
-    date: moment().format('YYYY.MM.DD HH:mm:SS'),
-    host: req.headers.host,
-    url: req.url,
-    method: req.method,
-    code: result.return_code,
-    message: result.return_message,
-    data: result.return_data,
-  }
-};
-// API 리턴 객체
-function Return() {
-  this.return_code = null;
-  this.return_message = null;
-  this.return_data = null;
-  this.setCode = code => {
-    this.return_code = code;
-    return this;
-  };
-  this.setMessage = message => {
-    this.return_message = message;
-    return this;
-  };
-  this.setData = data => {
-    this.return_data = data;
-    return this;
-  };
-}
 
 app.get('/omf/user', (req, res) => {
   const result = new Return();
