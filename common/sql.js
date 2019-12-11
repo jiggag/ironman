@@ -1,15 +1,15 @@
 const database = require('./database');
 
-const GET_USER = id => database(`SELECT * FROM user WHERE id = ${id}`);
-const CREATE_USER = ({ kakaoId, email, phone }) => database(`INSERT INFO user (kakao_id, email, phone) VALUES (${kakaoId}, ${email}, ${phone})`);
+const GET_USER = param => database(`SELECT * FROM user WHERE id = ?`, param);
+const CREATE_USER = param => database(`INSERT INTO user (kakao_id, email, phone) VALUES (?, ?, ?)`,param);
 
-const GET_NOTE = userId => database(`SELECT * FROM note WHERE user_id = ${userId}`);
-const GET_NOTE_DETAIL = ({ id, userId }) => database(`SELECT * FROM note WHERE id = ${id} AND user_id = ${userId}`);
-const CREATE_NOTE = ({ userId, date, title, weather, food, done, etc, state }) => database(`INSERT INTO note (title, weather, food, done, etc, state, date, user_id) VALUES (${title}, ${weather}, ${food}, ${done}, ${etc}, ${state}, ${date}, ${userId})`);
-const UPDATE_NOTE = ({ id, userId, date, title, weather, food, done, etc, state }) => database(`UPDATE note SET title = ${title}, weather = ${weather}, food = ${food}, done = ${done}, etc = ${etc}, state = ${state}, date = ${date} WHERE id = ${id} AND user_id = ${userId}`);
-const DELETE_NOTE = ({ id, userId }) => database(`DELETE FROM note WHERE id = ${id} AND user_id = ${userId}`);
+const GET_NOTE = param => database(`SELECT * FROM note WHERE user_id = ?`, param);
+const GET_NOTE_DETAIL = param => database(`SELECT * FROM note WHERE id = ? AND user_id = ?`, param);
+const CREATE_NOTE = param => database(`INSERT INTO note (title, weather, food, done, etc, state, date, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, param);
+const UPDATE_NOTE = param => database(`UPDATE note SET title = ?, weather = ?, food = ?, done = ?, etc = ?, state = ?, date = ? WHERE id = ? AND user_id = ?`, param);
+const DELETE_NOTE = param => database(`DELETE FROM note WHERE id = ? AND user_id = ?`, param);
 
-const CREATE_LOG = ({ request, response }) => database(`INSERT INFO log (request, response) VALUES (${request}, ${response})`);
+const CREATE_LOG = param => database(`INSERT INTO log (url, method, host, request_date, request, response) VALUES (?, ?, ?, ?, ?, ?)`, param);
 
 module.exports = {
   GET_USER,

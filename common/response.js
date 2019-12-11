@@ -1,18 +1,15 @@
 const moment = require('moment');
-// LOG 객체
-const Log = (req, result) => {
+const Log = (req, response) => {
   return {
-    date: moment().format('YYYY.MM.DD HH:mm:SS'),
     host: req.headers.host,
     url: req.url,
     method: req.method,
-    code: result.return_code,
-    message: result.return_message,
-    data: result.return_data,
+    reqDate: moment().format('YYYY.MM.DD HH:mm:SS'),
+    request: req.headers,
+    response,
   }
 };
 
-// API 리턴 객체
 function Return() {
   this.return_code = null;
   this.return_message = null;

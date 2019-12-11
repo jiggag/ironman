@@ -11,8 +11,8 @@ const connection = mysql.createConnection({
 
 connection.connect();
 
-const mapper = sql => resolve => reject => {
-  return connection.query(sql, function (err, rows) {
+const database = (sql, param) => resolve => reject => {
+  return connection.query(sql, param, function (err, rows) {
     if (!err) {
       return resolve(rows);
     }
@@ -20,4 +20,4 @@ const mapper = sql => resolve => reject => {
   })
 };
 
-module.exports = mapper;
+module.exports = database;
