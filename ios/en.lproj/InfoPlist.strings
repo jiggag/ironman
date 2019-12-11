@@ -1,0 +1,5 @@
+"CFBundleDisplayName" = "OMF";
+"CFBundleName" = "OMF";
+"NSPhotoLibraryUsageDescription" = "We access the user's photo library.";
+"NSPhotoLibraryAddUsageDescription" = "We access the user's photo library.";
+"NSCameraUsageDescription" = "We access your camera.";
