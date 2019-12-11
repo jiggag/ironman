@@ -26,6 +26,7 @@ const Container = () => {
       await RNKakaoLogins.login((err, res) => {
         if (err) {
           console.log('%c%s', 'background: #00ff00; color: #ffffff', '카카오 로그인 실패', err.toString());
+          setIsLoading(false);
           return;
         }
         if (res) {
@@ -50,18 +51,21 @@ const Container = () => {
         }
       });
     }
-    setIsLoading(false);
   };
 
   const onLogin = async () => {
     try {
       const { return_code, return_message, return_data } = await RESTful('GET', `/user`);
-      console.log('%c%s', 'background: #00ff00; color: #ffffff', { return_code, return_message, return_data });
+      console.log('%c%s', 'background: #00ff00; color: #ffffff', return_code, return_message, return_data);
       if (return_code === 200) {
+        setIsLoading(false);
         return setUserInfo({ user: { ...return_data }});
       }
-      return handleAlert('로그인 실패', return_message, () => null);
+      return handleAlert('로그인 실패', return_message, () => {
+        setIsLoading(false);
+      });
     } catch (error) {
+      setIsLoading(false);
       console.error('%c%s', 'background: #00ff00; color: #ffffff', '[GET] (/user)', '\n', error);
     }
   };
@@ -70,10 +74,14 @@ const Container = () => {
       const { return_code, return_message, return_data } = await RESTful('POST', '/user', { email, phone });
       console.log('%c%s', 'background: #00ff00; color: #ffffff', return_code, return_message, return_data);
       if (return_code === 200) {
+        setIsLoading(false);
         return setUserInfo({ user: { ...return_data }});
       }
-      return handleAlert('회원가입 실패', return_message, () => null);
+      return handleAlert('회원가입 실패', return_message, () => {
+        setIsLoading(false);
+      });
     } catch (error) {
+      setIsLoading(false);
       console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (/user)', '\n', error);
     }
   };

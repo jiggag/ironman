@@ -17,6 +17,8 @@ const Container = ({ id }) => {
     done: null,
     etc: null,
     state: 0,
+    stateText: '',
+    weatherText: '',
   });
   const [isLoading, setIsLoading] = useState(false);
 
@@ -25,12 +27,12 @@ const Container = ({ id }) => {
     try {
       const { return_code } = await RESTful('POST', `/deleteNote`, { id });
       if (return_code === 200) {
+        setIsLoading(false);
         return Actions.listNote({ type: ActionConst.PUSH_OR_POP, update: true });
       }
     } catch (error) {
-      console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (/note)', '\n', error);
-    } finally {
       setIsLoading(false);
+      console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (/note)', '\n', error);
     }
   };
   const onPressUpdate = () => Actions.updateNote({ originNote: { ...note, id } });
@@ -42,10 +44,10 @@ const Container = ({ id }) => {
   const init = async () => {
     await setIsLoading(true);
     try {
-      const { return_code, return_message, return_data } = await RESTful('GET', `/note?id=${id}`);
-      const { value: state } = _find(stateList, {'id': return_data.state});
-      const { value: weather } = _find(weatherList, {'id': return_data.weather});
-      setNote({ ...return_data, state, weather });
+      const { return_data } = await RESTful('GET', `/note?id=${id}`);
+      const { value: stateText } = _find(stateList, {'id': return_data[0].state});
+      const { value: weatherText } = _find(weatherList, {'id': return_data[0].weather});
+      setNote({ ...return_data[0], stateText, weatherText });
       console.log('%c%s', 'background: #00ff00; color: #ffffff', return_data);
     } catch (error) {
       console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (detail note)', '\n', error);
