@@ -127,6 +127,7 @@ Please update the following components: SafeView, Transitioner
 Learn more about this warning here:
 https://fb.me/react-async-component-lifecycle-hooks
 ```
+`componentWillReceiveProps`이 `deprecated` 됬으니 다음 버전에서는 `getDerivedStateFromProps`로 대체하라는 메세지로 현재 리액트 16.x까지는 지원을 하고 있지만 17에서는 완전 삭제될 예정이라고 한다.
 ##
 `react-native-kakao-logins`를 사용하여 `iOS`는 사용자 정보를 가져오는데 성공하였다. 이제 `안드로이드`를 설정하려고 하는데 생각만큼 간단하지 않았다. iOS가 더 어려울것 같아서 먼저 시작했는데 복병이 여기있었다. `Invalid android_key_hash or ios_bundle_id or web_site_url` 카카오 API를 사용하려고 하는데 안드로이드 키해시를 설정해주지 않아서 로그인에 실패하였다.
 ```

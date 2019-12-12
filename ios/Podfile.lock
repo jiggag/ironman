@@ -113,7 +113,11 @@ PODS:
     - React
     - SDWebImage (~> 5.0)
     - SDWebImageWebPCoder (~> 0.2.3)
+  - RNGestureHandler (1.5.2):
+    - React
   - RNKakaoLogins (1.0.0):
+    - React
+  - RNReanimated (1.4.0):
     - React
   - SDWebImage (5.0.6):
     - SDWebImage/Core (= 5.0.6)
@@ -148,7 +152,9 @@ DEPENDENCIES:
   - React-RCTWebSocket (from `../node_modules/react-native/Libraries/WebSocket`)
   - ReactNativeUiLib (from `../node_modules/react-native-ui-lib`)
   - RNFastImage (from `../node_modules/react-native-fast-image`)
+  - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNKakaoLogins (from `../node_modules/react-native-kakao-logins/ios`)
+  - RNReanimated (from `../node_modules/react-native-reanimated`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -207,8 +213,12 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-ui-lib"
   RNFastImage:
     :path: "../node_modules/react-native-fast-image"
+  RNGestureHandler:
+    :path: "../node_modules/react-native-gesture-handler"
   RNKakaoLogins:
     :path: "../node_modules/react-native-kakao-logins/ios"
+  RNReanimated:
+    :path: "../node_modules/react-native-reanimated"
   yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -239,7 +249,9 @@ SPEC CHECKSUMS:
   React-RCTWebSocket: 7cd2c8d0f8ddd680dc76404defba7ab1f56b83af
   ReactNativeUiLib: d63ffb8efa751d5cf642c98301361c35bab711ef
   RNFastImage: 9b0c22643872bb7494c8d87bbbb66cc4c0d9e7a2
+  RNGestureHandler: 946a7691e41df61e2c4b1884deab41a4cdc3afff
   RNKakaoLogins: 00edaa3b834bf9124c50c3cbbd26cd93776c01e4
+  RNReanimated: b2ab0b693dddd2339bd2f300e770f6302d2e960c
   SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
   SDWebImageWebPCoder: 7568737603c50f6237850afedd7e9e28e5917e6b
   yoga: 5079887aa3e4c62142d6bcee493022643ee4d730
