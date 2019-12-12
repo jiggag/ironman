@@ -3,7 +3,7 @@ import { View } from 'react-native-ui-lib';
 import { Text, TouchableOpacity, ScrollView } from 'react-native';
 import moment from 'moment';
 import styles from './styles';
-import {Header, BigButton} from '../../components';
+import { Header, BigButton } from '../../components';
 import Constant from '../../utils/constants';
 
 const Presenter = ({ isLoading, list, onActionToCreate, onPress, onPressBack }) => (

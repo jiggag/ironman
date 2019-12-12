@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native';
-import { Actions, ActionConst } from 'react-native-router-flux';
 import Spinner from 'react-native-loading-spinner-overlay';
 // import ImagePicker from 'react-native-image-picker';
 import moment from 'moment';
@@ -8,7 +7,7 @@ import { handleAlert, RESTful } from '../../utils';
 import Presenter from './Presenter';
 import styles from './styles';
 
-const Container = () => {
+const Container = ({ navigation }) => {
   /*
     Weather 날씨: radio [너무 더움, 조금 더움, 살만함, 조금 추움, 너무 추움]
     Food 식단: text
@@ -36,10 +35,9 @@ const Container = () => {
     try {
       // TODO: image multipart upload
       const { return_code, return_message } = await RESTful('POST', '/note', { ...note, date: moment(note.date).format('YYYY.MM.DD'), image: !!image && image.name });
-      console.log('%c%s', 'background: #00ff00; color: #ffffff', return_code, return_message);
       if (return_code === 200) {
         setIsLoading(false);
-        return Actions.listNote({ type: ActionConst.REPLACE, update: true });
+        return navigation.replace('listNote', { update: true });
       }
       return handleAlert("노트 생성 실패", return_message, () => {
         setIsLoading(false);
@@ -89,7 +87,7 @@ const Container = () => {
     // });
   };
 
-  const onPressBack = () => Actions.pop();
+  const onPressBack = () => navigation.goBack();
 
   return (
     <SafeAreaView style={styles.safeAreaView}>
