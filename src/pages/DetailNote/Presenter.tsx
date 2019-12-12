@@ -6,7 +6,7 @@ import moment from 'moment';
 import { Button, SubTitle, Header } from '../../components';
 import Constant from '../../utils/constants';
 
-const Presenter = ({ onPressBack, note: { title, date, food, done, etc, state, weather }, onPressDelete, onPressUpdate })=> (
+const Presenter = ({ onPressBack, note: { title, date, food, done, etc, stateText, weatherText }, onPressDelete, onPressUpdate })=> (
   <>
     <Header onPress={onPressBack} />
     <ScrollView style={styles.container}>
@@ -35,13 +35,13 @@ const Presenter = ({ onPressBack, note: { title, date, food, done, etc, state, w
         <View marginB-10>
           <SubTitle title="상태" />
           <View row>
-            <Text>{state}</Text>
+            <Text>{stateText}</Text>
           </View>
         </View>
         <View marginB-10>
           <SubTitle title="날씨" />
           <View row>
-            <Text>{weather}</Text>
+            <Text>{weatherText}</Text>
           </View>
         </View>
         <View marginB-10>
