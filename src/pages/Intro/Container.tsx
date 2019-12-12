@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { SafeAreaView } from 'react-native';
-import { Actions } from 'react-native-router-flux';
 import RNKakaoLogins from 'react-native-kakao-logins';
 import { RESTful, handleAlert } from '../../utils';
 import styles from './styles';
@@ -13,7 +12,7 @@ export const kakaoType = {
   LOGIN: 'login',
 };
 
-const Container = () => {
+const Container = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
 
@@ -26,6 +25,7 @@ const Container = () => {
       await RNKakaoLogins.login((err, res) => {
         if (err) {
           console.log('%c%s', 'background: #00ff00; color: #ffffff', '카카오 로그인 실패', err.toString());
+          setIsLoading(false);
           return;
         }
         if (res) {
@@ -50,37 +50,42 @@ const Container = () => {
         }
       });
     }
-    setIsLoading(false);
   };
 
   const onLogin = async () => {
     try {
       const { return_code, return_message, return_data } = await RESTful('GET', `/user`);
-      console.log('%c%s', 'background: #00ff00; color: #ffffff', { return_code, return_message, return_data });
       if (return_code === 200) {
+        setIsLoading(false);
         return setUserInfo({ user: { ...return_data }});
       }
-      return handleAlert('로그인 실패', return_message, () => null);
+      return handleAlert('로그인 실패', return_message, () => {
+        setIsLoading(false);
+      });
     } catch (error) {
+      setIsLoading(false);
       console.error('%c%s', 'background: #00ff00; color: #ffffff', '[GET] (/user)', '\n', error);
     }
   };
   const onJoin = async ({ email, phone_number: phone }) => {
     try {
       const { return_code, return_message, return_data } = await RESTful('POST', '/user', { email, phone });
-      console.log('%c%s', 'background: #00ff00; color: #ffffff', return_code, return_message, return_data);
       if (return_code === 200) {
+        setIsLoading(false);
         return setUserInfo({ user: { ...return_data }});
       }
-      return handleAlert('회원가입 실패', return_message, () => null);
+      return handleAlert('회원가입 실패', return_message, () => {
+        setIsLoading(false);
+      });
     } catch (error) {
+      setIsLoading(false);
       console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (/user)', '\n', error);
     }
   };
 
   useEffect(() => {
     if (userInfo) {
-      Actions.listNote();
+      navigation.navigate('listNote');
     }
   }, [userInfo]);
 

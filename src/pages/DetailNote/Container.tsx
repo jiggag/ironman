@@ -6,9 +6,9 @@ import { RESTful } from '../../utils';
 import Presenter from './Presenter';
 import styles from './styles';
 import { stateList, weatherList } from '../../utils/common';
-import {ActionConst, Actions} from 'react-native-router-flux';
 
-const Container = ({ id }) => {
+const Container = ({ navigation }) => {
+  const id = navigation.state.params.id;
   const [note, setNote] = useState({
     title: null,
     date: null,
@@ -17,6 +17,8 @@ const Container = ({ id }) => {
     done: null,
     etc: null,
     state: 0,
+    stateText: '',
+    weatherText: '',
   });
   const [isLoading, setIsLoading] = useState(false);
 
@@ -25,28 +27,27 @@ const Container = ({ id }) => {
     try {
       const { return_code } = await RESTful('POST', `/deleteNote`, { id });
       if (return_code === 200) {
-        return Actions.listNote({ type: ActionConst.PUSH_OR_POP, update: true });
+        setIsLoading(false);
+        return navigation.navigate('listNote', { update: true });
       }
     } catch (error) {
-      console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (/note)', '\n', error);
-    } finally {
       setIsLoading(false);
+      console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (/note)', '\n', error);
     }
   };
-  const onPressUpdate = () => Actions.updateNote({ originNote: { ...note, id } });
+  const onPressUpdate = () => navigation.navigate('updateNote', { originNote: { ...note, id } });
 
   const onPressBack = () => {
-    Actions.pop();
+    navigation.goBack();
   };
 
   const init = async () => {
     await setIsLoading(true);
     try {
-      const { return_code, return_message, return_data } = await RESTful('GET', `/note?id=${id}`);
-      const { value: state } = _find(stateList, {'id': return_data.state});
-      const { value: weather } = _find(weatherList, {'id': return_data.weather});
-      setNote({ ...return_data, state, weather });
-      console.log('%c%s', 'background: #00ff00; color: #ffffff', return_data);
+      const { return_data } = await RESTful('GET', `/note?id=${id}`);
+      const { value: stateText } = _find(stateList, {'id': return_data[0].state});
+      const { value: weatherText } = _find(weatherList, {'id': return_data[0].weather});
+      setNote({ ...return_data[0], stateText, weatherText });
     } catch (error) {
       console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (detail note)', '\n', error);
     } finally {
