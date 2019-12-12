@@ -37,7 +37,7 @@ const Container = ({ navigation }) => {
       const { return_code, return_message } = await RESTful('POST', '/note', { ...note, date: moment(note.date).format('YYYY.MM.DD'), image: !!image && image.name });
       if (return_code === 200) {
         setIsLoading(false);
-        return navigation.replace('listNote', { update: true });
+        return navigation.navigate('listNote', { update: true });
       }
       return handleAlert("노트 생성 실패", return_message, () => {
         setIsLoading(false);

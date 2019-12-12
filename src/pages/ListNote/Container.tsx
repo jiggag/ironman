@@ -45,7 +45,7 @@ const Container = ({ navigation }) => {
 
   const onActionToCreate = () => navigation.navigate('createNote');
   const onPress = id => navigation.navigate('detailNote', { id });
-  const onPressBack = () => navigation.popToTop();
+  const onPressBack = () => navigation.goBack();
 
   return (
     <SafeAreaView style={styles.safeAreaView}>

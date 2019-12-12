@@ -37,17 +37,18 @@ const Container = ({ navigation }) => {
   };
   const onPressUpdate = () => navigation.navigate('updateNote', { originNote: { ...note, id } });
 
-  const onPressBack = () => {
-    navigation.goBack();
-  };
+  const onPressBack = () => navigation.navigate('listNote');
 
   const init = async () => {
     await setIsLoading(true);
     try {
       const { return_data } = await RESTful('GET', `/note?id=${id}`);
-      const { value: stateText } = _find(stateList, {'id': return_data[0].state});
-      const { value: weatherText } = _find(weatherList, {'id': return_data[0].weather});
-      setNote({ ...return_data[0], stateText, weatherText });
+      if (return_data.length) {
+        const { state, weather, ...rest } = return_data[0];
+        const { value: stateText } = _find(stateList, { 'id': state });
+        const { value: weatherText } = _find(weatherList, { 'id': weather });
+        setNote({ ...rest, state, weather, stateText, weatherText });
+      }
     } catch (error) {
       console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (detail note)', '\n', error);
     } finally {
