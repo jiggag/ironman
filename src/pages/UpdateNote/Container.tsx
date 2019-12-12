@@ -17,7 +17,8 @@ const Container = ({ navigation }) => {
       const { return_code, return_message } = await RESTful('PUT', `/note`, { ...note, date: moment(note.date).format('YYYY.MM.DD'), image: !!image && image.name });
       if (return_code === 200) {
         setIsLoading(false);
-        return navigation.replace('detailNote', { id: note.id });
+        setIsLoading(false);
+        return navigation.navigate('DetailNote', { update: true, id: note.id });
       }
       return handleAlert("노트 수정 실패", return_message, () => {
         setIsLoading(false);

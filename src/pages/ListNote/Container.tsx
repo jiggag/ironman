@@ -43,8 +43,8 @@ const Container = ({ navigation }) => {
     init();
   }, []);
 
-  const onActionToCreate = () => navigation.navigate('createNote');
-  const onPress = id => navigation.navigate('detailNote', { id });
+  const onActionToCreate = () => navigation.navigate('CreateNote');
+  const onPress = id => navigation.navigate('DetailNote', { id });
   const onPressBack = () => navigation.goBack();
 
   return (

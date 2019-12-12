@@ -85,7 +85,7 @@ const Container = ({ navigation }) => {
 
   useEffect(() => {
     if (userInfo) {
-      navigation.navigate('listNote');
+      navigation.navigate('ListNote');
     }
   }, [userInfo]);
 

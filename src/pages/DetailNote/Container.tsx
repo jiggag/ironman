@@ -28,16 +28,16 @@ const Container = ({ navigation }) => {
       const { return_code } = await RESTful('POST', `/deleteNote`, { id });
       if (return_code === 200) {
         setIsLoading(false);
-        return navigation.navigate('listNote', { update: true });
+        return navigation.navigate('ListNote', { update: true });
       }
     } catch (error) {
       setIsLoading(false);
       console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (/note)', '\n', error);
     }
   };
-  const onPressUpdate = () => navigation.navigate('updateNote', { originNote: { ...note, id } });
+  const onPressUpdate = () => navigation.navigate('UpdateNote', { originNote: { ...note, id } });
 
-  const onPressBack = () => navigation.navigate('listNote');
+  const onPressBack = () => navigation.navigate('ListNote');
 
   const init = async () => {
     await setIsLoading(true);
@@ -56,6 +56,14 @@ const Container = ({ navigation }) => {
     }
   };
 
+  useEffect(() => {
+    const { params: { update = false } = {} } = navigation.state;
+    if (update) {
+      navigation.setParams({ update: false });
+      init();
+    }
+  }, [navigation.state.params]);
+  
   useEffect(() => {
     init();
   }, []);
