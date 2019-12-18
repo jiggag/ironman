@@ -2,16 +2,18 @@
 scripts | 설명
 ---|:---:
 `start` | 기존의 빌드된 프로젝트 실행
-`ios` | IOS 빌드 & 실행
+`ios` | iOS 빌드 & 실행
 `android` | Android 빌드 & 실행
 `reinstall` | 모듈 재설치
-`ios:dev-build` | IOS 개발 빌드
-`ios:live-build` | IOS 라이브 빌드
+`ios:dev-build` | iOS 개발 빌드
+`ios:live-build` | iOS 라이브 빌드
 `android:dev-build` | Android 개발 빌드
 `android:live-build` | Android 라이브 빌드
 `test` | jest 테스트
 `lint` | eslint 검사
 `lint:fix` | eslint 검사 & 수정
+`server` | nodejs 서버 실행
+`intall:server` | nodejs 서버 의존 패키지 설치
 ##
 #### .eslintrc.js
 rules | 설명

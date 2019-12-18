@@ -14,7 +14,8 @@
     "test": "jest",
     "lint": "eslint .",
     "lint:fix": "eslint --fix",
-    "server": "node ./common/server.js"
+    "server": "node ./common/server.js",
+    "intall:server": "yarn add express dotenv mysql moment slack-node"
   },
   "dependencies": {
     "@slack/client": "^5.0.2",
