@@ -1,8 +1,16 @@
 const Slack = require('slack-node');
-const { APP_NAME, WEBHOOK_URL } = require('./constant');
+const { RTMClient } = require('@slack/client');
+const { APP_NAME, WEBHOOK_URL, SLACK_BOT_TOKEN } = require('./constant');
 
+
+const rtm = new RTMClient(SLACK_BOT_TOKEN);
 const slack = new Slack();
 slack.setWebhook(WEBHOOK_URL);
+
+rtm.start();
+rtm.on('message', ({ text, channel }) => {
+  rtm.sendMessage(`[슬랫봇] ${text}`, channel);
+});
 
 const SLACK_TYPE = {
   LOG: 'LOG',

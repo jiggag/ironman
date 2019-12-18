@@ -1,5 +1,5 @@
 const express = require('express');
-const { APP_PORT, APP_NAME } = require('./constant');
+const { SERVER_PORT, APP_NAME } = require('./constant');
 const {
   readNote,
   writeNote,
@@ -12,8 +12,9 @@ const {
 } = require('./service');
 const { Log, Return } = require('./response');
 const { sendSlack, SLACK_TYPE } = require('./slack');
+
 const app = express();
-app.listen(APP_PORT);
+app.listen(SERVER_PORT);
 app.use(express.json());
 
 app.get('/omf/user', (req, res) => {
