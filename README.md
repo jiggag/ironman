@@ -170,3 +170,10 @@ Cannot read property 'Direction' of undefined
 해당 라이브러리 깃허브 이슈에 검색해보니 `react-navigation`은 `react-native-gesture-handler`를 의존하고 있는데 이를 찾을 수 없어 에러가 발생하였다.
 의존 라이브러리도 설치하고 `link` 해주니 해결되었다.
 [react-navigation 깃허브 이슈](https://github.com/react-navigation/react-navigation/issues/6071#issuecomment-510747297)
+##
+iOS 시뮬레이터는 `localhost`로 REST API 테스트가 되는데 안드로이드는 되지 않는다.
+찾아보니 안드로이드는 IP를 명시해줘야 하는 것 같다.
+```
+mac: ipconfig getifaddr en0
+window: ipconfig
+```
