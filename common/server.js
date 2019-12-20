@@ -1,5 +1,5 @@
 const express = require('express');
-const { APP_PORT, APP_NAME } = require('./constant');
+const { SERVER_PORT, APP_NAME } = require('./constant');
 const {
   readNote,
   writeNote,
@@ -12,8 +12,9 @@ const {
 } = require('./service');
 const { Log, Return } = require('./response');
 const { sendSlack, SLACK_TYPE } = require('./slack');
+
 const app = express();
-app.listen(APP_PORT);
+app.listen(SERVER_PORT);
 app.use(express.json());
 
 app.get('/omf/user', (req, res) => {
@@ -21,7 +22,7 @@ app.get('/omf/user', (req, res) => {
   readUser(req.headers.token)
     .then(data => result.setCode(200).setMessage('response success').setData(data))
     .catch(err => {
-      sendSlack(SLACK_TYPE.LOG)(APP_NAME)({
+      sendSlack(SLACK_TYPE.LOG)({
         title: 'Get User',
         json: err,
       });
@@ -37,7 +38,7 @@ app.post('/omf/user', (req, res) => {
   writeUser(req.headers.token, {})
     .then(data => result.setCode(200).setMessage('response success').setData(data))
     .catch(err => {
-      sendSlack(SLACK_TYPE.LOG)(APP_NAME)({
+      sendSlack(SLACK_TYPE.LOG)({
         title: 'Create User',
         json: err,
       });
@@ -53,7 +54,7 @@ app.get('/omf/list', (req, res) => {
   readNoteList(req.headers.token)
     .then(data => result.setCode(200).setMessage('response success').setData(data))
     .catch(err => {
-      sendSlack(SLACK_TYPE.LOG)(APP_NAME)({
+      sendSlack(SLACK_TYPE.LOG)({
         title: 'Get Notes',
         json: err,
       });
@@ -69,7 +70,7 @@ app.get('/omf/note', (req, res) => {
   readNote(req.headers.token, req.query.id)
     .then(data => result.setCode(200).setMessage('response success').setData(data))
     .catch(err => {
-      sendSlack(SLACK_TYPE.LOG)(APP_NAME)({
+      sendSlack(SLACK_TYPE.LOG)({
         title: 'Get Note Detail',
         json: err,
       });
@@ -84,7 +85,7 @@ app.post('/omf/note', (req, res) => {
   writeNote(req.headers.token, req.body)
     .then(data => result.setCode(200).setMessage('response success').setData(data))
     .catch(err => {
-      sendSlack(SLACK_TYPE.LOG)(APP_NAME)({
+      sendSlack(SLACK_TYPE.LOG)({
         title: 'Create Note',
         json: err,
       });
@@ -100,7 +101,7 @@ app.put('/omf/note', (req, res) => {
   updateNote(req.headers.token, req.body)
     .then(data => result.setCode(200).setMessage('response success').setData(data))
     .catch(err => {
-      sendSlack(SLACK_TYPE.LOG)(APP_NAME)({
+      sendSlack(SLACK_TYPE.LOG)({
         title: 'Update Note',
         json: err,
       });
@@ -116,7 +117,7 @@ app.post('/omf/deleteNote', (req, res) => {
   deleteNote(req.headers.token, req.body)
     .then(data => result.setCode(200).setMessage('response success').setData(data))
     .catch(err => {
-      sendSlack(SLACK_TYPE.LOG)(APP_NAME)({
+      sendSlack(SLACK_TYPE.LOG)({
         title: 'Delete Note',
         json: err,
       });

@@ -8,8 +8,9 @@ const {
   DB_PORT,
   DB_NAME,
   APP_NAME,
-  APP_PORT,
+  SERVER_PORT,
   WEBHOOK_URL,
+  SLACK_BOT_TOKEN,
 } = process.env;
 
 module.exports = {
@@ -19,6 +20,7 @@ module.exports = {
   DB_PORT,
   DB_NAME,
   APP_NAME,
-  APP_PORT,
+  SERVER_PORT,
   WEBHOOK_URL,
+  SLACK_BOT_TOKEN,
 }
