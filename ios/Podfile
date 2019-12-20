@@ -34,6 +34,8 @@ target 'omf' do
 
   pod 'react-native-sensitive-info', :path => '../node_modules/react-native-sensitive-info'
 
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+
   target 'omfTests' do
     inherit! :search_paths
     # Pods for testing
