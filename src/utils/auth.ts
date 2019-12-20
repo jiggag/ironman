@@ -15,7 +15,7 @@ export const setKakaoToken = async kakaoToken => {
 };
 export const getKakaoToken = () => {
   try {
-    return SInfo.getItem('kakaoToken', {});
+    return SInfo.getItem('kakaoToken', keyObject);
   } catch (e) {
     console.log('ERR: getKaKaoToken', e.message);
   }
