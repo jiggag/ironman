@@ -5,7 +5,7 @@ import RNKakaoLogins from 'react-native-kakao-logins';
 import { RESTful, handleAlert } from '../../utils';
 import styles from './styles';
 import Presenter from './Presenter';
-import { getKakaoToken, setKakaoToken } from '../../utils/auth';
+import { getKakaoToken, setKakaoToken, deleteKakaoToken } from '../../utils/auth';
 
 export const kakaoType = {
   JOIN: 'join',
@@ -60,6 +60,7 @@ const Container = ({ navigation }) => {
         return setUserInfo({ user: { ...return_data }});
       }
       return handleAlert('로그인 실패', return_message, () => {
+        deleteKakaoToken();
         setIsLoading(false);
       });
     } catch (error) {
@@ -75,6 +76,7 @@ const Container = ({ navigation }) => {
         return setUserInfo({ user: { ...return_data }});
       }
       return handleAlert('회원가입 실패', return_message, () => {
+        deleteKakaoToken();
         setIsLoading(false);
       });
     } catch (error) {

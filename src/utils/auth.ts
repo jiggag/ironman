@@ -20,3 +20,11 @@ export const getKakaoToken = () => {
     console.log('ERR: getKaKaoToken', e.message);
   }
 };
+export const deleteKakaoToken = () => {
+  try {
+    return SInfo.deleteItem('kakaoToken', keyObject);
+  } catch (e) {
+    console.log('ERR: deleteKaKaoToken', e.message);
+  }
+};
+
