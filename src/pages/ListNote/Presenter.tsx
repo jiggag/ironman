@@ -3,13 +3,16 @@ import { View } from 'react-native-ui-lib';
 import { Text, TouchableOpacity, ScrollView } from 'react-native';
 import moment from 'moment';
 import styles from './styles';
-import { Header, BigButton } from '../../components';
+import { Header, BigButton, LineGraph } from '../../components';
 import Constant from '../../utils/constants';
 
 const Presenter = ({ isLoading, list, onActionToCreate, onPress, onPressBack }) => (
   <>
     <Header onPress={onPressBack} />
     <ScrollView style={styles.container}>
+      <View marginV-10>
+        <LineGraph data={list.map((item: { state: number; }) => 6 - item.state)} />
+      </View>
       {
           !isLoading ? (
               list.length > 0 ? (

@@ -2,7 +2,7 @@
 scripts | 설명
 ---|:---:
 `start` | 기존의 빌드된 프로젝트 실행
-`ios` | iOS 빌드 & 실행
+`ios` | 기존 빌드 파일 삭제 후 iOS 빌드 & 실행
 `android` | Android 빌드 & 실행
 `reinstall` | 모듈 재설치
 `ios:dev-build` | iOS 개발 빌드
@@ -179,3 +179,29 @@ iOS 시뮬레이터는 `localhost`로 REST API 테스트가 되는데 안드로�
 mac: ipconfig getifaddr en0
 window: ipconfig
 ```
+##
+```
+{
+  { code: "PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR" },
+  { fatal: false },
+}
+```
+AWS VPC 인바운드 설정을 건들이다 보면 갑자기 슬랙 `log`채널에 위와 같은 메세지가 날라온다.
+DB는 접근이 잘 되는 걸로 봐서 node서버에서 문제가 발생한 것 같다.
+문제가 생기면 해당 코드에서 에러를 발생하고 끝나는 것과는 달리 유니크하게도 node는 서버 자체가 죽어버린다.
+서버가 죽는 경우를 대비해 `forever`를 해뒀고 위의 로그가 나왔을때 `forever list`를 보면 서버가 잘 띄워져 있다.
+그럼에도 불구하고 저렇게 에러가 나는 이유를 아직 찾지 못했고, `forever restart`로 서버를 다시 띄우면 정상 작동한다...
+##
+```
+warning: The iOS Simulator deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 7.0, but the range of supported deployment target versions is 8.0 to 13.2.99. (in target {library} from project 'Pods')
+```
+`iOS` 빌드 시 위와 같은 에러로 빌드 실패하였다. 해당 `Pods`의 라이브러리 target이 7.0으로 되어있는데 8.0으로 올려달라는 것 같다.
+`xcode - Pods - 해당 라이브러리의 iOS deployment target` => 8.0으로 변경
+##
+```
+Invariant Violation: requireNativeComponent: "RNSVGRect" was not found in the UIManager.
+```
+`react-native-chart-kit`를 iOS에서 개발 테스트를 완료하고 Android로 APK를 열었더니 당혹스럽게 하는 에러가 나타났다.
+`RNSVGRect`는 해당 라이브러리에서 의존하고 있는 `react-native-svg`에 있는 것으로 바로 깃허브로 달려가 검색했더니 `MainApplication.java`에 해당
+패키지를 추가해주지 않아서 생긴 오류였다. iOS에만 추가하고 미처 빠뜨린 나의 실수였다.
+[react-native-svg 깃허브 이슈](https://github.com/react-native-community/react-native-svg/issues/749#issuecomment-441193691)

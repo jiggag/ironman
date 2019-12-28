@@ -17,6 +17,7 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.horcrux.svg.SvgPackage;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -41,6 +42,7 @@ public class MainApplication extends Application implements ReactApplication {
           new FastImageViewPackage(),
           new ReactNativeConfigPackage(),
 //           new ImagePickerPackage(),
+              new SvgPackage(),
           new RNKakaoLoginsPackage()
       );
     }
