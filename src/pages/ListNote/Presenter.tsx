@@ -11,7 +11,7 @@ const Presenter = ({ isLoading, list, onActionToCreate, onPress, onPressBack }) 
     <Header onPress={onPressBack} />
     <ScrollView style={styles.container}>
       <View marginV-10>
-        <LineGraph data={list.map((item: { state: number; }) => item.state)} />
+        <LineGraph data={list.map((item: { state: number; }) => 6 - item.state)} />
       </View>
       {
           !isLoading ? (
