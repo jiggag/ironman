@@ -119,6 +119,8 @@ PODS:
     - React
   - RNReanimated (1.4.0):
     - React
+  - RNSVG (9.13.6):
+    - React
   - SDWebImage (5.0.6):
     - SDWebImage/Core (= 5.0.6)
   - SDWebImage/Core (5.0.6)
@@ -155,6 +157,7 @@ DEPENDENCIES:
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNKakaoLogins (from `../node_modules/react-native-kakao-logins/ios`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
+  - RNSVG (from `../node_modules/react-native-svg`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -219,6 +222,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-kakao-logins/ios"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
+  RNSVG:
+    :path: "../node_modules/react-native-svg"
   yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -252,10 +257,11 @@ SPEC CHECKSUMS:
   RNGestureHandler: 946a7691e41df61e2c4b1884deab41a4cdc3afff
   RNKakaoLogins: 00edaa3b834bf9124c50c3cbbd26cd93776c01e4
   RNReanimated: b2ab0b693dddd2339bd2f300e770f6302d2e960c
+  RNSVG: 8ba35cbeb385a52fd960fd28db9d7d18b4c2974f
   SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
   SDWebImageWebPCoder: 7568737603c50f6237850afedd7e9e28e5917e6b
   yoga: 5079887aa3e4c62142d6bcee493022643ee4d730
 
-PODFILE CHECKSUM: 25ef6949cdff97dc6028fbfa5b615649c3af9bc8
+PODFILE CHECKSUM: 0eed9f8391c4b37e4b7321f099e0e12bd5f94bce
 
 COCOAPODS: 1.7.3
