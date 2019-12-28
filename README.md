@@ -2,7 +2,7 @@
 scripts | 설명
 ---|:---:
 `start` | 기존의 빌드된 프로젝트 실행
-`ios` | iOS 빌드 & 실행
+`ios` | 기존 빌드 파일 삭제 후 iOS 빌드 & 실행
 `android` | Android 빌드 & 실행
 `reinstall` | 모듈 재설치
 `ios:dev-build` | iOS 개발 빌드
@@ -197,3 +197,11 @@ warning: The iOS Simulator deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set
 ```
 `iOS` 빌드 시 위와 같은 에러로 빌드 실패하였다. 해당 `Pods`의 라이브러리 target이 7.0으로 되어있는데 8.0으로 올려달라는 것 같다.
 `xcode - Pods - 해당 라이브러리의 iOS deployment target` => 8.0으로 변경
+##
+```
+Invariant Violation: requireNativeComponent: "RNSVGRect" was not found in the UIManager.
+```
+`react-native-chart-kit`를 iOS에서 개발 테스트를 완료하고 Android로 APK를 열었더니 당혹스럽게 하는 에러가 나타났다.
+`RNSVGRect`는 해당 라이브러리에서 의존하고 있는 `react-native-svg`에 있는 것으로 바로 깃허브로 달려가 검색했더니 `MainApplication.java`에 해당
+패키지를 추가해주지 않아서 생긴 오류였다. iOS에만 추가하고 미처 빠뜨린 나의 실수였다.
+[react-native-svg 깃허브 이슈](https://github.com/react-native-community/react-native-svg/issues/749#issuecomment-441193691)
