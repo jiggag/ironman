@@ -16,7 +16,8 @@ const styles =  StyleSheet.create({
   },
   noteCard: {
     borderWidth: 1,
-    borderColor: Constant.SUB_COLOR,
+    borderStyle: 'dashed',
+    borderColor: Constant.MAIN_COLOR,
   },
   dateText: {
     fontSize: 12,

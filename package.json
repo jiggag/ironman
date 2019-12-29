@@ -11,6 +11,7 @@
     "ios:live-build": "xcodebuild -workspace ios/omf.xcworkspace -scheme 'omf (Production)' clean archive",
     "android:dev-build": "cd android && ENVFILE=.env ./gradlew assembleRelease && cd ..",
     "android:live-build": "cd android && ENVFILE=.env.production ./gradlew assembleRelease && cd ..",
+    "android:live-bundle": "cd android && ENVFILE=.env.production ./gradlew bundleRelease && cd ..",
     "test": "jest",
     "lint": "eslint .",
     "lint:fix": "eslint --fix",

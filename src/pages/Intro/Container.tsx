@@ -22,10 +22,10 @@ const Container = ({ navigation }) => {
     if (token) {
       await onLogin();
     } else {
+      await setIsLoading(false);
       await RNKakaoLogins.login((err, res) => {
         if (err) {
           console.log('%c%s', 'background: #00ff00; color: #ffffff', '카카오 로그인 실패', err.toString());
-          setIsLoading(false);
           return;
         }
         if (res) {
@@ -34,6 +34,7 @@ const Container = ({ navigation }) => {
               console.log('%c%s', 'background: #00ff00; color: #ffffff', '카카오 프로필조회 실패', error.toString());
               return;
             }
+            await setIsLoading(true);
             // 가져온 토큰으로 회원가입 혹은 로그인
             await setKakaoToken(result.id);
             switch (type) {

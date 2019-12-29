@@ -62,3 +62,7 @@ buck-out/
 .env.production
 google-services.json
 GoogleService-Info.plist
+
+# Android Build
+*.apk
+*.aab

@@ -143,8 +143,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         resValue "string", "build_config_package", "com.jiggag.omf"
-        versionCode 2
-        versionName "0.0.2"
+        versionCode 30
+        versionName "0.0.3"
     }
     splits {
         abi {
@@ -207,6 +207,8 @@ dependencies {
     implementation project(':react-native-kakao-logins')
     implementation 'com.google.android.gms:play-services-auth:9.2.1'
     implementation 'androidx.appcompat:appcompat:1.0.0'
+
+    implementation 'com.google.android.play:core:1.6.1'
 
     if (enableHermes) {
       def hermesPath = "../../node_modules/hermesvm/android/";
