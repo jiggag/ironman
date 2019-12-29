@@ -6,7 +6,9 @@ import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.util.Base64;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.google.android.play.core.missingsplits.MissingSplitsManagerFactory;
 import com.facebook.react.ReactApplication;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.dylanvann.fastimage.FastImageViewPackage;
@@ -60,6 +62,11 @@ public class MainApplication extends Application implements ReactApplication {
 
   @Override
   public void onCreate() {
+    boolean sideLoading = MissingSplitsManagerFactory.create(this).disableAppIfMissingRequiredSplits();
+    if (sideLoading) {
+      // Skip app initialization.
+      return;
+    }
     super.onCreate();
 //    getHashKey();
     SoLoader.init(this, /* native exopackage */ false);

@@ -1,7 +1,8 @@
 import React from 'react';
-import { Dimensions, Text, View } from 'react-native';
+import { Dimensions, Text } from 'react-native';
 import { LineChart, LineChartData } from 'react-native-chart-kit';
 import styled from 'styled-components/native';
+import Constant from '../utils/constants';
 
 const formatData = (data: number[]): LineChartData => ({
   labels: [],
@@ -36,12 +37,12 @@ const LineGraph = ({ data }) => (
         withVerticalLabels={false}
         withHorizontalLabels={false}
         chartConfig={{
-          backgroundGradientFrom: "#ffffff",
+          backgroundGradientFrom: Constant.WHITE_COLOR,
           backgroundGradientFromOpacity: 0,
-          backgroundGradientTo: "#ffffff",
+          backgroundGradientTo: Constant.WHITE_COLOR,
           backgroundGradientToOpacity: 0,
-          color: () => '#ec2',
-          labelColor: () => '#ffffff',
+          color: () => Constant.MAIN_COLOR,
+          labelColor: () => Constant.WHITE_COLOR,
           barPercentage: 0,
         }}
       />
@@ -53,7 +54,7 @@ export default LineGraph;
 
 const Wrapper = styled.View`
   margin: 0 20px;
-  border: 1px solid #ec2;
+  border: 1px solid ${Constant.MAIN_COLOR};
 `;
 const EmptyWrapper = styled.View`
   height: 100px;
