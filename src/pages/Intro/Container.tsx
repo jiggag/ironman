@@ -92,6 +92,10 @@ const Container = ({ navigation }) => {
     }
   }, [userInfo]);
 
+  useEffect(() => {
+    onPress('login');
+  }, []);
+
   return (
     <SafeAreaView style={styles.safeAreaView}>
       <Presenter onPress={onPress} />

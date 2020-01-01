@@ -1,20 +1,24 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, TouchableOpacity, Text } from 'react-native';
 import { BigButton } from '../../components';
 import { kakaoType } from './Container';
+import styles from './styles';
 
 const Presenter = ({ onPress }) => (
-  <View style={{ flex: 1, justifyContent: 'center' }}>
+  <View style={{ flex: 1, justifyContent: 'flex-end' }}>
     <BigButton
       onPress={() => onPress(kakaoType.LOGIN)}
-      text={'카카오 로그인'}
+      text={'시작하기'}
       buttonStyle={null}
     />
-    <BigButton
-      onPress={() => onPress(kakaoType.JOIN)}
-      text={'카카오 회원가입'}
-      buttonStyle={null}
-    />
+    <View style={styles.join}>
+      <TouchableOpacity
+        onPress={() => onPress(kakaoType.JOIN)}
+        activeOpacity={0.5}
+      >
+        <Text style={styles.joinText}>회원가입</Text>
+      </TouchableOpacity>
+    </View>
   </View>
 );
 
