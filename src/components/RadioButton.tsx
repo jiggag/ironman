@@ -28,7 +28,7 @@ const styles =  StyleSheet.create({
     backgroundColor: Constant.MAIN_COLOR,
   },
   valueText: {
-    fontSize: 16,
+    fontSize: 12,
     marginLeft: 2,
     marginRight: 8,
   }
