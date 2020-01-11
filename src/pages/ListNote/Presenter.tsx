@@ -6,12 +6,12 @@ import styles from './styles';
 import { Header, BigButton, LineGraph } from '../../components';
 import Constant from '../../utils/constants';
 
-const Presenter = ({ isLoading, list, onActionToCreate, onPress, onPressBack }) => (
+const Presenter = ({ isLoading, list, graph, onActionToCreate, onPress, onPressBack }) => (
   <>
     <Header onPress={onPressBack} />
     <ScrollView style={styles.container}>
       <View marginV-10>
-        <LineGraph data={list.map((item: { state: number; }) => 6 - item.state)} />
+        <LineGraph data={graph} />
       </View>
       {
           !isLoading ? (
@@ -44,7 +44,7 @@ const Presenter = ({ isLoading, list, onActionToCreate, onPress, onPressBack }) 
     <BigButton
       onPress={onActionToCreate}
       text="기록하기"
-      buttonStyle={{ backgroundColor: Constant.MAIN_COLOR }}
+      buttonStyle={{ backgroundColor: Constant.MAIN_COLOR, borderRadius: 3 }}
     />
   </>
 );

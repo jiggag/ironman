@@ -46,7 +46,9 @@ const Presenter = ({ onPressBack, note: { title, date, food, done, etc, state, w
           <View row>
             {
               stateList.map(({ id, value }) => (
-                <RadioButton key={id} onPress={() => onChangeNote({ state: id })} value={value} isSelected={state === id} />
+                <View flex left key={id}>
+                  <RadioButton onPress={() => onChangeNote({ state: id })} value={value} isSelected={state === id} />
+                </View>
               ))
             }
           </View>
@@ -56,7 +58,9 @@ const Presenter = ({ onPressBack, note: { title, date, food, done, etc, state, w
           <View row>
             {
               weatherList.map(({ id, value }) => (
-                <RadioButton key={id} onPress={() => onChangeNote({ weather: id })} value={value} isSelected={weather === id} />
+                <View flex left key={id}>
+                  <RadioButton onPress={() => onChangeNote({ weather: id })} value={value} isSelected={weather === id} />
+                </View>
               ))
             }
           </View>
@@ -129,7 +133,7 @@ const Presenter = ({ onPressBack, note: { title, date, food, done, etc, state, w
       onPress={onPress}
       text="저장"
       underlayColor={Constant.WHITE_COLOR}
-      buttonStyle={{ backgroundColor: Constant.MAIN_COLOR }}
+      buttonStyle={{ backgroundColor: Constant.MAIN_COLOR, borderRadius: 3 }}
     />
   </>
 );

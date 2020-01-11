@@ -16,7 +16,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix",
     "server": "node ./common/server.js",
-    "intall:server": "yarn add express dotenv mysql moment slack-node @slack/client"
+    "intall:server": "yarn add express dotenv mysql moment slack-node @slack/client jsonwebtoken"
   },
   "dependencies": {
     "@slack/client": "^5.0.2",
@@ -24,6 +24,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "fs": "^0.0.1-security",
+    "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "mysql": "^2.17.1",

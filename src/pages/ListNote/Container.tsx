@@ -7,14 +7,17 @@ import { RESTful } from '../../utils';
 
 const Container = ({ navigation }) => {
   const [list, setList] = useState([]);
+  const [graph, setGraph] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const format = list => {
     const newList = [];
+    const newGraph = [];
     for (const data of list) {
       newList.push({ id: newList.length + 1, ...data });
+      newGraph.push(6 - data.state);
     }
-    return newList;
+    return { list: newList, graph: newGraph.reverse() };
   };
 
   const init = async () => {
@@ -22,7 +25,9 @@ const Container = ({ navigation }) => {
     try {
       const { return_code, return_data } = await RESTful('GET', '/list');
       if (return_code === 200) {
-        await setList(format(return_data));
+        const { list, graph } = await format(return_data);
+        await setList(list);
+        await setGraph(graph);
       }
     } catch (error) {
       console.error('%c%s', 'background: #00ff00; color: #ffffff', '[GET] (/list)', '\n', error);
@@ -49,7 +54,7 @@ const Container = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.safeAreaView}>
-      <Presenter isLoading={isLoading} list={list} onActionToCreate={onActionToCreate} onPress={onPress} onPressBack={onPressBack} />
+      <Presenter isLoading={isLoading} list={list} graph={graph} onActionToCreate={onActionToCreate} onPress={onPress} onPressBack={onPressBack} />
       <Spinner visible={isLoading} />
     </SafeAreaView>
   );
