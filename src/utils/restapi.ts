@@ -1,7 +1,7 @@
 import axios, { Method } from 'axios';
 import Q from 'q';
 import Config from 'react-native-config';
-import { getKakaoToken } from './auth';
+import { getAccessToken } from './auth';
 
 export const METHOD = Object.freeze({
   GET: 'GET',
@@ -9,7 +9,7 @@ export const METHOD = Object.freeze({
   PUT: 'PUT',
 });
 const createInstance = async () => {
-  const token = await getKakaoToken();
+  const token = await getAccessToken();
   try {
     const instance = axios.create({
       baseURL: Config.API_URL,

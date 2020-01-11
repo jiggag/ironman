@@ -5,7 +5,7 @@ import RNKakaoLogins from 'react-native-kakao-logins';
 import { RESTful, handleAlert } from '../../utils';
 import styles from './styles';
 import Presenter from './Presenter';
-import { getKakaoToken, setKakaoToken, deleteKakaoToken } from '../../utils/auth';
+import { setAccessToken, deleteAccessToken, getAccessToken } from '../../utils/auth';
 
 export const kakaoType = {
   JOIN: 'join',
@@ -18,7 +18,7 @@ const Container = ({ navigation }) => {
 
   const onPress = async type => {
     await setIsLoading(true);
-    const token = await getKakaoToken();
+    const token = await getAccessToken();
     if (token) {
       await onLogin();
     } else {
@@ -35,8 +35,6 @@ const Container = ({ navigation }) => {
               return;
             }
             await setIsLoading(true);
-            // 가져온 토큰으로 회원가입 혹은 로그인
-            await setKakaoToken(result.id);
             switch (type) {
               case kakaoType.JOIN:
                 await onJoin(result);
@@ -61,7 +59,7 @@ const Container = ({ navigation }) => {
         return setUserInfo({ user: { ...return_data }});
       }
       return handleAlert('로그인 실패', return_message, () => {
-        deleteKakaoToken();
+        deleteAccessToken();
         setIsLoading(false);
       });
     } catch (error) {
@@ -69,15 +67,16 @@ const Container = ({ navigation }) => {
       console.error('%c%s', 'background: #00ff00; color: #ffffff', '[GET] (/user)', '\n', error);
     }
   };
-  const onJoin = async ({ email, phone_number: phone }) => {
+  const onJoin = async ({ id, email, phone_number: phone }) => {
     try {
-      const { return_code, return_message, return_data } = await RESTful('POST', '/user', { email, phone });
+      const { return_code, return_message, return_data: { accessToken, ...rest } } = await RESTful('POST', '/user', { id, email, phone });
       if (return_code === 200) {
+        await setAccessToken(accessToken);
         setIsLoading(false);
-        return setUserInfo({ user: { ...return_data }});
+        return setUserInfo({ user: { ...rest }});
       }
       return handleAlert('회원가입 실패', return_message, () => {
-        deleteKakaoToken();
+        deleteAccessToken();
         setIsLoading(false);
       });
     } catch (error) {
