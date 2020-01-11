@@ -6,8 +6,14 @@ const styles =  StyleSheet.create({
     backgroundColor: Constant.WHITE_COLOR,
     flex: 1,
   },
-  loginButton: {
-  }
+  join: {
+    alignItems: 'center',
+  },
+  joinText: {
+    fontSize: 14,
+    color: Constant.MAIN_COLOR,
+    textDecorationLine: 'underline',
+  },
 });
 
 export default styles;

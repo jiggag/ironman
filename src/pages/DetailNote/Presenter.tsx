@@ -90,13 +90,13 @@ const Presenter = ({ onPressBack, note: { title, date, food, done, etc, stateTex
           onPress={onPressDelete}
           text="삭제"
           underlayColor={Constant.WHITE_COLOR}
-          buttonStyle={{ backgroundColor: Constant.MAIN_COLOR, flex: 1, marginRight: 3 }}
+          buttonStyle={{ backgroundColor: Constant.MAIN_COLOR, flex: 1, marginRight: 3, borderRadius: 3 }}
         />
         <Button
           onPress={onPressUpdate}
           text="수정"
           underlayColor={Constant.WHITE_COLOR}
-          buttonStyle={{ backgroundColor: Constant.MAIN_COLOR, flex: 2, marginLeft: 3 }}
+          buttonStyle={{ backgroundColor: Constant.MAIN_COLOR, flex: 2, marginLeft: 3, borderRadius: 3 }}
         />
     </View>
   </>

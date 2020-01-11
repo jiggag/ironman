@@ -17,14 +17,15 @@ const styles =  StyleSheet.create({
   noteCard: {
     borderWidth: 1,
     borderStyle: 'dashed',
-    borderColor: Constant.MAIN_COLOR,
+    borderColor: Constant.HIGHLIGHT_SUB_COLOR,
+    borderRadius: 3,
   },
   dateText: {
     fontSize: 12,
     marginBottom: 4,
   },
   titleText: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: '600',
   }
 });
