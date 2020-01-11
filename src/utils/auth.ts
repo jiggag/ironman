@@ -6,25 +6,24 @@ const keyObject = {
   keychainService: Config.KEY_CHAIN
 };
 
-export const setKakaoToken = async kakaoToken => {
+export const setAccessToken = async accessToken => {
   try {
-    await SInfo.setItem('kakaoToken', kakaoToken, keyObject);
+    await SInfo.setItem('accessToken', accessToken, keyObject);
   } catch (e) {
-    console.log('setKakaoToken', e.message);
+    console.log('setAccessToken', e.message);
   }
 };
-export const getKakaoToken = () => {
+export const getAccessToken = async () => {
   try {
-    return SInfo.getItem('kakaoToken', keyObject);
+    return SInfo.getItem('accessToken', keyObject);
   } catch (e) {
-    console.log('ERR: getKaKaoToken', e.message);
+    console.log('getAccessToken', e.message);
   }
 };
-export const deleteKakaoToken = () => {
+export const deleteAccessToken = () => {
   try {
-    return SInfo.deleteItem('kakaoToken', keyObject);
+    return SInfo.deleteItem('accessToken', keyObject);
   } catch (e) {
-    console.log('ERR: deleteKaKaoToken', e.message);
+    console.log('ERR: deleteAccessToken', e.message);
   }
 };
-
