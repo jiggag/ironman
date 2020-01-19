@@ -143,8 +143,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         resValue "string", "build_config_package", "com.jiggag.omf"
-        versionCode 40
-        versionName "0.0.4"
+        versionCode 50
+        versionName "0.0.5"
     }
     splits {
         abi {

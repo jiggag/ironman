@@ -7,44 +7,30 @@ import styles from './styles';
 import Presenter from './Presenter';
 import { setAccessToken, deleteAccessToken, getAccessToken } from '../../utils/auth';
 
-export const kakaoType = {
-  JOIN: 'join',
-  LOGIN: 'login',
-};
-
 const Container = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
 
-  const onPress = async type => {
+  const onPress = async () => {
     await setIsLoading(true);
     const token = await getAccessToken();
     if (token) {
       await onLogin();
     } else {
-      await setIsLoading(false);
       await RNKakaoLogins.login((err, res) => {
         if (err) {
           console.log('%c%s', 'background: #00ff00; color: #ffffff', '카카오 로그인 실패', err.toString());
+          setIsLoading(false);
           return;
         }
         if (res) {
           RNKakaoLogins.getProfile(async (error, result) => {
             if (error) {
               console.log('%c%s', 'background: #00ff00; color: #ffffff', '카카오 프로필조회 실패', error.toString());
+              setIsLoading(false);
               return;
             }
-            await setIsLoading(true);
-            switch (type) {
-              case kakaoType.JOIN:
-                await onJoin(result);
-                break;
-              case kakaoType.LOGIN:
-                await onLogin();
-                break;
-              default:
-                break;
-            }
+            onJoin(result);
           })
         }
       });
@@ -92,7 +78,7 @@ const Container = ({ navigation }) => {
   }, [userInfo]);
 
   useEffect(() => {
-    onPress('login');
+    onPress();
   }, []);
 
   return (
