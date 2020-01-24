@@ -32,8 +32,27 @@ const styles =  StyleSheet.create({
   },
 });
 
+export const Food = styled.View`
+  border-radius: 30px;
+  background: #fff;
+  border: 1px solid #666;
+  padding: 2px 4px;
+  align-self: center;
+  margin: 0 2px;
+`;
+export const Category = styled.Text`
+  font-size: 12px;
+  color: #666;
+`;
+export const State = styled.View`
+  border-radius: 30px;
+  background: #333;
+  padding: 2px 6px;
+  align-self: center;
+`;
 export const StateText = styled.Text<{ state: number }>`
   font-size: 12px;
+  font-weight: 600;
   color: ${({ state }) => {
     if (state === 5) {
       return '#ff0000';
