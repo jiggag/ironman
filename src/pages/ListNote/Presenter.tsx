@@ -2,7 +2,8 @@ import React from 'react';
 import { View } from 'react-native-ui-lib';
 import { Text, TouchableOpacity, FlatList } from 'react-native';
 import moment from 'moment';
-import styles from './styles';
+import _find from 'lodash/find';
+import styles, { StateText } from './styles';
 import { Header, BigButton, LineGraph } from '../../components';
 import Constant from '../../utils/constants';
 
@@ -21,12 +22,15 @@ const EmptyComponent = () => {
   );
 }
 const ItemComponent = ({ data, onPress }) => {
-  const { id, date, title } = data;
+  const { id, date, title, state } = data;
   return (
     <View paddingH-20 marginB-10 marginT-10={id === 1}>
       <TouchableOpacity activeOpacity={0.8} onPress={() => onPress(id)}>
         <View paddingV-10 paddingH-15 style={styles.noteCard}>
-          <Text style={styles.dateText}>{moment(date).format('YYYY.MM.DD')}</Text>
+          <View flex>
+            <Text style={styles.dateText}>{moment(date).format('YYYY.MM.DD')}</Text>
+            <StateText state={state}>{state}</StateText>
+          </View>
           <Text style={styles.titleText}>{title}</Text>
         </View>
       </TouchableOpacity>
