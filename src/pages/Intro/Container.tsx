@@ -12,21 +12,18 @@ const Container = ({ navigation }) => {
   const [userInfo, setUserInfo] = useState(null);
 
   const onPress = async () => {
-    await setIsLoading(true);
     const token = await getAccessToken();
     if (token) {
       await onLogin();
     } else {
       await RNKakaoLogins.login((err, res) => {
         if (err) {
-          console.log('%c%s', 'background: #00ff00; color: #ffffff', '카카오 로그인 실패', err.toString());
           setIsLoading(false);
           return;
         }
         if (res) {
           RNKakaoLogins.getProfile(async (error, result) => {
             if (error) {
-              console.log('%c%s', 'background: #00ff00; color: #ffffff', '카카오 프로필조회 실패', error.toString());
               setIsLoading(false);
               return;
             }
@@ -39,6 +36,7 @@ const Container = ({ navigation }) => {
 
   const onLogin = async () => {
     try {
+      await setIsLoading(true);
       const { return_code, return_message, return_data } = await RESTful('GET', `/user`);
       if (return_code === 200) {
         setIsLoading(false);
@@ -55,6 +53,7 @@ const Container = ({ navigation }) => {
   };
   const onJoin = async ({ id, email, phone_number: phone }) => {
     try {
+      await setIsLoading(true);
       const { return_code, return_message, return_data: { accessToken, ...rest } } = await RESTful('POST', '/user', { id, email, phone });
       if (return_code === 200) {
         await setAccessToken(accessToken);

@@ -205,3 +205,25 @@ Invariant Violation: requireNativeComponent: "RNSVGRect" was not found in the UI
 `RNSVGRect`는 해당 라이브러리에서 의존하고 있는 `react-native-svg`에 있는 것으로 바로 깃허브로 달려가 검색했더니 `MainApplication.java`에 해당
 패키지를 추가해주지 않아서 생긴 오류였다. iOS에만 추가하고 미처 빠뜨린 나의 실수였다.
 [react-native-svg 깃허브 이슈](https://github.com/react-native-community/react-native-svg/issues/749#issuecomment-441193691)
+##
+```
+Emitted 'error' event at:
+    at Connection._handleProtocolError (/home/ec2-user/ironman/node_modules/mysql/lib/Connection.js:426:8)
+    at Protocol.emit (events.js:198:13)
+    at Protocol._delegateError (/home/ec2-user/ironman/node_modules/mysql/lib/protocol/Protocol.js:398:10)
+    at Protocol.end (/home/ec2-user/ironman/node_modules/mysql/lib/protocol/Protocol.js:116:8)
+    at Socket.<anonymous> (/home/ec2-user/ironman/node_modules/mysql/lib/Connection.js:97:28)
+    [... lines matching original stack trace ...]
+    at process._tickCallback (internal/process/next_tick.js:63:19)
+error: Forever detected script exited with code: 1
+error: Script restart attempt #5
+```
+`EC2`에 서버를 띄우고 보안그룹 인바운드 설정에서 3000, 3306 포트를 열어주었는데, 해당 API를 요청하면 이런 에러가 발생하면서 접근이 되지 않는다.
+`http://ip:3000`는 접근이 되지만 `http://ip:3000/here`처럼 하위 경로에는 접근이 안되는데, 찾아보니 나의 경우에는 하위 경로에서 일반 노드서버 3000포트가 아닌 `MySQL 3306 포트`에 요청을 보내고 있었다. 3306 포트에 대하여 전체 접근권한을 해제하여 사용하던 중 `왜 전체 접근을 해제하면 되는데 같은 서버 내에서 호출하는건 안되지?`하는 생각으로 노드서버에 설정해둔 MySQL IP를 외부 IP가 아닌 내부 IP `127.0.0.1`로 변경하였더니 해결되었다.
+##
+```
+Error: ER_CON_COUNT_ERROR: Too many connections
+```
+신나게 테스트하다가 갑자기 API 데이터가 날라갔다. 그리고 다시 로그인 요청해보니 안되길래 서버 로그를 열어봤더니 `Too many`라니!!!
+노드서버에서 mysql의 커넥션을 열어만 두고 닫지를 않아서 서버가 요청을 막아버린것이다...
+요청마다 커넥션을 종료 시키면서 해결
