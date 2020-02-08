@@ -14,7 +14,7 @@ const Container = ({ navigation }) => {
   const onPress = async () => {
     await setIsLoading(true);
     try {
-      const { return_code, return_message } = await RESTful('PUT', `/note`, { ...note, date: moment(note.date).format('YYYY.MM.DD'), image: !!image && image.name });
+      const { return_code, return_message } = await RESTful('PUT', `/note`, { ...note, food: JSON.stringify(note.food), done: JSON.stringify(note.done), date: moment(note.date).format('YYYY.MM.DD'), image: !!image && image.name });
       if (return_code === 200) {
         setIsLoading(false);
         setIsLoading(false);
