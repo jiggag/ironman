@@ -44,10 +44,10 @@ const Container = ({ navigation }) => {
     try {
       const { return_data } = await RESTful('GET', `/note?id=${id}`);
       if (return_data.length) {
-        const { state, weather, ...rest } = return_data[0];
+        const { state, weather, food, done, ...rest } = return_data[0];
         const { value: stateText } = _find(stateList, { 'id': state });
         const { value: weatherText } = _find(weatherList, { 'id': weather });
-        setNote({ ...rest, state, weather, stateText, weatherText });
+        setNote({ ...rest, state, weather, stateText, weatherText, food: JSON.parse(food), done: JSON.parse(done) });
       }
     } catch (error) {
       console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (detail note)', '\n', error);
@@ -59,8 +59,8 @@ const Container = ({ navigation }) => {
   useEffect(() => {
     const { params: { update = false } = {} } = navigation.state;
     if (update) {
-      navigation.setParams({ update: false });
       init();
+      navigation.setParams({ update: false });
     }
   }, [navigation.state.params]);
   

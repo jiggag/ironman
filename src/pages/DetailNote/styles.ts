@@ -25,8 +25,19 @@ const styles =  StyleSheet.create({
     borderColor: Constant.HIGHLIGHT_SUB_COLOR,
     padding: 10,
   },
+  inputRow: {
+    borderRadius: 3,
+    backgroundColor: Constant.WHITE_COLOR,
+    borderStyle: 'dashed',
+    borderWidth: 1,
+    borderColor: Constant.HIGHLIGHT_SUB_COLOR,
+    padding: 10,
+    marginVertical: 2,
+  },
   input: {
-    minHeight: 50,
+    minHeight: 30,
+    display: 'flex',
+    flex: 1,
   },
   dateText: {
     fontSize: 18,

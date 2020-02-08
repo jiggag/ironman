@@ -18,7 +18,7 @@ const Container = ({ navigation }) => {
   const [note, setNote] = useState({
     title: null,
     date: moment().valueOf(),
-    weather: 4,
+    weather: 3,
     food: null,
     done: null,
     etc: null,
@@ -34,7 +34,7 @@ const Container = ({ navigation }) => {
     await setIsLoading(true);
     try {
       // TODO: image multipart upload
-      const { return_code, return_message } = await RESTful('POST', '/note', { ...note, date: moment(note.date).format('YYYY.MM.DD'), image: !!image && image.name });
+      const { return_code, return_message } = await RESTful('POST', '/note', { ...note, food: JSON.stringify(note.food), done: JSON.stringify(note.done), date: moment(note.date).format('YYYY.MM.DD'), image: !!image && image.name });
       if (return_code === 200) {
         setIsLoading(false);
         return navigation.navigate('ListNote', { update: true });
