@@ -66,5 +66,15 @@ export const StateText = styled.Text<{ state: number }>`
     return '#0bd9fd';
   }}
 `;
+export const Weather = styled.View`
+  border-radius: 30px;
+  border-width: 1px;
+  padding: 2px 6px;
+  align-self: center;
+  margin-right: 6px;
+`;
+export const WeatherText = styled.Text`
+  font-size: 12px;
+`;
 
 export default styles;
