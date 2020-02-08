@@ -12,9 +12,9 @@ const Container = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(0);
 
-  const format = list => {
-    const newList = page ? list : [];
-    const newGraph = page ? graph : [];
+  const format = (list, page) => {
+    const newList = page > 1 ? list : [];
+    const newGraph = page > 1 ? graph : [];
     for (const data of list) {
       newList.push({ id: newList.length + 1, ...data });
       newGraph.push(6 - data.state);
@@ -27,7 +27,7 @@ const Container = ({ navigation }) => {
     try {
       const { return_code, return_data } = await RESTful('GET', '/list', { page });
       if (return_code === 200) {
-        const { list, graph } = await format(return_data);
+        const { list, graph } = await format(return_data, page);
         await setPage(page);
         await setList(list);
         await setGraph(graph);
@@ -42,8 +42,8 @@ const Container = ({ navigation }) => {
   useEffect(() => {
     const { params: { update = false } = {} } = navigation.state;
     if (update) {
-      navigation.setParams({ update: false });
       init(1);
+      navigation.setParams({ update: false });
     }
   }, [navigation.state.params]);
 
