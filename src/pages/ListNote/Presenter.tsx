@@ -52,7 +52,7 @@ const LoadingComponent = () => {
 }
 const Presenter = ({ isLoading, list, graph, onActionToCreate, onPress, onPressBack }) => (
   <>
-    <Header onPress={onPressBack} />
+    <Header onPress={onPressBack} onPressRightButton={onActionToCreate} type="CREATE" />
     {isLoading ? (
       <LoadingComponent />
     ) : (
@@ -65,11 +65,6 @@ const Presenter = ({ isLoading, list, graph, onActionToCreate, onPress, onPressB
         keyExtractor={(item: { id: number }) => `${item.id}`}
       />
     )}
-    <BigButton
-      onPress={onActionToCreate}
-      text="기록하기"
-      buttonStyle={{ backgroundColor: Constant.MAIN_COLOR, borderRadius: 3 }}
-    />
   </>
 );
 

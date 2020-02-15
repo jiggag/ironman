@@ -10,7 +10,7 @@ import Constant from '../../utils/constants';
 
 const Presenter = ({ onPressBack, note: { title, date, food, done, etc, state, weather }, onPress, onChangeNote })=> (
   <>
-    <Header onPress={onPressBack} />
+    <Header onPress={onPressBack} onPressRightButton={onPress} type="SAVE" />
     <ScrollView style={styles.container}>
       <View paddingH-20>
         <View marginB-10>
@@ -129,12 +129,12 @@ const Presenter = ({ onPressBack, note: { title, date, food, done, etc, state, w
         </View>
       </View>
     </ScrollView>
-    <BigButton
+    {/* <BigButton
       onPress={onPress}
       text="수정"
       underlayColor={Constant.WHITE_COLOR}
       buttonStyle={{ backgroundColor: Constant.MAIN_COLOR, borderRadius: 3 }}
-    />
+    /> */}
   </>
 );
 
