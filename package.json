@@ -18,7 +18,8 @@
     "server": "node ./common/server.js",
     "intall:server": "yarn add express dotenv mysql moment slack-node @slack/client jsonwebtoken",
     "fastlane:test": "cd android && fastlane test && cd ..",
-    "fastlane:beta": "cd android && fastlane beta && cd .."
+    "fastlane:beta": "cd android && fastlane beta && cd ..",
+    "fastlane:deploy": "cd android && fastlane deploy && cd .."
   },
   "dependencies": {
     "axios": "^0.19.0",

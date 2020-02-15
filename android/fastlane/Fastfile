@@ -18,18 +18,20 @@ default_platform(:android)
 platform :android do
   desc "Runs all the tests"
   lane :test do
-    gradle(task: "test")
+    increment_version_code
+    gradle(task: "clean assembleRelease")
   end
 
-  desc "Submit a new Beta Build to Crashlytics Beta"
+  desc "Beta a new version to the Google Play"
   lane :beta do
     increment_version_code
     gradle(task: "clean bundleRelease")
-    crashlytics
+    supply(track: "beta", track_promote_to: "beta")
   end
 
   desc "Deploy a new version to the Google Play"
   lane :deploy do
+    increment_version_code
     gradle(task: "clean bundleRelease")
     upload_to_play_store
   end
