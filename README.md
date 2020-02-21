@@ -14,6 +14,9 @@ scripts | 설명
 `lint:fix` | eslint 검사 & 수정
 `server` | nodejs 서버 실행
 `intall:server` | nodejs 서버 의존 패키지 설치
+`fastlane:test` | Fastlane 테스트 빌드
+`fastlane:beta` | Fastlane 베타 빌드 & 업로드
+`fastlane:deploy` | Fastlane 릴리즈 빌드 & 업로드
 ##
 #### .eslintrc.js
 rules | 설명
