@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { SafeAreaView } from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
 import _find from 'lodash/find';
-import { RESTful } from '../../utils';
+import { RESTful, handleConfirm } from '../../utils';
 import Presenter from './Presenter';
 import styles from './styles';
 import { stateList, weatherList } from '../../utils/common';
@@ -22,18 +22,20 @@ const Container = ({ navigation }) => {
   });
   const [isLoading, setIsLoading] = useState(false);
 
-  const onPressDelete = async () => {
-    await setIsLoading(true);
-    try {
-      const { return_code } = await RESTful('POST', `/deleteNote`, { id });
-      if (return_code === 200) {
+  const onPressDelete = () => {
+    return handleConfirm('정말', '삭제하시겠습니까', async () => {
+      await setIsLoading(true);
+      try {
+        const { return_code } = await RESTful('POST', `/deleteNote`, { id });
+        if (return_code === 200) {
+          setIsLoading(false);
+          return navigation.navigate('ListNote', { update: true });
+        }
+      } catch (error) {
         setIsLoading(false);
-        return navigation.navigate('ListNote', { update: true });
+        console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (/note)', '\n', error);
       }
-    } catch (error) {
-      setIsLoading(false);
-      console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (/note)', '\n', error);
-    }
+    });
   };
   const onPressUpdate = () => navigation.navigate('UpdateNote', { originNote: { ...note, id } });
 
