@@ -10,14 +10,18 @@ export const METHOD = Object.freeze({
 });
 const createInstance = async () => {
   const token = await getAccessToken();
+  const headers = {
+    'Content-Type': 'application/json;charset=UTF-8',
+    Accept: 'application/json;charset=UTF-8',
+    token,
+  };
+  if (!token) {
+    delete headers.token;
+  }
   try {
     const instance = axios.create({
       baseURL: Config.API_URL,
-      headers: {
-        'Content-Type': 'application/json;charset=UTF-8',
-        Accept: 'application/json;charset=UTF-8',
-        token,
-      }
+      headers,
     });
     return instance;
   } catch (e) {
