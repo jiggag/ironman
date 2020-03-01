@@ -1,4 +1,7 @@
 jest.mock('NativeModules', () => ({
+  StatusBarManager: {
+    getHeight: jest.fn(),
+  },
   RNGestureHandlerModule: {
     attachGestureHandler: jest.fn(),
     createGestureHandler: jest.fn(),

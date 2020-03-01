@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renderer Component: SubTitle 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "fontSize": 16,
+        "fontWeight": "500",
+        "marginVertical": 4,
+        "textDecorationLine": "underline",
+      },
+      Object {},
+    ]
+  }
+>
+  서브타이틀
+</Text>
+`;

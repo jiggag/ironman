@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renderer Component: RadioButton 1`] = `
+<View
+  accessible={true}
+  clickable={true}
+  isTVSelectable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "opacity": 1,
+    }
+  }
+>
+  <View
+    row={true}
+    style={
+      Array [
+        undefined,
+        undefined,
+        undefined,
+        Object {},
+        Object {},
+        Object {
+          "flexDirection": "row",
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      style={
+        Array [
+          undefined,
+          undefined,
+          undefined,
+          Object {},
+          Object {},
+          Object {},
+          Array [
+            Object {
+              "borderRadius": 16,
+              "borderWidth": 1,
+              "height": 16,
+              "width": 16,
+            },
+            Object {
+              "backgroundColor": "#ec2",
+            },
+          ],
+        ]
+      }
+    />
+    <Text
+      style={
+        Object {
+          "fontSize": 12,
+          "marginLeft": 2,
+          "marginRight": 8,
+        }
+      }
+    >
+      라디오버튼
+    </Text>
+  </View>
+</View>
+`;

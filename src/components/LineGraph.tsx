@@ -42,7 +42,6 @@ const LineGraph = ({ data }) => (
           backgroundGradientTo: Constant.WHITE_COLOR,
           backgroundGradientToOpacity: 0,
           color: () => Constant.MAIN_COLOR,
-          labelColor: () => Constant.WHITE_COLOR,
           barPercentage: 0,
         }}
       />

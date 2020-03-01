@@ -70,4 +70,5 @@ GoogleService-Info.plist
 android/release/output.json
 android/google-key.json
 
-coverage/
+coverage
+.jest
