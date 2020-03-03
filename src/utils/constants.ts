@@ -4,6 +4,7 @@ const Constant = {
   HIGHLIGHT_SUB_COLOR: '#ddd',
   WHITE_COLOR: '#ffffff',
   PLACEHOLDER_COLOR: '#c9d6e3',
+  SHADOW_COLOR: '#333333',
 };
 
 export default Constant;

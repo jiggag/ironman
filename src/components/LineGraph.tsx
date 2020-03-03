@@ -54,7 +54,17 @@ export default LineGraph;
 
 const Wrapper = styled.View`
   margin: 0 20px;
+  border-radius: 6;
   border: 1px solid ${Constant.MAIN_COLOR};
+  background-color: ${Constant.WHITE_COLOR};
+  elevation: 5;
+  shadow-color: ${Constant.SHADOW_COLOR};
+  shadow-offset: {
+    width: 6,
+    height: 4,
+  };
+  shadow-opacity: 0.2;
+  shadow-radius: 6;
 `;
 const EmptyWrapper = styled.View`
   height: 100px;

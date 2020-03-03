@@ -23,6 +23,15 @@ const styles =  StyleSheet.create({
     width: 16,
     borderRadius: 16,
     borderWidth: 1,
+    backgroundColor: Constant.WHITE_COLOR,
+    elevation: 5,
+    shadowColor: Constant.SHADOW_COLOR,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
   },
   selectedRadio: {
     backgroundColor: Constant.MAIN_COLOR,

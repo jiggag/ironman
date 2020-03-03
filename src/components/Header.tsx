@@ -31,12 +31,14 @@ export default Header;
 
 const styles =  StyleSheet.create({
   header: {
-    backgroundColor: Constant.MAIN_COLOR,
+    backgroundColor: Constant.WHITE_COLOR,
     paddingVertical: 6,
     paddingHorizontal: 10,
+    borderBottomWidth: 1,
+    borderColor: Constant.SHADOW_COLOR,
   },
   backButtonText: {
-    color: Constant.WHITE_COLOR,
+    color: Constant.SHADOW_COLOR,
     fontWeight: '600',
     fontSize: 14,
   },

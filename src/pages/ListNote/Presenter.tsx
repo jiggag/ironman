@@ -25,7 +25,7 @@ const EmptyComponent = () => {
 const ItemComponent = ({ data, onPress }) => {
   const { id, date, title, state, weather } = data;
   return (
-    <View paddingH-20 marginB-10 marginT-10={id === 1}>
+    <View marginH-20 marginB-10 marginT-10={id === 1} style={styles.itemComponent}>
       <TouchableOpacity activeOpacity={0.8} onPress={() => onPress(id)}>
         <View paddingV-10 paddingH-15 style={styles.noteCard}>
           <View flex row>
