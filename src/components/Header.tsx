@@ -11,6 +11,13 @@ interface HeaderRightButtonType {
   style: StyleProp<TextStyle>;
 }
 
+interface HeaderType {
+  onPress: () => void;
+  onPressRightButton: () => void;
+  onPressDelete?: () => void;
+  type: string;
+}
+
 const TYPE = {
   CREATE: '생성',
   UPDATE: '수정',
@@ -31,7 +38,7 @@ const HeaderRightButton = memo(({ isVisible, buttonIdx, text, onPress, style }: 
   );
 });
 
-const Header = ({ onPress, onPressRightButton, onPressDelete = () => {}, type }) => (
+const Header = ({ onPress, onPressRightButton, onPressDelete, type }: HeaderType) => (
   <View row style={styles.header}>
     <View flex left>
       <TouchableOpacity activeOpacity={0.8} onPress={onPress}>

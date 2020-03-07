@@ -16,10 +16,19 @@ exports[`Renderer Component: BigButton 1`] = `
     Object {
       "alignItems": "center",
       "backgroundColor": "#ffffff",
+      "borderRadius": 6,
+      "elevation": 5,
       "marginHorizontal": 20,
       "marginVertical": 8,
       "opacity": 1,
       "paddingVertical": 14,
+      "shadowColor": "#333333",
+      "shadowOffset": Object {
+        "height": 4,
+        "width": 6,
+      },
+      "shadowOpacity": 0.2,
+      "shadowRadius": 4,
     }
   }
 >

@@ -14,9 +14,18 @@ exports[`Renderer Component: Header 1`] = `
         "flexDirection": "row",
       },
       Object {
-        "backgroundColor": "#ec2",
+        "backgroundColor": "#ffffff",
+        "elevation": 5,
+        "marginBottom": 2,
         "paddingHorizontal": 10,
-        "paddingVertical": 6,
+        "paddingVertical": 8,
+        "shadowColor": "#333333",
+        "shadowOffset": Object {
+          "height": 1,
+          "width": 0,
+        },
+        "shadowOpacity": 0.1,
+        "shadowRadius": 1,
       },
     ]
   }
@@ -56,14 +65,14 @@ exports[`Renderer Component: Header 1`] = `
       }
     >
       <View
-        paddingV-10={true}
+        paddingV-2={true}
         style={
           Array [
             undefined,
             undefined,
             undefined,
             Object {
-              "paddingVertical": 10,
+              "paddingVertical": 2,
             },
             Object {},
             Object {},
@@ -74,7 +83,7 @@ exports[`Renderer Component: Header 1`] = `
         <Text
           style={
             Object {
-              "color": "#ffffff",
+              "color": "#333333",
               "fontSize": 14,
               "fontWeight": "600",
             }
@@ -87,6 +96,7 @@ exports[`Renderer Component: Header 1`] = `
   </View>
   <View
     centerV={true}
+    marginR-10={false}
     style={
       Array [
         undefined,
@@ -120,14 +130,16 @@ exports[`Renderer Component: Header 1`] = `
       }
     >
       <View
-        paddingV-10={true}
+        paddingH-6={true}
+        paddingV-4={true}
         style={
           Array [
             undefined,
             undefined,
             undefined,
             Object {
-              "paddingVertical": 10,
+              "paddingHorizontal": 6,
+              "paddingVertical": 4,
             },
             Object {},
             Object {},
@@ -138,13 +150,246 @@ exports[`Renderer Component: Header 1`] = `
         <Text
           style={
             Object {
-              "color": "#ffffff",
+              "color": "#333333",
               "fontSize": 14,
               "fontWeight": "600",
             }
           }
         >
           생성
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Renderer Component: Header 2`] = `
+<View
+  row={true}
+  style={
+    Array [
+      undefined,
+      undefined,
+      undefined,
+      Object {},
+      Object {},
+      Object {
+        "flexDirection": "row",
+      },
+      Object {
+        "backgroundColor": "#ffffff",
+        "elevation": 5,
+        "marginBottom": 2,
+        "paddingHorizontal": 10,
+        "paddingVertical": 8,
+        "shadowColor": "#333333",
+        "shadowOffset": Object {
+          "height": 1,
+          "width": 0,
+        },
+        "shadowOpacity": 0.1,
+        "shadowRadius": 1,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        undefined,
+        undefined,
+        Object {
+          "flex": 1,
+        },
+        Object {},
+        Object {},
+        Object {
+          "alignItems": "flex-start",
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      accessible={true}
+      clickable={true}
+      isTVSelectable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+    >
+      <View
+        paddingV-2={true}
+        style={
+          Array [
+            undefined,
+            undefined,
+            undefined,
+            Object {
+              "paddingVertical": 2,
+            },
+            Object {},
+            Object {},
+            undefined,
+          ]
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#333333",
+              "fontSize": 14,
+              "fontWeight": "600",
+            }
+          }
+        >
+          뒤로가기
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    centerV={true}
+    marginR-10={true}
+    style={
+      Array [
+        undefined,
+        undefined,
+        undefined,
+        Object {},
+        Object {
+          "marginRight": 10,
+        },
+        Object {
+          "alignItems": "flex-end",
+          "justifyContent": "center",
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      accessible={true}
+      clickable={true}
+      isTVSelectable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+    >
+      <View
+        paddingH-6={true}
+        paddingV-4={true}
+        style={
+          Array [
+            undefined,
+            undefined,
+            undefined,
+            Object {
+              "paddingHorizontal": 6,
+              "paddingVertical": 4,
+            },
+            Object {},
+            Object {},
+            undefined,
+          ]
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#e34d10",
+              "fontSize": 14,
+              "fontWeight": "600",
+            }
+          }
+        >
+          삭제
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    centerV={true}
+    marginR-10={false}
+    style={
+      Array [
+        undefined,
+        undefined,
+        undefined,
+        Object {},
+        Object {},
+        Object {
+          "alignItems": "flex-end",
+          "justifyContent": "center",
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      accessible={true}
+      clickable={true}
+      isTVSelectable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+    >
+      <View
+        paddingH-6={true}
+        paddingV-4={true}
+        style={
+          Array [
+            undefined,
+            undefined,
+            undefined,
+            Object {
+              "paddingHorizontal": 6,
+              "paddingVertical": 4,
+            },
+            Object {},
+            Object {},
+            undefined,
+          ]
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#333333",
+              "fontSize": 14,
+              "fontWeight": "600",
+            }
+          }
+        >
+          수정
         </Text>
       </View>
     </View>

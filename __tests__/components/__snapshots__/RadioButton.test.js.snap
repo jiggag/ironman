@@ -46,10 +46,19 @@ exports[`Renderer Component: RadioButton 1`] = `
           Object {},
           Array [
             Object {
-              "borderRadius": 16,
+              "backgroundColor": "#ffffff",
+              "borderRadius": 14,
               "borderWidth": 1,
-              "height": 16,
-              "width": 16,
+              "elevation": 5,
+              "height": 14,
+              "shadowColor": "#333333",
+              "shadowOffset": Object {
+                "height": 2,
+                "width": 0,
+              },
+              "shadowOpacity": 0.2,
+              "shadowRadius": 2,
+              "width": 14,
             },
             Object {
               "backgroundColor": "#ec2",

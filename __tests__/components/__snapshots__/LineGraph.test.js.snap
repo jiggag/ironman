@@ -3,17 +3,20 @@
 exports[`Renderer Component: SubTitle 1`] = `
 <View
   style={
-    Array [
-      Object {
-        "borderColor": "#ec2",
-        "borderStyle": "solid",
-        "borderWidth": 1,
-        "marginBottom": 0,
-        "marginLeft": 20,
-        "marginRight": 20,
-        "marginTop": 0,
+    Object {
+      "backgroundColor": "#ffffff",
+      "borderRadius": 6,
+      "elevation": 5,
+      "marginHorizontal": 20,
+      "marginVertical": 0,
+      "shadowColor": "#333333",
+      "shadowOffset": Object {
+        "height": 2,
+        "width": 2,
       },
-    ]
+      "shadowOpacity": 0.2,
+      "shadowRadius": 4,
+    }
   }
 >
   <View
@@ -2036,17 +2039,20 @@ exports[`Renderer Component: SubTitle 1`] = `
 exports[`Renderer Component: SubTitle 2`] = `
 <View
   style={
-    Array [
-      Object {
-        "borderColor": "#ec2",
-        "borderStyle": "solid",
-        "borderWidth": 1,
-        "marginBottom": 0,
-        "marginLeft": 20,
-        "marginRight": 20,
-        "marginTop": 0,
+    Object {
+      "backgroundColor": "#ffffff",
+      "borderRadius": 6,
+      "elevation": 5,
+      "marginHorizontal": 20,
+      "marginVertical": 0,
+      "shadowColor": "#333333",
+      "shadowOffset": Object {
+        "height": 2,
+        "width": 2,
       },
-    ]
+      "shadowOpacity": 0.2,
+      "shadowRadius": 4,
+    }
   }
 >
   <View
@@ -2979,17 +2985,20 @@ exports[`Renderer Component: SubTitle 2`] = `
 exports[`Renderer Component: SubTitle 3`] = `
 <View
   style={
-    Array [
-      Object {
-        "borderColor": "#ec2",
-        "borderStyle": "solid",
-        "borderWidth": 1,
-        "marginBottom": 0,
-        "marginLeft": 20,
-        "marginRight": 20,
-        "marginTop": 0,
+    Object {
+      "backgroundColor": "#ffffff",
+      "borderRadius": 6,
+      "elevation": 5,
+      "marginHorizontal": 20,
+      "marginVertical": 0,
+      "shadowColor": "#333333",
+      "shadowOffset": Object {
+        "height": 2,
+        "width": 2,
       },
-    ]
+      "shadowOpacity": 0.2,
+      "shadowRadius": 4,
+    }
   }
 >
   <View
