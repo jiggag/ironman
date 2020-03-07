@@ -24,8 +24,9 @@ const styles =  StyleSheet.create({
     flex: 1,
   },
   titleText: {
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: '600',
+    marginTop: 2,
   },
   itemComponent: {
     backgroundColor: Constant.WHITE_COLOR,

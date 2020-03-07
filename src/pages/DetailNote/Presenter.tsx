@@ -9,7 +9,7 @@ import { foodList, doneList } from '../../utils/common';
 
 const Presenter = ({ onPressBack, note: { title, date, food, done, etc, stateText, weatherText }, onPressDelete, onPressUpdate })=> (
   <>
-    <Header onPress={onPressBack} onPressRightButton={onPressUpdate} type="UPDATE" />
+    <Header onPress={onPressBack} onPressRightButton={onPressUpdate} onPressDelete={onPressDelete} type="UPDATE" />
     <ScrollView style={styles.container}>
       <View paddingH-20>
         <View marginB-10>
@@ -106,14 +106,6 @@ const Presenter = ({ onPressBack, note: { title, date, food, done, etc, stateTex
         </View>
       </View>
     </ScrollView>
-    <View row paddingH-20 marginV-8>
-        <Button
-          onPress={onPressDelete}
-          text="삭제"
-          underlayColor={Constant.WHITE_COLOR}
-          buttonStyle={{ backgroundColor: Constant.MAIN_COLOR, flex: 1, marginRight: 3, borderRadius: 3 }}
-        />
-    </View>
   </>
 );
 
