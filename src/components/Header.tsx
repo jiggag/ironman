@@ -4,28 +4,30 @@ import { Text, TouchableOpacity, StyleSheet, StyleProp, TextStyle } from 'react-
 import Constant from '../utils/constants';
 
 interface HeaderRightButtonType {
-  isVisible: boolean
-  buttonIdx: number
-  text: string
-  onPress: () => void
-  style: StyleProp<TextStyle>
+  isVisible: boolean;
+  buttonIdx: number;
+  text: string;
+  onPress: () => void;
+  style: StyleProp<TextStyle>;
 }
 
 const TYPE = {
   CREATE: '생성',
   UPDATE: '수정',
-  SAVE: '저장'
-}
+  SAVE: '저장',
+};
 
 const HeaderRightButton = memo(({ isVisible, buttonIdx, text, onPress, style }: HeaderRightButtonType) => {
-  return isVisible && (
-    <View right centerV marginR-10={!!buttonIdx}>
-      <TouchableOpacity activeOpacity={0.8} onPress={onPress}>
-        <View paddingV-4 paddingH-6>
-          <Text style={style}>{text}</Text>
-        </View>
-      </TouchableOpacity>
-    </View>
+  return (
+    isVisible && (
+      <View right centerV marginR-10={!!buttonIdx}>
+        <TouchableOpacity activeOpacity={0.8} onPress={onPress}>
+          <View paddingV-4 paddingH-6>
+            <Text style={style}>{text}</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+    )
   );
 });
 
@@ -38,17 +40,29 @@ const Header = ({ onPress, onPressRightButton, onPressDelete = () => {}, type })
         </View>
       </TouchableOpacity>
     </View>
-    <HeaderRightButton isVisible={type === 'UPDATE'} buttonIdx={1} text="삭제" onPress={onPressDelete} style={styles.deleteButtonText} />
-    <HeaderRightButton isVisible buttonIdx={0} text={TYPE[type]} onPress={onPressRightButton} style={styles.backButtonText} />
+    <HeaderRightButton
+      isVisible={type === 'UPDATE'}
+      buttonIdx={1}
+      text="삭제"
+      onPress={onPressDelete}
+      style={styles.deleteButtonText}
+    />
+    <HeaderRightButton
+      isVisible
+      buttonIdx={0}
+      text={TYPE[type]}
+      onPress={onPressRightButton}
+      style={styles.backButtonText}
+    />
   </View>
 );
 
 export default Header;
 
-const styles =  StyleSheet.create({
+const styles = StyleSheet.create({
   header: {
     backgroundColor: Constant.WHITE_COLOR,
-    paddingVertical: 6,
+    paddingVertical: 8,
     paddingHorizontal: 10,
     elevation: 5,
     shadowColor: Constant.SHADOW_COLOR,
@@ -69,5 +83,5 @@ const styles =  StyleSheet.create({
     color: Constant.WARN_COLOR,
     fontWeight: '600',
     fontSize: 14,
-  }
+  },
 });
