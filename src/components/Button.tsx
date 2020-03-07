@@ -22,6 +22,15 @@ const styles =  StyleSheet.create({
     backgroundColor: Constant.MAIN_COLOR,
     paddingVertical: 14,
     alignItems: 'center',
+    borderRadius: 6,
+    elevation: 5,
+    shadowColor: Constant.SHADOW_COLOR,
+    shadowOffset: {
+      width: 6,
+      height: 4,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
   },
   buttonText: {
     color: Constant.WHITE_COLOR,
