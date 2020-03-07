@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import Constant from '../../utils/constants';
 
-const styles =  StyleSheet.create({
+const styles = StyleSheet.create({
   safeAreaView: {
     backgroundColor: Constant.WHITE_COLOR,
     flex: 1,
@@ -10,32 +10,47 @@ const styles =  StyleSheet.create({
     flex: 1,
   },
   inputLine: {
-    borderRadius: 3,
+    borderRadius: 6,
     backgroundColor: Constant.WHITE_COLOR,
-    borderStyle: 'dashed',
-    borderWidth: 1,
-    borderColor: Constant.HIGHLIGHT_SUB_COLOR,
     paddingHorizontal: 10,
+    elevation: 5,
+    shadowColor: Constant.SHADOW_COLOR,
+    shadowOffset: {
+      width: 2,
+      height: 2,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
   },
   inputBox: {
-    borderRadius: 3,
+    borderRadius: 6,
     backgroundColor: Constant.WHITE_COLOR,
-    borderStyle: 'dashed',
-    borderWidth: 1,
-    borderColor: Constant.HIGHLIGHT_SUB_COLOR,
     padding: 10,
+    elevation: 5,
+    shadowColor: Constant.SHADOW_COLOR,
+    shadowOffset: {
+      width: 2,
+      height: 2,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
   },
   inputRow: {
-    borderRadius: 3,
+    borderRadius: 6,
     backgroundColor: Constant.WHITE_COLOR,
-    borderStyle: 'dashed',
-    borderWidth: 1,
-    borderColor: Constant.HIGHLIGHT_SUB_COLOR,
     padding: 10,
-    marginVertical: 2,
+    marginVertical: 3,
+    elevation: 5,
+    shadowColor: Constant.SHADOW_COLOR,
+    shadowOffset: {
+      width: 2,
+      height: 2,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
   },
   input: {
-    minHeight: 30,
+    minHeight: 40,
     display: 'flex',
     flex: 1,
   },

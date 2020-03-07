@@ -8,7 +8,7 @@ import { BigButton, RadioButton, SubTitle, Header } from '../../components';
 import { stateList, weatherList, foodList, doneList } from '../../utils/common';
 import Constant from '../../utils/constants';
 
-const Presenter = ({ onPressBack, note: { title, date, food, done, etc, state, weather }, onPress, onChangeNote })=> (
+const Presenter = ({ onPressBack, note: { title, date, food, done, etc, state, weather }, onPress, onChangeNote }) => (
   <>
     <Header onPress={onPressBack} onPressRightButton={onPress} type="SAVE" />
     <ScrollView style={styles.container}>
@@ -23,9 +23,15 @@ const Presenter = ({ onPressBack, note: { title, date, food, done, etc, state, w
             customStyles={{
               dateIcon: styles.dateIcon,
               dateInput: styles.dateInput,
-              dateText: styles.dateText
+              dateText: styles.dateText,
             }}
-            onDateChange={date => onChangeNote({ date: moment(date, 'YYYY.MM.DD').valueOf() })}
+            onDateChange={date =>
+              onChangeNote({
+                date: moment(date, 'YYYY.MM.DD')
+                  .startOf('days')
+                  .valueOf(),
+              })
+            }
           />
         </View>
         <View marginB-10>
@@ -34,7 +40,7 @@ const Presenter = ({ onPressBack, note: { title, date, food, done, etc, state, w
             <TextInput
               style={styles.input}
               placeholder="제목을 입력하세요"
-              underlineColorAndroid='transparent'
+              underlineColorAndroid="transparent"
               onChangeText={title => onChangeNote({ title })}
               value={title}
               placeholderTextColor={Constant.PLACEHOLDER_COLOR}
@@ -44,74 +50,73 @@ const Presenter = ({ onPressBack, note: { title, date, food, done, etc, state, w
         <View marginB-10>
           <SubTitle title="상태" />
           <View row>
-            {
-              stateList.map(({ id, value }) => (
-                <View flex left key={id}>
-                  <RadioButton onPress={() => onChangeNote({ state: id })} value={value} isSelected={state === id} />
-                </View>
-              ))
-            }
+            {stateList.map(({ id, value }) => (
+              <View flex left key={id}>
+                <RadioButton onPress={() => onChangeNote({ state: id })} value={value} isSelected={state === id} />
+              </View>
+            ))}
           </View>
         </View>
         <View marginB-10>
           <SubTitle title="날씨" />
           <View row>
-            {
-              weatherList.filter(({ visible }) => visible).filter(({ visible }) => visible).map(({ id, value }) => (
+            {weatherList
+              .filter(({ visible }) => visible)
+              .filter(({ visible }) => visible)
+              .map(({ id, value }) => (
                 <View flex left key={id}>
-                  <RadioButton onPress={() => onChangeNote({ weather: id })} value={value} isSelected={weather === id} />
+                  <RadioButton
+                    onPress={() => onChangeNote({ weather: id })}
+                    value={value}
+                    isSelected={weather === id}
+                  />
                 </View>
-              ))
-            }
+              ))}
           </View>
         </View>
         <View marginB-10>
           <SubTitle title="식단" />
-            {
-              foodList.map(({ id, value }) => (
-                <View style={styles.inputRow} flex row key={id}>
-                  <View flex-1>
-                    <Text>{value}</Text>
-                  </View>
-                  <View flex-3>
-                    <TextInput
-                      scrollEnabled={false}
-                      style={styles.input}
-                      placeholder="입력하세요"
-                      underlineColorAndroid='transparent'
-                      onChangeText={value => onChangeNote({ food: { ...food, [id]: value } })}
-                      value={food && food[id]}
-                      placeholderTextColor={Constant.PLACEHOLDER_COLOR}
-                      multiline
-                    />
-                  </View>
-                </View>
-              ))
-            }
+          {foodList.map(({ id, value }) => (
+            <View style={styles.inputRow} flex row key={id}>
+              <View flex-1>
+                <Text>{value}</Text>
+              </View>
+              <View flex-3>
+                <TextInput
+                  scrollEnabled={false}
+                  style={styles.input}
+                  placeholder="입력하세요"
+                  underlineColorAndroid="transparent"
+                  onChangeText={value => onChangeNote({ food: { ...food, [id]: value } })}
+                  value={food && food[id]}
+                  placeholderTextColor={Constant.PLACEHOLDER_COLOR}
+                  multiline
+                />
+              </View>
+            </View>
+          ))}
         </View>
         <View marginB-10>
           <SubTitle title="한 일" />
-            {
-              doneList.map(({ id, value }) => (
-                <View style={styles.inputRow} flex row key={id}>
-                  <View flex-1>
-                    <Text>{value}</Text>
-                  </View>
-                  <View flex-3>
-                    <TextInput
-                      scrollEnabled={false}
-                      style={styles.input}
-                      placeholder="입력하세요"
-                      underlineColorAndroid='transparent'
-                      onChangeText={value => onChangeNote({ done: { ...done, [id]: value } })}
-                      value={done && done[id]}
-                      placeholderTextColor={Constant.PLACEHOLDER_COLOR}
-                      multiline
-                    />
-                  </View>
-                </View>
-              ))
-            }
+          {doneList.map(({ id, value }) => (
+            <View style={styles.inputRow} flex row key={id}>
+              <View flex-1>
+                <Text>{value}</Text>
+              </View>
+              <View flex-3>
+                <TextInput
+                  scrollEnabled={false}
+                  style={styles.input}
+                  placeholder="입력하세요"
+                  underlineColorAndroid="transparent"
+                  onChangeText={value => onChangeNote({ done: { ...done, [id]: value } })}
+                  value={done && done[id]}
+                  placeholderTextColor={Constant.PLACEHOLDER_COLOR}
+                  multiline
+                />
+              </View>
+            </View>
+          ))}
         </View>
         <View marginB-10>
           <SubTitle title="기타" />
@@ -119,7 +124,7 @@ const Presenter = ({ onPressBack, note: { title, date, food, done, etc, state, w
             <TextInput
               style={styles.input}
               placeholder="Etc 입력하세요"
-              underlineColorAndroid='transparent'
+              underlineColorAndroid="transparent"
               onChangeText={etc => onChangeNote({ etc })}
               value={etc}
               placeholderTextColor={Constant.PLACEHOLDER_COLOR}

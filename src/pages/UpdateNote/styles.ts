@@ -17,50 +17,64 @@ const styles = StyleSheet.create({
     borderColor: Constant.HIGHLIGHT_SUB_COLOR,
   },
   inputLine: {
-    borderRadius: 3,
+    borderRadius: 6,
     backgroundColor: Constant.WHITE_COLOR,
-    borderStyle: 'dashed',
-    borderWidth: 1,
-    borderColor: Constant.HIGHLIGHT_SUB_COLOR,
     paddingHorizontal: 10,
+    elevation: 5,
+    shadowColor: Constant.SHADOW_COLOR,
+    shadowOffset: {
+      width: 2,
+      height: 2,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
   },
   inputBox: {
-    borderRadius: 3,
+    borderRadius: 6,
     backgroundColor: Constant.WHITE_COLOR,
-    borderStyle: 'dashed',
-    borderWidth: 1,
-    borderColor: Constant.HIGHLIGHT_SUB_COLOR,
     padding: 10,
+    elevation: 5,
+    shadowColor: Constant.SHADOW_COLOR,
+    shadowOffset: {
+      width: 2,
+      height: 2,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
   },
   inputRow: {
-    borderRadius: 3,
+    borderRadius: 6,
     backgroundColor: Constant.WHITE_COLOR,
-    borderStyle: 'dashed',
-    borderWidth: 1,
-    borderColor: Constant.HIGHLIGHT_SUB_COLOR,
+    elevation: 5,
+    shadowColor: Constant.SHADOW_COLOR,
+    shadowOffset: {
+      width: 2,
+      height: 2,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
     padding: 10,
-    marginVertical: 2,
+    marginVertical: 3,
   },
   input: {
-    minHeight: 30,
+    minHeight: 40,
     display: 'flex',
     flex: 1,
   },
-  buttonView: {
-  },
+  buttonView: {},
   dateIcon: {
-    display: 'none'
+    display: 'none',
   },
   dateInput: {
     position: 'absolute',
     borderWidth: 0,
     borderBottomWidth: 1,
     height: 20,
-    left: 0
+    left: 0,
   },
   dateText: {
     fontSize: 18,
-    fontWeight: '600'
+    fontWeight: '600',
   },
 });
 

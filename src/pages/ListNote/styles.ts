@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
 import Constant from '../../utils/constants';
 
-const styles =  StyleSheet.create({
+const styles = StyleSheet.create({
   safeAreaView: {
     backgroundColor: Constant.WHITE_COLOR,
     flex: 1,
@@ -16,9 +16,6 @@ const styles =  StyleSheet.create({
     flex: 1,
   },
   noteCard: {
-    borderWidth: 1,
-    borderStyle: 'dashed',
-    borderColor: Constant.HIGHLIGHT_SUB_COLOR,
     borderRadius: 3,
   },
   dateText: {
@@ -27,8 +24,21 @@ const styles =  StyleSheet.create({
     flex: 1,
   },
   titleText: {
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: '600',
+    marginTop: 2,
+  },
+  itemComponent: {
+    backgroundColor: Constant.WHITE_COLOR,
+    borderRadius: 6,
+    elevation: 5,
+    shadowColor: Constant.SHADOW_COLOR,
+    shadowOffset: {
+      width: 2,
+      height: 2,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
   },
 });
 
@@ -61,10 +71,10 @@ export const StateText = styled.Text<{ state: number }>`
     } else if (state === 3) {
       return '#fdf80b';
     } else if (state === 2) {
-      return '#65fd0b';  
+      return '#65fd0b';
     }
     return '#0bd9fd';
-  }}
+  }};
 `;
 export const Weather = styled.View`
   border-radius: 30px;

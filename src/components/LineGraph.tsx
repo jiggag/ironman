@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions, Text } from 'react-native';
+import { Dimensions, Text, View, StyleSheet } from 'react-native';
 import { LineChart, LineChartData } from 'react-native-chart-kit';
 import styled from 'styled-components/native';
 import Constant from '../utils/constants';
@@ -9,7 +9,7 @@ const formatData = (data: number[]): LineChartData => ({
   datasets: [
     {
       data,
-    }
+    },
   ],
 });
 
@@ -18,10 +18,10 @@ const EmptyData = () => {
     <EmptyWrapper>
       <Text>...</Text>
     </EmptyWrapper>
-  )
-}
+  );
+};
 const LineGraph = ({ data }) => (
-  <Wrapper>
+  <View style={styles.wrapper}>
     {data.length ? (
       <LineChart
         style={{
@@ -45,16 +45,30 @@ const LineGraph = ({ data }) => (
           barPercentage: 0,
         }}
       />
-    ) : <EmptyData />}
-  </Wrapper>
+    ) : (
+      <EmptyData />
+    )}
+  </View>
 );
 
 export default LineGraph;
 
-const Wrapper = styled.View`
-  margin: 0 20px;
-  border: 1px solid ${Constant.MAIN_COLOR};
-`;
+const styles = StyleSheet.create({
+  wrapper: {
+    marginHorizontal: 20,
+    marginVertical: 0,
+    borderRadius: 6,
+    backgroundColor: Constant.WHITE_COLOR,
+    elevation: 5,
+    shadowColor: Constant.SHADOW_COLOR,
+    shadowOffset: {
+      width: 2,
+      height: 2,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+  },
+});
 const EmptyWrapper = styled.View`
   height: 100px;
   justify-content: center;
