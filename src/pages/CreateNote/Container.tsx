@@ -3,11 +3,13 @@ import { SafeAreaView } from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
 // import ImagePicker from 'react-native-image-picker';
 import moment from 'moment';
+import { connect } from 'react-redux';
 import { handleAlert, RESTful } from '../../utils';
 import Presenter from './Presenter';
 import styles from './styles';
+import { createNoteRequest, createNoteSuccess } from '../../reducers/note';
 
-const Container = ({ navigation }) => {
+const Container = ({ navigation, isLoading, createNote }) => {
   /*
     Weather 날씨: radio [너무 더움, 조금 더움, 살만함, 조금 추움, 너무 추움]
     Food 식단: text
@@ -25,27 +27,24 @@ const Container = ({ navigation }) => {
     state: 1,
   });
   const [image, setImage] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
 
-  const onPress = async () => {
+  const onPress = () => {
     if (!note.title) {
       return handleAlert('', '제목을 입력해주세요', () => {});
     }
-    await setIsLoading(true);
-    try {
-      // TODO: image multipart upload
-      const { return_code, return_message } = await RESTful('POST', '/note', { ...note, food: JSON.stringify(note.food), done: JSON.stringify(note.done), date: moment(note.date).format('YYYY.MM.DD'), image: !!image && image.name });
-      if (return_code === 200) {
-        setIsLoading(false);
-        return navigation.navigate('ListNote', { update: true });
-      }
-      return handleAlert("노트 생성 실패", return_message, () => {
-        setIsLoading(false);
-      });
-    } catch (error) {
-      setIsLoading(false);
-      console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (/note)', '\n', error);
-    }
+    createNote({
+      note: {
+        ...note,
+        food: JSON.stringify(note.food),
+        done: JSON.stringify(note.done),
+        date: moment(note.date)
+          .startOf('days')
+          .valueOf(),
+        image: !!image && image.name,
+      },
+      cbSuccess: () => navigation.navigate('ListNote', { update: true }),
+      cbFailure: message => handleAlert('노트 생성 실패', message, () => {}),
+    });
   };
 
   const onChangeNote = value => {
@@ -102,6 +101,14 @@ const Container = ({ navigation }) => {
       <Spinner visible={isLoading} />
     </SafeAreaView>
   );
-
 };
-export default Container;
+
+const mapStateToProps = ({ note }) => ({
+  ...note,
+});
+
+const mapDispatchToProps = {
+  createNote: createNoteRequest,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Container);

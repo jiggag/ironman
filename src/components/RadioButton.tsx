@@ -19,10 +19,19 @@ const styles =  StyleSheet.create({
     alignItems: 'center',
   },
   radio: {
-    height: 16,
-    width: 16,
-    borderRadius: 16,
+    height: 14,
+    width: 14,
+    borderRadius: 14,
     borderWidth: 1,
+    backgroundColor: Constant.WHITE_COLOR,
+    elevation: 5,
+    shadowColor: Constant.SHADOW_COLOR,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
   },
   selectedRadio: {
     backgroundColor: Constant.MAIN_COLOR,

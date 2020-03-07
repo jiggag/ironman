@@ -1,4 +1,4 @@
-import { handleAlert } from './alert';
+import { handleAlert, handleConfirm } from './alert';
 import RESTful, { METHOD } from './restapi';
 
-export { handleAlert, RESTful, METHOD };
+export { handleAlert, handleConfirm, RESTful, METHOD };

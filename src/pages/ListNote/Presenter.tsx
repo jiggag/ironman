@@ -25,7 +25,7 @@ const EmptyComponent = () => {
 const ItemComponent = ({ data, onPress }) => {
   const { id, date, title, state, weather } = data;
   return (
-    <View paddingH-20 marginB-10 marginT-10={id === 1}>
+    <View marginH-20 marginB-10 marginT-10={id === 1} style={styles.itemComponent}>
       <TouchableOpacity activeOpacity={0.8} onPress={() => onPress(id)}>
         <View paddingV-10 paddingH-15 style={styles.noteCard}>
           <View flex row>
@@ -52,7 +52,7 @@ const LoadingComponent = () => {
 }
 const Presenter = ({ isLoading, list, graph, onActionToCreate, onPress, onPressBack }) => (
   <>
-    <Header onPress={onPressBack} />
+    <Header onPress={onPressBack} onPressRightButton={onActionToCreate} type="CREATE" />
     {isLoading ? (
       <LoadingComponent />
     ) : (
@@ -65,11 +65,6 @@ const Presenter = ({ isLoading, list, graph, onActionToCreate, onPress, onPressB
         keyExtractor={(item: { id: number }) => `${item.id}`}
       />
     )}
-    <BigButton
-      onPress={onActionToCreate}
-      text="기록하기"
-      buttonStyle={{ backgroundColor: Constant.MAIN_COLOR, borderRadius: 3 }}
-    />
   </>
 );
 
