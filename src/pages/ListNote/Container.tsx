@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Spinner from 'react-native-loading-spinner-overlay';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import styles from './styles';
 import Presenter from './Presenter';
+import { handleConfirm } from '../../utils';
 import { deleteAccessToken } from '../../utils/auth';
 import { getListRequest } from '../../reducers/note';
 
@@ -25,8 +26,10 @@ const Container = ({ navigation, list, graph, isLoading, getList }) => {
   const onActionToCreate = () => navigation.navigate('CreateNote');
   const onPress = id => navigation.navigate('DetailNote', { id });
   const onPressBack = () => {
-    deleteAccessToken();
-    return navigation.goBack();
+    return handleConfirm('정말', '로그아웃할거에요?', () => {
+      deleteAccessToken();
+      return navigation.goBack();
+    });
   };
   const onNext = () => {
     console.log('onNext', page);
