@@ -9,21 +9,21 @@ import { deleteAccessToken } from '../../utils/auth';
 import { getListRequest } from '../../reducers/note';
 
 const Container = ({ navigation }) => {
-  const [page, setPage] = useState(0);
+  const [, setPage] = useState(1);
   const dispatch = useDispatch();
   const { list, graph, isLoading } = useSelector(store => store.note);
   const getList = useCallback(page => dispatch(getListRequest(page)), [dispatch]);
-
+  
   useEffect(() => {
     const { params: { update = false } = {} } = navigation.state;
     if (update) {
-      getList(1);
+      getList();
       navigation.setParams({ update: false });
     }
   }, [navigation.state.params]);
 
   useEffect(() => {
-    getList(1);
+    getList();
   }, []);
 
   const onActionToCreate = () => navigation.navigate('CreateNote');
@@ -34,20 +34,19 @@ const Container = ({ navigation }) => {
       return navigation.goBack();
     });
   };
-  const onNext = () => {
-    console.log('onNext', page);
-    // init(page + 1);
-  };
+  const onNext = useCallback(() => {
+    getList(true);
+  }, [getList]);
 
   return (
     <SafeAreaView style={styles.safeAreaView}>
       <Presenter
-        isLoading={isLoading}
         list={list}
         graph={graph}
         onActionToCreate={onActionToCreate}
         onPress={onPress}
         onPressBack={onPressBack}
+        onNext={onNext}
       />
       <Spinner visible={isLoading} />
     </SafeAreaView>

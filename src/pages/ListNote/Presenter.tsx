@@ -14,14 +14,14 @@ const HeaderComponent = ({ data }) => {
       <LineGraph data={data} />
     </View>
   );
-}
+};
 const EmptyComponent = () => {
   return (
     <View style={styles.emptyCard}>
       <Text>없음</Text>
     </View>
   );
-}
+};
 const ItemComponent = ({ data, onPress }) => {
   const { id, date, title, state, weather } = data;
   return (
@@ -31,7 +31,7 @@ const ItemComponent = ({ data, onPress }) => {
           <View flex row>
             <Text style={styles.dateText}>{moment(date).format('YYYY.MM.DD')}</Text>
             <Weather>
-              <WeatherText>{_find(weatherList, { 'id': weather }).value}</WeatherText>
+              <WeatherText>{_find(weatherList, { id: weather }).value}</WeatherText>
             </Weather>
             <State>
               <StateText state={state}>{state}</StateText>
@@ -42,29 +42,27 @@ const ItemComponent = ({ data, onPress }) => {
       </TouchableOpacity>
     </View>
   );
-}
+};
 const LoadingComponent = () => {
   return (
     <View style={styles.emptyCard}>
       <Text>로딩중...</Text>
     </View>
   );
-}
-const Presenter = ({ isLoading, list, graph, onActionToCreate, onPress, onPressBack }) => (
+};
+const Presenter = ({ list, graph, onActionToCreate, onPress, onPressBack, onNext }) => (
   <>
     <Header onPress={onPressBack} onPressRightButton={onActionToCreate} type="CREATE" />
-    {isLoading ? (
-      <LoadingComponent />
-    ) : (
-      <FlatList
-        style={styles.container}
-        ListHeaderComponent={() => <HeaderComponent data={graph} />}
-        ListEmptyComponent={EmptyComponent}
-        data={list}
-        renderItem={({ item }) => <ItemComponent data={item} onPress={onPress} />}
-        keyExtractor={(item: { id: number }) => `${item.id}`}
-      />
-    )}
+    <FlatList
+      style={styles.container}
+      ListHeaderComponent={() => <HeaderComponent data={graph} />}
+      ListEmptyComponent={EmptyComponent}
+      data={list}
+      renderItem={({ item }) => <ItemComponent data={item} onPress={onPress} />}
+      keyExtractor={(item: { id: number }, index) => `${item.id}${index}`}
+      onEndReached={onNext}
+      onEndReachedThreshold={0.01}
+    />
   </>
 );
 
