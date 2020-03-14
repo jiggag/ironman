@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Spinner from 'react-native-loading-spinner-overlay';
-import { SafeAreaView, Alert } from 'react-native';
-import { connect } from 'react-redux';
+import { SafeAreaView } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './styles';
 import Presenter from './Presenter';
 import { handleConfirm } from '../../utils';
 import { deleteAccessToken } from '../../utils/auth';
 import { getListRequest } from '../../reducers/note';
 
-const Container = ({ navigation, list, graph, isLoading, getList }) => {
+const Container = ({ navigation }) => {
   const [page, setPage] = useState(0);
+  const dispatch = useDispatch();
+  const { list, graph, isLoading } = useSelector(store => store.note);
+  const getList = useCallback(page => dispatch(getListRequest(page)), [dispatch]);
 
   useEffect(() => {
     const { params: { update = false } = {} } = navigation.state;
@@ -51,12 +54,4 @@ const Container = ({ navigation, list, graph, isLoading, getList }) => {
   );
 };
 
-const mapStateToProps = ({ note }) => ({
-  ...note,
-});
-
-const mapDispatchToProps = {
-  getList: getListRequest,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Container);
+export default Container;
