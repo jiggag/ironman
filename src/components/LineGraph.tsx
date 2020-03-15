@@ -9,7 +9,7 @@ const formatData = (data: number[]): LineChartData => ({
   datasets: [
     {
       data,
-    }
+    },
   ],
 });
 
@@ -18,8 +18,8 @@ const EmptyData = () => {
     <EmptyWrapper>
       <Text>...</Text>
     </EmptyWrapper>
-  )
-}
+  );
+};
 const LineGraph = ({ data }) => (
   <View style={styles.wrapper}>
     {data.length ? (
@@ -42,11 +42,12 @@ const LineGraph = ({ data }) => (
           backgroundGradientTo: Constant.WHITE_COLOR,
           backgroundGradientToOpacity: 0,
           color: () => Constant.MAIN_COLOR,
-          labelColor: () => Constant.WHITE_COLOR,
           barPercentage: 0,
         }}
       />
-    ) : <EmptyData />}
+    ) : (
+      <EmptyData />
+    )}
   </View>
 );
 
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.2,
     shadowRadius: 4,
-  }
+  },
 });
 const EmptyWrapper = styled.View`
   height: 100px;

@@ -12,7 +12,10 @@
     "android:dev-build": "cd android && ENVFILE=.env ./gradlew assembleRelease && cd ..",
     "android:live-build": "cd android && ENVFILE=.env.production ./gradlew assembleRelease && cd ..",
     "android:live-bundle": "cd android && ENVFILE=.env.production ./gradlew bundleRelease && cd ..",
-    "test": "jest",
+    "test": "jest --verbose --coverage",
+    "test:update": "jest --verbose --coverage --updateSnapshot",
+    "test:watch": "jest --verbose --watch",
+    "coverage": "jest --verbose --coverage && open ./coverage/lcov-report/index.html",
     "lint": "eslint .",
     "lint:fix": "eslint --fix",
     "server": "node ./common/server.js",
@@ -31,7 +34,7 @@
     "q": "^1.5.1",
     "react": "^16.9.0",
     "react-native": "^0.60.5",
-    "react-native-chart-kit": "^4.3.0",
+    "react-native-chart-kit": "file:./src/lib/react-native-chart-kit/",
     "react-native-config": "^0.11.7",
     "react-native-datepicker": "^1.7.2",
     "react-native-fast-image": "^7.0.2",
@@ -55,6 +58,7 @@
     "@types/styled-components": "^4.4.1",
     "babel-eslint": "^10.0.2",
     "babel-jest": "^24.8.0",
+    "codecov": "^3.6.5",
     "eslint": "^6.1.0",
     "eslint-config-airbnb": "^17.1.1",
     "eslint-config-airbnb-base": "^13.2.0",
@@ -63,7 +67,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-native": "^3.7.0",
-    "jest": "^24.8.0",
+    "jest": "^25.1.0",
     "lint-staged": "^10.0.8",
     "metro-react-native-babel-preset": "^0.55.0",
     "prettier": "^1.19.1",
@@ -80,11 +84,21 @@
   },
   "jest": {
     "preset": "react-native",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/build/"
+    ],
+    "cacheDirectory": ".jest/cache",
     "testMatch": [
       "**/__tests__/**/*.js"
     ],
-    "transformIgnorePatterns": [
-      "node_modules/(?!react-native|react-navigation)/"
+    "setupFiles": [
+      "./jest.setup.js"
     ]
   }
 }

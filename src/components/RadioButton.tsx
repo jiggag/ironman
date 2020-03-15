@@ -14,7 +14,7 @@ const RadioButton = ({ onPress, value, isSelected }) => (
 
 export default RadioButton;
 
-const styles =  StyleSheet.create({
+const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
   },
@@ -40,5 +40,5 @@ const styles =  StyleSheet.create({
     fontSize: 12,
     marginLeft: 2,
     marginRight: 8,
-  }
+  },
 });
