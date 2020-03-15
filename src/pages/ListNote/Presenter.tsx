@@ -50,21 +50,19 @@ const LoadingComponent = () => {
     </View>
   );
 };
-const Presenter = ({ isLoading, list, graph, onActionToCreate, onPress, onPressBack }) => (
+const Presenter = ({ list, graph, onActionToCreate, onPress, onPressBack, onNext }) => (
   <>
     <Header onPress={onPressBack} onPressRightButton={onActionToCreate} type="CREATE" />
-    {isLoading ? (
-      <LoadingComponent />
-    ) : (
-      <FlatList
-        style={styles.container}
-        ListHeaderComponent={() => <HeaderComponent data={graph} />}
-        ListEmptyComponent={EmptyComponent}
-        data={list}
-        renderItem={({ item }) => <ItemComponent data={item} onPress={onPress} />}
-        keyExtractor={(item: { id: number }) => `${item.id}`}
-      />
-    )}
+    <FlatList
+      style={styles.container}
+      ListHeaderComponent={() => <HeaderComponent data={graph} />}
+      ListEmptyComponent={EmptyComponent}
+      data={list}
+      renderItem={({ item }) => <ItemComponent data={item} onPress={onPress} />}
+      keyExtractor={(item: { id: number }, index) => `${item.id}${index}`}
+      onEndReached={onNext}
+      onEndReachedThreshold={0.01}
+    />
   </>
 );
 
