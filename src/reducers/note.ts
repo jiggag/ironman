@@ -4,6 +4,8 @@ const noteSlice = createSlice({
   name: 'note',
   initialState: {
     isLoading: false,
+    page: 1,
+    limit: 20,
     list: [],
     graph: [],
     note: {},
@@ -13,7 +15,8 @@ const noteSlice = createSlice({
       state.isLoading = true;
     },
     getListSuccess: (state, action) => {
-      const { list, graph } = action.payload;
+      const { list, graph, page } = action.payload;
+      state.page = page;
       state.list = list;
       state.graph = graph;
       state.isLoading = false;

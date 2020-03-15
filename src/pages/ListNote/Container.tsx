@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { SafeAreaView, BackHandler, Alert } from 'react-native';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Toast from 'react-native-simple-toast';
 import _debounce from 'lodash/debounce';
 import styles from './styles';
@@ -11,25 +11,27 @@ import { deleteAccessToken } from '../../utils/auth';
 import { getListRequest } from '../../reducers/note';
 
 let isBackPress = false;
-const Container = ({ navigation, list, graph, isLoading, getList }) => {
-  const [page, setPage] = useState(0);
+const Container = ({ navigation }) => {
+  const dispatch = useDispatch();
+  const { list, graph, isLoading } = useSelector(store => store.note);
 
-  useEffect(() => {
-    const { params: { update = false } = {} } = navigation.state;
-    if (update) {
-      getList(1);
-      navigation.setParams({ update: false });
-    }
-  }, [navigation.state.params]);
+  const getList = useCallback(isPaging => dispatch(getListRequest(isPaging)), [dispatch]);
 
-  useEffect(() => {
-    BackHandler.addEventListener('hardwareBackPress', onPressHardware);
-    getList(1);
-    return () => {
-      BackHandler.removeEventListener('hardwareBackPress', onPressHardware);
-    };
-  }, []);
+  const onActionToCreate = useCallback(() => navigation.navigate('CreateNote'), []);
 
+  const onPress = useCallback(id => navigation.navigate('DetailNote', { id }), []);
+
+  const onPressBack = useCallback(() => {
+    return handleConfirm('정말', '로그아웃할거에요?', () => {
+      deleteAccessToken();
+      return navigation.goBack();
+    });
+  }, [handleConfirm, deleteAccessToken]);
+
+  const onNext = useCallback(() => {
+    getList(true);
+  }, [getList]);
+  
   const onPressHardware = useCallback(() => {
     if (!isBackPress) {
       isBackPress = true;
@@ -43,41 +45,35 @@ const Container = ({ navigation, list, graph, isLoading, getList }) => {
     return true;
   }, []);
 
-  const onActionToCreate = () => navigation.navigate('CreateNote');
-  const onPress = id => navigation.navigate('DetailNote', { id });
-  const onPressBack = () => {
-    isBackPress = false;
-    return handleConfirm('정말', '로그아웃할거에요?', () => {
-      deleteAccessToken();
-      return navigation.goBack();
-    });
-  };
-  const onNext = () => {
-    console.log('onNext', page);
-    // init(page + 1);
-  };
+  useEffect(() => {
+    const { params: { update = false } = {} } = navigation.state;
+    if (update) {
+      getList(false);
+      navigation.setParams({ update: false });
+    }
+  }, [navigation.state.params]);
 
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', onPressHardware);
+    getList(false);
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', onPressHardware);
+    };
+  }, []);
+  
   return (
     <SafeAreaView style={styles.safeAreaView}>
       <Presenter
-        isLoading={isLoading}
         list={list}
         graph={graph}
         onActionToCreate={onActionToCreate}
         onPress={onPress}
         onPressBack={onPressBack}
+        onNext={onNext}
       />
       <Spinner visible={isLoading} />
     </SafeAreaView>
   );
 };
 
-const mapStateToProps = ({ note }) => ({
-  ...note,
-});
-
-const mapDispatchToProps = {
-  getList: getListRequest,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Container);
+export default Container;

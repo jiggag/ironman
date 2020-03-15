@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
 import Constant from '../../utils/constants';
 
-const styles =  StyleSheet.create({
+const styles = StyleSheet.create({
   safeAreaView: {
     backgroundColor: Constant.WHITE_COLOR,
     flex: 1,
@@ -71,10 +71,10 @@ export const StateText = styled.Text<{ state: number }>`
     } else if (state === 3) {
       return '#fdf80b';
     } else if (state === 2) {
-      return '#65fd0b';  
+      return '#65fd0b';
     }
     return '#0bd9fd';
-  }}
+  }};
 `;
 export const Weather = styled.View`
   border-radius: 30px;

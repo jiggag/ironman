@@ -61,21 +61,20 @@ const styles = StyleSheet.create({
     display: 'flex',
     flex: 1,
   },
-  buttonView: {
-  },
+  buttonView: {},
   dateIcon: {
-    display: 'none'
+    display: 'none',
   },
   dateInput: {
     position: 'absolute',
     borderWidth: 0,
     borderBottomWidth: 1,
     height: 20,
-    left: 0
+    left: 0,
   },
   dateText: {
     fontSize: 18,
-    fontWeight: '600'
+    fontWeight: '600',
   },
 });
 
