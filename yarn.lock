@@ -6826,6 +6826,11 @@ react-native-sensitive-info@^5.5.3:
   resolved "https://registry.yarnpkg.com/react-native-sensitive-info/-/react-native-sensitive-info-5.5.3.tgz#0e1d19b0cb290bf86e37b855f4272c641ebbeb0f"
   integrity sha512-Ezz6sEpBu4SiVqWjnt1Jk0d5V87MvdPD8xmVuUlhX3g+pL7RM4TuWR0c9hRJA9KDDYPmGH3FeRXgUyXqoVnZlw==
 
+react-native-simple-toast@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-simple-toast/-/react-native-simple-toast-1.0.0.tgz#116f00774c00b082bde2c44585028f4015b9aaaa"
+  integrity sha512-xaMhI1PTNlDs4PF9AflNsD55RDwlPaFpF6iq1qb3o1MCy1nDkYyqRbytwtvUODepPwOvtgMQSDaGW1u0tgUnjw==
+
 react-native-slider@^0.11.0:
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/react-native-slider/-/react-native-slider-0.11.0.tgz#b68a0bc43c8422b24cd57947cc5ac2bcdb58fadc"
