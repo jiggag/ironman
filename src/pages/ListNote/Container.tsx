@@ -9,34 +9,37 @@ import { deleteAccessToken } from '../../utils/auth';
 import { getListRequest } from '../../reducers/note';
 
 const Container = ({ navigation }) => {
-  const [, setPage] = useState(1);
   const dispatch = useDispatch();
   const { list, graph, isLoading } = useSelector(store => store.note);
-  const getList = useCallback(page => dispatch(getListRequest(page)), [dispatch]);
-  
+
+  const getList = useCallback(isPaging => dispatch(getListRequest(isPaging)), [dispatch]);
+
+  const onActionToCreate = useCallback(() => navigation.navigate('CreateNote'), []);
+
+  const onPress = useCallback(id => navigation.navigate('DetailNote', { id }), []);
+
+  const onPressBack = useCallback(() => {
+    return handleConfirm('정말', '로그아웃할거에요?', () => {
+      deleteAccessToken();
+      return navigation.goBack();
+    });
+  }, [handleConfirm, deleteAccessToken]);
+
+  const onNext = useCallback(() => {
+    getList(true);
+  }, [getList]);
+
   useEffect(() => {
     const { params: { update = false } = {} } = navigation.state;
     if (update) {
-      getList();
+      getList(false);
       navigation.setParams({ update: false });
     }
   }, [navigation.state.params]);
 
   useEffect(() => {
-    getList();
+    getList(false);
   }, []);
-
-  const onActionToCreate = () => navigation.navigate('CreateNote');
-  const onPress = id => navigation.navigate('DetailNote', { id });
-  const onPressBack = () => {
-    return handleConfirm('정말', '로그아웃할거에요?', () => {
-      deleteAccessToken();
-      return navigation.goBack();
-    });
-  };
-  const onNext = useCallback(() => {
-    getList(true);
-  }, [getList]);
 
   return (
     <SafeAreaView style={styles.safeAreaView}>
