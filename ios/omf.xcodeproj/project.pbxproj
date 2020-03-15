@@ -70,6 +70,7 @@
 		0BAA00C12329DDE100311C69 /* KakaoOpenSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaoOpenSDK.framework; sourceTree = "<group>"; };
 		0BBC5A5C236BABD50059186B /* libReact-Core.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-Core.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BBC5A60236BAE130059186B /* libreact-native-config.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-config.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C6AB28443CBA7CBD8E6C6E7 /* Pods-omf-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-omf-tvOS.release.xcconfig"; path = "Target Support Files/Pods-omf-tvOS/Pods-omf-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* omf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = omf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = omf/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = omf/AppDelegate.m; sourceTree = "<group>"; };
@@ -80,11 +81,17 @@
 		1D44D3FA1936B5F4DF78E079 /* Pods-omf.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-omf.debug.xcconfig"; path = "Target Support Files/Pods-omf/Pods-omf.debug.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* omf-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "omf-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* omf-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "omf-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6697B9E564867BC2A8F406A1 /* Pods-omf-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-omf-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-omf-tvOSTests/Pods-omf-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		679A66BF46A1865475342489 /* Pods-omf-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-omf-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-omf-tvOS/Pods-omf-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		6E446180B04CD63F5A47B96F /* libPods-omf-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-omf-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		720423A3C9DF1CC0E5A8E4E2 /* Pods-omf-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-omf-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-omf-tvOSTests/Pods-omf-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		864269E5E36A368900EB2634 /* Pods-omf-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-omf-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-omf-tvOSTests/Pods-omf-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		86A2437D68FDCF0FE60F27AB /* Pods-omf-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-omf-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-omf-tvOSTests/Pods-omf-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8E693D898770BCBA676109C4 /* Pods-omfTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-omfTests.release.xcconfig"; path = "Target Support Files/Pods-omfTests/Pods-omfTests.release.xcconfig"; sourceTree = "<group>"; };
 		9B0B8538EBCDAD6148D60C47 /* Pods-omfTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-omfTests.debug.xcconfig"; path = "Target Support Files/Pods-omfTests/Pods-omfTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9DC39A56B8AB1B7B24CD1F26 /* Pods-omfTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-omfTests.debug.xcconfig"; path = "Target Support Files/Pods-omfTests/Pods-omfTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9FAD0E71EC39DDEF742FEAA9 /* Pods-omf.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-omf.debug.xcconfig"; path = "Target Support Files/Pods-omf/Pods-omf.debug.xcconfig"; sourceTree = "<group>"; };
+		A7F265A00119F6AB66B969A3 /* Pods-omfTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-omfTests.release.xcconfig"; path = "Target Support Files/Pods-omfTests/Pods-omfTests.release.xcconfig"; sourceTree = "<group>"; };
 		B0AE52F1B083D0523479FF61 /* Pods-omf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-omf.release.xcconfig"; path = "Target Support Files/Pods-omf/Pods-omf.release.xcconfig"; sourceTree = "<group>"; };
 		B3336FEE6D317F1C20BFEFF9 /* libPods-omf.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-omf.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B891F66F6431DB2D088874D8 /* Pods-omf-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-omf-tvOS.release.xcconfig"; path = "Target Support Files/Pods-omf-tvOS/Pods-omf-tvOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -95,6 +102,7 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		EFBAD7FB13D94C7EB8497678 /* libreactnativeuilib.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libreactnativeuilib.a; sourceTree = "<group>"; };
+		FACF25DCB8D473942D2DAC07 /* Pods-omf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-omf.release.xcconfig"; path = "Target Support Files/Pods-omf/Pods-omf.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +228,14 @@
 				720423A3C9DF1CC0E5A8E4E2 /* Pods-omf-tvOSTests.release.xcconfig */,
 				9B0B8538EBCDAD6148D60C47 /* Pods-omfTests.debug.xcconfig */,
 				8E693D898770BCBA676109C4 /* Pods-omfTests.release.xcconfig */,
+				9FAD0E71EC39DDEF742FEAA9 /* Pods-omf.debug.xcconfig */,
+				FACF25DCB8D473942D2DAC07 /* Pods-omf.release.xcconfig */,
+				679A66BF46A1865475342489 /* Pods-omf-tvOS.debug.xcconfig */,
+				0C6AB28443CBA7CBD8E6C6E7 /* Pods-omf-tvOS.release.xcconfig */,
+				6697B9E564867BC2A8F406A1 /* Pods-omf-tvOSTests.debug.xcconfig */,
+				864269E5E36A368900EB2634 /* Pods-omf-tvOSTests.release.xcconfig */,
+				9DC39A56B8AB1B7B24CD1F26 /* Pods-omfTests.debug.xcconfig */,
+				A7F265A00119F6AB66B969A3 /* Pods-omfTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -682,7 +698,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9B0B8538EBCDAD6148D60C47 /* Pods-omfTests.debug.xcconfig */;
+			baseConfigurationReference = 9DC39A56B8AB1B7B24CD1F26 /* Pods-omfTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -713,7 +729,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8E693D898770BCBA676109C4 /* Pods-omfTests.release.xcconfig */;
+			baseConfigurationReference = A7F265A00119F6AB66B969A3 /* Pods-omfTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -741,7 +757,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1D44D3FA1936B5F4DF78E079 /* Pods-omf.debug.xcconfig */;
+			baseConfigurationReference = 9FAD0E71EC39DDEF742FEAA9 /* Pods-omf.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
@@ -773,7 +789,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B0AE52F1B083D0523479FF61 /* Pods-omf.release.xcconfig */;
+			baseConfigurationReference = FACF25DCB8D473942D2DAC07 /* Pods-omf.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
@@ -804,7 +820,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E25636EE2CCA1AED58999916 /* Pods-omf-tvOS.debug.xcconfig */;
+			baseConfigurationReference = 679A66BF46A1865475342489 /* Pods-omf-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -840,7 +856,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B891F66F6431DB2D088874D8 /* Pods-omf-tvOS.release.xcconfig */;
+			baseConfigurationReference = 0C6AB28443CBA7CBD8E6C6E7 /* Pods-omf-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -876,7 +892,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 86A2437D68FDCF0FE60F27AB /* Pods-omf-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = 6697B9E564867BC2A8F406A1 /* Pods-omf-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -911,7 +927,7 @@
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 720423A3C9DF1CC0E5A8E4E2 /* Pods-omf-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = 864269E5E36A368900EB2634 /* Pods-omf-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
