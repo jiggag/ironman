@@ -1,6 +1,7 @@
 import axios, { Method } from 'axios';
 import Q from 'q';
 import Config from 'react-native-config';
+import Sentry from '@sentry/react-native';
 import { getAccessToken } from './auth';
 
 export const METHOD = Object.freeze({
@@ -25,6 +26,7 @@ const createInstance = async () => {
     });
     return instance;
   } catch (e) {
+    Sentry.captureException(e);
     throw Error(e);
   }
 };
@@ -61,6 +63,7 @@ export default (method: Method, url: string, params?: object) => {
       });
     return deferred.promise;
   } catch (error) {
+    Sentry.captureException(error);
     console.error(error);
     throw Error(error);
   }

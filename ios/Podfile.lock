@@ -122,6 +122,9 @@ PODS:
     - React
   - RNReanimated (1.4.0):
     - React
+  - RNSentry (1.3.3):
+    - React
+    - Sentry (~> 4.4.0)
   - RNSVG (9.13.6):
     - React
   - SDWebImage (5.0.6):
@@ -130,6 +133,9 @@ PODS:
   - SDWebImageWebPCoder (0.2.3):
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.0)
+  - Sentry (4.4.3):
+    - Sentry/Core (= 4.4.3)
+  - Sentry/Core (4.4.3)
   - Toast (4.0.0)
   - yoga (0.60.6.React)
 
@@ -162,16 +168,19 @@ DEPENDENCIES:
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNKakaoLogins (from `../node_modules/react-native-kakao-logins/ios`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
+  - "RNSentry (from `../node_modules/@sentry/react-native`)"
   - RNSVG (from `../node_modules/react-native-svg`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - boost-for-react-native
     - libwebp
     - SDWebImage
     - SDWebImageWebPCoder
     - Toast
+  trunk:
+    - Sentry
 
 EXTERNAL SOURCES:
   DoubleConversion:
@@ -230,6 +239,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-kakao-logins/ios"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
+  RNSentry:
+    :path: "../node_modules/@sentry/react-native"
   RNSVG:
     :path: "../node_modules/react-native-svg"
   yoga:
@@ -241,37 +252,39 @@ SPEC CHECKSUMS:
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
   libwebp: b068a3bd7c45f7460f6715be7bed1a18fd5d6b48
-  React: c438ccc7e14e86d4702bb92d7e262f549ffaa995
-  React-Core: c76495f5c14e73c0f803b89c3fa83f804da61bd6
-  React-cxxreact: f64bc64cf4682d6ea5a064f6017da72482858682
-  React-DevSupport: 30336bca00f72681eac995d21a31b963e7d5cfec
-  React-jsi: 40f467ff088c811c6630acccb4aea57ea7ccb1b5
-  React-jsiexecutor: e4b4717060a0cd8d0270323b5655a68c95432efd
-  React-jsinspector: 044105eea064aec81adc5e4d777a8f6589e7d094
-  react-native-config: 8c2a92aa66a6cec1a23d9eda7ba6fcf31a63ace5
-  react-native-sensitive-info: 55dfb76a47e1d4131d5139c2168f2f345a423c81
-  react-native-simple-toast: 8d076b427b5946b19bb3360869095040bb1a054a
-  React-RCTActionSheet: 08864c609d9f959abf3d51fdd93f8bc6e91f21eb
-  React-RCTAnimation: a4547e9fac2627ded3df9d302f5558b475faf819
-  React-RCTBlob: 62d5c263a2adb8f7a2cafd601beba18a2d99cbbb
-  React-RCTImage: 963859de2b05d2037d1b7842cdbddc8d7f3a2f3b
-  React-RCTLinking: 5998a7db9a6156ed112b006d01f76b2d1cc83d98
-  React-RCTNetwork: 0b676e8194f3f893db813007d37e37e9820173a3
-  React-RCTSettings: fdd7606f1b6050eced69fc6046d5db6768aefd57
-  React-RCTText: 36c0532feb5521cb295ba80e7e44b70cf1c36fc7
-  React-RCTVibration: dabb8d59bb47e1d9124b3f77bfdc1b33d42b0a74
-  React-RCTWebSocket: 2e7f6e98fd6d2bf447d145e499c3a235cc13e350
-  ReactNativeUiLib: 5ddfec22dda0da4c8f6383aeef1f64670f39b5f1
-  RNFastImage: b9535ebddb6105f5d244b023d79676979cb14034
-  RNGestureHandler: 311e3b1cef021a7c9ef31e97e7dc31970cc6288d
-  RNKakaoLogins: 56be2a2f2e83a8c567a5d22a043d73b9e009fb96
-  RNReanimated: 438b025d37de68a20188ead653ad5a5050b65990
-  RNSVG: 2e097b92aaa6d4e0f354fd7c49cbf3b17f8b3920
+  React: 68e7f8dfc27729eade18423072a143120f2f32ab
+  React-Core: fc9dace551f6c8c1007dd2d3cb1bc10c90a01d3e
+  React-cxxreact: abe59014fce932d41a08bf1aa5dcad9ca8f0a2c5
+  React-DevSupport: b0da2fd9ad4ffb25561bf2a328ab84f78f871bdd
+  React-jsi: 1a4248256b96fa453536a8dafe11b784e24e789d
+  React-jsiexecutor: 2279e559b921d02dfc6253ebef3dcb3a9dc6c07e
+  React-jsinspector: a58b86545a0185f69768e78ac96ca9fe43fa3694
+  react-native-config: 55548054279d92e0e4566ea15a8b9b81028ec342
+  react-native-sensitive-info: c93d905f8d875daead38e5affc100390544584bd
+  react-native-simple-toast: 6c376bd79b1e255a4bee90a72ead6447f96ea10d
+  React-RCTActionSheet: 49f6a67a7efa6688f637296383d453b97ef13645
+  React-RCTAnimation: e8047438b2927ebbe630bbf600c7309374075df3
+  React-RCTBlob: 2c4b28daca5b3e6e356706d8e0c7436a0e8ef492
+  React-RCTImage: 273501f0529775962551613259c20ccdf1a87cd2
+  React-RCTLinking: 76c88b3cc98657915a2ba2f20d208e44d0530a43
+  React-RCTNetwork: 77c11e672ccdcc33da5d047705f100b016497b15
+  React-RCTSettings: f727c25ad26a8a9bd7272a8ba93781bd1f53952a
+  React-RCTText: d91537e29e38dc69cf09cbca0875cf5dc7402da6
+  React-RCTVibration: 7655d72dfb919dd6d8e135ca108a5a2bd9fcd7b4
+  React-RCTWebSocket: 7cd2c8d0f8ddd680dc76404defba7ab1f56b83af
+  ReactNativeUiLib: d63ffb8efa751d5cf642c98301361c35bab711ef
+  RNFastImage: 9b0c22643872bb7494c8d87bbbb66cc4c0d9e7a2
+  RNGestureHandler: 946a7691e41df61e2c4b1884deab41a4cdc3afff
+  RNKakaoLogins: 00edaa3b834bf9124c50c3cbbd26cd93776c01e4
+  RNReanimated: b2ab0b693dddd2339bd2f300e770f6302d2e960c
+  RNSentry: 86baf0c87120cd5eb491d073989f8cbc1a2174c6
+  RNSVG: 8ba35cbeb385a52fd960fd28db9d7d18b4c2974f
   SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
   SDWebImageWebPCoder: 7568737603c50f6237850afedd7e9e28e5917e6b
+  Sentry: 14bdd673870e8cf64932b149fad5bbbf39a9b390
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
-  yoga: 88c514f310aff89b94a14c5fbf44b95735af0cb7
+  yoga: 5079887aa3e4c62142d6bcee493022643ee4d730
 
 PODFILE CHECKSUM: 0eed9f8391c4b37e4b7321f099e0e12bd5f94bce
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.8.4

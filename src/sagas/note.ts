@@ -1,5 +1,6 @@
 import { select, call, put, takeEvery, takeLatest } from 'redux-saga/effects';
 import _find from 'lodash/find';
+import Sentry from '@sentry/react-native';
 import { RESTful } from '../utils';
 import {
   getListRequest,
@@ -45,6 +46,7 @@ function* workGetList(action) {
       yield put(getListFailure());
     }
   } catch (e) {
+    yield Sentry.captureException(e);
     console.error('%c%s', 'background: #00ff00; color: #ffffff', '[GET] (list note)', '\n', e);
     yield put(getListFailure());
   }
@@ -75,6 +77,7 @@ function* workGetNote(action) {
       yield put(getNoteFailure());
     }
   } catch (e) {
+    yield Sentry.captureException(e);
     console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (detail note)', '\n', e);
     yield put(getNoteFailure());
   }
@@ -91,6 +94,7 @@ function* workDeleteNote(action) {
       yield put(deleteNoteFailure());
     }
   } catch (e) {
+    yield Sentry.captureException(e);
     console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (/deleteNote)', '\n', e);
     yield put(deleteNoteFailure());
   }
@@ -108,6 +112,7 @@ function* workCreateNote(action) {
       yield put(createNoteFailure());
     }
   } catch (e) {
+    yield Sentry.captureException(e);
     console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (/note)', '\n', e);
     yield put(createNoteFailure());
   }
@@ -125,6 +130,7 @@ function* workUpdateNote(action) {
       yield put(updateNoteFailure());
     }
   } catch (e) {
+    yield Sentry.captureException(e);
     console.error('%c%s', 'background: #00ff00; color: #ffffff', '[PUT] (/note)', '\n', e);
     yield put(updateNoteFailure());
   }

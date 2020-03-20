@@ -72,3 +72,5 @@ android/google-key.json
 
 coverage
 .jest
+android/sentry.properties
+ios/sentry.properties
