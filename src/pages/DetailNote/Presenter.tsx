@@ -7,7 +7,12 @@ import { Button, SubTitle, Header } from '../../components';
 import Constant from '../../utils/constants';
 import { foodList, doneList } from '../../utils/common';
 
-const Presenter = ({ onPressBack, note: { title, date, food, done, etc, stateText, weatherText }, onPressDelete, onPressUpdate })=> (
+const Presenter = ({
+  onPressBack,
+  note: { title, date, food, done, etc, stateText, weatherText },
+  onPressDelete,
+  onPressUpdate,
+}) => (
   <>
     <Header onPress={onPressBack} onPressRightButton={onPressUpdate} onPressDelete={onPressDelete} type="UPDATE" />
     <ScrollView style={styles.container}>
@@ -15,7 +20,7 @@ const Presenter = ({ onPressBack, note: { title, date, food, done, etc, stateTex
         <View marginB-10>
           <TextInput
             style={styles.dateText}
-            underlineColorAndroid='transparent'
+            underlineColorAndroid="transparent"
             value={moment(date).format('YYYY.MM.DD')}
             placeholderTextColor={Constant.PLACEHOLDER_COLOR}
             editable={false}
@@ -26,7 +31,7 @@ const Presenter = ({ onPressBack, note: { title, date, food, done, etc, stateTex
           <View style={styles.inputLine}>
             <TextInput
               style={styles.input}
-              underlineColorAndroid='transparent'
+              underlineColorAndroid="transparent"
               value={title}
               placeholderTextColor={Constant.PLACEHOLDER_COLOR}
               editable={false}
@@ -47,56 +52,52 @@ const Presenter = ({ onPressBack, note: { title, date, food, done, etc, stateTex
         </View>
         <View marginB-10>
           <SubTitle title="식단" />
-          {
-            foodList.map(({ id, value }) => (
-              <View style={styles.inputRow} flex row key={id}>
-                <View flex-1>
-                  <Text>{value}</Text>
-                </View>
-                <View flex-3>
-                  <TextInput
-                    scrollEnabled={false}
-                    style={styles.input}
-                    underlineColorAndroid='transparent'
-                    value={food && food[id]}
-                    placeholderTextColor={Constant.PLACEHOLDER_COLOR}
-                    multiline
-                    editable={false}
-                  />
-                </View>
+          {foodList.map(({ id, value }) => (
+            <View style={styles.inputRow} flex row key={id}>
+              <View flex-1>
+                <Text>{value}</Text>
               </View>
-            ))
-          }
+              <View flex-3>
+                <TextInput
+                  scrollEnabled={false}
+                  style={styles.input}
+                  underlineColorAndroid="transparent"
+                  value={food && food[id]}
+                  placeholderTextColor={Constant.PLACEHOLDER_COLOR}
+                  multiline
+                  editable={false}
+                />
+              </View>
+            </View>
+          ))}
         </View>
         <View marginB-10>
           <SubTitle title="한 일" />
-          {
-            doneList.map(({ id, value }) => (
-              <View style={styles.inputRow} flex row key={id}>
-                <View flex-1>
-                  <Text>{value}</Text>
-                </View>
-                <View flex-3>
-                  <TextInput
-                    scrollEnabled={false}
-                    style={styles.input}
-                    underlineColorAndroid='transparent'
-                    value={done && done[id]}
-                    placeholderTextColor={Constant.PLACEHOLDER_COLOR}
-                    multiline
-                    editable={false}
-                  />
-                </View>
+          {doneList.map(({ id, value }) => (
+            <View style={styles.inputRow} flex row key={id}>
+              <View flex-1>
+                <Text>{value}</Text>
               </View>
-            ))
-          }
+              <View flex-3>
+                <TextInput
+                  scrollEnabled={false}
+                  style={styles.input}
+                  underlineColorAndroid="transparent"
+                  value={done && done[id]}
+                  placeholderTextColor={Constant.PLACEHOLDER_COLOR}
+                  multiline
+                  editable={false}
+                />
+              </View>
+            </View>
+          ))}
         </View>
         <View marginB-10>
           <SubTitle title="기타" />
           <View style={styles.inputBox}>
             <TextInput
               style={styles.input}
-              underlineColorAndroid='transparent'
+              underlineColorAndroid="transparent"
               value={etc}
               placeholderTextColor={Constant.PLACEHOLDER_COLOR}
               multiline

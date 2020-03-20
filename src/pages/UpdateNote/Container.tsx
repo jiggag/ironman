@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { SafeAreaView } from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
 import moment from 'moment';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { handleAlert } from '../../utils';
 import Presenter from './Presenter';
 import styles from './styles';
 import { updateNoteRequest } from '../../reducers/note';
 
-const Container = ({ navigation, isLoading, updateNote }) => {
+const Container = ({ navigation }) => {
   const [note, setNote] = useState(navigation.state.params.originNote);
   const [image, setImage] = useState(null);
+  const dispatch = useDispatch();
+  const { isLoading } = useSelector(store => store.note);
+  const updateNote = useCallback(param => dispatch(updateNoteRequest(param)), [dispatch]);
 
   const onPress = async () => {
     updateNote({
@@ -40,12 +43,4 @@ const Container = ({ navigation, isLoading, updateNote }) => {
   );
 };
 
-const mapStateToProps = ({ note }) => ({
-  ...note,
-});
-
-const mapDispatchToProps = {
-  updateNote: updateNoteRequest,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Container);
+export default Container;

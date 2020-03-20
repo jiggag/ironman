@@ -1,15 +1,19 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { SafeAreaView } from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import _find from 'lodash/find';
 import { handleConfirm } from '../../utils';
 import Presenter from './Presenter';
 import styles from './styles';
 import { getNoteRequest, deleteNoteRequest } from '../../reducers/note';
 
-const Container = ({ navigation, note, isLoading, getNote, deleteNote }) => {
+const Container = ({ navigation }) => {
   const [id] = useState(navigation.state.params.id);
+  const dispatch = useDispatch();
+  const { note, isLoading } = useSelector(store => store.note);
+  const getNote = useCallback(param => dispatch(getNoteRequest(param)), [dispatch]);
+  const deleteNote = useCallback(param => dispatch(deleteNoteRequest(param)), [dispatch]);
 
   const onPressDelete = useCallback(() => {
     return handleConfirm('정말', '삭제하시겠습니까', () => {
@@ -41,13 +45,4 @@ const Container = ({ navigation, note, isLoading, getNote, deleteNote }) => {
   );
 };
 
-const mapStateToProps = ({ note }) => ({
-  ...note,
-});
-
-const mapDispatchToProps = {
-  getNote: getNoteRequest,
-  deleteNote: deleteNoteRequest,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Container);
+export default Container;

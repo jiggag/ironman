@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { SafeAreaView } from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
 // import ImagePicker from 'react-native-image-picker';
 import moment from 'moment';
-import { connect } from 'react-redux';
-import { handleAlert, RESTful } from '../../utils';
+import { useDispatch, useSelector } from 'react-redux';
+import { handleAlert } from '../../utils';
 import Presenter from './Presenter';
 import styles from './styles';
-import { createNoteRequest, createNoteSuccess } from '../../reducers/note';
+import { createNoteRequest } from '../../reducers/note';
 
-const Container = ({ navigation, isLoading, createNote }) => {
+const Container = ({ navigation }) => {
   /*
     Weather 날씨: radio [너무 더움, 조금 더움, 살만함, 조금 추움, 너무 추움]
     Food 식단: text
@@ -27,6 +27,9 @@ const Container = ({ navigation, isLoading, createNote }) => {
     state: 1,
   });
   const [image, setImage] = useState(null);
+  const dispatch = useDispatch();
+  const { isLoading } = useSelector(store => store.note);
+  const createNote = useCallback(param => dispatch(createNoteRequest(param)), [dispatch]);
 
   const onPress = () => {
     if (!note.title) {
@@ -103,12 +106,4 @@ const Container = ({ navigation, isLoading, createNote }) => {
   );
 };
 
-const mapStateToProps = ({ note }) => ({
-  ...note,
-});
-
-const mapDispatchToProps = {
-  createNote: createNoteRequest,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Container);
+export default Container;

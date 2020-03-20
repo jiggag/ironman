@@ -88,6 +88,7 @@ project.ext.react = [
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
+apply from: "../../node_modules/@sentry/react-native/sentry.gradle"
 
 /**
  * Set this to true to create two separate APKs instead of one:
@@ -143,8 +144,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         resValue "string", "build_config_package", "com.jiggag.omf"
-        versionCode 1009
-        versionName "1.0.7"
+        versionCode 1010
+        versionName "1.0.8"
     }
     splits {
         abi {

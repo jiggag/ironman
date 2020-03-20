@@ -1,5 +1,6 @@
 import { select, call, put, takeEvery, takeLatest } from 'redux-saga/effects';
 import _find from 'lodash/find';
+import Sentry from '@sentry/react-native';
 import { RESTful } from '../utils';
 import {
   getListRequest,
@@ -20,32 +21,33 @@ import {
 } from '../reducers/note';
 import { stateList, weatherList } from '../utils/common';
 
-const format = (list, graph, page) => {
-  const newList = page > 1 ? list : [];
-  const newGraph = page > 1 ? graph : [];
-  for (const data of list) {
-    newList.push({ id: newList.length + 1, ...data });
-    newGraph.push(6 - data.state);
+const format = (newList, originData, page) => {
+  const { list: oriList, graph: oriGraph } = originData;
+  const list = [].concat(page > 1 ? oriList : []);
+  const graph = [].concat(page > 1 ? oriGraph : []);
+  for (const data of newList) {
+    list.push(data);
+    graph.push(6 - data.state);
   }
-  return { list: newList, graph: newGraph.reverse() };
+  return { list, graph: graph.reverse(), page };
 };
 
 function* workGetList(action) {
   try {
-    const page = action.payload;
-    const {
-      note: { graph },
-    } = yield select();
-    const { return_code, return_data } = yield call(RESTful, 'GET', '/list', { page });
+    const { note } = yield select();
+    const { page, limit } = note;
+    const newPage = !!action.payload ? page + 1 : 1;
+    const { return_code, return_data } = yield call(RESTful, 'GET', '/list', { page: newPage, limit });
     if (return_code === 200) {
-      const formatted = yield call(format, return_data, graph, page);
+      const formatted = yield call(format, return_data, note, newPage);
       yield put(getListSuccess(formatted));
     } else {
       console.error('%c%s', 'background: #00ff00; color: #ffffff', '[GET] (list note)', '\n', 'api return errpr');
       yield put(getListFailure());
     }
   } catch (e) {
-    console.error('%c%s', 'background: #00ff00; color: #ffffff', '[GET] (dlistetail note)', '\n', e);
+    yield Sentry.captureException(e);
+    console.error('%c%s', 'background: #00ff00; color: #ffffff', '[GET] (list note)', '\n', e);
     yield put(getListFailure());
   }
 }
@@ -75,6 +77,7 @@ function* workGetNote(action) {
       yield put(getNoteFailure());
     }
   } catch (e) {
+    yield Sentry.captureException(e);
     console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (detail note)', '\n', e);
     yield put(getNoteFailure());
   }
@@ -91,6 +94,7 @@ function* workDeleteNote(action) {
       yield put(deleteNoteFailure());
     }
   } catch (e) {
+    yield Sentry.captureException(e);
     console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (/deleteNote)', '\n', e);
     yield put(deleteNoteFailure());
   }
@@ -108,6 +112,7 @@ function* workCreateNote(action) {
       yield put(createNoteFailure());
     }
   } catch (e) {
+    yield Sentry.captureException(e);
     console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (/note)', '\n', e);
     yield put(createNoteFailure());
   }
@@ -125,6 +130,7 @@ function* workUpdateNote(action) {
       yield put(updateNoteFailure());
     }
   } catch (e) {
+    yield Sentry.captureException(e);
     console.error('%c%s', 'background: #00ff00; color: #ffffff', '[PUT] (/note)', '\n', e);
     yield put(updateNoteFailure());
   }
