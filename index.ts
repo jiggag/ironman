@@ -1,9 +1,9 @@
 import { AppRegistry } from 'react-native';
 import AppNavigation from './src/AppNavigation';
-import Sentry from '@sentry/react-native';
+import { init as SentryInit } from '@sentry/react-native';
 import Config from 'react-native-config';
 
-Sentry.init({
+SentryInit({
   dsn: Config.SENTRY_DSN,
 });
 
