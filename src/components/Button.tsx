@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
 import Constant from '../utils/constants';
 
 const Button = ({ onPress, text, buttonStyle, ...rest }) => (
@@ -31,3 +32,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 });
+
+Button.defaultProps = {
+  onPress: () => {},
+  text: '',
+  buttonStyle: {},
+};
+Button.propTypes = {
+  onPress: PropTypes.func,
+  text: PropTypes.string,
+  buttonStyle: PropTypes.any,
+};

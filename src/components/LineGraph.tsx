@@ -2,6 +2,7 @@ import React from 'react';
 import { Dimensions, Text, View, StyleSheet } from 'react-native';
 import { LineChart, LineChartData } from 'react-native-chart-kit';
 import styled from 'styled-components/native';
+import PropTypes from 'prop-types';
 import Constant from '../utils/constants';
 
 const formatData = (data: number[]): LineChartData => ({
@@ -20,6 +21,7 @@ const EmptyData = () => {
     </EmptyWrapper>
   );
 };
+
 const LineGraph = ({ data }) => (
   <View style={styles.wrapper}>
     {data.length ? (
@@ -74,3 +76,10 @@ const EmptyWrapper = styled.View`
   justify-content: center;
   align-items: center;
 `;
+
+LineGraph.defaultProps = {
+  data: [],
+};
+LineGraph.propTypes = {
+  data: PropTypes.array,
+};

@@ -3,9 +3,9 @@ import { View } from 'react-native-ui-lib';
 import { Text, TouchableOpacity, FlatList } from 'react-native';
 import moment from 'moment';
 import _find from 'lodash/find';
-import styles, { Food, Category, State, StateText, Weather, WeatherText } from './styles';
-import { Header, BigButton, LineGraph } from '../../components';
-import Constant from '../../utils/constants';
+import PropTypes from 'prop-types';
+import styles, { State, StateText, Weather, WeatherText } from './styles';
+import { Header, LineGraph } from '../../components';
 import { weatherList } from '../../utils/common';
 
 const HeaderComponent = ({ data }) => {
@@ -43,13 +43,7 @@ const ItemComponent = ({ data, onPress }) => {
     </View>
   );
 };
-const LoadingComponent = () => {
-  return (
-    <View style={styles.emptyCard}>
-      <Text>로딩중...</Text>
-    </View>
-  );
-};
+
 const Presenter = ({ list, graph, onActionToCreate, onPress, onPressBack, onNext }) => (
   <>
     <Header onPress={onPressBack} onPressRightButton={onActionToCreate} type="CREATE" />
@@ -67,3 +61,46 @@ const Presenter = ({ list, graph, onActionToCreate, onPress, onPressBack, onNext
 );
 
 export default Presenter;
+
+ItemComponent.defaultProps = {
+  data: {
+    id: 0,
+    date: 0,
+    title: '',
+    state: 0,
+    weather: 0,
+  },
+  onPress: () => {},
+};
+ItemComponent.propTypes = {
+  data: {
+    id: PropTypes.number,
+    date: PropTypes.any,
+    title: PropTypes.string,
+    state: PropTypes.number,
+    weather: PropTypes.number,
+  },
+  onPress: PropTypes.func,
+};
+HeaderComponent.defaultProps = {
+  data: [],
+};
+HeaderComponent.propTypes = {
+  data: PropTypes.array,
+};
+Presenter.defaultProps = {
+  list: [],
+  graph: [],
+  onActionToCreate: () => {},
+  onPress: () => {},
+  onPressBack: () => {},
+  onNext: () => {},
+};
+Presenter.propTypes = {
+  list: PropTypes.array,
+  graph: PropTypes.array,
+  onActionToCreate: PropTypes.func,
+  onPress: PropTypes.func,
+  onPressBack: PropTypes.func,
+  onNext: PropTypes.func,
+};

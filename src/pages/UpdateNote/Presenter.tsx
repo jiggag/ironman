@@ -3,8 +3,9 @@ import { TextInput, ScrollView, Text } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import { View } from 'react-native-ui-lib';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 import styles from './styles';
-import { BigButton, RadioButton, SubTitle, Header } from '../../components';
+import { RadioButton, SubTitle, Header } from '../../components';
 import { stateList, weatherList, foodList, doneList } from '../../utils/common';
 import Constant from '../../utils/constants';
 
@@ -144,3 +145,32 @@ const Presenter = ({ onPressBack, note: { title, date, food, done, etc, state, w
 );
 
 export default Presenter;
+
+Presenter.defaultProps = {
+  onPressBack: () => {},
+  onPress: () => {},
+  onChangeNote: () => {},
+  note: {
+    title: '',
+    date: 0,
+    food: 0,
+    done: 0,
+    etc: 0,
+    state: 0,
+    weather: 0,
+  },
+};
+Presenter.propTypes = {
+  onPressBack: PropTypes.func,
+  note: {
+    title: PropTypes.string,
+    date: PropTypes.any,
+    food: PropTypes.number,
+    done: PropTypes.number,
+    etc: PropTypes.number,
+    state: PropTypes.number,
+    weather: PropTypes.number,
+  },
+  onPress: PropTypes.func,
+  onChangeNote: PropTypes.func,
+};

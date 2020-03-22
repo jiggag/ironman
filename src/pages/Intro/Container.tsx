@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { SafeAreaView } from 'react-native';
 import RNKakaoLogins from 'react-native-kakao-logins';
 import Sentry from '@sentry/react-native';
+import PropTypes from 'prop-types';
 import { RESTful, handleAlert } from '../../utils';
 import styles from './styles';
 import Presenter from './Presenter';
@@ -12,30 +13,7 @@ const Container = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
 
-  const onPress = async () => {
-    const token = await getAccessToken();
-    if (token) {
-      await onLogin();
-    } else {
-      await RNKakaoLogins.login((err, res) => {
-        if (err) {
-          setIsLoading(false);
-          return;
-        }
-        if (res) {
-          RNKakaoLogins.getProfile(async (error, result) => {
-            if (error) {
-              setIsLoading(false);
-              return;
-            }
-            onJoin(result);
-          });
-        }
-      });
-    }
-  };
-
-  const onLogin = async () => {
+  const onLogin = useCallback(async () => {
     try {
       await setIsLoading(true);
       const { return_code, return_message, return_data } = await RESTful('GET', `/user`);
@@ -52,8 +30,9 @@ const Container = ({ navigation }) => {
       Sentry.captureException(error);
       console.error('%c%s', 'background: #00ff00; color: #ffffff', '[GET] (/user)', '\n', error);
     }
-  };
-  const onJoin = async ({ id, email, phone_number: phone }) => {
+  }, []);
+
+  const onJoin = useCallback(async ({ id, email, phone_number: phone }) => {
     try {
       await setIsLoading(true);
       const {
@@ -75,17 +54,40 @@ const Container = ({ navigation }) => {
       Sentry.captureException(error);
       console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (/user)', '\n', error);
     }
-  };
+  }, []);
+
+  const onPress = useCallback(async () => {
+    const token = await getAccessToken();
+    if (token) {
+      await onLogin();
+    } else {
+      await RNKakaoLogins.login((err, res) => {
+        if (err) {
+          setIsLoading(false);
+          return;
+        }
+        if (res) {
+          RNKakaoLogins.getProfile(async (error, result) => {
+            if (error) {
+              setIsLoading(false);
+              return;
+            }
+            onJoin(result);
+          });
+        }
+      });
+    }
+  }, [onLogin, onJoin]);
 
   useEffect(() => {
     if (userInfo) {
       navigation.navigate('ListNote');
     }
-  }, [userInfo]);
+  }, [userInfo, navigation]);
 
   useEffect(() => {
     onPress();
-  }, []);
+  }, [onPress]);
 
   return (
     <SafeAreaView style={styles.safeAreaView}>
@@ -95,3 +97,10 @@ const Container = ({ navigation }) => {
   );
 };
 export default Container;
+
+Container.defaultProps = {
+  navigation: {},
+};
+Container.propTypes = {
+  navigation: PropTypes.any,
+};

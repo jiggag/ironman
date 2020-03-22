@@ -1,6 +1,7 @@
 import React from 'react';
 import { View } from 'react-native-ui-lib';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
 import Constant from '../utils/constants';
 
 const RadioButton = ({ onPress, value, isSelected }) => (
@@ -42,3 +43,14 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
 });
+
+RadioButton.defaultProps = {
+  onPress: () => {},
+  value: '',
+  isSelected: false,
+};
+RadioButton.propTypes = {
+  onPress: PropTypes.func,
+  value: PropTypes.string,
+  isSelected: PropTypes.bool,
+};

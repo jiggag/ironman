@@ -10,23 +10,25 @@ const createStack = screen => {
     navigationOptions: {
       header: null,
     },
-  }
+  };
 };
 
-const AppNavigator = createStackNavigator({
-  Intro: createStack(Intro),
-  ListNote: createStack(ListNote),
-  CreateNote: createStack(CreateNote),
-  DetailNote: createStack(DetailNote),
-  UpdateNote: createStack(UpdateNote),
-},
-{
-  initialRouteName: 'Intro',
-});
+const AppNavigator = createStackNavigator(
+  {
+    Intro: createStack(Intro),
+    ListNote: createStack(ListNote),
+    CreateNote: createStack(CreateNote),
+    DetailNote: createStack(DetailNote),
+    UpdateNote: createStack(UpdateNote),
+  },
+  {
+    initialRouteName: 'Intro',
+  }
+);
 
 const AppContainer = createAppContainer(AppNavigator);
 
-export default class App extends React.Component {
+export default class App extends React.PureComponent {
   render() {
     return (
       <Provider store={store}>
@@ -34,4 +36,4 @@ export default class App extends React.Component {
       </Provider>
     );
   }
-};
+}

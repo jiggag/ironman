@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { SafeAreaView } from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { useDispatch, useSelector } from 'react-redux';
-import _find from 'lodash/find';
+import PropTypes from 'prop-types';
 import { handleConfirm } from '../../utils';
 import Presenter from './Presenter';
 import styles from './styles';
@@ -19,11 +19,15 @@ const Container = ({ navigation }) => {
     return handleConfirm('정말', '삭제하시겠습니까', () => {
       deleteNote({ id, callback: () => navigation.navigate('ListNote', { update: true }) });
     });
-  }, []);
+  }, [navigation, id, deleteNote]);
 
-  const onPressUpdate = () => navigation.navigate('UpdateNote', { originNote: { ...note, id } });
+  const onPressUpdate = useCallback(() => navigation.navigate('UpdateNote', { originNote: { ...note, id } }), [
+    id,
+    note,
+    navigation,
+  ]);
 
-  const onPressBack = useCallback(() => navigation.navigate('ListNote'), []);
+  const onPressBack = useCallback(() => navigation.navigate('ListNote'), [navigation]);
 
   useEffect(() => {
     const { params: { update = false } = {} } = navigation.state;
@@ -31,11 +35,11 @@ const Container = ({ navigation }) => {
       getNote(id);
       navigation.setParams({ update: false });
     }
-  }, [navigation.state.params]);
+  }, [navigation.state.params, navigation, id, getNote]);
 
   useEffect(() => {
     getNote(id);
-  }, []);
+  }, [getNote, id]);
 
   return (
     <SafeAreaView style={styles.safeAreaView}>
@@ -46,3 +50,10 @@ const Container = ({ navigation }) => {
 };
 
 export default Container;
+
+Container.defaultProps = {
+  navigation: {},
+};
+Container.propTypes = {
+  navigation: PropTypes.any,
+};

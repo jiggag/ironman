@@ -60,17 +60,20 @@ export const State = styled.View`
   padding: 2px 6px;
   align-self: center;
 `;
-export const StateText = styled.Text<{ state: number }>`
+export const StateText = styled.Text<{ state: Number }>`
   font-size: 12px;
   font-weight: 600;
   color: ${({ state }) => {
     if (state === 5) {
       return '#ff0000';
-    } else if (state === 4) {
+    }
+    if (state === 4) {
       return '#fd9f0b';
-    } else if (state === 3) {
+    }
+    if (state === 3) {
       return '#fdf80b';
-    } else if (state === 2) {
+    }
+    if (state === 2) {
       return '#65fd0b';
     }
     return '#0bd9fd';

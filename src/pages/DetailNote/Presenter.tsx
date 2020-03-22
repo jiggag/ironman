@@ -1,9 +1,10 @@
 import React from 'react';
 import { TextInput, Text, ScrollView } from 'react-native';
 import { View } from 'react-native-ui-lib';
-import styles from './styles';
 import moment from 'moment';
-import { Button, SubTitle, Header } from '../../components';
+import PropTypes from 'prop-types';
+import styles from './styles';
+import { SubTitle, Header } from '../../components';
 import Constant from '../../utils/constants';
 import { foodList, doneList } from '../../utils/common';
 
@@ -111,3 +112,32 @@ const Presenter = ({
 );
 
 export default Presenter;
+
+Presenter.defaultProps = {
+  onPressBack: () => {},
+  note: {
+    title: '',
+    date: 0,
+    food: 0,
+    done: 0,
+    etc: 0,
+    stateText: '',
+    weatherText: '',
+  },
+  onPressDelete: () => {},
+  onPressUpdate: () => {},
+};
+Presenter.propTypes = {
+  onPressBack: PropTypes.func,
+  note: {
+    title: PropTypes.string,
+    date: PropTypes.any,
+    food: PropTypes.number,
+    done: PropTypes.number,
+    etc: PropTypes.number,
+    stateText: PropTypes.string,
+    weatherText: PropTypes.string,
+  },
+  onPressDelete: PropTypes.func,
+  onPressUpdate: PropTypes.func,
+};

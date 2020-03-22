@@ -36,7 +36,7 @@ function* workGetList(action) {
   try {
     const { note } = yield select();
     const { page, limit } = note;
-    const newPage = !!action.payload ? page + 1 : 1;
+    const newPage = action.payload ? page + 1 : 1;
     const { return_code, return_data } = yield call(RESTful, 'GET', '/list', { page: newPage, limit });
     if (return_code === 200) {
       const formatted = yield call(format, return_data, note, newPage);
