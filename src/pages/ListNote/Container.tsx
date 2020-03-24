@@ -31,19 +31,22 @@ const Container = ({ navigation }) => {
   const onNext = useCallback(() => {
     getList(true);
   }, [getList]);
-  
+
   const onPressHardware = useCallback(() => {
-    if (!isBackPress) {
-      isBackPress = true;
-      Toast.showWithGravity('다시 한번 요청 시 로그아웃 할 수 있습니다', Toast.SHORT, Toast.CENTER);
-    } else {
-      onPressBack();
+    if (navigation.isFocused()) {
+      if (!isBackPress) {
+        isBackPress = true;
+        Toast.showWithGravity('다시 한번 요청 시 로그아웃 할 수 있습니다', Toast.SHORT, Toast.CENTER);
+      } else {
+        onPressBack();
+      }
+      setTimeout(() => {
+        isBackPress = false;
+      }, 1000);
+      return true;
     }
-    setTimeout(() => {
-      isBackPress = false;
-    }, 1000);
-    return true;
-  }, []);
+    return false;
+  }, [navigation]);
 
   useEffect(() => {
     const { params: { update = false } = {} } = navigation.state;
@@ -60,7 +63,7 @@ const Container = ({ navigation }) => {
       BackHandler.removeEventListener('hardwareBackPress', onPressHardware);
     };
   }, []);
-  
+
   return (
     <SafeAreaView style={styles.safeAreaView}>
       <Presenter
