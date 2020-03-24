@@ -3,6 +3,7 @@ import { SafeAreaView } from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import { handleAlert } from '../../utils';
 import Presenter from './Presenter';
 import styles from './styles';
@@ -10,7 +11,7 @@ import { updateNoteRequest } from '../../reducers/note';
 
 const Container = ({ navigation }) => {
   const [note, setNote] = useState(navigation.state.params.originNote);
-  const [image, setImage] = useState(null);
+  const [image] = useState(null);
   const dispatch = useDispatch();
   const { isLoading } = useSelector(store => store.note);
   const updateNote = useCallback(param => dispatch(updateNoteRequest(param)), [dispatch]);
@@ -44,3 +45,10 @@ const Container = ({ navigation }) => {
 };
 
 export default Container;
+
+Container.defaultProps = {
+  navigation: {},
+};
+Container.propTypes = {
+  navigation: PropTypes.any,
+};

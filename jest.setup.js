@@ -12,11 +12,11 @@ jest.mock('NativeModules', () => ({
   },
   UIManager: {
     RCTView: () => ({
-      directEventTypes: {}
-    })
+      directEventTypes: {},
+    }),
   },
   KeyboardObserver: {},
   PlatformConstants: {
     forceTouchAvailable: false,
   },
-}))
+}));

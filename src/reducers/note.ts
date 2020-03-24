@@ -48,7 +48,9 @@ const noteSlice = createSlice({
       state.isLoading = true;
     },
     updateNoteSuccess: (state, action) => {
-      const { id: noteId, title, date, image, state: faceState, weather, food, done, etc } = action.payload;
+      const {
+        id: noteId, title, date, image, state: faceState, weather, food, done, etc,
+      } = action.payload;
       const updateNote = state.list.find(({ id }) => id === noteId);
       updateNote.title = title;
       updateNote.date = date;

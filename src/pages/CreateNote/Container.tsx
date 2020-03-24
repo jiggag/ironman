@@ -4,6 +4,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 // import ImagePicker from 'react-native-image-picker';
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import { handleAlert } from '../../utils';
 import Presenter from './Presenter';
 import styles from './styles';
@@ -26,7 +27,7 @@ const Container = ({ navigation }) => {
     etc: null,
     state: 1,
   });
-  const [image, setImage] = useState(null);
+  const [image] = useState(null);
   const dispatch = useDispatch();
   const { isLoading } = useSelector(store => store.note);
   const createNote = useCallback(param => dispatch(createNoteRequest(param)), [dispatch]);
@@ -54,40 +55,40 @@ const Container = ({ navigation }) => {
     setNote({ ...note, ...value });
   };
 
-  const onPressImage = () => {
-    const options = {
-      quality: 0.95,
-      maxWidth: 1000,
-      maxHeight: 1000,
-      title: '',
-      cancelButtonTitle: '취소',
-      takePhotoButtonTitle: '사진찍기',
-      chooseFromLibraryButtonTitle: '사진선택',
-    };
+  // const onPressImage = () => {
+  // const options = {
+  //   quality: 0.95,
+  //   maxWidth: 1000,
+  //   maxHeight: 1000,
+  //   title: '',
+  //   cancelButtonTitle: '취소',
+  //   takePhotoButtonTitle: '사진찍기',
+  //   chooseFromLibraryButtonTitle: '사진선택',
+  // };
 
-    // ImagePicker.showImagePicker(options, response => {
-    //   if (response.didCancel) {
-    //     handleAlert('사진', 'User cancelled photo picker', () => {});
-    //   } else if (response.error) {
-    //     handleAlert('사진', `ImagePicker Error: ${response.error}`, () => {});
-    //   } else if (response.customButton) {
-    //     handleAlert('사진', `User tapped custom button: ${response.customButton}`, () => {});
-    //   } else {
-    //     const imageObject = {
-    //       uri: response.uri,
-    //       name: response.fileName ? response.fileName : 'filename',
-    //       type: null,
-    //     };
-    //     if (Platform.OS === 'android') {
-    //       imageObject.type = response.type;
-    //     }
-    //     handleAlert('사진', `성공: ${imageObject.uri}/ ${imageObject.name} /${imageObject.type}`, () => {});
-    //
-    //     // multipart formdata => 서버에 저장된 이미지 경로를 가져와서 그려줘야하는듯
-    //     setImage(imageObject);
-    //   }
-    // });
-  };
+  // ImagePicker.showImagePicker(options, response => {
+  //   if (response.didCancel) {
+  //     handleAlert('사진', 'User cancelled photo picker', () => {});
+  //   } else if (response.error) {
+  //     handleAlert('사진', `ImagePicker Error: ${response.error}`, () => {});
+  //   } else if (response.customButton) {
+  //     handleAlert('사진', `User tapped custom button: ${response.customButton}`, () => {});
+  //   } else {
+  //     const imageObject = {
+  //       uri: response.uri,
+  //       name: response.fileName ? response.fileName : 'filename',
+  //       type: null,
+  //     };
+  //     if (Platform.OS === 'android') {
+  //       imageObject.type = response.type;
+  //     }
+  //     handleAlert('사진', `성공: ${imageObject.uri}/ ${imageObject.name} /${imageObject.type}`, () => {});
+  //
+  //     // multipart formdata => 서버에 저장된 이미지 경로를 가져와서 그려줘야하는듯
+  //     setImage(imageObject);
+  //   }
+  // });
+  // };
 
   const onPressBack = () => navigation.goBack();
 
@@ -95,10 +96,10 @@ const Container = ({ navigation }) => {
     <SafeAreaView style={styles.safeAreaView}>
       <Presenter
         note={note}
-        image={image}
+        // image={image}
         onPress={onPress}
         onChangeNote={onChangeNote}
-        onPressImage={onPressImage}
+        // onPressImage={onPressImage}
         onPressBack={onPressBack}
       />
       <Spinner visible={isLoading} />
@@ -107,3 +108,10 @@ const Container = ({ navigation }) => {
 };
 
 export default Container;
+
+Container.defaultProps = {
+  navigation: {},
+};
+Container.propTypes = {
+  navigation: PropTypes.any,
+};

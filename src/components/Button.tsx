@@ -1,8 +1,11 @@
 import React from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
 import Constant from '../utils/constants';
 
-const Button = ({ onPress, text, buttonStyle, ...rest }) => (
+const Button = ({
+  onPress, text, buttonStyle, ...rest
+}) => (
   <TouchableOpacity onPress={onPress} activeOpacity={0.5} style={[styles.button, buttonStyle]} {...rest}>
     <Text style={styles.buttonText}>{text}</Text>
   </TouchableOpacity>
@@ -31,3 +34,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 });
+
+Button.defaultProps = {
+  onPress: () => {},
+  text: '',
+  buttonStyle: {},
+};
+Button.propTypes = {
+  onPress: PropTypes.func,
+  text: PropTypes.string,
+  buttonStyle: PropTypes.any,
+};
