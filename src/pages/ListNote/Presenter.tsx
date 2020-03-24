@@ -73,13 +73,7 @@ ItemComponent.defaultProps = {
   onPress: () => {},
 };
 ItemComponent.propTypes = {
-  data: {
-    id: PropTypes.number,
-    date: PropTypes.any,
-    title: PropTypes.string,
-    state: PropTypes.number,
-    weather: PropTypes.number,
-  },
+  data: PropTypes.object,
   onPress: PropTypes.func,
 };
 HeaderComponent.defaultProps = {

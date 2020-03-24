@@ -162,15 +162,7 @@ Presenter.defaultProps = {
 };
 Presenter.propTypes = {
   onPressBack: PropTypes.func,
-  note: {
-    title: PropTypes.string,
-    date: PropTypes.any,
-    food: PropTypes.number,
-    done: PropTypes.number,
-    etc: PropTypes.number,
-    state: PropTypes.number,
-    weather: PropTypes.number,
-  },
+  note: PropTypes.object,
   onPress: PropTypes.func,
   onChangeNote: PropTypes.func,
 };
