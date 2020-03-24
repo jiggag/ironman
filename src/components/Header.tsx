@@ -1,15 +1,8 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { View } from 'react-native-ui-lib';
-import { Text, TouchableOpacity, StyleSheet, StyleProp, TextStyle } from 'react-native';
+import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Constant from '../utils/constants';
-
-interface HeaderRightButtonType {
-  isVisible: boolean;
-  buttonIdx: number;
-  text: string;
-  onPress: () => void;
-  style: StyleProp<TextStyle>;
-}
+import HeaderRightButton from './HeaderRightButton';
 
 interface HeaderType {
   onPress: () => void;
@@ -24,21 +17,9 @@ const TYPE = {
   SAVE: '저장',
 };
 
-const HeaderRightButton = memo(({ isVisible, buttonIdx, text, onPress, style }: HeaderRightButtonType) => {
-  return (
-    isVisible && (
-      <View right centerV marginR-10={!!buttonIdx}>
-        <TouchableOpacity activeOpacity={0.8} onPress={onPress}>
-          <View paddingV-4 paddingH-6>
-            <Text style={style}>{text}</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
-    )
-  );
-});
-
-const Header = ({ onPress, onPressRightButton, onPressDelete, type }: HeaderType) => (
+const Header = ({
+  onPress, onPressRightButton, onPressDelete, type,
+}: HeaderType) => (
   <View row style={styles.header}>
     <View flex left>
       <TouchableOpacity activeOpacity={0.8} onPress={onPress}>

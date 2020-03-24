@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import Spinner from 'react-native-loading-spinner-overlay';
-import { SafeAreaView, BackHandler, Alert } from 'react-native';
+import { SafeAreaView, BackHandler } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import Toast from 'react-native-simple-toast';
-import _debounce from 'lodash/debounce';
 import styles from './styles';
 import Presenter from './Presenter';
 import { handleConfirm } from '../../utils';
@@ -17,33 +17,36 @@ const Container = ({ navigation }) => {
 
   const getList = useCallback(isPaging => dispatch(getListRequest(isPaging)), [dispatch]);
 
-  const onActionToCreate = useCallback(() => navigation.navigate('CreateNote'), []);
+  const onActionToCreate = useCallback(() => navigation.navigate('CreateNote'), [navigation]);
 
-  const onPress = useCallback(id => navigation.navigate('DetailNote', { id }), []);
+  const onPress = useCallback(id => navigation.navigate('DetailNote', { id }), [navigation]);
 
   const onPressBack = useCallback(() => {
     return handleConfirm('정말', '로그아웃할거에요?', () => {
       deleteAccessToken();
       return navigation.goBack();
     });
-  }, [handleConfirm, deleteAccessToken]);
+  }, [navigation]);
 
   const onNext = useCallback(() => {
     getList(true);
   }, [getList]);
-  
+
   const onPressHardware = useCallback(() => {
-    if (!isBackPress) {
-      isBackPress = true;
-      Toast.showWithGravity('다시 한번 요청 시 로그아웃 할 수 있습니다', Toast.SHORT, Toast.CENTER);
-    } else {
-      onPressBack();
+    if (navigation.isFocused()) {
+      if (!isBackPress) {
+        isBackPress = true;
+        Toast.showWithGravity('다시 한번 요청 시 로그아웃 할 수 있습니다', Toast.SHORT, Toast.CENTER);
+      } else {
+        onPressBack();
+      }
+      setTimeout(() => {
+        isBackPress = false;
+      }, 1000);
+      return true;
     }
-    setTimeout(() => {
-      isBackPress = false;
-    }, 1000);
-    return true;
-  }, []);
+    return false;
+  }, [navigation, onPressBack]);
 
   useEffect(() => {
     const { params: { update = false } = {} } = navigation.state;
@@ -51,7 +54,7 @@ const Container = ({ navigation }) => {
       getList(false);
       navigation.setParams({ update: false });
     }
-  }, [navigation.state.params]);
+  }, [navigation.state.params, navigation, getList]);
 
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', onPressHardware);
@@ -59,8 +62,8 @@ const Container = ({ navigation }) => {
     return () => {
       BackHandler.removeEventListener('hardwareBackPress', onPressHardware);
     };
-  }, []);
-  
+  }, [getList, onPressHardware]);
+
   return (
     <SafeAreaView style={styles.safeAreaView}>
       <Presenter
@@ -77,3 +80,10 @@ const Container = ({ navigation }) => {
 };
 
 export default Container;
+
+Container.defaultProps = {
+  navigation: {},
+};
+Container.propTypes = {
+  navigation: PropTypes.any,
+};

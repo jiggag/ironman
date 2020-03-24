@@ -17,7 +17,7 @@ exports[`Renderer Component: BigButton 1`] = `
       "alignItems": "center",
       "backgroundColor": "#ffffff",
       "borderRadius": 6,
-      "elevation": 5,
+      "elevation": 2,
       "marginHorizontal": 20,
       "marginVertical": 8,
       "opacity": 1,

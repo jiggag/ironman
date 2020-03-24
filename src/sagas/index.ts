@@ -4,5 +4,9 @@ import note from './note';
 const sagas = [...note];
 
 export default function* combineSagas() {
-  yield all(sagas.map(saga => fork(saga)));
+  try {
+    yield all(sagas.map(saga => fork(saga)));
+  } catch (e) {
+    console.error(e);
+  }
 }

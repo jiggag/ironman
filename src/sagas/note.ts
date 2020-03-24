@@ -1,4 +1,6 @@
-import { select, call, put, takeEvery, takeLatest } from 'redux-saga/effects';
+import {
+  select, call, put, takeEvery, takeLatest,
+} from 'redux-saga/effects';
 import _find from 'lodash/find';
 import Sentry from '@sentry/react-native';
 import { RESTful } from '../utils';
@@ -36,7 +38,7 @@ function* workGetList(action) {
   try {
     const { note } = yield select();
     const { page, limit } = note;
-    const newPage = !!action.payload ? page + 1 : 1;
+    const newPage = action.payload ? page + 1 : 1;
     const { return_code, return_data } = yield call(RESTful, 'GET', '/list', { page: newPage, limit });
     if (return_code === 200) {
       const formatted = yield call(format, return_data, note, newPage);
@@ -58,7 +60,9 @@ function* workGetNote(action) {
     } = yield select();
     const filtered = list.filter(({ id }) => id === action.payload);
     if (filtered.length) {
-      const { state, weather, food, done, ...rest } = filtered[0];
+      const {
+        state, weather, food, done, ...rest
+      } = filtered[0];
       const { value: stateText } = yield _find(stateList, { id: state });
       const { value: weatherText } = yield _find(weatherList, { id: weather });
       yield put(
@@ -70,7 +74,7 @@ function* workGetNote(action) {
           weatherText,
           food: JSON.parse(food),
           done: JSON.parse(done),
-        })
+        }),
       );
     } else {
       console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (detail note)', '\n', 'not found data');
@@ -85,7 +89,7 @@ function* workGetNote(action) {
 function* workDeleteNote(action) {
   try {
     const { id, callback } = action.payload;
-    const { return_code } = yield call(RESTful, 'POST', `/deleteNote`, { id });
+    const { return_code } = yield call(RESTful, 'POST', '/deleteNote', { id });
     if (return_code === 200) {
       yield call(callback);
       yield put(deleteNoteSuccess(id));
@@ -120,7 +124,7 @@ function* workCreateNote(action) {
 function* workUpdateNote(action) {
   try {
     const { note, cbSuccess, cbFailure } = action.payload;
-    const { return_code, return_message } = yield call(RESTful, 'PUT', `/note`, note);
+    const { return_code, return_message } = yield call(RESTful, 'PUT', '/note', note);
     if (return_code === 200) {
       yield call(cbSuccess);
       yield put(updateNoteSuccess(note));
