@@ -1,6 +1,8 @@
 import React, { memo } from 'react';
 import { View } from 'react-native-ui-lib';
-import { Text, TouchableOpacity, StyleSheet, StyleProp, TextStyle } from 'react-native';
+import {
+  Text, TouchableOpacity, StyleSheet, StyleProp, TextStyle 
+} from 'react-native';
 import Constant from '../utils/constants';
 
 interface HeaderRightButtonType {
@@ -24,7 +26,9 @@ const TYPE = {
   SAVE: '저장',
 };
 
-const HeaderRightButton = memo(({ isVisible, buttonIdx, text, onPress, style }: HeaderRightButtonType) => {
+const HeaderRightButton = memo(({
+  isVisible, buttonIdx, text, onPress, style 
+}: HeaderRightButtonType) => {
   return (
     isVisible && (
       <View right centerV marginR-10={!!buttonIdx}>
@@ -38,7 +42,9 @@ const HeaderRightButton = memo(({ isVisible, buttonIdx, text, onPress, style }: 
   );
 });
 
-const Header = ({ onPress, onPressRightButton, onPressDelete, type }: HeaderType) => (
+const Header = ({
+  onPress, onPressRightButton, onPressDelete, type 
+}: HeaderType) => (
   <View row style={styles.header}>
     <View flex left>
       <TouchableOpacity activeOpacity={0.8} onPress={onPress}>

@@ -6,10 +6,16 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import styles from './styles';
 import { RadioButton, SubTitle, Header } from '../../components';
-import { stateList, weatherList, foodList, doneList } from '../../utils/common';
+import {
+  stateList, weatherList, foodList, doneList 
+} from '../../utils/common';
 import Constant from '../../utils/constants';
 
-const Presenter = ({ onPressBack, note: { title, date, food, done, etc, state, weather }, onPress, onChangeNote }) => (
+const Presenter = ({
+  onPressBack, note: {
+    title, date, food, done, etc, state, weather 
+  }, onPress, onChangeNote 
+}) => (
   <>
     <Header onPress={onPressBack} onPressRightButton={onPress} type="SAVE" />
     <ScrollView style={styles.container}>

@@ -60,7 +60,7 @@ export const State = styled.View`
   padding: 2px 6px;
   align-self: center;
 `;
-export const StateText = styled.Text<{ state: Number }>`
+export const StateText = styled.Text < { state: Number } > `
   font-size: 12px;
   font-weight: 600;
   color: ${({ state }) => {

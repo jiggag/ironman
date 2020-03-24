@@ -2,7 +2,9 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { createAppContainer, createStackNavigator } from 'react-navigation';
 import store from './store';
-import { Intro, ListNote, CreateNote, DetailNote, UpdateNote } from './pages';
+import {
+  Intro, ListNote, CreateNote, DetailNote, UpdateNote 
+} from './pages';
 
 const createStack = screen => {
   return {

@@ -1,5 +1,7 @@
 import React from 'react';
-import { Dimensions, Text, View, StyleSheet } from 'react-native';
+import {
+  Dimensions, Text, View, StyleSheet 
+} from 'react-native';
 import { LineChart, LineChartData } from 'react-native-chart-kit';
 import styled from 'styled-components/native';
 import PropTypes from 'prop-types';

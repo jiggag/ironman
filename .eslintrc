@@ -9,14 +9,18 @@
     "airbnb",
     "react-app",
     "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-redux/recommended",
+    "plugin:redux-saga/recommended"
   ],
   "plugins": [
     "react",
     "react-hooks",
     "import",
     "react-native",
-    "jsx-a11y"
+    "jsx-a11y",
+    "react-redux",
+    "redux-saga"
   ],
   "parserOptions": {
     "ecmaVersion": 6,

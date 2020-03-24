@@ -5,4 +5,6 @@ import Header from './Header';
 import Button from './Button';
 import LineGraph from './LineGraph';
 
-export { BigButton, RadioButton, SubTitle, Header, Button, LineGraph };
+export {
+  BigButton, RadioButton, SubTitle, Header, Button, LineGraph 
+};

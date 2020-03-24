@@ -1,4 +1,6 @@
-import { select, call, put, takeEvery, takeLatest } from 'redux-saga/effects';
+import {
+  select, call, put, takeEvery, takeLatest 
+} from 'redux-saga/effects';
 import _find from 'lodash/find';
 import Sentry from '@sentry/react-native';
 import { RESTful } from '../utils';
@@ -58,7 +60,9 @@ function* workGetNote(action) {
     } = yield select();
     const filtered = list.filter(({ id }) => id === action.payload);
     if (filtered.length) {
-      const { state, weather, food, done, ...rest } = filtered[0];
+      const {
+        state, weather, food, done, ...rest 
+      } = filtered[0];
       const { value: stateText } = yield _find(stateList, { id: state });
       const { value: weatherText } = yield _find(weatherList, { id: weather });
       yield put(

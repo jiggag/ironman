@@ -4,7 +4,9 @@ import { Text, TouchableOpacity, FlatList } from 'react-native';
 import moment from 'moment';
 import _find from 'lodash/find';
 import PropTypes from 'prop-types';
-import styles, { State, StateText, Weather, WeatherText } from './styles';
+import styles, {
+  State, StateText, Weather, WeatherText 
+} from './styles';
 import { Header, LineGraph } from '../../components';
 import { weatherList } from '../../utils/common';
 
@@ -23,7 +25,9 @@ const EmptyComponent = () => {
   );
 };
 const ItemComponent = ({ data, onPress }) => {
-  const { id, date, title, state, weather } = data;
+  const {
+    id, date, title, state, weather 
+  } = data;
   return (
     <View marginH-20 marginB-10 marginT-10={id === 1} style={styles.itemComponent}>
       <TouchableOpacity activeOpacity={0.8} onPress={() => onPress(id)}>
@@ -44,7 +48,9 @@ const ItemComponent = ({ data, onPress }) => {
   );
 };
 
-const Presenter = ({ list, graph, onActionToCreate, onPress, onPressBack, onNext }) => (
+const Presenter = ({
+  list, graph, onActionToCreate, onPress, onPressBack, onNext 
+}) => (
   <>
     <Header onPress={onPressBack} onPressRightButton={onActionToCreate} type="CREATE" />
     <FlatList
