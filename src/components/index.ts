@@ -6,5 +6,5 @@ import Button from './Button';
 import LineGraph from './LineGraph';
 
 export {
-  BigButton, RadioButton, SubTitle, Header, Button, LineGraph 
+  BigButton, RadioButton, SubTitle, Header, Button, LineGraph,
 };

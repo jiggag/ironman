@@ -11,7 +11,7 @@ import { foodList, doneList } from '../../utils/common';
 const Presenter = ({
   onPressBack,
   note: {
-    title, date, food, done, etc, stateText, weatherText 
+    title, date, food, done, etc, stateText, weatherText,
   },
   onPressDelete,
   onPressUpdate,

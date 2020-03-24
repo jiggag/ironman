@@ -16,7 +16,7 @@ const Container = ({ navigation }) => {
   const onLogin = useCallback(async () => {
     try {
       await setIsLoading(true);
-      const { return_code, return_message, return_data } = await RESTful('GET', `/user`);
+      const { return_code, return_message, return_data } = await RESTful('GET', '/user');
       if (return_code === 200) {
         setIsLoading(false);
         return setUserInfo({ user: { ...return_data } });

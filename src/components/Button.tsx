@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Constant from '../utils/constants';
 
 const Button = ({
-  onPress, text, buttonStyle, ...rest 
+  onPress, text, buttonStyle, ...rest
 }) => (
   <TouchableOpacity onPress={onPress} activeOpacity={0.5} style={[styles.button, buttonStyle]} {...rest}>
     <Text style={styles.buttonText}>{text}</Text>

@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Dimensions, Text, View, StyleSheet 
+  Dimensions, Text, View, StyleSheet,
 } from 'react-native';
 import { LineChart, LineChartData } from 'react-native-chart-kit';
 import styled from 'styled-components/native';
@@ -15,14 +15,6 @@ const formatData = (data: number[]): LineChartData => ({
     },
   ],
 });
-
-const EmptyData = () => {
-  return (
-    <EmptyWrapper>
-      <Text>...</Text>
-    </EmptyWrapper>
-  );
-};
 
 const LineGraph = ({ data }) => (
   <View style={styles.wrapper}>
@@ -50,7 +42,9 @@ const LineGraph = ({ data }) => (
         }}
       />
     ) : (
-      <EmptyData />
+      <EmptyWrapper>
+        <Text>...</Text>
+      </EmptyWrapper>
     )}
   </View>
 );

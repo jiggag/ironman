@@ -10,7 +10,7 @@ const handleAlert = (title: string, message: string, onPress: any) => {
         onPress,
       },
     ],
-    { cancelable: false }
+    { cancelable: false },
   );
 };
 const handleConfirm = (title: string, message: string, onPress: any, onPressCancel: any = () => {}) => {
@@ -27,7 +27,7 @@ const handleConfirm = (title: string, message: string, onPress: any, onPressCanc
         onPress: onPressCancel,
       },
     ],
-    { cancelable: false }
+    { cancelable: false },
   );
 };
 

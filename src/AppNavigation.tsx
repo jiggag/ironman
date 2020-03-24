@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { createAppContainer, createStackNavigator } from 'react-navigation';
 import store from './store';
 import {
-  Intro, ListNote, CreateNote, DetailNote, UpdateNote 
+  Intro, ListNote, CreateNote, DetailNote, UpdateNote,
 } from './pages';
 
 const createStack = screen => {
@@ -25,7 +25,7 @@ const AppNavigator = createStackNavigator(
   },
   {
     initialRouteName: 'Intro',
-  }
+  },
 );
 
 const AppContainer = createAppContainer(AppNavigator);
