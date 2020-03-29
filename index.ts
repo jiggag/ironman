@@ -5,6 +5,7 @@ import AppNavigation from './src/AppNavigation';
 
 SentryInit({
   dsn: Config.SENTRY_DSN,
+  enableNative: !Config.IS_DEBUG,
 });
 
 AppRegistry.registerComponent('omf', () => AppNavigation);

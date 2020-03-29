@@ -10,10 +10,30 @@ exports[`Renderer Component: SubTitle 1`] = `
         "marginVertical": 4,
         "textDecorationLine": "underline",
       },
-      Object {},
+      Object {
+        "fontSize": 20,
+      },
     ]
   }
 >
   서브타이틀
+</Text>
+`;
+
+exports[`Renderer Component: SubTitle2 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "fontSize": 16,
+        "fontWeight": "500",
+        "marginVertical": 4,
+        "textDecorationLine": "underline",
+      },
+      Object {},
+    ]
+  }
+>
+  
 </Text>
 `;
