@@ -5,25 +5,25 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* omfTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* omfTests.m */; };
 		05E77D4CB2ABB9E85C860569 /* libPods-omf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B3336FEE6D317F1C20BFEFF9 /* libPods-omf.a */; };
 		0B2017CC22FEB32300C5DE51 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B2017CE22FEB32300C5DE51 /* InfoPlist.strings */; };
 		0B785E03236C5F1500099E95 /* libreact-native-config.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B785E02236C5F1500099E95 /* libreact-native-config.a */; };
-		0BAA00C02329DCF500311C69 /* libRNKakaoLogins.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAA00BD2329D8BE00311C69 /* libRNKakaoLogins.a */; };
 		0BAA00C22329DDE200311C69 /* KakaoOpenSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAA00C12329DDE100311C69 /* KakaoOpenSDK.framework */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		1F5BC604CEC0C2BA7DB3A351 /* libPods-omf-omfTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AE1FC5BDAE0C05134931702 /* libPods-omf-omfTests.a */; };
+		21642C52B80E4CD585CEB3DA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B9770E16776C4CA3944C22F9 /* libz.tbd */; };
 		27C586F627D122CAE4C30866 /* libPods-omf-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E446180B04CD63F5A47B96F /* libPods-omf-tvOSTests.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* omfTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* omfTests.m */; };
-		CA775588FEAF080B731ABABB /* libPods-omfTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF74A5457B2C8834213E76D3 /* libPods-omfTests.a */; };
 		DA45A85A6BC7687208E7D021 /* libPods-omf-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC455C049E011F89B10631F /* libPods-omf-tvOS.a */; };
-		21642C52B80E4CD585CEB3DA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B9770E16776C4CA3944C22F9 /* libz.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,20 +33,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
 			remoteInfo = omf;
-		};
-		0BAA00BC2329D8BE00311C69 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0BAA00B82329D8BE00311C69 /* RNKakaoLogins.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = RNKakaoLogins;
-		};
-		0BBC5A58236BA66B0059186B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C428D7B2F653415582A7040B /* reactnativeuilib.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D8D93E6420161A7F00A39331;
-			remoteInfo = reactnativeuilib;
 		};
 		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -66,11 +52,11 @@
 		0B2017D022FEB54B00C5DE51 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		0B2017D122FEB54B00C5DE51 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0B785E02236C5F1500099E95 /* libreact-native-config.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-config.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0BAA00B82329D8BE00311C69 /* RNKakaoLogins.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNKakaoLogins.xcodeproj; path = "../node_modules/react-native-kakao-logins/ios/RNKakaoLogins.xcodeproj"; sourceTree = "<group>"; };
 		0BAA00C12329DDE100311C69 /* KakaoOpenSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaoOpenSDK.framework; sourceTree = "<group>"; };
 		0BBC5A5C236BABD50059186B /* libReact-Core.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-Core.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BBC5A60236BAE130059186B /* libreact-native-config.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-config.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C6AB28443CBA7CBD8E6C6E7 /* Pods-omf-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-omf-tvOS.release.xcconfig"; path = "Target Support Files/Pods-omf-tvOS/Pods-omf-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		0F7CC1AAACA26D1D11F45F39 /* Pods-omf-omfTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-omf-omfTests.debug.xcconfig"; path = "Target Support Files/Pods-omf-omfTests/Pods-omf-omfTests.debug.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* omf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = omf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = omf/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = omf/AppDelegate.m; sourceTree = "<group>"; };
@@ -81,6 +67,8 @@
 		1D44D3FA1936B5F4DF78E079 /* Pods-omf.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-omf.debug.xcconfig"; path = "Target Support Files/Pods-omf/Pods-omf.debug.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* omf-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "omf-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* omf-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "omf-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		35F7AF3A70005817CDB992FE /* Pods-omf-omfTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-omf-omfTests.release.xcconfig"; path = "Target Support Files/Pods-omf-omfTests/Pods-omf-omfTests.release.xcconfig"; sourceTree = "<group>"; };
+		4AE1FC5BDAE0C05134931702 /* libPods-omf-omfTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-omf-omfTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6697B9E564867BC2A8F406A1 /* Pods-omf-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-omf-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-omf-tvOSTests/Pods-omf-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		679A66BF46A1865475342489 /* Pods-omf-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-omf-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-omf-tvOS/Pods-omf-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		6E446180B04CD63F5A47B96F /* libPods-omf-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-omf-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,15 +83,12 @@
 		B0AE52F1B083D0523479FF61 /* Pods-omf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-omf.release.xcconfig"; path = "Target Support Files/Pods-omf/Pods-omf.release.xcconfig"; sourceTree = "<group>"; };
 		B3336FEE6D317F1C20BFEFF9 /* libPods-omf.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-omf.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B891F66F6431DB2D088874D8 /* Pods-omf-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-omf-tvOS.release.xcconfig"; path = "Target Support Files/Pods-omf-tvOS/Pods-omf-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		C428D7B2F653415582A7040B /* reactnativeuilib.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = reactnativeuilib.xcodeproj; path = "../node_modules/react-native-ui-lib/lib/ios/reactnativeuilib.xcodeproj"; sourceTree = "<group>"; };
-		CF74A5457B2C8834213E76D3 /* libPods-omfTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-omfTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9770E16776C4CA3944C22F9 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		E25636EE2CCA1AED58999916 /* Pods-omf-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-omf-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-omf-tvOS/Pods-omf-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		ECC455C049E011F89B10631F /* libPods-omf-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-omf-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		EFBAD7FB13D94C7EB8497678 /* libreactnativeuilib.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libreactnativeuilib.a; sourceTree = "<group>"; };
 		FACF25DCB8D473942D2DAC07 /* Pods-omf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-omf.release.xcconfig"; path = "Target Support Files/Pods-omf/Pods-omf.release.xcconfig"; sourceTree = "<group>"; };
-		B9770E16776C4CA3944C22F9 /* libz.tbd */ = {isa = PBXFileReference; name = "libz.tbd"; path = "usr/lib/libz.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA775588FEAF080B731ABABB /* libPods-omfTests.a in Frameworks */,
+				1F5BC604CEC0C2BA7DB3A351 /* libPods-omf-omfTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,7 +105,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B785E03236C5F1500099E95 /* libreact-native-config.a in Frameworks */,
-				0BAA00C02329DCF500311C69 /* libRNKakaoLogins.a in Frameworks */,
 				0BAA00C22329DDE200311C69 /* KakaoOpenSDK.framework in Frameworks */,
 				05E77D4CB2ABB9E85C860569 /* libPods-omf.a in Frameworks */,
 				21642C52B80E4CD585CEB3DA /* libz.tbd in Frameworks */,
@@ -163,22 +147,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		0BAA00B92329D8BE00311C69 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				0BAA00BD2329D8BE00311C69 /* libRNKakaoLogins.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		0BBC5A55236BA66A0059186B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				0BBC5A59236BA66B0059186B /* libreactnativeuilib.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		0BF94B58230D215A0071AA70 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,8 +182,8 @@
 				B3336FEE6D317F1C20BFEFF9 /* libPods-omf.a */,
 				ECC455C049E011F89B10631F /* libPods-omf-tvOS.a */,
 				6E446180B04CD63F5A47B96F /* libPods-omf-tvOSTests.a */,
-				CF74A5457B2C8834213E76D3 /* libPods-omfTests.a */,
 				B9770E16776C4CA3944C22F9 /* libz.tbd */,
+				4AE1FC5BDAE0C05134931702 /* libPods-omf-omfTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -239,6 +207,8 @@
 				864269E5E36A368900EB2634 /* Pods-omf-tvOSTests.release.xcconfig */,
 				9DC39A56B8AB1B7B24CD1F26 /* Pods-omfTests.debug.xcconfig */,
 				A7F265A00119F6AB66B969A3 /* Pods-omfTests.release.xcconfig */,
+				0F7CC1AAACA26D1D11F45F39 /* Pods-omf-omfTests.debug.xcconfig */,
+				35F7AF3A70005817CDB992FE /* Pods-omf-omfTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -246,8 +216,6 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				0BAA00B82329D8BE00311C69 /* RNKakaoLogins.xcodeproj */,
-				C428D7B2F653415582A7040B /* reactnativeuilib.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -277,14 +245,6 @@
 				2D02E4901E0B4A5D006451C7 /* omf-tvOSTests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		E351A2CB99FD488DAFB6431E /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			path = Application;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -407,14 +367,6 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
-				{
-					ProductGroup = 0BBC5A55236BA66A0059186B /* Products */;
-					ProjectRef = C428D7B2F653415582A7040B /* reactnativeuilib.xcodeproj */;
-				},
-				{
-					ProductGroup = 0BAA00B92329D8BE00311C69 /* Products */;
-					ProjectRef = 0BAA00B82329D8BE00311C69 /* RNKakaoLogins.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -427,20 +379,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		0BAA00BD2329D8BE00311C69 /* libRNKakaoLogins.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNKakaoLogins.a;
-			remoteRef = 0BAA00BC2329D8BE00311C69 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0BBC5A59236BA66B0059186B /* libreactnativeuilib.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libreactnativeuilib.a;
-			remoteRef = 0BBC5A58236BA66B0059186B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -551,6 +489,20 @@
 			shellPath = /bin/sh;
 			shellScript = "export SENTRY_PROPERTIES=sentry.properties\nexport NODE_BINARY=node\n../node_modules/@sentry/cli/bin/sentry-cli react-native xcode ../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
+		48B6FE1BBE91439B946F164A /* Upload Debug Symbols to Sentry */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Upload Debug Symbols to Sentry";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export SENTRY_PROPERTIES=sentry.properties\n../node_modules/@sentry/cli/bin/sentry-cli upload-dsym";
+		};
 		583415CB5F34FAF2C493D95E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -566,7 +518,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-omfTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-omf-omfTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -632,20 +584,6 @@
 			shellPath = /bin/sh;
 			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
 			showEnvVarsInLog = 0;
-		};
-		48B6FE1BBE91439B946F164A /* Upload Debug Symbols to Sentry */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			name = "Upload Debug Symbols to Sentry";
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			shellPath = /bin/sh;
-			shellScript = "export SENTRY_PROPERTIES=sentry.properties\n../node_modules/@sentry/cli/bin/sentry-cli upload-dsym";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -724,7 +662,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9DC39A56B8AB1B7B24CD1F26 /* Pods-omfTests.debug.xcconfig */;
+			baseConfigurationReference = 0F7CC1AAACA26D1D11F45F39 /* Pods-omf-omfTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -733,14 +671,12 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-ui-lib/lib/ios/reactnativeuilib/**",
 				);
 				INFOPLIST_FILE = omfTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -755,20 +691,18 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A7F265A00119F6AB66B969A3 /* Pods-omfTests.release.xcconfig */;
+			baseConfigurationReference = 35F7AF3A70005817CDB992FE /* Pods-omf-omfTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-ui-lib/lib/ios/reactnativeuilib/**",
 				);
 				INFOPLIST_FILE = omfTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -795,7 +729,6 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-kakao-logins/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-ui-lib/lib/ios/reactnativeuilib/**",
 				);
 				INFOPLIST_FILE = omf/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
@@ -826,7 +759,6 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-kakao-logins/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-ui-lib/lib/ios/reactnativeuilib/**",
 				);
 				INFOPLIST_FILE = omf/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
@@ -859,13 +791,11 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-ui-lib/lib/ios/reactnativeuilib/**",
 				);
 				INFOPLIST_FILE = "omf-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -895,13 +825,11 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-ui-lib/lib/ios/reactnativeuilib/**",
 				);
 				INFOPLIST_FILE = "omf-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -930,13 +858,11 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-ui-lib/lib/ios/reactnativeuilib/**",
 				);
 				INFOPLIST_FILE = "omf-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -965,13 +891,11 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-ui-lib/lib/ios/reactnativeuilib/**",
 				);
 				INFOPLIST_FILE = "omf-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",

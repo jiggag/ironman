@@ -10,12 +10,6 @@ import android.widget.Toast;
 
 import com.google.android.play.core.missingsplits.MissingSplitsManagerFactory;
 import com.facebook.react.ReactApplication;
-import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
-import com.dylanvann.fastimage.FastImageViewPackage;
-import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
-import br.com.classapp.RNSensitiveInfo.RNSensitiveInfoPackage;
-//import com.imagepicker.ImagePickerPackage;
-
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -28,7 +22,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.List;
-import com.dooboolab.kakaologins.RNKakaoLoginsPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -43,14 +36,7 @@ public class MainApplication extends Application implements ReactApplication {
       @SuppressWarnings("UnnecessaryLocalVariable")
       List<ReactPackage> packages = new PackageList(this).getPackages();
       // Packages that cannot be autolinked yet can be added manually here, for example:
-      packages.add(new MainReactPackage());
-      packages.add(new RNGestureHandlerPackage());
-      packages.add(new RNSensitiveInfoPackage());
-      packages.add(new FastImageViewPackage());
-      packages.add(new ReactNativeConfigPackage());
-      // packages.add(new ImagePickerPackage());
-      packages.add(new SvgPackage());
-      packages.add(new RNKakaoLoginsPackage());
+      // packages.add(new MainReactPackage());
       return packages;
     }
 
@@ -75,7 +61,7 @@ public class MainApplication extends Application implements ReactApplication {
     super.onCreate();
 //    getHashKey();
     SoLoader.init(this, /* native exopackage */ false);
-  initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
+    initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
   }
   /**
    * Loads Flipper in React Native templates. Call this in the onCreate method with something like

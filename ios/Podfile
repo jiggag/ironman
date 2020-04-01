@@ -54,15 +54,6 @@ target 'omf' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-
-  pod 'react-native-config', :path => '../node_modules/react-native-config'
-
-  pod 'RNFastImage', :path => '../node_modules/react-native-fast-image'
-
-  pod 'react-native-sensitive-info', :path => '../node_modules/react-native-sensitive-info'
-
-  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
-
   target 'omfTests' do
     inherit! :complete
     # Pods for testing
@@ -75,9 +66,6 @@ target 'omf' do
   # Note that if you have use_frameworks! enabled, Flipper will not work and
   # you should disable these next few lines.
   add_flipper_pods!
-  post_install do |installer|
-    flipper_post_install(installer)
-  end
 end
 
 target 'omf-tvOS' do
@@ -91,6 +79,7 @@ target 'omf-tvOS' do
 end
 
 post_install do |installer|
+  flipper_post_install(installer)
   installer.pods_project.targets.each do |target|
     if target.name == 'react-native-config'
       phase = target.project.new(Xcodeproj::Project::Object::PBXShellScriptBuildPhase)
