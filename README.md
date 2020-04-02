@@ -240,3 +240,9 @@ Error: ER_CON_COUNT_ERROR: Too many connections
 % Lines: 전체 코드 라인 테스트 %
 Uncovered Line: 테스트 작성되지 않은 라인
 ```
+  
+##
+`react native v0.62.0` 업그레이드 작업 후 기존에 link 되어있던 라이브러리 해제 및 업데이트 진행하였다.
+그리고 빌드했는데 루트 경로에 `index.js`를 찾을 수 없어서 계속 실패하였다.
+`이 프로젝트는 타입스크립트니깐 당연히 index.js가 아니라 index.ts인대?` 하고 찾아보니 타입스크립트를 사용하더라도 빌드 문제가 발생할 수 있어 index.js로 사용하라는 문장을 발견했다... (그럼 대체 그동안 어떻게 빌드가 된거지?)
+[리액트 네이티브에 타입스크립트를!?](https://reactnative.dev/docs/typescript#adding-typescript-to-an-existing-project)

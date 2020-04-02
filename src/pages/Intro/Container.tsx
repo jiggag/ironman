@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { SafeAreaView } from 'react-native';
-import RNKakaoLogins from 'react-native-kakao-logins';
+import RNKakaoLogins from '@react-native-seoul/kakao-login';
 import Sentry from '@sentry/react-native';
 import PropTypes from 'prop-types';
 import { RESTful, handleAlert } from '../../utils';
