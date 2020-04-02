@@ -197,14 +197,9 @@ android {
 }
 
 dependencies {
-    implementation project(':react-native-gesture-handler')
-    implementation project(':react-native-sensitive-info')
-    implementation project(':react-native-fast-image')
-    implementation project(':react-native-config')
 //    implementation project(':react-native-image-picker') // 아직 사용하지 않는 라이브러리
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
-    implementation project(':react-native-kakao-logins')
     implementation 'com.google.android.gms:play-services-auth:9.2.1'
     implementation 'androidx.appcompat:appcompat:1.0.0'
 
