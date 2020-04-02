@@ -6,6 +6,16 @@ import {
   Intro, ListNote, CreateNote, DetailNote, UpdateNote,
 } from './pages';
 
+// TODO: 리액트 네비게이션 v5 업데이트
+//
+// 리액트 네비게이션 버전 업데이트 진행
+//
+// - react-navigation -> @react-navigation/native
+// - react-navigation-stack -> @react-navigation/stack
+//
+// https://reactnavigation.org/docs/upgrading-from-4.x
+// https://reactnavigation.org/docs/getting-started
+
 const createStack = screen => {
   return {
     screen,
