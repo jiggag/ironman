@@ -11,6 +11,14 @@ import { deleteAccessToken } from '../../utils/auth';
 import { getListRequest } from '../../reducers/note';
 
 let isBackPress = false;
+
+const COLOR = [
+  'green',
+  'yellow',
+  'orange',
+  'pink',
+  'red',
+];
 const Container = ({ navigation }) => {
   const dispatch = useDispatch();
   const { list, graph, isLoading } = useSelector(store => store.note);
@@ -48,6 +56,20 @@ const Container = ({ navigation }) => {
     return false;
   }, [navigation, onPressBack]);
 
+  const getPieData = useCallback(data => {
+    let percent = [0, 0, 0, 0, 0];
+    data.forEach(v => {
+      percent[v - 1] += 1;
+    });
+    return percent.map((value, index) => ({
+      value,
+      svg: {
+        fill: COLOR[index],
+      },
+      key: `pie-${index}`,
+    }));
+  }, []);
+
   useEffect(() => {
     const { params: { update = false } = {} } = navigation.state;
     if (update) {
@@ -67,6 +89,7 @@ const Container = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.safeAreaView}>
       <Presenter
+        getPieData={getPieData}
         list={list}
         graph={graph}
         onActionToCreate={onActionToCreate}
