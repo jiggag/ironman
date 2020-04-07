@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { View } from 'react-native-ui-lib';
-import PropTypes from 'prop-types';
 import { Text, TouchableOpacity } from 'react-native';
 import moment from 'moment';
 import _find from 'lodash/find';
@@ -9,7 +8,13 @@ import styles, {
 } from './styles';
 import { weatherList } from '../../utils/common';
 
-const Note = ({ data, onPress }) => {
+interface NoteDataType { id: number, date: any, title: string, state: number, weather: number }
+interface NoteType {
+  data: NoteDataType;
+  onPress: (id: number) => void;
+}
+
+const Note = memo(({ data, onPress }: NoteType) => {
   const {
     id, date, title, state, weather,
   } = data;
@@ -31,21 +36,6 @@ const Note = ({ data, onPress }) => {
       </TouchableOpacity>
     </View>
   );
-};
+});
 
 export default Note;
-
-Note.defaultProps = {
-  data: {
-    id: 0,
-    date: 0,
-    title: '',
-    state: 0,
-    weather: 0,
-  },
-  onPress: () => {},
-};
-Note.propTypes = {
-  data: PropTypes.any,
-  onPress: PropTypes.func,
-};

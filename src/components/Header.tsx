@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { View } from 'react-native-ui-lib';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Constant from '../utils/constants';
@@ -17,7 +17,7 @@ const TYPE = {
   SAVE: '저장',
 };
 
-const Header = ({
+const Header = memo(({
   onPress, onPressRightButton, onPressDelete, type,
 }: HeaderType) => (
   <View row style={styles.header}>
@@ -43,7 +43,7 @@ const Header = ({
       style={styles.backButtonText}
     />
   </View>
-);
+));
 
 export default Header;
 
