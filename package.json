@@ -16,7 +16,7 @@
     "test:update": "jest --verbose --coverage --updateSnapshot",
     "test:watch": "jest --verbose --watch",
     "coverage": "jest --verbose --coverage && open ./coverage/lcov-report/index.html",
-    "lint": "eslint . --ext .js,.ts,.tsx",
+    "lint": "eslint . --ext .js,.ts,.tsx;stylelint 'src/**/*{.tsx,.ts}'",
     "lint:fix": "eslint . --fix --ext .js,.ts,.tsx",
     "server": "node ./common/server.js",
     "intall:server": "yarn add express dotenv mysql moment slack-node @slack/client jsonwebtoken",
@@ -83,6 +83,10 @@
     "prettier": "^1.19.1",
     "react-test-renderer": "16.11.0",
     "redux-devtools-extension": "^2.13.8",
+    "stylelint": "^13.3.0",
+    "stylelint-config-react-native-styled-components": "^0.3.0",
+    "stylelint-processor-styled-components": "^1.10.0",
+    "stylelint-react-native": "^2.2.0",
     "typescript": "^3.5.3"
   },
   "lint-staged": {
