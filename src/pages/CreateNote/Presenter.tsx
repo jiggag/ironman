@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { TextInput, ScrollView, Text } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import { View } from 'react-native-ui-lib';
 import moment from 'moment';
-import PropTypes from 'prop-types';
 import styles from './styles';
 import { RadioButton, SubTitle, Header } from '../../components';
 import {
@@ -11,11 +10,26 @@ import {
 } from '../../utils/common';
 import Constant from '../../utils/constants';
 
-const Presenter = ({
-  onPressBack, note: {
+interface NoteType {
+  onPressBack: () => void;
+  note: {
+    title: string
+    date: number
+    food: object
+    done: object
+    etc: string
+    state: number
+    weather: number
+  };
+  onPress: () => void;
+  onChangeNote: (param: any) => void;
+}
+
+const Presenter = memo(({
+  onPressBack, onPress, onChangeNote, note: {
     title, date, food, done, etc, state, weather,
-  }, onPress, onChangeNote,
-}) => (
+  }
+}: NoteType) => (
   <>
     <Header onPress={onPressBack} onPressRightButton={onPress} type="SAVE" />
     <ScrollView style={styles.container}>
@@ -155,27 +169,6 @@ const Presenter = ({
       </View> */}
     </ScrollView>
   </>
-);
+));
 
 export default Presenter;
-
-Presenter.defaultProps = {
-  onPressBack: () => {},
-  note: {
-    title: '',
-    date: 0,
-    food: 0,
-    done: 0,
-    etc: 0,
-    state: 0,
-    weather: 0,
-  },
-  onPress: () => {},
-  onChangeNote: () => {},
-};
-Presenter.propTypes = {
-  onPressBack: PropTypes.func,
-  note: PropTypes.object,
-  onPress: PropTypes.func,
-  onChangeNote: PropTypes.func,
-};

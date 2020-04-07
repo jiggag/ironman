@@ -1,10 +1,22 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { createAppContainer, createStackNavigator } from 'react-navigation';
+import Config from 'react-native-config';
 import store from './store';
 import {
   Intro, ListNote, CreateNote, DetailNote, UpdateNote,
 } from './pages';
+
+if (Config.IS_DEBUG) {
+  const whyDidYouRender = require('@welldone-software/why-did-you-render');
+  const ReactRedux = require('react-redux');
+  whyDidYouRender(React, {
+    trackAllPureComponents: true,
+    trackExtraHooks: [
+      [ReactRedux, 'useSelector']
+    ]
+  });
+}
 
 const createStack = screen => {
   return {

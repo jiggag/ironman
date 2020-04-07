@@ -90,7 +90,7 @@ const Container = ({ navigation }) => {
   // });
   // };
 
-  const onPressBack = () => navigation.goBack();
+  const onPressBack = useCallback(() => navigation.goBack(), [navigation]);
 
   return (
     <SafeAreaView style={styles.safeAreaView}>
