@@ -85,6 +85,7 @@
     "no-empty": ["error", { "allowEmptyCatch": true }],
     "import/prefer-default-export": "warn",
     "import/no-unresolved": "off",
+    "import/extensions": "off",
     "react/display-name": "off",
     "react/prop-types": "warn",
     "react/jsx-no-bind": "warn",

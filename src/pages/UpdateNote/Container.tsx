@@ -17,7 +17,7 @@ const Container = ({ route: { params }}) => {
   const { isLoading } = useSelector(store => store.note);
   const updateNote = useCallback(param => dispatch(updateNoteRequest(param)), [dispatch]);
 
-  const onPress = async () => {
+  const onPress = useCallback(async () => {
     updateNote({
       note: {
         ...note,
@@ -29,13 +29,13 @@ const Container = ({ route: { params }}) => {
       cbSuccess: () => navigation.navigate('DetailNote', { update: true, id: note.id }),
       cbFailure: message => handleAlert('노트 수정 실패', message, () => {}),
     });
-  };
+  }, [updateNote, navigation, note]);
 
-  const onChangeNote = value => {
+  const onChangeNote = useCallback(value => {
     setNote({ ...note, ...value });
-  };
+  }, []);
 
-  const onPressBack = () => navigation.goBack();
+  const onPressBack = useCallback(() => navigation.goBack(), [navigation]);
 
   return (
     <SafeAreaView style={styles.safeAreaView}>

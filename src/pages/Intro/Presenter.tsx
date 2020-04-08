@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
-import PropTypes from 'prop-types';
 import { BigButton } from '../../components';
 import styles from './styles';
 
-const Presenter = ({ onPress }) => (
+const Presenter = memo(({ onPress }: { onPress: () => void}) => (
   <View style={{ flex: 1, justifyContent: 'flex-end' }}>
     <BigButton onPress={onPress} text="시작하기" buttonStyle={null} />
     <View style={styles.join}>
@@ -13,13 +12,7 @@ const Presenter = ({ onPress }) => (
       </TouchableOpacity>
     </View>
   </View>
-);
+));
 
 export default Presenter;
 
-Presenter.defaultProps = {
-  onPress: () => {},
-};
-Presenter.propTypes = {
-  onPress: PropTypes.func,
-};

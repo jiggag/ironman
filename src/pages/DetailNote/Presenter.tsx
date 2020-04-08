@@ -1,21 +1,36 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { TextInput, Text, ScrollView } from 'react-native';
 import { View } from 'react-native-ui-lib';
 import moment from 'moment';
-import PropTypes from 'prop-types';
 import styles from './styles';
 import { SubTitle, Header } from '../../components';
 import Constant from '../../utils/constants';
 import { foodList, doneList } from '../../utils/common';
 
-const Presenter = ({
+
+interface DetailType {
+  onPressBack: () => void
+  note: {
+    title: string
+    date: number
+    food: number
+    done: number
+    etc: string
+    stateText: string
+    weatherText: string
+  }
+  onPressDelete: () => void
+  onPressUpdate: () => void
+}
+
+const Presenter = memo(({
   onPressBack,
   note: {
     title, date, food, done, etc, stateText, weatherText,
   },
   onPressDelete,
   onPressUpdate,
-}) => (
+}: DetailType) => (
   <>
     <Header onPress={onPressBack} onPressRightButton={onPressUpdate} onPressDelete={onPressDelete} type="UPDATE" />
     <ScrollView style={styles.container}>
@@ -111,27 +126,6 @@ const Presenter = ({
       </View>
     </ScrollView>
   </>
-);
+));
 
 export default Presenter;
-
-Presenter.defaultProps = {
-  onPressBack: () => {},
-  note: {
-    title: '',
-    date: 0,
-    food: 0,
-    done: 0,
-    etc: 0,
-    stateText: '',
-    weatherText: '',
-  },
-  onPressDelete: () => {},
-  onPressUpdate: () => {},
-};
-Presenter.propTypes = {
-  onPressBack: PropTypes.func,
-  note: PropTypes.object,
-  onPressDelete: PropTypes.func,
-  onPressUpdate: PropTypes.func,
-};

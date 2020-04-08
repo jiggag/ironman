@@ -2,6 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import Config from 'react-native-config';
 import store from './store';
 import {
   Intro, ListNote, CreateNote, DetailNote, UpdateNote,
@@ -16,6 +17,17 @@ import {
 //
 // https://reactnavigation.org/docs/upgrading-from-4.x
 // https://reactnavigation.org/docs/getting-started
+
+if (Config.IS_DEBUG) {
+  const whyDidYouRender = require('@welldone-software/why-did-you-render');
+  const ReactRedux = require('react-redux');
+  whyDidYouRender(React, {
+    trackAllPureComponents: true,
+    trackExtraHooks: [
+      [ReactRedux, 'useSelector']
+    ]
+  });
+}
 
 const Stack = createStackNavigator();
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { BackHandler } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -17,7 +17,6 @@ const Container = ({ route: { params }}) => {
   const isFocused = useIsFocused();
   const dispatch = useDispatch();
   const { list, graph, isLoading } = useSelector(store => store.note);
-
   const getList = useCallback(isPaging => dispatch(getListRequest(isPaging)), [dispatch]);
 
   const onActionToCreate = useCallback(() => navigation.navigate('CreateNote'), [navigation]);
