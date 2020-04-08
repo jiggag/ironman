@@ -1,16 +1,17 @@
 import React, { useState, useCallback } from 'react';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Spinner from 'react-native-loading-spinner-overlay';
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
+import { useNavigation } from '@react-navigation/native';
 import { handleAlert } from '../../utils';
 import Presenter from './Presenter';
 import styles from './styles';
 import { updateNoteRequest } from '../../reducers/note';
 
-const Container = ({ navigation }) => {
-  const [note, setNote] = useState(navigation.state.params.originNote);
+const Container = ({ route: { params }}) => {
+  const navigation = useNavigation();
+  const [note, setNote] = useState(params.originNote);
   const [image] = useState(null);
   const dispatch = useDispatch();
   const { isLoading } = useSelector(store => store.note);
@@ -45,10 +46,3 @@ const Container = ({ navigation }) => {
 };
 
 export default Container;
-
-Container.defaultProps = {
-  navigation: {},
-};
-Container.propTypes = {
-  navigation: PropTypes.any,
-};
