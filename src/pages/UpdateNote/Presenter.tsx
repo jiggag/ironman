@@ -10,20 +10,19 @@ import {
 } from '../../utils/common';
 import Constant from '../../utils/constants';
 
-
 interface UpdateType {
-  onPressBack: () => void
-  onPress: () => void
-  onChangeNote: (param: any) => void
+  onPressBack: () => void;
+  onPress: () => void;
+  onChangeNote: (param: any) => void;
   note: {
-    title: string
-    date: number
-    food: object
-    done: object
-    etc:string
-    state: number
-    weather: number
-  },
+    title: string;
+    date: number;
+    food: object;
+    done: object;
+    etc:string;
+    state: number;
+    weather: number;
+  };
 }
 
 const Presenter = memo(({
@@ -165,4 +164,3 @@ const Presenter = memo(({
 ));
 
 export default Presenter;
-

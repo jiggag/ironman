@@ -13,13 +13,13 @@ import Constant from '../../utils/constants';
 interface NoteType {
   onPressBack: () => void;
   note: {
-    title: string
-    date: number
-    food: object
-    done: object
-    etc: string
-    state: number
-    weather: number
+    title: string;
+    date: number;
+    food: object;
+    done: object;
+    etc: string;
+    state: number;
+    weather: number;
   };
   onPress: () => void;
   onChangeNote: (param: any) => void;
@@ -28,7 +28,7 @@ interface NoteType {
 const Presenter = memo(({
   onPressBack, onPress, onChangeNote, note: {
     title, date, food, done, etc, state, weather,
-  }
+  },
 }: NoteType) => (
   <>
     <Header onPress={onPressBack} onPressRightButton={onPress} type="SAVE" />

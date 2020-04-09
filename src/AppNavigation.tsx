@@ -24,8 +24,8 @@ if (Config.IS_DEBUG) {
   whyDidYouRender(React, {
     trackAllPureComponents: true,
     trackExtraHooks: [
-      [ReactRedux, 'useSelector']
-    ]
+      [ReactRedux, 'useSelector'],
+    ],
   });
 }
 
