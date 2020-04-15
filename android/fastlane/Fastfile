@@ -36,3 +36,11 @@ platform :android do
     upload_to_play_store
   end
 end
+
+after_all do |lane|
+  slack(
+    channel: "#dev",
+    message: "FastLane success",
+    slack_url: ENV['WEBHOOK_URL']
+  )
+end
