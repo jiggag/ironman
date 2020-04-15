@@ -27,6 +27,7 @@ const format = (newList, originData, page) => {
   const { list: oriList, graph: oriGraph } = originData;
   const list = [].concat(page > 1 ? oriList : []);
   const graph = [].concat(page > 1 ? oriGraph : []);
+  graph.reverse();
   for (const data of newList) {
     list.push(data);
     graph.push(6 - data.state);
