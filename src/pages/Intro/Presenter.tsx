@@ -15,4 +15,3 @@ const Presenter = memo(({ onPress }: { onPress: () => void}) => (
 ));
 
 export default Presenter;
-

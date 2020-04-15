@@ -9,7 +9,7 @@ import Presenter from './Presenter';
 import styles from './styles';
 import { updateNoteRequest } from '../../reducers/note';
 
-const Container = ({ route: { params }}) => {
+const Container = ({ route: { params } }) => {
   const navigation = useNavigation();
   const [note, setNote] = useState(params.originNote);
   const [image] = useState(null);
@@ -29,10 +29,10 @@ const Container = ({ route: { params }}) => {
       cbSuccess: () => navigation.navigate('DetailNote', { update: true, id: note.id }),
       cbFailure: message => handleAlert('노트 수정 실패', message, () => {}),
     });
-  }, [updateNote, navigation, note]);
+  }, [updateNote, navigation, note, image]);
 
   const onChangeNote = useCallback(value => {
-    setNote({ ...note, ...value });
+    setNote(prev => ({ ...prev, ...value }));
   }, []);
 
   const onPressBack = useCallback(() => navigation.goBack(), [navigation]);

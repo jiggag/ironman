@@ -1,13 +1,12 @@
 import React, { memo } from 'react';
 import { View } from 'react-native-ui-lib';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
-import PropTypes from 'prop-types';
 import Constant from '../utils/constants';
 
 interface RadioButtonType {
-  onPress: () => void
-  value: string
-  isSelected: boolean
+  onPress: () => void;
+  value: string;
+  isSelected: boolean;
 }
 
 const RadioButton = memo(({ onPress, value, isSelected }: RadioButtonType) => (

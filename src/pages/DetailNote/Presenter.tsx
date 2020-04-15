@@ -9,18 +9,18 @@ import { foodList, doneList } from '../../utils/common';
 
 
 interface DetailType {
-  onPressBack: () => void
+  onPressBack: () => void;
   note: {
-    title: string
-    date: number
-    food: number
-    done: number
-    etc: string
-    stateText: string
-    weatherText: string
-  }
-  onPressDelete: () => void
-  onPressUpdate: () => void
+    title: string;
+    date: number;
+    food: number;
+    done: number;
+    etc: string;
+    stateText: string;
+    weatherText: string;
+  };
+  onPressDelete: () => void;
+  onPressUpdate: () => void;
 }
 
 const Presenter = memo(({

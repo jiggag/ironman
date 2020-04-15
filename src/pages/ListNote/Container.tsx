@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { BackHandler } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -12,7 +12,7 @@ import { deleteAccessToken } from '../../utils/auth';
 import { getListRequest } from '../../reducers/note';
 
 let isBackPress = false;
-const Container = ({ route: { params }}) => {
+const Container = ({ route: { params } }) => {
   const navigation = useNavigation();
   const isFocused = useIsFocused();
   const dispatch = useDispatch();

@@ -2,8 +2,8 @@ import React, { memo } from 'react';
 import { Text, StyleSheet } from 'react-native';
 
 interface SubTitleType {
-  title: string
-  style?: object
+  title: string;
+  style?: object;
 }
 
 const SubTitle = memo(({ title, style = {} }: SubTitleType) => <Text style={[styles.subTitle, style]}>{title}</Text>);

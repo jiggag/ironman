@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React, { memo } from 'react';
 import { View } from 'react-native-ui-lib';
 import { LineGraph } from '../../components';
 
