@@ -37,7 +37,7 @@
       "SwitchCase": 1
     }],
     "requireSemicolons": "off",
-    "global-require": "error",
+    "global-require": "warn",
     "arrow-body-style": "off",
     "vars-on-top": "error",
     "prefer-arrow-callback": "warn",
@@ -85,8 +85,9 @@
     "no-empty": ["error", { "allowEmptyCatch": true }],
     "import/prefer-default-export": "warn",
     "import/no-unresolved": "off",
+    "import/extensions": "off",
     "react/display-name": "off",
-    "react/prop-types": "warn",
+    "react/prop-types": "off",
     "react/jsx-no-bind": "warn",
     "react/no-array-index-key": "warn",
     "react/no-unused-state": "warn",
@@ -107,6 +108,7 @@
     "react-hooks/exhaustive-deps": "error",
     "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/no-empty-function": "off"
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-var-requires": "warn"
   }
 }

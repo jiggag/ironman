@@ -1,15 +1,16 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { useDispatch, useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
+import { useNavigation } from '@react-navigation/native';
 import { handleConfirm } from '../../utils';
 import Presenter from './Presenter';
 import styles from './styles';
 import { getNoteRequest, deleteNoteRequest } from '../../reducers/note';
 
-const Container = ({ navigation }) => {
-  const [id] = useState(navigation.state.params.id);
+const Container = ({ route: { params } }) => {
+  const navigation = useNavigation();
+  const [id] = useState(params.id);
   const dispatch = useDispatch();
   const { note, isLoading } = useSelector(store => store.note);
   const getNote = useCallback(param => dispatch(getNoteRequest(param)), [dispatch]);
@@ -27,15 +28,14 @@ const Container = ({ navigation }) => {
     navigation,
   ]);
 
-  const onPressBack = useCallback(() => navigation.navigate('ListNote'), [navigation]);
+  const onPressBack = useCallback(() => navigation.goBack(), [navigation]);
 
   useEffect(() => {
-    const { params: { update = false } = {} } = navigation.state;
-    if (update) {
-      getNote(id);
+    if (params?.update) {
+      getNote(params.id);
       navigation.setParams({ update: false });
     }
-  }, [navigation.state.params, navigation, id, getNote]);
+  }, [navigation, params, getNote]);
 
   useEffect(() => {
     getNote(id);
@@ -50,10 +50,3 @@ const Container = ({ navigation }) => {
 };
 
 export default Container;
-
-Container.defaultProps = {
-  navigation: {},
-};
-Container.propTypes = {
-  navigation: PropTypes.any,
-};

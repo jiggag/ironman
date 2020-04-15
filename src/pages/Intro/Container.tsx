@@ -1,15 +1,16 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Spinner from 'react-native-loading-spinner-overlay';
-import { SafeAreaView } from 'react-native';
-import RNKakaoLogins from 'react-native-kakao-logins';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import RNKakaoLogins from '@react-native-seoul/kakao-login';
+import { useNavigation } from '@react-navigation/native';
 import Sentry from '@sentry/react-native';
-import PropTypes from 'prop-types';
 import { RESTful, handleAlert } from '../../utils';
 import styles from './styles';
 import Presenter from './Presenter';
 import { setAccessToken, deleteAccessToken, getAccessToken } from '../../utils/auth';
 
-const Container = ({ navigation }) => {
+const Container = () => {
+  const navigation = useNavigation();
   const [isLoading, setIsLoading] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
 
@@ -97,10 +98,3 @@ const Container = ({ navigation }) => {
   );
 };
 export default Container;
-
-Container.defaultProps = {
-  navigation: {},
-};
-Container.propTypes = {
-  navigation: PropTypes.any,
-};

@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { View } from 'react-native-ui-lib';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
-import PropTypes from 'prop-types';
 import Constant from '../utils/constants';
 
-const RadioButton = ({ onPress, value, isSelected }) => (
+interface RadioButtonType {
+  onPress: () => void;
+  value: string;
+  isSelected: boolean;
+}
+
+const RadioButton = memo(({ onPress, value, isSelected }: RadioButtonType) => (
   <TouchableOpacity activeOpacity={0.5} style={styles.button} onPress={onPress}>
     <View row>
       <View style={[styles.radio, !!isSelected && styles.selectedRadio]} />
       <Text style={styles.valueText}>{value}</Text>
     </View>
   </TouchableOpacity>
-);
+));
 
 export default RadioButton;
 
@@ -43,14 +48,3 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
 });
-
-RadioButton.defaultProps = {
-  onPress: () => {},
-  value: '',
-  isSelected: false,
-};
-RadioButton.propTypes = {
-  onPress: PropTypes.func,
-  value: PropTypes.string,
-  isSelected: PropTypes.bool,
-};

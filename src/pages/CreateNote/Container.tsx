@@ -1,16 +1,17 @@
 import React, { useState, useCallback } from 'react';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Spinner from 'react-native-loading-spinner-overlay';
 // import ImagePicker from 'react-native-image-picker';
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
+import { useNavigation } from '@react-navigation/native';
 import { handleAlert } from '../../utils';
 import Presenter from './Presenter';
 import styles from './styles';
 import { createNoteRequest } from '../../reducers/note';
 
-const Container = ({ navigation }) => {
+const Container = () => {
+  const navigation = useNavigation();
   /*
     Weather 날씨: radio [너무 더움, 조금 더움, 살만함, 조금 추움, 너무 추움]
     Food 식단: text
@@ -90,7 +91,7 @@ const Container = ({ navigation }) => {
   // });
   // };
 
-  const onPressBack = () => navigation.goBack();
+  const onPressBack = useCallback(() => navigation.goBack(), [navigation]);
 
   return (
     <SafeAreaView style={styles.safeAreaView}>
@@ -108,10 +109,3 @@ const Container = ({ navigation }) => {
 };
 
 export default Container;
-
-Container.defaultProps = {
-  navigation: {},
-};
-Container.propTypes = {
-  navigation: PropTypes.any,
-};

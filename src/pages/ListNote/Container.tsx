@@ -1,8 +1,9 @@
 import React, { useEffect, useCallback } from 'react';
 import Spinner from 'react-native-loading-spinner-overlay';
-import { SafeAreaView, BackHandler } from 'react-native';
+import { BackHandler } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
 import Toast from 'react-native-simple-toast';
 import styles from './styles';
 import Presenter from './Presenter';
@@ -11,10 +12,11 @@ import { deleteAccessToken } from '../../utils/auth';
 import { getListRequest } from '../../reducers/note';
 
 let isBackPress = false;
-const Container = ({ navigation }) => {
+const Container = ({ route: { params } }) => {
+  const navigation = useNavigation();
+  const isFocused = useIsFocused();
   const dispatch = useDispatch();
   const { list, graph, isLoading } = useSelector(store => store.note);
-
   const getList = useCallback(isPaging => dispatch(getListRequest(isPaging)), [dispatch]);
 
   const onActionToCreate = useCallback(() => navigation.navigate('CreateNote'), [navigation]);
@@ -33,7 +35,7 @@ const Container = ({ navigation }) => {
   }, [getList]);
 
   const onPressHardware = useCallback(() => {
-    if (navigation.isFocused()) {
+    if (isFocused) {
       if (!isBackPress) {
         isBackPress = true;
         Toast.showWithGravity('다시 한번 요청 시 로그아웃 할 수 있습니다', Toast.SHORT, Toast.CENTER);
@@ -46,15 +48,14 @@ const Container = ({ navigation }) => {
       return true;
     }
     return false;
-  }, [navigation, onPressBack]);
+  }, [isFocused, onPressBack]);
 
   useEffect(() => {
-    const { params: { update = false } = {} } = navigation.state;
-    if (update) {
+    if (params?.update) {
       getList(false);
       navigation.setParams({ update: false });
     }
-  }, [navigation.state.params, navigation, getList]);
+  }, [navigation, params, getList]);
 
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', onPressHardware);
@@ -80,10 +81,3 @@ const Container = ({ navigation }) => {
 };
 
 export default Container;
-
-Container.defaultProps = {
-  navigation: {},
-};
-Container.propTypes = {
-  navigation: PropTypes.any,
-};
