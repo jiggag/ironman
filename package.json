@@ -20,9 +20,9 @@
     "lint:fix": "eslint . --fix --ext .js,.ts,.tsx",
     "server": "node ./common/server.js",
     "intall:server": "yarn add express dotenv mysql moment slack-node @slack/client jsonwebtoken",
-    "fastlane:test": "cd android && fastlane test && cd ..",
-    "fastlane:beta": "cd android && fastlane beta && cd ..",
-    "fastlane:deploy": "cd android && fastlane deploy && cd ..",
+    "fastlane:test": "cd android && ENVFILE=.env.production && fastlane test && cd ..",
+    "fastlane:beta": "cd android && ENVFILE=.env.production && fastlane beta && cd ..",
+    "fastlane:deploy": "cd android && ENVFILE=.env.production && fastlane deploy && cd ..",
     "precommit": "lint-staged"
   },
   "dependencies": {
