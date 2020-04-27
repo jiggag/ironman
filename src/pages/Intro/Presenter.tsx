@@ -1,10 +1,12 @@
 import React, { memo } from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
+import Config from 'react-native-config';
 import { BigButton } from '../../components';
 import styles from './styles';
 
 const Presenter = memo(({ onPress }: { onPress: () => void}) => (
   <View style={{ flex: 1, justifyContent: 'flex-end' }}>
+    {Config.IS_DEBUG && <Text style={{ textAlign: 'center' }}>개발모드</Text>}
     <BigButton onPress={onPress} text="시작하기" buttonStyle={null} />
     <View style={styles.join}>
       <TouchableOpacity onPress={onPress} activeOpacity={0.5}>
