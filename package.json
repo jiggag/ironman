@@ -12,6 +12,7 @@
     "android:dev-build": "cd android && ENVFILE=.env ./gradlew assembleRelease && cd ..",
     "android:live-build": "cd android && ENVFILE=.env.production ./gradlew assembleRelease && cd ..",
     "android:live-bundle": "cd android && ENVFILE=.env.production ./gradlew bundleRelease && cd ..",
+    "pod": "cd ios;pod install;cd ..",
     "test": "jest --verbose --coverage",
     "test:update": "jest --verbose --coverage --updateSnapshot",
     "test:watch": "jest --verbose --watch",
@@ -28,6 +29,8 @@
   "dependencies": {
     "@react-native-community/datetimepicker": "^2.3.1",
     "@react-native-community/masked-view": "^0.1.7",
+    "@react-native-firebase/app": "^7.1.0",
+    "@react-native-firebase/messaging": "^7.1.0",
     "@react-native-seoul/kakao-login": "^2.4.1",
     "@react-navigation/native": "^5.1.5",
     "@react-navigation/stack": "^5.2.10",
