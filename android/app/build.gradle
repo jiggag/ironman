@@ -145,6 +145,7 @@ android {
         resValue "string", "build_config_package", "com.jiggag.omf"
         versionCode 1016
         versionName "1.1.3"
+        multiDexEnabled true
     }
     splits {
         abi {
@@ -206,6 +207,9 @@ dependencies {
     implementation 'com.google.android.play:core:1.6.1'
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+    
+    implementation 'com.android.support:multidex:1.0.3'
+
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
       exclude group:'com.facebook.fbjni'
     }

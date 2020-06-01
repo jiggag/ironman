@@ -5,6 +5,7 @@
 #import <React/RCTRootView.h>
 #import <KakaoOpenSDK/KakaoOpenSDK.h>
 #import "ReactNativeConfig.h"
+#import <Firebase.h>
 
 // or just fetch the whole config
 //NSDictionary *config = [ReactNativeConfig env];
@@ -32,6 +33,10 @@ static void InitializeFlipper(UIApplication *application) {
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
+  if ([FIRApp defaultApp] == nil) {
+    [FIRApp configure];
+  }
+
 #if DEBUG
   InitializeFlipper(application);
 #endif
@@ -48,6 +53,7 @@ static void InitializeFlipper(UIApplication *application) {
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+
   return YES;
 }
 
