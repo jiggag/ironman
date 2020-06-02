@@ -1,15 +1,17 @@
 import React, { useEffect, useCallback } from 'react';
 import Spinner from 'react-native-loading-spinner-overlay';
-import { BackHandler } from 'react-native';
+import { BackHandler, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import Toast from 'react-native-simple-toast';
+import { BannerAdSize, InterstitialAd, RewardedAd, BannerAd, TestIds } from '@react-native-firebase/admob';
 import styles from './styles';
 import Presenter from './Presenter';
 import { handleConfirm } from '../../utils';
 import { deleteAccessToken } from '../../utils/auth';
 import { getListRequest } from '../../reducers/note';
+import Config from 'react-native-config';
 
 let isBackPress = false;
 const Container = ({ route: { params } }) => {
@@ -74,6 +76,13 @@ const Container = ({ route: { params } }) => {
         onPress={onPress}
         onPressBack={onPressBack}
         onNext={onNext}
+      />
+      <BannerAd
+        unitId={Config.ADMOB_UNIT_ID}
+        size={BannerAdSize.FULL_BANNER}
+        requestOptions={{
+          requestNonPersonalizedAdsOnly: true,
+        }}
       />
       <Spinner visible={isLoading} />
     </SafeAreaView>
