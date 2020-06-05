@@ -1,7 +1,8 @@
 import { all, fork } from 'redux-saga/effects';
 import note from './note';
+import voc from './voc';
 
-const sagas = [...note];
+const sagas = [...note, ...voc];
 
 export default function* combineSagas() {
   try {

@@ -6,7 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import messaging from '@react-native-firebase/messaging';
 import store from './store';
 import {
-  Intro, ListNote, CreateNote, DetailNote, UpdateNote,
+  Intro, ListNote, CreateNote, DetailNote, UpdateNote, SendVoc
 } from './pages';
 
 // TODO: 리액트 네비게이션 v5 업데이트
@@ -57,6 +57,7 @@ export default class App extends React.PureComponent {
             <Stack.Screen name="CreateNote" component={CreateNote} />
             <Stack.Screen name="DetailNote" component={DetailNote} />
             <Stack.Screen name="UpdateNote" component={UpdateNote} />
+            <Stack.Screen name="SendVoc" component={SendVoc} />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

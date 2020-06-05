@@ -4,6 +4,11 @@ import Config from 'react-native-config';
 import Sentry from '@sentry/react-native';
 import { getAccessToken } from './auth';
 
+export const RETURN_CODE = Object.freeze({
+  SUCCESS: 200,
+  NETWORK_ERROR: 500,
+});
+
 export const METHOD = Object.freeze({
   GET: 'GET',
   POST: 'POST',

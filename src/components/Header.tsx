@@ -15,6 +15,7 @@ const TYPE = {
   CREATE: '생성',
   UPDATE: '수정',
   SAVE: '저장',
+  SEND: '보내기'
 };
 
 const Header = memo(({
