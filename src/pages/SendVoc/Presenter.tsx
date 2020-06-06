@@ -45,6 +45,7 @@ const Presenter = memo(({ state: { title, content }, onChangeText, onPressBack, 
             onChangeText={content => onChangeText({ content })}
             value={content}
             placeholderTextColor={Constant.PLACEHOLDER_COLOR}
+            multiline
           />
         </View>
       </View>

@@ -8,7 +8,7 @@ import admob, { MaxAdContentRating, BannerAdSize, BannerAd } from '@react-native
 import Config from 'react-native-config';
 import store from './store';
 import {
-  Intro, ListNote, CreateNote, DetailNote, UpdateNote, SendVoc
+  Intro, ListNote, CreateNote, DetailNote, UpdateNote, SendVoc, ListVoc
 } from './pages';
 
 // TODO: 리액트 네비게이션 v5 업데이트
@@ -59,14 +59,12 @@ export default class App extends React.PureComponent {
         tagForChildDirectedTreatment: false,
         tagForUnderAgeOfConsent: false,
       })
-      .then(this.showBanner)
+      .then(() => {
+        this.setState({
+          isShowBanner: true,
+        });
+      })
       .catch(() => {});
-  }
-
-  showBanner() {
-    this.setState({
-      isShowBanner: true,
-    });
   }
   
   render() {
@@ -83,6 +81,7 @@ export default class App extends React.PureComponent {
               <Stack.Screen name="DetailNote" component={DetailNote} />
               <Stack.Screen name="UpdateNote" component={UpdateNote} />
               <Stack.Screen name="SendVoc" component={SendVoc} />
+              <Stack.Screen name="ListVoc" component={ListVoc} />
             </Stack.Navigator>
           </NavigationContainer>
         </Provider>

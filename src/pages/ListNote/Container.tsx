@@ -1,17 +1,15 @@
-import React, { useEffect, useCallback, useState } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import Spinner from 'react-native-loading-spinner-overlay';
-import { BackHandler, Alert, Platform } from 'react-native';
+import { BackHandler } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import Toast from 'react-native-simple-toast';
-import admob, { MaxAdContentRating, BannerAdSize, BannerAd, TestIds } from '@react-native-firebase/admob';
-import styles from './styles';
 import Presenter from './Presenter';
 import { handleConfirm } from '../../utils';
 import { deleteAccessToken } from '../../utils/auth';
 import { getListRequest } from '../../reducers/note';
-import Config from 'react-native-config';
+import styles from './styles';
 
 let isBackPress = false;
 const Container = ({ route: { params } }) => {
@@ -19,7 +17,6 @@ const Container = ({ route: { params } }) => {
   const isFocused = useIsFocused();
   const dispatch = useDispatch();
   const { list, graph, isLoading } = useSelector(store => store.note);
-  const [isShowBanner, setIsShowBanner] = useState(false);
   const getList = useCallback(isPaging => dispatch(getListRequest(isPaging)), [dispatch]);
 
   const onActionToCreate = useCallback(() => navigation.navigate('CreateNote'), [navigation]);
@@ -61,19 +58,9 @@ const Container = ({ route: { params } }) => {
   }, [navigation, params, getList]);
 
   useEffect(() => {
-    admob()
-      .setRequestConfiguration({
-        maxAdContentRating: MaxAdContentRating.G,
-        tagForChildDirectedTreatment: false,
-        tagForUnderAgeOfConsent: false,
-      })
-      .then(() => {
-        setIsShowBanner(true);
-      })
-      .catch(() => {
-        Alert.alert("admob error configuration");
-      });
-
+    if (!isFocused) {
+      return;
+    }
     BackHandler.addEventListener('hardwareBackPress', onPressHardware);
     getList(false);
     return () => {
@@ -91,19 +78,6 @@ const Container = ({ route: { params } }) => {
         onPressBack={onPressBack}
         onNext={onNext}
       />
-      {isShowBanner && (
-        <BannerAd
-          unitId={Platform.OS === 'ios' ? Config.ADMOB_UNIT_ID_IOS : Config.ADMOB_UNIT_ID_AOS}
-          size={BannerAdSize.FULL_BANNER}
-          requestOptions={{
-            requestNonPersonalizedAdsOnly: true,
-          }}
-          onAdFailedToLoad={(error) => {
-            Alert.alert(`${error}`);
-            setIsShowBanner(false);
-          }}
-        />
-      )}
       <Spinner visible={isLoading} />
     </SafeAreaView>
   );

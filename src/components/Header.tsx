@@ -1,14 +1,16 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 import { View } from 'react-native-ui-lib';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { useSelector } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
 import Constant from '../utils/constants';
 import HeaderRightButton from './HeaderRightButton';
 
 interface HeaderType {
   onPress: () => void;
-  onPressRightButton: () => void;
+  onPressRightButton?: () => void;
   onPressDelete?: () => void;
-  type: string;
+  type?: string;
 }
 
 const TYPE = {
@@ -20,31 +22,46 @@ const TYPE = {
 
 const Header = memo(({
   onPress, onPressRightButton, onPressDelete, type,
-}: HeaderType) => (
-  <View row style={styles.header}>
-    <View flex left>
-      <TouchableOpacity activeOpacity={0.8} onPress={onPress}>
-        <View paddingV-2>
-          <Text style={styles.backButtonText}>뒤로가기</Text>
-        </View>
-      </TouchableOpacity>
+}: HeaderType) => {
+  const navigation = useNavigation();
+  const { auth } = useSelector(store => store.user);
+  const onPressVoc = useCallback(() => {
+    navigation.navigate(auth === "ADMIN" ? "ListVoc" : "SendVoc")
+  }, []);
+  
+  return (
+    <View row style={styles.header}>
+      <View flex left>
+        <TouchableOpacity activeOpacity={0.8} onPress={onPress}>
+          <View paddingV-2>
+            <Text style={styles.backButtonText}>뒤로가기</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+      <HeaderRightButton
+        isVisible
+        buttonIdx={2}
+        text="문의"
+        onPress={onPressVoc}
+        style={styles.deleteButtonText}
+      />
+      <HeaderRightButton
+        isVisible={type === 'UPDATE'}
+        buttonIdx={1}
+        text="삭제"
+        onPress={onPressDelete}
+        style={styles.deleteButtonText}
+      />
+      <HeaderRightButton
+        isVisible={!!type}
+        buttonIdx={0}
+        text={TYPE[type]}
+        onPress={onPressRightButton}
+        style={styles.backButtonText}
+      />
     </View>
-    <HeaderRightButton
-      isVisible={type === 'UPDATE'}
-      buttonIdx={1}
-      text="삭제"
-      onPress={onPressDelete}
-      style={styles.deleteButtonText}
-    />
-    <HeaderRightButton
-      isVisible
-      buttonIdx={0}
-      text={TYPE[type]}
-      onPress={onPressRightButton}
-      style={styles.backButtonText}
-    />
-  </View>
-));
+  )
+});
 
 export default Header;
 
