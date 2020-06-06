@@ -1,6 +1,5 @@
 import React, { memo } from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
-import Config from 'react-native-config';
 import { BigButton } from '../../components';
 import styles from './styles';
 

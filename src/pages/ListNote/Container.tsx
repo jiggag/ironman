@@ -5,11 +5,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import Toast from 'react-native-simple-toast';
-import styles from './styles';
 import Presenter from './Presenter';
 import { handleConfirm } from '../../utils';
 import { deleteAccessToken } from '../../utils/auth';
 import { getListRequest } from '../../reducers/note';
+import styles from './styles';
 
 let isBackPress = false;
 const Container = ({ route: { params } }) => {
@@ -58,6 +58,9 @@ const Container = ({ route: { params } }) => {
   }, [navigation, params, getList]);
 
   useEffect(() => {
+    if (!isFocused) {
+      return;
+    }
     BackHandler.addEventListener('hardwareBackPress', onPressHardware);
     getList(false);
     return () => {

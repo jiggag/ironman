@@ -3,6 +3,8 @@ import ListNote from './ListNote';
 import CreateNote from './CreateNote';
 import DetailNote from './DetailNote';
 import UpdateNote from './UpdateNote';
+import SendVoc from './SendVoc';
+import ListVoc from './ListVoc';
 
 export {
   Intro,
@@ -10,4 +12,6 @@ export {
   CreateNote,
   DetailNote,
   UpdateNote,
+  SendVoc,
+  ListVoc,
 };

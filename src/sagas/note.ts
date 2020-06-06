@@ -3,7 +3,7 @@ import {
 } from 'redux-saga/effects';
 import _find from 'lodash/find';
 import Sentry from '@sentry/react-native';
-import { RESTful } from '../utils';
+import { RESTful, RETURN_CODE } from '../utils';
 import {
   getListRequest,
   getListSuccess,
@@ -91,7 +91,7 @@ function* workDeleteNote(action) {
   try {
     const { id, callback } = action.payload;
     const { return_code } = yield call(RESTful, 'POST', '/deleteNote', { id });
-    if (return_code === 200) {
+    if (return_code === RETURN_CODE.SUCCESS) {
       yield call(callback);
       yield put(deleteNoteSuccess(id));
     } else {
@@ -108,7 +108,7 @@ function* workCreateNote(action) {
   try {
     const { note, cbSuccess, cbFailure } = action.payload;
     const { return_code, return_message } = yield call(RESTful, 'POST', '/note', note);
-    if (return_code === 200) {
+    if (return_code === RETURN_CODE.SUCCESS) {
       yield call(cbSuccess);
       yield put(createNoteSuccess(note));
     } else {
@@ -126,7 +126,7 @@ function* workUpdateNote(action) {
   try {
     const { note, cbSuccess, cbFailure } = action.payload;
     const { return_code, return_message } = yield call(RESTful, 'PUT', '/note', note);
-    if (return_code === 200) {
+    if (return_code === RETURN_CODE.SUCCESS) {
       yield call(cbSuccess);
       yield put(updateNoteSuccess(note));
     } else {
