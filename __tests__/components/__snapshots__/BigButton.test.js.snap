@@ -3,8 +3,7 @@
 exports[`Renderer Component: BigButton 1`] = `
 <View
   accessible={true}
-  clickable={true}
-  isTVSelectable={true}
+  focusable={true}
   onClick={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
