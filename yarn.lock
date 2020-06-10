@@ -7294,6 +7294,17 @@ react-native-screens@^2.4.0:
   dependencies:
     debounce "^1.2.0"
 
+react-native-semver-update@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-semver-update/-/react-native-semver-update-1.1.2.tgz#890aec68356750025e4e2221ef1586326afecb6d"
+  integrity sha512-ZYXhmk03F0Fe0TQsrXDRORcFnsd80eYbaaNkl5TaAinIDSj6g1fe0FGrGgzn0RPwVZTjBSAAodF6tATzgu/ZhA==
+  dependencies:
+    "@babel/runtime" "^7.6.3"
+    chalk "^2.4.2"
+    commander "^4.0.1"
+    inquirer "^7.0.0"
+    semver "^7.1.1"
+
 react-native-sensitive-info@^5.5.3:
   version "5.5.5"
   resolved "https://registry.yarnpkg.com/react-native-sensitive-info/-/react-native-sensitive-info-5.5.5.tgz#0559aaff6bd59b6a14d92035c032b46bd007b55f"
@@ -7967,6 +7978,11 @@ semver@^6.0.0, semver@^6.1.2, semver@^6.3.0:
   version "6.3.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-6.3.0.tgz#ee0a64c8af5e8ceea67687b133761e1becbd1d3d"
   integrity sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==
+
+semver@^7.1.1:
+  version "7.3.2"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-7.3.2.tgz#604962b052b81ed0786aae84389ffba70ffd3938"
+  integrity sha512-OrOb32TeeambH6UrhtShmF7CRDqhL6/5XpPNp2DuRH6+9QLw/orhp72j87v8Qa1ScDkvrrBNpZcDejAirJmfXQ==
 
 send@0.17.1:
   version "0.17.1"

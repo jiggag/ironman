@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    paddingHorizontal: 30,
   },
   inputLine: {
     borderRadius: 6,

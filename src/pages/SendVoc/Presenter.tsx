@@ -22,31 +22,33 @@ const Presenter = memo(({ state: { title, content }, onChangeText, onPressBack, 
   <>
     <Header onPress={onPressBack} onPressRightButton={onPress} type="SEND" />
     <ScrollView style={styles.container}>
-      <View marginB-10>
-        <SubTitle title="제목" />
-        <View style={styles.inputLine}>
-          <TextInput
-            style={styles.inputTitle}
-            placeholder="제목을 입력하세요"
-            underlineColorAndroid="transparent"
-            onChangeText={title => onChangeText({ title })}
-            value={title}
-            placeholderTextColor={Constant.PLACEHOLDER_COLOR}
-          />
+      <View paddingH-30>
+        <View marginB-10>
+          <SubTitle title="제목" />
+          <View style={styles.inputLine}>
+            <TextInput
+              style={styles.inputTitle}
+              placeholder="제목을 입력하세요"
+              underlineColorAndroid="transparent"
+              onChangeText={title => onChangeText({ title })}
+              value={title}
+              placeholderTextColor={Constant.PLACEHOLDER_COLOR}
+            />
+          </View>
         </View>
-      </View>
-      <View marginB-10>
-        <SubTitle title="내용" />
-        <View style={styles.inputLine}>
-          <TextInput
-            style={styles.inputContent}
-            placeholder="내용을 입력하세요"
-            underlineColorAndroid="transparent"
-            onChangeText={content => onChangeText({ content })}
-            value={content}
-            placeholderTextColor={Constant.PLACEHOLDER_COLOR}
-            multiline
-          />
+        <View marginB-10>
+          <SubTitle title="내용" />
+          <View style={styles.inputLine}>
+            <TextInput
+              style={styles.inputContent}
+              placeholder="내용을 입력하세요"
+              underlineColorAndroid="transparent"
+              onChangeText={content => onChangeText({ content })}
+              value={content}
+              placeholderTextColor={Constant.PLACEHOLDER_COLOR}
+              multiline
+            />
+          </View>
         </View>
       </View>
     </ScrollView>
