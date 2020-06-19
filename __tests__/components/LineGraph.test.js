@@ -1,23 +1,20 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { render } from '@testing-library/react-native';
 import LineGraph from '../../src/components/LineGraph';
 
 it('Renderer Component: SubTitle', () => {
-  const component = renderer.create(
+  const { baseElement, rerender } = render(
     <LineGraph data={[1,3,2,3,1,2,4,1,2,3,2,3,1]} />
   )
-  let lineGraph = component.toJSON();
-  expect(lineGraph).toMatchSnapshot();
+  expect(baseElement).toMatchSnapshot();
 
-  const component2 = renderer.create(
+  rerender(
     <LineGraph data={[1,3,2]} />
   )
-  let lineGraph2 = component2.toJSON();
-  expect(lineGraph2).toMatchSnapshot();
+  expect(baseElement).toMatchSnapshot();
 
-  const emptyComponent = renderer.create(
+  rerender(
     <LineGraph data={[]} />
   )
-  let emptyLineGraph = emptyComponent.toJSON();
-  expect(emptyLineGraph).toMatchSnapshot();
+  expect(baseElement).toMatchSnapshot();
 });

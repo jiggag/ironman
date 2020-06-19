@@ -1,11 +1,10 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { render } from '@testing-library/react-native';
 import SubTitle from '../../src/components/SubTitle';
 
 it('Renderer Component: SubTitle', () => {
-  const component = renderer.create(
+  const { baseElement } = render(
     <SubTitle title="서브타이틀" />
   )
-  let subTitle = component.toJSON();
-  expect(subTitle).toMatchSnapshot();
+  expect(baseElement).toMatchSnapshot();
 });
