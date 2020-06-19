@@ -123,8 +123,10 @@
       "**/__tests__/**/*.js"
     ],
     "setupFiles": [
-      "./jest.setup.js",
-      "./node_modules/react-native-ui-lib/jest-setup.js"
+      "<rootDir>/jest.setup.js",
+      "<rootDir>/node_modules/react-native-ui-lib/jest-setup.js",
+      "<rootDir>/node_modules/react-native-gesture-handler/jestSetup.js"
+
     ]
   }
 }
