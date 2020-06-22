@@ -143,8 +143,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         resValue "string", "build_config_package", "com.jiggag.omf"
-        versionCode 1020
-        versionName "1.1.6"
+        versionCode 1021
+        versionName "1.1.7"
         multiDexEnabled true
     }
     splits {
