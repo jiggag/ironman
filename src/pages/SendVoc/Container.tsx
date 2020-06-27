@@ -43,7 +43,10 @@ const Container = () => {
 
       if (type === RewardedAdEventType.EARNED_REWARD) {
         console.log('User earned reward of ', reward);
-        dispatch(sendVocRequest({ data: state, cb: navigation.goBack }));
+        setState(data => {
+          dispatch(sendVocRequest({ data, cb: navigation.goBack }));
+          return data;
+        });
       }
     });
     
