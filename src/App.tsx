@@ -41,6 +41,10 @@ export default class App extends React.PureComponent {
 
   async componentDidMount() {
     await messaging().requestPermission();
+    
+    messaging()
+    .subscribeToTopic('ironman')
+    .then(() => console.log('Subscribed to "ironman" topic!'));
 
     messaging().onMessage(async remoteMessage => {
       const { notification: { body, title }} = remoteMessage;

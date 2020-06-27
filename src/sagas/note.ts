@@ -1,8 +1,11 @@
 import {
   select, call, put, takeEvery, takeLatest,
 } from 'redux-saga/effects';
+import { AsyncStorage } from 'react-native';
+import moment from 'moment';
 import _find from 'lodash/find';
 import Sentry from '@sentry/react-native';
+import messaging from '@react-native-firebase/messaging';
 import { RESTful, RETURN_CODE } from '../utils';
 import {
   getListRequest,
@@ -109,6 +112,13 @@ function* workCreateNote(action) {
     const { note, cbSuccess, cbFailure } = action.payload;
     const { return_code, return_message } = yield call(RESTful, 'POST', '/note', note);
     if (return_code === RETURN_CODE.SUCCESS) {
+      const registTopic = yield call(AsyncStorage.getItem, '@topic');
+      if (moment(registTopic, 'YYYYMMDD').isBefore(note.date)) {
+        const topic = moment(note.date).format('YYYYMMDD');
+        yield call(AsyncStorage.setItem, '@topic', topic);
+        yield messaging().subscribeToTopic(topic).then(() => console.log(`Subscribed to ${topic} topic!`));
+      }
+      
       yield call(cbSuccess);
       yield put(createNoteSuccess(note));
     } else {

@@ -20,8 +20,10 @@ const styles = StyleSheet.create({
 
 export const Title = styled.Text`
   margin-bottom: 5px;
-  font-size: 20px;
+  font-size: 16px;
 `;
-export const Content = styled.Text``;
+export const Content = styled.Text`
+  font-size: 12px;
+`;
 
 export default styles;

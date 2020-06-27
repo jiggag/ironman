@@ -7,11 +7,12 @@
     "ios": "rm -rf ios/build && react-native run-ios",
     "android": "react-native run-android",
     "reinstall": "rm -rf node_modules && yarn install",
-    "ios:dev-build": "xcodebuild -workspace ios/omf.xcworkspace -scheme omf clean archive",
-    "ios:live-build": "xcodebuild -workspace ios/omf.xcworkspace -scheme 'omf (Production)' clean archive",
-    "android:dev-build": "cd android && ENVFILE=.env ./gradlew assembleRelease && cd ..",
-    "android:live-build": "cd android && ENVFILE=.env.production ./gradlew assembleRelease && cd ..",
-    "android:live-bundle": "cd android && ENVFILE=.env.production ./gradlew bundleRelease && cd ..",
+    "ios:dev-build": "rnsemup && xcodebuild -workspace ios/omf.xcworkspace -scheme omf clean archive",
+    "ios:live-build": "rnsemup && xcodebuild -workspace ios/omf.xcworkspace -scheme 'omf (Production)' clean archive",
+    "android:dev-build": "rnsemup && cd android && ENVFILE=.env ./gradlew assembleRelease && cd .. && open-android-build-folder",
+    "android:live-build": "rnsemup && cd android && ENVFILE=.env.production ./gradlew assembleRelease && cd .. && open-android-build-folder",
+    "android:live-bundle": "rnsemup && cd android && ENVFILE=.env.production ./gradlew bundleRelease && cd ..",
+    "open-android-build-folder": "open android/app/build/outputs/apk/release",
     "pod": "cd ios;pod install;cd ..",
     "test": "jest --verbose --coverage",
     "test:update": "jest --verbose --coverage --updateSnapshot",
@@ -19,11 +20,10 @@
     "coverage": "jest --verbose --coverage && open ./coverage/lcov-report/index.html",
     "lint": "eslint . --ext .js,.ts,.tsx;stylelint 'src/**/*{.tsx,.ts}'",
     "lint:fix": "eslint . --fix --ext .js,.ts,.tsx",
-    "server": "node ./common/server.js",
     "intall:server": "yarn add express dotenv mysql moment slack-node @slack/client jsonwebtoken",
-    "fastlane:test": "cd android && fastlane test && cd ..",
-    "fastlane:beta": "cd android && fastlane beta && cd ..",
-    "fastlane:deploy": "cd android && fastlane deploy --env production && cd ..",
+    "fastlane:test": "rnsemup && cd android && fastlane test && cd ..",
+    "fastlane:beta": "rnsemup && cd android && fastlane beta && cd ..",
+    "fastlane:deploy": "rnsemup && cd android && fastlane deploy --env production && cd ..",
     "precommit": "lint-staged"
   },
   "dependencies": {
@@ -53,6 +53,7 @@
     "react-native-reanimated": "^1.8.0",
     "react-native-safe-area-context": "^0.7.3",
     "react-native-screens": "^2.4.0",
+    "react-native-semver-update": "^1.1.2",
     "react-native-sensitive-info": "^5.5.3",
     "react-native-simple-toast": "^1.0.0",
     "react-native-svg": "^9.13.6",
@@ -122,7 +123,10 @@
       "**/__tests__/**/*.js"
     ],
     "setupFiles": [
-      "./jest.setup.js"
+      "<rootDir>/jest.setup.js",
+      "<rootDir>/node_modules/react-native-ui-lib/jest-setup.js",
+      "<rootDir>/node_modules/react-native-gesture-handler/jestSetup.js"
+
     ]
   }
 }
