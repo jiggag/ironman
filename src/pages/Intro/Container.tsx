@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import RNKakaoLogins from '@react-native-seoul/kakao-login';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
+import messaging from '@react-native-firebase/messaging';
 import styles from './styles';
 import Presenter from './Presenter';
 import { getAccessToken } from '../../utils/auth';
@@ -41,6 +42,20 @@ const Container = () => {
       navigation.navigate('ListNote');
     }
   }, [auth, navigation]);
+
+  useEffect(() => {
+    // 백그라운드 상태에서 푸시 눌렀을때
+    messaging().onNotificationOpenedApp(remoteMessage => {
+      console.log(
+        'Notification caused app to open from background state:',
+        remoteMessage,
+      );
+      if (remoteMessage?.data?.navigation) {
+        navigation.navigate(remoteMessage?.data?.navigation);
+      }
+    });
+
+  }, []);
 
   useEffect(() => {
     onPress();
