@@ -2,7 +2,7 @@ import React, { useEffect, useCallback } from 'react';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import RNKakaoLogins from '@react-native-seoul/kakao-login';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, CommonActions } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import messaging from '@react-native-firebase/messaging';
 import styles from './styles';
@@ -51,7 +51,15 @@ const Container = () => {
         remoteMessage,
       );
       if (remoteMessage?.data?.navigation) {
-        navigation.navigate(remoteMessage?.data?.navigation);
+        const routes = JSON.parse(remoteMessage?.data?.navigation);
+        if (routes?.length) {
+          navigation.dispatch(
+            CommonActions.reset({
+              index: routes.length - 1,
+              routes: routes,
+            })
+          );
+        }
       }
     });
 
