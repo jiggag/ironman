@@ -7,6 +7,8 @@
 #import "ReactNativeConfig.h"
 #import <Firebase.h>
 
+@import ChannelIO;
+
 // or just fetch the whole config
 //NSDictionary *config = [ReactNativeConfig env];
 
@@ -41,6 +43,7 @@ static void InitializeFlipper(UIApplication *application) {
   InitializeFlipper(application);
 #endif
 
+  [ChannelIO initialize:application];
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
                                                    moduleName:@"omf"

@@ -4,11 +4,21 @@ import reducer from '../reducers';
 import saga from '../sagas';
 
 const sagaMiddleware = createSagaMiddleware();
-const store = configureStore({
-  reducer,
-  middleware: [...getDefaultMiddleware({ thunk: false, serializableCheck: false }), sagaMiddleware],
-  devTools: true,
-});
+
+import { createStore, applyMiddleware } from 'redux';
+
+const middlewares = [
+  ...getDefaultMiddleware({ thunk: false, serializableCheck: false }),
+  sagaMiddleware,
+];
+
+if (__DEV__) {
+  const createDebugger = require('redux-flipper').default;
+  middlewares.push(createDebugger());
+}
+
+const store = createStore(reducer, applyMiddleware(...middlewares));
+
 sagaMiddleware.run(saga);
 
 export default store;
