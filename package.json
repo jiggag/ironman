@@ -23,7 +23,9 @@
     "fastlane:test": "rnsemup && cd android && fastlane test && cd ..",
     "fastlane:beta": "rnsemup && cd android && fastlane beta && cd ..",
     "fastlane:deploy": "rnsemup && cd android && fastlane deploy --env production && cd ..",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "postinstall": "yarn pod && yarn pod-react-native-channel-plugin",
+    "pod-react-native-channel-plugin": "sed -i '' 's/Assets.car/Images.xcassets/' ios/omf.xcodeproj/project.pbxproj"
   },
   "dependencies": {
     "@react-native-community/datetimepicker": "^2.3.1",
@@ -43,6 +45,7 @@
     "q": "^1.5.1",
     "react": "16.11.0",
     "react-native": "0.62.0",
+    "react-native-channel-plugin": "^0.4.6",
     "react-native-chart-kit": "file:./src/lib/react-native-chart-kit/",
     "react-native-config": "^0.11.7",
     "react-native-datepicker": "^1.7.2",
@@ -125,7 +128,6 @@
       "<rootDir>/jest.setup.js",
       "<rootDir>/node_modules/react-native-ui-lib/jest-setup.js",
       "<rootDir>/node_modules/react-native-gesture-handler/jestSetup.js"
-
     ]
   }
 }

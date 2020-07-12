@@ -7196,6 +7196,11 @@ react-native-animatable@^1.1.0:
   dependencies:
     prop-types "^15.7.2"
 
+react-native-channel-plugin@^0.4.6:
+  version "0.4.6"
+  resolved "https://registry.yarnpkg.com/react-native-channel-plugin/-/react-native-channel-plugin-0.4.6.tgz#0fa866427e4ff3585df3da851cd44d96e6511dd6"
+  integrity sha512-YItKVVFSo0QGpx65tnFdj4OxdOCc7SBE3/84tz+GeUsiMmsx24r2veILR3j2P3ovM/aCZR+Y4qDp7V+OdOFX6w==
+
 "react-native-chart-kit@file:./src/lib/react-native-chart-kit":
   version "4.3.0"
   dependencies:
