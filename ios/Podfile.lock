@@ -386,6 +386,8 @@ PODS:
   - React-jsinspector (0.62.0)
   - react-native-config (0.11.7):
     - React
+  - react-native-flipper (0.49.0):
+    - React
   - react-native-safe-area-context (0.7.3):
     - React
   - react-native-sensitive-info (5.5.5):
@@ -553,6 +555,7 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - react-native-config (from `../node_modules/react-native-config`)
+  - react-native-flipper (from `../node_modules/react-native-flipper`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-sensitive-info (from `../node_modules/react-native-sensitive-info`)
   - react-native-simple-toast (from `../node_modules/react-native-simple-toast`)
@@ -673,6 +676,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   react-native-config:
     :path: "../node_modules/react-native-config"
+  react-native-flipper:
+    :path: "../node_modules/react-native-flipper"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   react-native-sensitive-info:
@@ -784,6 +789,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 8bf0b2707f05865113415088c398a7f98c0cf546
   React-jsinspector: 8e5913c4c6c54f0d3f9c9fc630c465a89cded65d
   react-native-config: 55548054279d92e0e4566ea15a8b9b81028ec342
+  react-native-flipper: 1dde244c24b0a16b8b8866cee522e390ec97ea74
   react-native-safe-area-context: e200d4433aba6b7e60b52da5f37af11f7a0b0392
   react-native-sensitive-info: 4629b223484a08225c3eb088ff3f91b03097b5e5
   react-native-simple-toast: 6c376bd79b1e255a4bee90a72ead6447f96ea10d
