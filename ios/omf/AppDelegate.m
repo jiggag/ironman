@@ -28,7 +28,7 @@ static void InitializeFlipper(UIApplication *application) {
   [client addPlugin:[[FlipperKitNetworkPlugin alloc] initWithNetworkAdapter:[SKIOSNetworkAdapter new]]];
   [client start];
 }
-#ifdef FB_SONARKIT_ENABLED
+#endif
 
 @implementation AppDelegate
 
@@ -39,7 +39,7 @@ static void InitializeFlipper(UIApplication *application) {
     [FIRApp configure];
   }
 
-#if DEBUG
+#ifdef FB_SONARKIT_ENABLED
   InitializeFlipper(application);
 #endif
 

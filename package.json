@@ -13,7 +13,7 @@
     "android:live-build": "rnsemup && cd android && ENVFILE=.env.production ./gradlew assembleRelease && cd .. && yarn open-android-build-folder",
     "android:live-bundle": "rnsemup && cd android && ENVFILE=.env.production ./gradlew bundleRelease && cd ..",
     "open-android-build-folder": "open android/app/build/outputs/apk/release",
-    "pod": "cd ios;pod install;cd ..",
+    "pod": "cd ios;pod install;cd ..;yarn pod-react-native-channel-plugin",
     "test": "jest --verbose --coverage",
     "test:update": "jest --verbose --coverage --updateSnapshot",
     "test:watch": "jest --verbose --watch",
@@ -24,7 +24,7 @@
     "fastlane:beta": "rnsemup && cd android && fastlane beta && cd ..",
     "fastlane:deploy": "rnsemup && cd android && fastlane deploy --env production && cd ..",
     "precommit": "lint-staged",
-    "postinstall": "yarn pod && yarn pod-react-native-channel-plugin",
+    "postinstall": "yarn pod",
     "pod-react-native-channel-plugin": "sed -i '' 's/Assets.car/Images.xcassets/' ios/omf.xcodeproj/project.pbxproj"
   },
   "dependencies": {
