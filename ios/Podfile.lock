@@ -462,6 +462,8 @@ PODS:
     - Reusable/View (= 4.1.1)
   - Reusable/Storyboard (4.1.1)
   - Reusable/View (4.1.1)
+  - RNCAsyncStorage (1.11.0):
+    - React
   - RNChannelIO (0.1.0):
     - ChannelIO
     - React
@@ -571,6 +573,7 @@ DEPENDENCIES:
   - ReactCommon/callinvoker (from `../node_modules/react-native/ReactCommon`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - ReactNativeUiLib (from `../node_modules/react-native-ui-lib`)
+  - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
   - RNChannelIO (from `../node_modules/react-native-channel-plugin`)
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
   - "RNDateTimePicker (from `../node_modules/@react-native-community/datetimepicker`)"
@@ -706,6 +709,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   ReactNativeUiLib:
     :path: "../node_modules/react-native-ui-lib"
+  RNCAsyncStorage:
+    :path: "../node_modules/@react-native-community/async-storage"
   RNChannelIO:
     :path: "../node_modules/react-native-channel-plugin"
   RNCMaskedView:
@@ -806,6 +811,7 @@ SPEC CHECKSUMS:
   ReactNativeUiLib: 52606c273a072841c6fc5cfc9bd617fc87e5ca15
   ReSwift: d925be0033558f55bd73d92869961230dfe19d52
   Reusable: 53a9acf5c536f229b31b5865782414b508252ddb
+  RNCAsyncStorage: d059c3ee71738c39834a627476322a5a8cd5bf36
   RNChannelIO: 160bf4927b0ce33b64ca5d2902090220b7d24ece
   RNCMaskedView: 76c40a1d41c3e2535df09246a2b5487f04de0814
   RNDateTimePicker: 5b151d197435a4e929bfb6f285ed2372561e3578

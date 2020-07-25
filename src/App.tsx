@@ -6,7 +6,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import messaging from '@react-native-firebase/messaging';
 import admob, { MaxAdContentRating, BannerAdSize, BannerAd } from '@react-native-firebase/admob';
 import Config from 'react-native-config';
-import store from './store';
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from './store';
 import {
   Intro, ListNote, CreateNote, DetailNote, UpdateNote, SendVoc, ListVoc
 } from './pages';
@@ -88,17 +89,19 @@ export default class App extends React.PureComponent {
     return (
       <>
         <Provider store={store}>
-          <NavigationContainer>
-            <Stack.Navigator headerMode="none" initialRouteName="Intro">
-              <Stack.Screen name="Intro" component={Intro} />
-              <Stack.Screen name="ListNote" component={ListNote} />
-              <Stack.Screen name="CreateNote" component={CreateNote} />
-              <Stack.Screen name="DetailNote" component={DetailNote} />
-              <Stack.Screen name="UpdateNote" component={UpdateNote} />
-              <Stack.Screen name="SendVoc" component={SendVoc} />
-              <Stack.Screen name="ListVoc" component={ListVoc} />
-            </Stack.Navigator>
-          </NavigationContainer>
+          <PersistGate loading={null} persistor={persistor}>
+            <NavigationContainer>
+              <Stack.Navigator headerMode="none" initialRouteName="Intro">
+                <Stack.Screen name="Intro" component={Intro} />
+                <Stack.Screen name="ListNote" component={ListNote} />
+                <Stack.Screen name="CreateNote" component={CreateNote} />
+                <Stack.Screen name="DetailNote" component={DetailNote} />
+                <Stack.Screen name="UpdateNote" component={UpdateNote} />
+                <Stack.Screen name="SendVoc" component={SendVoc} />
+                <Stack.Screen name="ListVoc" component={ListVoc} />
+              </Stack.Navigator>
+            </NavigationContainer>
+          </PersistGate>
         </Provider>
       {isShowBanner && (
         <BannerAd
