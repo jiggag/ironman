@@ -1,6 +1,6 @@
 {
   "name": "omf",
-  "version": "0.0.1",
+  "version": "1.1.9",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
@@ -20,9 +20,9 @@
     "coverage": "jest --verbose --coverage && open ./coverage/lcov-report/index.html",
     "lint": "eslint . --ext .js,.ts,.tsx;stylelint 'src/**/*{.tsx,.ts}'",
     "lint:fix": "eslint . --fix --ext .js,.ts,.tsx",
-    "fastlane:test": "rnsemup && cd android && fastlane test && cd ..",
-    "fastlane:beta": "rnsemup && cd android && fastlane beta && cd ..",
-    "fastlane:deploy": "rnsemup && cd android && fastlane deploy --env production && cd ..",
+    "fastlane:test": "rnsemup && yarn reinstall && cd android && fastlane test && cd ..",
+    "fastlane:beta": "rnsemup && yarn reinstall && cd android && fastlane beta && cd ..",
+    "fastlane:deploy": "rnsemup && yarn reinstall && cd android && fastlane deploy --env production && cd ..",
     "precommit": "lint-staged",
     "postinstall": "yarn pod",
     "pod-react-native-channel-plugin": "sed -i '' 's/Assets.car/Images.xcassets/' ios/omf.xcodeproj/project.pbxproj"
