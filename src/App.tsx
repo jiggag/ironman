@@ -21,7 +21,7 @@ import {
 // https://reactnavigation.org/docs/upgrading-from-4.x
 // https://reactnavigation.org/docs/getting-started
 
-if (__DEV__) {
+if (__DEV__ && false) {
   const whyDidYouRender = require('@welldone-software/why-did-you-render');
   const ReactRedux = require('react-redux');
   whyDidYouRender(React, {
