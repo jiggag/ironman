@@ -7,10 +7,12 @@
 #import "ReactNativeConfig.h"
 #import <Firebase.h>
 
+@import ChannelIO;
+
 // or just fetch the whole config
 //NSDictionary *config = [ReactNativeConfig env];
 
-#if DEBUG
+#ifdef FB_SONARKIT_ENABLED
 #import <FlipperKit/FlipperClient.h>
 #import <FlipperKitLayoutPlugin/FlipperKitLayoutPlugin.h>
 #import <FlipperKitUserDefaultsPlugin/FKUserDefaultsPlugin.h>
@@ -37,10 +39,11 @@ static void InitializeFlipper(UIApplication *application) {
     [FIRApp configure];
   }
 
-#if DEBUG
+#ifdef FB_SONARKIT_ENABLED
   InitializeFlipper(application);
 #endif
 
+  [ChannelIO initialize:application];
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
                                                    moduleName:@"omf"

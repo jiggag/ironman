@@ -21,7 +21,7 @@ import {
 // https://reactnavigation.org/docs/upgrading-from-4.x
 // https://reactnavigation.org/docs/getting-started
 
-if (__DEV__) {
+if (__DEV__ && false) {
   const whyDidYouRender = require('@welldone-software/why-did-you-render');
   const ReactRedux = require('react-redux');
   whyDidYouRender(React, {
@@ -43,19 +43,30 @@ export default class App extends React.PureComponent {
     await messaging().requestPermission();
     
     messaging()
-    .subscribeToTopic('ironman')
+    .subscribeToTopic('test')
     .then(() => console.log('Subscribed to "ironman" topic!'));
 
+    // 포그라운드 상태에서 푸시 받았을때
     messaging().onMessage(async remoteMessage => {
-      const { notification: { body, title }} = remoteMessage;
       console.log('A new FCM message arrived!', JSON.stringify(remoteMessage));
     });
     
-    // Register background handler
+    // 백그라운드 상테에서 푸시 받았을때
     messaging().setBackgroundMessageHandler(async remoteMessage => {
       console.log('Message handled in the background!', remoteMessage);
     });
 
+    // 앱 종로 상태에서 푸시 눌렀을떄
+    messaging()
+      .getInitialNotification()
+      .then(remoteMessage => {
+        if (remoteMessage) {
+          console.log(
+            'Notification caused app to open from quit state:',
+            remoteMessage,
+          );
+        }
+      });
 
     admob()
       .setRequestConfiguration({
