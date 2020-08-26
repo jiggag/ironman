@@ -147,7 +147,7 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         resValue "string", "build_config_package", "com.jiggag.omf"
-        versionCode 1023
+        versionCode 1024
         versionName "1.1.9"
         multiDexEnabled true
     }
