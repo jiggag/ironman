@@ -16,9 +16,10 @@ const Container = () => {
   const { auth, isLoading } = useSelector(store => store.user);
 
   const onPress = useCallback(async () => {
+    const fcmToken = await messaging().getToken();
     const token = await getAccessToken();
     if (token) {
-      dispatch(getUserRequest());
+      dispatch(getUserRequest(fcmToken));
     } else {
       await RNKakaoLogins.login((err, res) => {
         if (err) {
@@ -30,12 +31,14 @@ const Container = () => {
               return;
             }
             const { id, email, phone_number: phone } = result;
-            dispatch(postUserRequest({ id, email, phone }));
+            dispatch(postUserRequest({
+              id, email, phone, fcmToken,
+            }));
           });
         }
       });
     }
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (auth) {
@@ -56,14 +59,13 @@ const Container = () => {
           navigation.dispatch(
             CommonActions.reset({
               index: routes.length - 1,
-              routes: routes,
-            })
+              routes,
+            }),
           );
         }
       }
     });
-
-  }, []);
+  }, [navigation]);
 
   useEffect(() => {
     onPress();
