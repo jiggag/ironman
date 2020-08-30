@@ -19,7 +19,7 @@ const Container = () => {
     const fcmToken = await messaging().getToken();
     const token = await getAccessToken();
     if (token) {
-      dispatch(getUserRequest(fcmToken));
+      dispatch(getUserRequest({ fcmToken }));
     } else {
       await RNKakaoLogins.login((err, res) => {
         if (err) {
