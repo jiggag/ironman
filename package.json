@@ -13,7 +13,7 @@
     "android:live-build": "rnsemup && cd android && ENVFILE=.env.production ./gradlew assembleRelease && cd .. && yarn open-android-build-folder",
     "android:live-bundle": "rnsemup && cd android && ENVFILE=.env.production ./gradlew bundleRelease && cd ..",
     "open-android-build-folder": "open android/app/build/outputs/apk/release",
-    "pod": "cd ios;pod install;cd ..;yarn pod-react-native-channel-plugin",
+    "pod": "cd ios;pod install;cd ..",
     "test": "jest --verbose --coverage",
     "test:update": "jest --verbose --coverage --updateSnapshot",
     "test:watch": "jest --verbose --watch",
@@ -24,8 +24,7 @@
     "fastlane:beta": "rnsemup && yarn reinstall && cd android && fastlane beta && cd ..",
     "fastlane:deploy": "rnsemup && yarn reinstall && cd android && fastlane deploy --env production && cd ..",
     "precommit": "lint-staged",
-    "postinstall": "yarn pod",
-    "pod-react-native-channel-plugin": "sed -i '' 's/Assets.car/Images.xcassets/' ios/omf.xcodeproj/project.pbxproj"
+    "postinstall": "yarn pod"
   },
   "dependencies": {
     "@react-native-community/datetimepicker": "^2.3.1",
@@ -45,7 +44,6 @@
     "q": "^1.5.1",
     "react": "16.13.1",
     "react-native": "0.63.1",
-    "react-native-channel-plugin": "^0.4.6",
     "react-native-chart-kit": "file:./src/lib/react-native-chart-kit/",
     "react-native-config": "^0.11.7",
     "react-native-datepicker": "^1.7.2",

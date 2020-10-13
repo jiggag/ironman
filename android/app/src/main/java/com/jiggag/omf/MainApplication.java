@@ -22,8 +22,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
-import com.zoyi.channel.plugin.android.ChannelIO;
-
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
@@ -63,8 +61,6 @@ public class MainApplication extends Application implements ReactApplication {
 //    getHashKey();
     SoLoader.init(this, /* native exopackage */ false);
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
-
-    ChannelIO.initialize(this); // Initialize ChannelIO
   }
 
 
