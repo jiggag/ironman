@@ -69,6 +69,7 @@ GoogleService-Info.plist
 *.aab
 android/release/output.json
 android/google-key.json
+google-key.json
 
 coverage
 .jest
