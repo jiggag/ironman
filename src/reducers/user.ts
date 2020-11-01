@@ -7,7 +7,7 @@ const userSlice = createSlice({
     auth: '',
   },
   reducers: {
-    getUserRequest: state => {
+    getUserRequest: (state, action) => {
       state.auth = '';
       state.isLoading = true;
     },

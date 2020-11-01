@@ -9,7 +9,7 @@ import Config from 'react-native-config';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './store';
 import {
-  Intro, ListNote, CreateNote, DetailNote, UpdateNote, SendVoc, ListVoc
+  Intro, ListNote, CreateNote, DetailNote, UpdateNote, SendVoc, ListVoc,
 } from './pages';
 
 // TODO: 리액트 네비게이션 v5 업데이트
@@ -22,7 +22,7 @@ import {
 // https://reactnavigation.org/docs/upgrading-from-4.x
 // https://reactnavigation.org/docs/getting-started
 
-if (__DEV__) {
+if (__DEV__ && false) {
   const whyDidYouRender = require('@welldone-software/why-did-you-render');
   const ReactRedux = require('react-redux');
   whyDidYouRender(React, {
@@ -42,16 +42,12 @@ export default class App extends React.PureComponent {
 
   async componentDidMount() {
     await messaging().requestPermission();
-    
-    messaging()
-    .subscribeToTopic('test')
-    .then(() => console.log('Subscribed to "ironman" topic!'));
 
     // 포그라운드 상태에서 푸시 받았을때
     messaging().onMessage(async remoteMessage => {
       console.log('A new FCM message arrived!', JSON.stringify(remoteMessage));
     });
-    
+
     // 백그라운드 상테에서 푸시 받았을때
     messaging().setBackgroundMessageHandler(async remoteMessage => {
       console.log('Message handled in the background!', remoteMessage);
@@ -82,7 +78,7 @@ export default class App extends React.PureComponent {
       })
       .catch(() => {});
   }
-  
+
   render() {
     const { isShowBanner } = this.state;
 
@@ -103,15 +99,15 @@ export default class App extends React.PureComponent {
             </NavigationContainer>
           </PersistGate>
         </Provider>
-      {isShowBanner && (
-        <BannerAd
-          unitId={Platform.OS === 'ios' ? Config.ADMOB_UNIT_ID_IOS : Config.ADMOB_UNIT_ID_AOS}
-          size={BannerAdSize.FULL_BANNER}
-          requestOptions={{
-            requestNonPersonalizedAdsOnly: true,
-          }}
-        />
-      )}
+        {isShowBanner && (
+          <BannerAd
+            unitId={Platform.OS === 'ios' ? Config.ADMOB_UNIT_ID_IOS : Config.ADMOB_UNIT_ID_AOS}
+            size={BannerAdSize.FULL_BANNER}
+            requestOptions={{
+              requestNonPersonalizedAdsOnly: true,
+            }}
+          />
+        )}
       </>
     );
   }
