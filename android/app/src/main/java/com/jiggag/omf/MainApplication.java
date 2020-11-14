@@ -8,7 +8,6 @@ import android.util.Base64;
 import android.content.Context;
 import android.util.Log;
 
-import com.facebook.react.BuildConfig;
 import com.facebook.react.PackageList;
 import com.google.android.play.core.missingsplits.MissingSplitsManagerFactory;
 import com.facebook.react.ReactApplication;
