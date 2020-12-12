@@ -349,9 +349,9 @@ PODS:
     - React-cxxreact (= 0.63.1)
     - React-jsi (= 0.63.1)
   - React-jsinspector (0.63.1)
-  - react-native-config (1.4.0):
-    - react-native-config/App (= 1.4.0)
-  - react-native-config/App (1.4.0):
+  - react-native-config (1.4.1):
+    - react-native-config/App (= 1.4.1)
+  - react-native-config/App (1.4.1):
     - React-Core
   - react-native-safe-area-context (0.7.3):
     - React
@@ -710,7 +710,7 @@ SPEC CHECKSUMS:
   React-jsi: b32a31da32e030f30bbf9a8d3a9c8325df9e793f
   React-jsiexecutor: 7ab9cdcdd18d57652fb041f8a147fe9658d4e00a
   React-jsinspector: 2e28bb487e42dda6c94dbfa0c648d1343767a0fb
-  react-native-config: f309b9ac19456dea12325699af51e0fa0217ce6a
+  react-native-config: d8b45133fd13d4f23bd2064b72f6e2c08b2763ed
   react-native-safe-area-context: e200d4433aba6b7e60b52da5f37af11f7a0b0392
   react-native-sensitive-info: 4629b223484a08225c3eb088ff3f91b03097b5e5
   react-native-simple-toast: 6c376bd79b1e255a4bee90a72ead6447f96ea10d
