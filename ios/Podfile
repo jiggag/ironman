@@ -1,13 +1,13 @@
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-platform :ios, '10.0' 
+platform :ios, '10.0'
 
 use_modular_headers!
 
 target 'omf' do
   config = use_native_modules!
-  
+
   use_react_native!(:path => config["reactNativePath"])
 
   pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec', :modular_headers => false
@@ -24,16 +24,4 @@ end
 
 post_install do |installer|
   flipper_post_install(installer)
-  installer.pods_project.targets.each do |target|
-    if target.name == 'react-native-config'
-      phase = target.project.new(Xcodeproj::Project::Object::PBXShellScriptBuildPhase)
-      phase.shell_script = "cd ../../"\
-      " && RNC_ROOT=./node_modules/react-native-config/"\
-      " && export SYMROOT=$RNC_ROOT/ios/ReactNativeConfig"\
-      " && ruby $RNC_ROOT/ios/ReactNativeConfig/BuildDotenvConfig.ruby"
-      
-      target.build_phases << phase
-      target.build_phases.move(phase,0)
-    end
-  end
 end
