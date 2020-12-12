@@ -69,8 +69,12 @@ GoogleService-Info.plist
 *.aab
 android/release/output.json
 android/google-key.json
+google-key.json
 
 coverage
 .jest
 android/sentry.properties
 ios/sentry.properties
+
+# react-native-config codegen
+ios/tmp.xcconfig

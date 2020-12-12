@@ -6,9 +6,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 import messaging from '@react-native-firebase/messaging';
 import admob, { MaxAdContentRating, BannerAdSize, BannerAd } from '@react-native-firebase/admob';
 import Config from 'react-native-config';
-import store from './store';
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from './store';
 import {
-  Intro, ListNote, CreateNote, DetailNote, UpdateNote, SendVoc, ListVoc
+  Intro, ListNote, CreateNote, DetailNote, UpdateNote, SendVoc, ListVoc,
 } from './pages';
 
 // TODO: 리액트 네비게이션 v5 업데이트
@@ -41,16 +42,12 @@ export default class App extends React.PureComponent {
 
   async componentDidMount() {
     await messaging().requestPermission();
-    
-    messaging()
-    .subscribeToTopic('test')
-    .then(() => console.log('Subscribed to "ironman" topic!'));
 
     // 포그라운드 상태에서 푸시 받았을때
     messaging().onMessage(async remoteMessage => {
       console.log('A new FCM message arrived!', JSON.stringify(remoteMessage));
     });
-    
+
     // 백그라운드 상테에서 푸시 받았을때
     messaging().setBackgroundMessageHandler(async remoteMessage => {
       console.log('Message handled in the background!', remoteMessage);
@@ -81,34 +78,36 @@ export default class App extends React.PureComponent {
       })
       .catch(() => {});
   }
-  
+
   render() {
     const { isShowBanner } = this.state;
 
     return (
       <>
         <Provider store={store}>
-          <NavigationContainer>
-            <Stack.Navigator headerMode="none" initialRouteName="Intro">
-              <Stack.Screen name="Intro" component={Intro} />
-              <Stack.Screen name="ListNote" component={ListNote} />
-              <Stack.Screen name="CreateNote" component={CreateNote} />
-              <Stack.Screen name="DetailNote" component={DetailNote} />
-              <Stack.Screen name="UpdateNote" component={UpdateNote} />
-              <Stack.Screen name="SendVoc" component={SendVoc} />
-              <Stack.Screen name="ListVoc" component={ListVoc} />
-            </Stack.Navigator>
-          </NavigationContainer>
+          <PersistGate loading={null} persistor={persistor}>
+            <NavigationContainer>
+              <Stack.Navigator headerMode="none" initialRouteName="Intro">
+                <Stack.Screen name="Intro" component={Intro} />
+                <Stack.Screen name="ListNote" component={ListNote} />
+                <Stack.Screen name="CreateNote" component={CreateNote} />
+                <Stack.Screen name="DetailNote" component={DetailNote} />
+                <Stack.Screen name="UpdateNote" component={UpdateNote} />
+                <Stack.Screen name="SendVoc" component={SendVoc} />
+                <Stack.Screen name="ListVoc" component={ListVoc} />
+              </Stack.Navigator>
+            </NavigationContainer>
+          </PersistGate>
         </Provider>
-      {isShowBanner && (
-        <BannerAd
-          unitId={Platform.OS === 'ios' ? Config.ADMOB_UNIT_ID_IOS : Config.ADMOB_UNIT_ID_AOS}
-          size={BannerAdSize.FULL_BANNER}
-          requestOptions={{
-            requestNonPersonalizedAdsOnly: true,
-          }}
-        />
-      )}
+        {isShowBanner && (
+          <BannerAd
+            unitId={Platform.OS === 'ios' ? Config.ADMOB_UNIT_ID_IOS : Config.ADMOB_UNIT_ID_AOS}
+            size={BannerAdSize.FULL_BANNER}
+            requestOptions={{
+              requestNonPersonalizedAdsOnly: true,
+            }}
+          />
+        )}
       </>
     );
   }
