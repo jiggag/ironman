@@ -158,7 +158,7 @@ const Presenter = memo(({
       onPress={onPress}
       text="수정"
       underlayColor={Constant.WHITE_COLOR}
-      buttonStyle={{ backgroundColor: Constant.MAIN_COLOR, borderRadius: 3 }}
+      buttonStyle={{ backgroundColor: Constant.MAIN_COLOR, borderRadius: 2 }}
     /> */}
   </>
 ));

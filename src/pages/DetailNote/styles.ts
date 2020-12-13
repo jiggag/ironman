@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   inputLine: {
-    borderRadius: 6,
+    borderRadius: 2,
     backgroundColor: Constant.WHITE_COLOR,
     paddingHorizontal: 10,
     elevation: 5,
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
   },
   inputBox: {
-    borderRadius: 6,
+    borderRadius: 2,
     backgroundColor: Constant.WHITE_COLOR,
     padding: 10,
     elevation: 5,
@@ -36,10 +36,10 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
   },
   inputRow: {
-    borderRadius: 6,
+    borderRadius: 2,
     backgroundColor: Constant.WHITE_COLOR,
     padding: 10,
-    marginVertical: 3,
+    marginVertical: 5,
     elevation: 5,
     shadowColor: Constant.SHADOW_COLOR,
     shadowOffset: {

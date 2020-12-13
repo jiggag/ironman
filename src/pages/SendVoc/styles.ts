@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   inputLine: {
-    borderRadius: 6,
+    borderRadius: 2,
     backgroundColor: Constant.WHITE_COLOR,
     paddingHorizontal: 10,
     elevation: 5,

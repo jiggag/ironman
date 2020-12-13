@@ -66,7 +66,7 @@ const Container = ({ route: { params } }) => {
     return () => {
       BackHandler.removeEventListener('hardwareBackPress', onPressHardware);
     };
-  }, [getList, onPressHardware]);
+  }, [getList, isFocused, onPressHardware]);
 
   return (
     <SafeAreaView style={styles.safeAreaView}>

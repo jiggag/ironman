@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
   Text, TouchableOpacity, StyleSheet, StyleProp, ViewStyle, TextStyle,
 } from 'react-native';
@@ -12,16 +12,19 @@ interface ButtonProps {
 }
 const BigButton: React.FC<ButtonProps> = ({
   onPress, text, buttonStyle, textStyle,
-}) => (
-  <TouchableOpacity onPress={onPress} activeOpacity={0.5} style={[styles.button, buttonStyle]}>
-    <Text style={[styles.buttonText, textStyle]}>{text}</Text>
-  </TouchableOpacity>
-);
+}) => {
+  const customButtonStyle = useMemo<StyleProp<ViewStyle>>(() => [styles.button, buttonStyle], [buttonStyle]);
+  return (
+    <TouchableOpacity onPress={onPress} activeOpacity={0.5} style={customButtonStyle}>
+      <Text style={[styles.buttonText, textStyle]}>{text}</Text>
+    </TouchableOpacity>
+  );
+}
 
 export default BigButton;
 
-export const YellowButton = ({ text, onPress }) => {
-  return <BigButton text={text} onPress={onPress} buttonStyle={styles.yellowButton} textStyle={styles.yellowButtonText} />;
+export const MainBigButton: React.FC<ButtonProps> = ({ text, onPress }) => {
+  return <BigButton text={text} onPress={onPress} buttonStyle={styles.mainButton} textStyle={styles.mainButtonText} />;
 };
 
 const styles = StyleSheet.create({
@@ -31,28 +34,29 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginHorizontal: 20,
     marginVertical: 8,
-    borderRadius: 6,
-    elevation: 2,
+    borderRadius: 2,
+    elevation: 4,
     shadowColor: Constant.SHADOW_COLOR,
     shadowOffset: {
-      width: 6,
-      height: 4,
+      width: 0,
+      height: 1,
     },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
+    shadowOpacity: 0.5,
+    shadowRadius: 8,
   },
   buttonText: {
     color: Constant.WHITE_COLOR,
     fontWeight: '600',
     fontSize: 16,
   },
-  yellowButton: {
-    backgroundColor: Constant.WHITE_COLOR,
-    borderWidth: 2,
-    borderColor: Constant.MAIN_COLOR,
+  mainButton: {
+    backgroundColor: Constant.MAIN_COLOR,
+    borderWidth: 0,
     paddingVertical: 20,
+    borderRadius: 2,
   },
-  yellowButtonText: {
-    color: Constant.MAIN_COLOR,
+  mainButtonText: {
+    fontWeight: 'bold',
+    color: Constant.WHITE_COLOR,
   },
 });

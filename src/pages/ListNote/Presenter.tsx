@@ -5,7 +5,6 @@ import styles from './styles';
 import HeaderComponent from './Header';
 import { Header } from '../../components';
 import NoteComponent from './Note';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 interface ListType {
   list: any[];
