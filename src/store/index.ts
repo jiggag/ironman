@@ -29,8 +29,8 @@ const createAppStore = () => {
   const store = createStore(persistedReducer, applyMiddleware(...middlewares));
   sagaMiddleware.run(saga);
   return store;
-}
+};
 const store = createAppStore();
 const persistor = persistStore(store);
 
-export { store, persistor }
+export { store, persistor };

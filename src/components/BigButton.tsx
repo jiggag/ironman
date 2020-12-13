@@ -1,17 +1,28 @@
 import React from 'react';
-import { Text, TouchableOpacity, StyleSheet } from 'react-native';
-import PropTypes from 'prop-types';
+import {
+  Text, TouchableOpacity, StyleSheet, StyleProp, ViewStyle, TextStyle,
+} from 'react-native';
 import Constant from '../utils/constants';
 
-const BigButton = ({
-  onPress, text, buttonStyle, ...rest
+interface ButtonProps {
+  onPress: () => void;
+  text: string;
+  buttonStyle?: StyleProp<ViewStyle>;
+  textStyle?: StyleProp<TextStyle>;
+}
+const BigButton: React.FC<ButtonProps> = ({
+  onPress, text, buttonStyle, textStyle,
 }) => (
-  <TouchableOpacity onPress={onPress} activeOpacity={0.5} style={[styles.button, buttonStyle]} {...rest}>
-    <Text style={styles.buttonText}>{text}</Text>
+  <TouchableOpacity onPress={onPress} activeOpacity={0.5} style={[styles.button, buttonStyle]}>
+    <Text style={[styles.buttonText, textStyle]}>{text}</Text>
   </TouchableOpacity>
 );
 
 export default BigButton;
+
+export const YellowButton = ({ text, onPress }) => {
+  return <BigButton text={text} onPress={onPress} buttonStyle={styles.yellowButton} textStyle={styles.yellowButtonText} />;
+};
 
 const styles = StyleSheet.create({
   button: {
@@ -35,15 +46,13 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontSize: 16,
   },
+  yellowButton: {
+    backgroundColor: Constant.WHITE_COLOR,
+    borderWidth: 2,
+    borderColor: Constant.MAIN_COLOR,
+    paddingVertical: 20,
+  },
+  yellowButtonText: {
+    color: Constant.MAIN_COLOR,
+  },
 });
-
-BigButton.defaultProps = {
-  onPress: () => {},
-  text: '',
-  buttonStyle: {},
-};
-BigButton.propTypes = {
-  onPress: PropTypes.func,
-  text: PropTypes.string,
-  buttonStyle: PropTypes.any,
-};
