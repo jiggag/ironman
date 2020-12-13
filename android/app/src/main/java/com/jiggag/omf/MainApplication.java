@@ -8,7 +8,6 @@ import android.util.Base64;
 import android.content.Context;
 import android.util.Log;
 
-import com.facebook.react.BuildConfig;
 import com.facebook.react.PackageList;
 import com.google.android.play.core.missingsplits.MissingSplitsManagerFactory;
 import com.facebook.react.ReactApplication;
@@ -21,8 +20,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
-
-import com.zoyi.channel.plugin.android.ChannelIO;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -63,8 +60,6 @@ public class MainApplication extends Application implements ReactApplication {
 //    getHashKey();
     SoLoader.init(this, /* native exopackage */ false);
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
-
-    ChannelIO.initialize(this); // Initialize ChannelIO
   }
 
 
@@ -104,7 +99,7 @@ public class MainApplication extends Application implements ReactApplication {
          We use reflection here to pick up the class that initializes Flipper,
         since Flipper library is not available in release mode
         */
-        Class<?> aClass = Class.forName("com.jiggag.omf");
+        Class<?> aClass = Class.forName("com.jiggag.omf.ReactNativeFlipper");
         aClass
                 .getMethod("initializeFlipper", Context.class, ReactInstanceManager.class)
                 .invoke(null, context, reactInstanceManager);

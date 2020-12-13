@@ -5,7 +5,7 @@ import styles from './styles';
 
 const Presenter = memo(({ onPress }: { onPress: () => void}) => (
   <View style={{ flex: 1, justifyContent: 'flex-end' }}>
-    <BigButton onPress={onPress} text="시작하기" buttonStyle={null} />
+    <BigButton onPress={onPress} text="시작하기" />
     <View style={styles.join}>
       <TouchableOpacity onPress={onPress} activeOpacity={0.5}>
         <Text style={styles.joinText}>회원가입</Text>

@@ -24,6 +24,12 @@ platform :android do
   desc "Beta a new version to the Google Play"
   lane :beta do
     gradle(task: "clean bundleRelease")
+    upload_to_google_drive(
+      drive_keyfile: "./fastlane/googleApiKey.json",
+      service_account: false,
+      folder_id: ENV['GOOGLE_FOLDER_ID'],
+      upload_files: ["./app/build/outputs/bundle/release/app-release.aab"]
+    )
     supply(track: "beta", track_promote_to: "beta")
   end
 
