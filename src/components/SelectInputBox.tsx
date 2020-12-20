@@ -10,13 +10,14 @@ interface SelectInputBoxProps {
     id: number;
     value: string;
   }[];
-  onChangeNote: (param: Record<string, Record<number, string>>) => void;
   inputValue: Record<number, string>;
   inputType: string;
   title: string;
+  editable?: boolean;
+  onChangeNote?: (param: Record<string, Record<number, string>>) => void;
 }
 const SelectInputBox = memo(({
-  title, data, onChangeNote, inputValue, inputType,
+  title, data, onChangeNote, inputValue, inputType, editable = true,
 }: SelectInputBoxProps) => {
   return (
     <View marginB-10>
@@ -29,12 +30,13 @@ const SelectInputBox = memo(({
           <View flex-3>
             <TextInput
               scrollEnabled={false}
-              placeholder="입력하세요"
+              placeholder={editable ? '입력하세요' : ''}
               underlineColorAndroid="transparent"
-              onChangeText={value => onChangeNote({ [inputType]: { ...inputValue, [id]: value } })}
+              onChangeText={editable && onChangeNote ? value => onChangeNote({ [inputType]: { ...inputValue, [id]: value } }) : () => null}
               value={inputValue && inputValue[id]}
               placeholderTextColor={Constant.PLACEHOLDER_COLOR}
               multiline
+              editable={editable}
             />
           </View>
         </View>

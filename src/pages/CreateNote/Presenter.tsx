@@ -63,7 +63,7 @@ const Presenter = memo(({
             />
           </View>
         </View>
-        <SelectRadioBox data={stateList} title="상태" inputValue={state} inputType="weather" onChangeNote={onChangeNote} />
+        <SelectRadioBox data={stateList} title="상태" inputValue={state} inputType="state" onChangeNote={onChangeNote} />
         <SelectRadioBox data={weatherList} title="날씨" inputValue={weather} inputType="weather" onChangeNote={onChangeNote} />
         <SelectInputBox data={foodList} title="식단" inputValue={food} inputType="food" onChangeNote={onChangeNote} />
         <SelectInputBox data={doneList} title="한 일" inputValue={done} inputType="done" onChangeNote={onChangeNote} />
