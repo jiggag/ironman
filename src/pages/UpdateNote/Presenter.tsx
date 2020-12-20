@@ -1,28 +1,23 @@
 import React, { memo } from 'react';
-import { TextInput, ScrollView, Text } from 'react-native';
+import { TextInput, ScrollView } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import { View } from 'react-native-ui-lib';
 import moment from 'moment';
 import styles from './styles';
-import { RadioButton, SubTitle, Header } from '../../components';
+import { SubTitle, Header } from '../../components';
 import {
   stateList, weatherList, foodList, doneList,
 } from '../../utils/common';
 import Constant from '../../utils/constants';
+import SelectRadioBox from '../../components/SelectRadioBox';
+import SelectInputBox from '../../components/SelectInputBox';
+import { NoteData } from '../../types';
 
 interface UpdateType {
   onPressBack: () => void;
   onPress: () => void;
-  onChangeNote: (param: any) => void;
-  note: {
-    title: string;
-    date: number;
-    food: object;
-    done: object;
-    etc:string;
-    state: number;
-    weather: number;
-  };
+  onChangeNote: (param: Record<string, string | number | Record<number, string>>) => void;
+  note: NoteData;
 }
 
 const Presenter = memo(({
@@ -67,77 +62,10 @@ const Presenter = memo(({
             />
           </View>
         </View>
-        <View marginB-10>
-          <SubTitle title="상태" />
-          <View row>
-            {stateList.map(({ id, value }) => (
-              <View flex left key={id}>
-                <RadioButton onPress={() => onChangeNote({ state: id })} value={value} isSelected={state === id} />
-              </View>
-            ))}
-          </View>
-        </View>
-        <View marginB-10>
-          <SubTitle title="날씨" />
-          <View row>
-            {weatherList
-              .filter(({ visible }) => visible)
-              .filter(({ visible }) => visible)
-              .map(({ id, value }) => (
-                <View flex left key={id}>
-                  <RadioButton
-                    onPress={() => onChangeNote({ weather: id })}
-                    value={value}
-                    isSelected={weather === id}
-                  />
-                </View>
-              ))}
-          </View>
-        </View>
-        <View marginB-10>
-          <SubTitle title="식단" />
-          {foodList.map(({ id, value }) => (
-            <View style={styles.inputRow} flex row key={id}>
-              <View flex-1>
-                <Text>{value}</Text>
-              </View>
-              <View flex-3>
-                <TextInput
-                  scrollEnabled={false}
-                  style={styles.input}
-                  placeholder="입력하세요"
-                  underlineColorAndroid="transparent"
-                  onChangeText={value => onChangeNote({ food: { ...food, [id]: value } })}
-                  value={food && food[id]}
-                  placeholderTextColor={Constant.PLACEHOLDER_COLOR}
-                  multiline
-                />
-              </View>
-            </View>
-          ))}
-        </View>
-        <View marginB-10>
-          <SubTitle title="한 일" />
-          {doneList.map(({ id, value }) => (
-            <View style={styles.inputRow} flex row key={id}>
-              <View flex-1>
-                <Text>{value}</Text>
-              </View>
-              <View flex-3>
-                <TextInput
-                  scrollEnabled={false}
-                  style={styles.input}
-                  placeholder="입력하세요"
-                  underlineColorAndroid="transparent"
-                  onChangeText={value => onChangeNote({ done: { ...done, [id]: value } })}
-                  value={done && done[id]}
-                  placeholderTextColor={Constant.PLACEHOLDER_COLOR}
-                  multiline
-                />
-              </View>
-            </View>
-          ))}
-        </View>
+        <SelectRadioBox data={stateList} title="상태" inputValue={state} inputType="state" onChangeNote={onChangeNote} />
+        <SelectRadioBox data={weatherList} title="날씨" inputValue={weather} inputType="weather" onChangeNote={onChangeNote} />
+        <SelectInputBox data={foodList} title="식단" inputValue={food} inputType="food" onChangeNote={onChangeNote} />
+        <SelectInputBox data={doneList} title="한 일" inputValue={done} inputType="done" onChangeNote={onChangeNote} />
         <View marginB-10>
           <SubTitle title="기타" />
           <View style={styles.inputBox}>

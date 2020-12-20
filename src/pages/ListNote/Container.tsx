@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { BackHandler } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -11,13 +11,13 @@ import { deleteAccessToken } from '../../utils/auth';
 import { getListRequest } from '../../reducers/note';
 import styles from './styles';
 
-let isBackPress = false;
 const Container = ({ route: { params } }) => {
   const navigation = useNavigation();
   const isFocused = useIsFocused();
   const dispatch = useDispatch();
   const { list, graph, isLoading } = useSelector(store => store.note);
   const getList = useCallback(isPaging => dispatch(getListRequest(isPaging)), [dispatch]);
+  const isBackPress = useRef<boolean>(false);
 
   const onActionToCreate = useCallback(() => navigation.navigate('CreateNote'), [navigation]);
 
@@ -36,14 +36,14 @@ const Container = ({ route: { params } }) => {
 
   const onPressHardware = useCallback(() => {
     if (isFocused) {
-      if (!isBackPress) {
-        isBackPress = true;
+      if (!isBackPress.current) {
+        isBackPress.current = true;
         Toast.showWithGravity('다시 한번 요청 시 로그아웃 할 수 있습니다', Toast.SHORT, Toast.CENTER);
       } else {
         onPressBack();
       }
       setTimeout(() => {
-        isBackPress = false;
+        isBackPress.current = false;
       }, 1000);
       return true;
     }

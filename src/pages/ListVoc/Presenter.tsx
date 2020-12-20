@@ -1,11 +1,12 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 import { Text, View } from 'react-native-ui-lib';
-import { FlatList } from 'react-native';
+import { FlatList, ListRenderItemInfo } from 'react-native';
 import styles, { Title, Content } from './styles';
 import { Header } from '../../components';
+import { VocData } from '../../types';
 
-interface VocType {
-  list: any[],
+interface VocProps {
+  list: VocData[],
   onPressBack: () => void,
 }
 
@@ -15,24 +16,34 @@ const VocComponent = ({ title, content }) => {
       <Title>{title}</Title>
       <Content>{content}</Content>
     </View>
-  )
+  );
 };
 
-const Presenter = memo(({ list, onPressBack }: VocType) => (
-  <>
-    <Header onPress={onPressBack} />
-    <FlatList
-      style={styles.container}
-      ListEmptyComponent={(
-        <View style={styles.emptyCard}>
-          <Text>없음</Text>
-        </View>
-      )}
-      data={list}
-      renderItem={({ item }) => <VocComponent {...item} />}
-      keyExtractor={(item: { id: number }, index) => `${item.id}${index}`}
-    />
-  </>
+const ListEmptyComponent = memo(() => (
+  <View marginV-50 style={styles.emptyCard}>
+    <Text>등록된 문의사항이 없습니다</Text>
+  </View>
 ));
+
+const Presenter = memo(({ list, onPressBack }: VocProps) => {
+  const keyExtractor = useCallback((item, index) => `${item.id}${index}`, []);
+
+  const renderItem = useCallback(({ item }: ListRenderItemInfo<VocData>) => (
+    <VocComponent {...item} />
+  ), []);
+
+  return (
+    <>
+      <Header onPress={onPressBack} />
+      <FlatList
+        style={styles.container}
+        ListEmptyComponent={ListEmptyComponent}
+        data={list}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
+      />
+    </>
+  );
+});
 
 export default Presenter;

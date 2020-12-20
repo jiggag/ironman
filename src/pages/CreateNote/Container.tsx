@@ -9,6 +9,7 @@ import { handleAlert } from '../../utils';
 import Presenter from './Presenter';
 import styles from './styles';
 import { createNoteRequest } from '../../reducers/note';
+import { NoteData } from '../../types';
 
 const Container = () => {
   const navigation = useNavigation();
@@ -19,13 +20,14 @@ const Container = () => {
     Etc 기타: text
     State 상태: radio [완전 좋음, 조금 좋음, 그럭저럭, 조금 심함, 너무 심함]
   */
-  const [note, setNote] = useState({
-    title: null,
+  const [note, setNote] = useState<NoteData>({
+    id: -1,
+    title: '',
     date: moment().valueOf(),
     weather: 3,
-    food: null,
-    done: null,
-    etc: null,
+    food: {},
+    done: {},
+    etc: '',
     state: 1,
   });
   const [image] = useState(null);

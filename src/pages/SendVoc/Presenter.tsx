@@ -4,21 +4,21 @@ import { View } from 'react-native-ui-lib';
 import styles from './styles';
 import { SubTitle, Header } from '../../components';
 import Constant from '../../utils/constants';
+import { VocData } from '../../types';
 
 interface VocType {
   state: {
     title: string,
     content: string,
   },
-  onChangeText: (value: {
-    title?: string,
-    content?: string,
-  }) => void,
+  onChangeText: (value: Partial<VocData>) => void,
   onPressBack: () => void,
   onPress: () => void,
 }
 
-const Presenter = memo(({ state: { title, content }, onChangeText, onPressBack, onPress }: VocType) => (
+const Presenter = memo(({
+  state: { title, content }, onChangeText, onPressBack, onPress,
+}: VocType) => (
   <>
     <Header onPress={onPressBack} onPressRightButton={onPress} type="SEND" />
     <ScrollView style={styles.container}>

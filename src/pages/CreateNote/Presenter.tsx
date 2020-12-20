@@ -11,20 +11,13 @@ import {
 import Constant from '../../utils/constants';
 import SelectInputBox from '../../components/SelectInputBox';
 import SelectRadioBox from '../../components/SelectRadioBox';
+import { NoteData } from '../../types';
 
 interface NoteType {
   onPressBack: () => void;
-  note: {
-    title: string;
-    date: number;
-    food: Record<number, string>;
-    done: Record<number, string>;
-    etc: string;
-    state: number;
-    weather: number;
-  };
+  note: NoteData;
   onPress: () => void;
-  onChangeNote: (param: any) => void;
+  onChangeNote: (param: Record<string, string | number | Record<number, string>>) => void;
 }
 
 const Presenter = memo(({

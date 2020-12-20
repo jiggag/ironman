@@ -7,16 +7,12 @@ import { TextInput, SubTitle, Header } from '../../components';
 import Constant from '../../utils/constants';
 import { foodList, doneList } from '../../utils/common';
 import SelectInputBox from '../../components/SelectInputBox';
+import { NoteData } from '../../types';
 
 
 interface DetailType {
   onPressBack: () => void;
-  note: {
-    title: string;
-    date: number;
-    food: Record<number, string>;
-    done: Record<number, string>;
-    etc: string;
+  note: NoteData & {
     stateText: string;
     weatherText: string;
   };
