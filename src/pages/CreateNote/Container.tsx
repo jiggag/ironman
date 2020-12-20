@@ -33,7 +33,7 @@ const Container = () => {
   const { isLoading } = useSelector(store => store.note);
   const createNote = useCallback(param => dispatch(createNoteRequest(param)), [dispatch]);
 
-  const onPress = () => {
+  const onPress = useCallback(() => {
     if (!note.title) {
       return handleAlert('', '제목을 입력해주세요', () => {});
     }
@@ -50,11 +50,11 @@ const Container = () => {
       cbSuccess: () => navigation.navigate('ListNote', { update: true }),
       cbFailure: message => handleAlert('노트 생성 실패', message, () => {}),
     });
-  };
+  }, [createNote, image, navigation, note]);
 
-  const onChangeNote = value => {
-    setNote({ ...note, ...value });
-  };
+  const onChangeNote = useCallback((value: Record<string, string | number | Record<number, string>>) => {
+    setNote((prev) => ({ ...prev, ...value }));
+  }, []);
 
   // const onPressImage = () => {
   // const options = {
