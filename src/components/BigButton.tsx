@@ -19,7 +19,7 @@ const BigButton: React.FC<ButtonProps> = ({
       <Text style={[styles.buttonText, textStyle]}>{text}</Text>
     </TouchableOpacity>
   );
-}
+};
 
 export default BigButton;
 
