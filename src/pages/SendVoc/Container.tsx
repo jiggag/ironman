@@ -1,14 +1,14 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import Spinner from 'react-native-loading-spinner-overlay';
-import { RewardedAd, RewardedAdEventType, TestIds } from '@react-native-firebase/admob';
+import { RewardedAd, RewardedAdEventType } from '@react-native-firebase/admob';
 import Config from 'react-native-config';
 import Presenter from './Presenter';
 import styles from './styles';
 import { sendVocRequest } from '../../reducers/voc';
+import { VocData } from '../../types';
 
 const rewarded = RewardedAd.createForAdRequest(Config.ADMOB_UNIT_REWARD_ID, {
   requestNonPersonalizedAdsOnly: true,
@@ -20,7 +20,7 @@ const Container = () => {
   const { isLoading } = useSelector(store => store.voc);
   const [state, setState] = useState({
     title: '',
-    content: ''
+    content: '',
   });
 
   const onPressBack = useCallback(() => navigation.goBack(), [navigation]);
@@ -28,17 +28,14 @@ const Container = () => {
     rewarded.show();
   }, []);
 
-  const onChangeText = (value: {
-    title?: string,
-    content?: string,
-  }) => {
-    setState({ ...state, ...value });
-  };
+  const onChangeText = useCallback((value: Partial<VocData>) => {
+    setState(prev => ({ ...prev, ...value }));
+  }, []);
 
   useEffect(() => {
     const eventListener = rewarded.onAdEvent((type, error, reward) => {
       if (type === RewardedAdEventType.LOADED) {
-        console.log("reward loaded")
+        console.log('reward loaded');
       }
 
       if (type === RewardedAdEventType.EARNED_REWARD) {
@@ -49,12 +46,12 @@ const Container = () => {
         });
       }
     });
-    
+
     rewarded.load();
     return () => {
       eventListener();
     };
-  }, []);
+  }, [dispatch, navigation.goBack]);
 
   return (
     <SafeAreaView style={styles.safeAreaView}>

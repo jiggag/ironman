@@ -9,6 +9,7 @@ import { handleAlert } from '../../utils';
 import Presenter from './Presenter';
 import styles from './styles';
 import { createNoteRequest } from '../../reducers/note';
+import { NoteData } from '../../types';
 
 const Container = () => {
   const navigation = useNavigation();
@@ -19,13 +20,14 @@ const Container = () => {
     Etc 기타: text
     State 상태: radio [완전 좋음, 조금 좋음, 그럭저럭, 조금 심함, 너무 심함]
   */
-  const [note, setNote] = useState({
-    title: null,
+  const [note, setNote] = useState<NoteData>({
+    id: -1,
+    title: '',
     date: moment().valueOf(),
     weather: 3,
-    food: null,
-    done: null,
-    etc: null,
+    food: {},
+    done: {},
+    etc: '',
     state: 1,
   });
   const [image] = useState(null);
@@ -33,7 +35,7 @@ const Container = () => {
   const { isLoading } = useSelector(store => store.note);
   const createNote = useCallback(param => dispatch(createNoteRequest(param)), [dispatch]);
 
-  const onPress = () => {
+  const onPress = useCallback(() => {
     if (!note.title) {
       return handleAlert('', '제목을 입력해주세요', () => {});
     }
@@ -50,11 +52,11 @@ const Container = () => {
       cbSuccess: () => navigation.navigate('ListNote', { update: true }),
       cbFailure: message => handleAlert('노트 생성 실패', message, () => {}),
     });
-  };
+  }, [createNote, image, navigation, note]);
 
-  const onChangeNote = value => {
-    setNote({ ...note, ...value });
-  };
+  const onChangeNote = useCallback((value: Record<string, string | number | Record<number, string>>) => {
+    setNote((prev) => ({ ...prev, ...value }));
+  }, []);
 
   // const onPressImage = () => {
   // const options = {

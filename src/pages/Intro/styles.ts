@@ -6,13 +6,9 @@ const styles = StyleSheet.create({
     backgroundColor: Constant.WHITE_COLOR,
     flex: 1,
   },
-  join: {
-    alignItems: 'center',
-  },
-  joinText: {
-    fontSize: 14,
-    color: Constant.MAIN_COLOR,
-    textDecorationLine: 'underline',
+  wrapper: {
+    flex: 1,
+    justifyContent: 'center',
   },
 });
 

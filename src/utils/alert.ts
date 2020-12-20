@@ -1,6 +1,6 @@
 import { Alert } from 'react-native';
 
-const handleAlert = (title: string, message: string, onPress: any) => {
+const handleAlert = (title: string, message: string, onPress: () => void) => {
   Alert.alert(
     title,
     message,
@@ -13,7 +13,7 @@ const handleAlert = (title: string, message: string, onPress: any) => {
     { cancelable: false },
   );
 };
-const handleConfirm = (title: string, message: string, onPress: any, onPressCancel: any = () => {}) => {
+const handleConfirm = (title: string, message: string, onPress: () => void, onPressCancel?: () => void) => {
   Alert.alert(
     title,
     message,
@@ -24,7 +24,7 @@ const handleConfirm = (title: string, message: string, onPress: any, onPressCanc
       },
       {
         text: '취소',
-        onPress: onPressCancel,
+        onPress: onPressCancel || (() => null),
       },
     ],
     { cancelable: false },

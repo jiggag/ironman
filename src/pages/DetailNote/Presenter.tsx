@@ -1,21 +1,18 @@
 import React, { memo } from 'react';
-import { TextInput, Text, ScrollView } from 'react-native';
+import { Text, ScrollView } from 'react-native';
 import { View } from 'react-native-ui-lib';
 import moment from 'moment';
 import styles from './styles';
-import { SubTitle, Header } from '../../components';
+import { TextInput, SubTitle, Header } from '../../components';
 import Constant from '../../utils/constants';
 import { foodList, doneList } from '../../utils/common';
+import SelectInputBox from '../../components/SelectInputBox';
+import { NoteData } from '../../types';
 
 
 interface DetailType {
   onPressBack: () => void;
-  note: {
-    title: string;
-    date: number;
-    food: number;
-    done: number;
-    etc: string;
+  note: NoteData & {
     stateText: string;
     weatherText: string;
   };
@@ -48,7 +45,6 @@ const Presenter = memo(({
           <SubTitle title="제목" />
           <View style={styles.inputLine}>
             <TextInput
-              style={styles.input}
               underlineColorAndroid="transparent"
               value={title}
               placeholderTextColor={Constant.PLACEHOLDER_COLOR}
@@ -68,53 +64,12 @@ const Presenter = memo(({
             <Text>{weatherText}</Text>
           </View>
         </View>
-        <View marginB-10>
-          <SubTitle title="식단" />
-          {foodList.map(({ id, value }) => (
-            <View style={styles.inputRow} flex row key={id}>
-              <View flex-1>
-                <Text>{value}</Text>
-              </View>
-              <View flex-3>
-                <TextInput
-                  scrollEnabled={false}
-                  style={styles.input}
-                  underlineColorAndroid="transparent"
-                  value={food && food[id]}
-                  placeholderTextColor={Constant.PLACEHOLDER_COLOR}
-                  multiline
-                  editable={false}
-                />
-              </View>
-            </View>
-          ))}
-        </View>
-        <View marginB-10>
-          <SubTitle title="한 일" />
-          {doneList.map(({ id, value }) => (
-            <View style={styles.inputRow} flex row key={id}>
-              <View flex-1>
-                <Text>{value}</Text>
-              </View>
-              <View flex-3>
-                <TextInput
-                  scrollEnabled={false}
-                  style={styles.input}
-                  underlineColorAndroid="transparent"
-                  value={done && done[id]}
-                  placeholderTextColor={Constant.PLACEHOLDER_COLOR}
-                  multiline
-                  editable={false}
-                />
-              </View>
-            </View>
-          ))}
-        </View>
+        <SelectInputBox data={foodList} title="식단" inputValue={food} inputType="food" editable={false} />
+        <SelectInputBox data={doneList} title="한 일" inputValue={done} inputType="food" editable={false} />
         <View marginB-10>
           <SubTitle title="기타" />
           <View style={styles.inputBox}>
             <TextInput
-              style={styles.input}
               underlineColorAndroid="transparent"
               value={etc}
               placeholderTextColor={Constant.PLACEHOLDER_COLOR}

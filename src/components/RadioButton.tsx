@@ -3,13 +3,13 @@ import { View } from 'react-native-ui-lib';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Constant from '../utils/constants';
 
-interface RadioButtonType {
+interface RadioButtonProps {
   onPress: () => void;
   value: string;
   isSelected: boolean;
 }
 
-const RadioButton = memo(({ onPress, value, isSelected }: RadioButtonType) => (
+const RadioButton = memo<RadioButtonProps>(({ onPress, value, isSelected }) => (
   <TouchableOpacity activeOpacity={0.5} style={styles.button} onPress={onPress}>
     <View row>
       <View style={[styles.radio, !!isSelected && styles.selectedRadio]} />

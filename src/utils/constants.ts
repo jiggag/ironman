@@ -1,5 +1,5 @@
 const Constant = {
-  MAIN_COLOR: '#ec2',
+  MAIN_COLOR: '#209EFF',
   SUB_COLOR: '#eee',
   HIGHLIGHT_SUB_COLOR: '#ddd',
   WHITE_COLOR: '#ffffff',

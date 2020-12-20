@@ -17,23 +17,24 @@ const TYPE = {
   CREATE: '생성',
   UPDATE: '수정',
   SAVE: '저장',
-  SEND: '보내기'
+  SEND: '보내기',
 };
 
-const Header = memo(({
+const Header = memo<HeaderType>(({
   onPress, onPressRightButton, onPressDelete, type,
-}: HeaderType) => {
-  const navigation = useNavigation();
+}) => {
   const { auth } = useSelector(store => store.user);
+  const navigation = useNavigation();
+
   const onPressVoc = useCallback(() => {
-    navigation.navigate(auth === "ADMIN" ? "ListVoc" : "SendVoc")
-  }, []);
-  
+    navigation.navigate(auth === 'ADMIN' ? 'ListVoc' : 'SendVoc');
+  }, [auth, navigation]);
+
   return (
-    <View row style={styles.header}>
+    <View row centerV paddingH-20 style={styles.header}>
       <View flex left>
         <TouchableOpacity activeOpacity={0.8} onPress={onPress}>
-          <View paddingV-2>
+          <View flex center>
             <Text style={styles.backButtonText}>뒤로가기</Text>
           </View>
         </TouchableOpacity>
@@ -60,7 +61,7 @@ const Header = memo(({
         style={styles.backButtonText}
       />
     </View>
-  )
+  );
 });
 
 export default Header;
@@ -68,8 +69,7 @@ export default Header;
 const styles = StyleSheet.create({
   header: {
     backgroundColor: Constant.WHITE_COLOR,
-    paddingVertical: 8,
-    paddingHorizontal: 10,
+    height: 50,
     elevation: 5,
     shadowColor: Constant.SHADOW_COLOR,
     shadowOffset: {
@@ -84,10 +84,12 @@ const styles = StyleSheet.create({
     color: Constant.SHADOW_COLOR,
     fontWeight: '600',
     fontSize: 14,
+    paddingHorizontal: 10,
   },
   deleteButtonText: {
     color: Constant.WARN_COLOR,
     fontWeight: '600',
     fontSize: 14,
+    paddingHorizontal: 10,
   },
 });

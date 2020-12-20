@@ -44,7 +44,7 @@ function* workGetList(action) {
     const { page, limit } = note;
     const newPage = action.payload ? page + 1 : 1;
     const { return_code, return_data } = yield call(RESTful, 'GET', '/list', { page: newPage, limit });
-    if (return_code === 200) {
+    if (return_code === RETURN_CODE.SUCCESS) {
       const formatted = yield call(format, return_data, note, newPage);
       yield put(getListSuccess(formatted));
     } else {
@@ -118,7 +118,7 @@ function* workCreateNote(action) {
         yield call(AsyncStorage.setItem, '@topic', topic);
         yield messaging().subscribeToTopic(topic).then(() => console.log(`Subscribed to ${topic} topic!`));
       }
-      
+
       yield call(cbSuccess);
       yield put(createNoteSuccess(note));
     } else {

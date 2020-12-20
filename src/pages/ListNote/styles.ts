@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   noteCard: {
-    borderRadius: 3,
+    borderRadius: 2,
   },
   dateText: {
     fontSize: 12,
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   },
   itemComponent: {
     backgroundColor: Constant.WHITE_COLOR,
-    borderRadius: 6,
+    borderRadius: 2,
     elevation: 5,
     shadowColor: Constant.SHADOW_COLOR,
     shadowOffset: {
