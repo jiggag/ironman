@@ -1,7 +1,7 @@
+import Sentry from '@sentry/react-native';
 import axios, { Method } from 'axios';
 import Q from 'q';
 import Config from 'react-native-config';
-import Sentry from '@sentry/react-native';
 import { getAccessToken } from './auth';
 
 export const RETURN_CODE = Object.freeze({
@@ -35,7 +35,7 @@ const createInstance = async () => {
     throw Error(e);
   }
 };
-export default (method: Method, url: string, params?: object) => {
+export default (method: Method, url: string, params?: unknown) => {
   try {
     const deferred = Q.defer();
     createInstance()
@@ -61,7 +61,7 @@ export default (method: Method, url: string, params?: object) => {
         }
       })
       .then(({ data }) => {
-        deferred.resolve(data);
+        return deferred.resolve(data);
       })
       .catch(err => {
         deferred.reject(err);
