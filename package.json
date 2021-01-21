@@ -25,7 +25,9 @@
     "fastlane:beta": "rnsemup && yarn reinstall && cd android && fastlane beta && cd ..",
     "fastlane:deploy": "rnsemup && yarn reinstall && cd android && fastlane deploy --env production && cd ..",
     "precommit": "lint-staged",
-    "postinstall": "yarn pod"
+    "postinstall": "yarn pod",
+    "android:dev-code-push": "appcenter codepush release-react -a jiggag/ironman-android -d Staging",
+    "android:live-code-push": "appcenter codepush release-react -a jiggag/ironman-android -d Production"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.11.0",
@@ -50,6 +52,7 @@
     "react": "16.13.1",
     "react-native": "0.63.1",
     "react-native-chart-kit": "file:./src/lib/react-native-chart-kit/",
+    "react-native-code-push": "^7.0.0",
     "react-native-config": "^1.4.1",
     "react-native-datepicker": "^1.7.2",
     "react-native-fast-image": "^7.0.2",
