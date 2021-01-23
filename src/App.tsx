@@ -1,16 +1,16 @@
 import React from 'react';
 import { Platform } from 'react-native';
-import { Provider } from 'react-redux';
+import admob, { MaxAdContentRating, BannerAdSize, BannerAd } from '@react-native-firebase/admob';
+import messaging from '@react-native-firebase/messaging';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import messaging from '@react-native-firebase/messaging';
-import admob, { MaxAdContentRating, BannerAdSize, BannerAd } from '@react-native-firebase/admob';
 import Config from 'react-native-config';
+import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import { store, persistor } from './store';
 import {
   Intro, ListNote, CreateNote, DetailNote, UpdateNote, SendVoc, ListVoc,
 } from './pages';
+import { store, persistor } from './store';
 
 // TODO: 리액트 네비게이션 v5 업데이트
 //
@@ -23,13 +23,12 @@ import {
 // https://reactnavigation.org/docs/getting-started
 
 if (__DEV__ && false) {
+  // eslint-disable-next-line import/no-extraneous-dependencies
   const whyDidYouRender = require('@welldone-software/why-did-you-render');
   const ReactRedux = require('react-redux');
   whyDidYouRender(React, {
     trackAllPureComponents: true,
-    trackExtraHooks: [
-      [ReactRedux, 'useSelector'],
-    ],
+    trackExtraHooks: [[ReactRedux, 'useSelector']],
   });
 }
 
@@ -58,11 +57,12 @@ export default class App extends React.PureComponent {
       .getInitialNotification()
       .then(remoteMessage => {
         if (remoteMessage) {
-          console.log(
-            'Notification caused app to open from quit state:',
-            remoteMessage,
-          );
+          console.log('Notification caused app to open from quit state:', remoteMessage);
         }
+        return remoteMessage;
+      })
+      .catch(err => {
+        console.log('Error', err);
       });
 
     admob()
@@ -71,13 +71,36 @@ export default class App extends React.PureComponent {
         tagForChildDirectedTreatment: false,
         tagForUnderAgeOfConsent: false,
       })
-      .then(() => {
+      .then(res => {
         this.setState({
           isShowBanner: true,
         });
+        return res;
       })
-      .catch(() => {});
+      .catch(e => {
+        console.log('>>> admob request error', e);
+      });
   }
+
+  onAdClosed = () => {
+    console.log('>>> onAdClosed');
+  };
+
+  onAdFailedToLoad = () => {
+    console.log('>>> onAdFailedToLoad');
+  };
+
+  onAdLeftApplication = () => {
+    console.log('>>> onAdLeftApplication');
+  };
+
+  onAdLoaded = () => {
+    console.log('>>> onAdLoaded');
+  };
+
+  onAdOpened = () => {
+    console.log('>>> onAdOpened');
+  };
 
   render() {
     const { isShowBanner } = this.state;
@@ -106,6 +129,11 @@ export default class App extends React.PureComponent {
             requestOptions={{
               requestNonPersonalizedAdsOnly: true,
             }}
+            onAdClosed={this.onAdClosed}
+            onAdFailedToLoad={this.onAdFailedToLoad}
+            onAdLeftApplication={this.onAdLeftApplication}
+            onAdLoaded={this.onAdLoaded}
+            onAdOpened={this.onAdOpened}
           />
         )}
       </>
