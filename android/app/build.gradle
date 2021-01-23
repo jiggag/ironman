@@ -157,6 +157,12 @@ android {
         }
     }
     signingConfigs {
+        debug {
+            storeFile file('debug.keystore')
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+        }
         release {
             Properties properties = new Properties()
             properties.load(project.rootProject.file('local.properties').newDataInputStream())
@@ -167,6 +173,10 @@ android {
         }
     }
     buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+            resValue "string", "CodePushDeploymentKey", '""'
+        }
         release {
             resValue "string", "CodePushDeploymentKey", project.env.get("CODE_PUSH_AOS_KEY")
             signingConfig signingConfigs.release
