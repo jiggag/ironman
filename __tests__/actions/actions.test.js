@@ -1,4 +1,3 @@
-
 const REQUEST = 'REQUEST';
 const SUCCESS = 'SUCCESS';
 const FAILURE = 'FAILURE';
@@ -16,7 +15,7 @@ const action = (type, payload = {}) => {
 
 const createActionFunc = type => payload => {
   return action(type, payload);
-}
+};
 
 const createAction = type => {
   return {
@@ -40,9 +39,9 @@ it('Create Action', () => {
     SUCCESS: 'GET_LIST_SUCCESS',
     FAILURE: 'GET_LIST_FAILURE',
   });
-  
+
   expect(createActionFunc('GET_LIST_REQUEST')(null)).toMatchObject({
     type: 'GET_LIST_REQUEST',
     payload: null,
   });
-})
+});

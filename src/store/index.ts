@@ -1,17 +1,14 @@
-import { getDefaultMiddleware } from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-community/async-storage';
-import createSagaMiddleware from 'redux-saga';
+import { getDefaultMiddleware } from '@reduxjs/toolkit';
 import { createStore, applyMiddleware } from 'redux';
 import { persistReducer, persistStore } from 'redux-persist';
+import createSagaMiddleware from 'redux-saga';
 import reducer from '../reducers';
 import saga from '../sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 
-const middlewares = [
-  ...getDefaultMiddleware({ thunk: false, serializableCheck: false }),
-  sagaMiddleware,
-];
+const middlewares = [...getDefaultMiddleware({ thunk: false, serializableCheck: false }), sagaMiddleware];
 
 if (__DEV__) {
   const createDebugger = require('redux-flipper').default;

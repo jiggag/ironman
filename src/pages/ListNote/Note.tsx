@@ -7,14 +7,14 @@ import styles, {
   State, StateText, Weather, WeatherText,
 } from './styles';
 import { weatherList } from '../../utils/common';
+import type { NoteData } from '../../types';
 
-interface NoteDataType { id: number, date: any, title: string, state: number, weather: number }
-interface NoteType {
-  data: NoteDataType;
+interface NoteProps {
+  data: NoteData;
   onPress: (id: number) => void;
 }
 
-const Note = memo(({ data, onPress }: NoteType) => {
+const Note = memo(({ data, onPress }: NoteProps) => {
   const {
     id, date, title, state, weather,
   } = data;

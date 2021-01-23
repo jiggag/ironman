@@ -4,7 +4,6 @@ import {
 } from 'react-native';
 import { LineChart, LineChartData } from 'react-native-chart-kit';
 import styled from 'styled-components/native';
-import PropTypes from 'prop-types';
 import Constant from '../utils/constants';
 
 const formatData = (data: number[]): LineChartData => ({
@@ -16,14 +15,14 @@ const formatData = (data: number[]): LineChartData => ({
   ],
 });
 
-const LineGraph = ({ data }) => (
+interface LineGraphProps {
+  data: number[];
+}
+const LineGraph: React.FC<LineGraphProps> = ({ data }) => (
   <View style={styles.wrapper}>
     {data.length ? (
       <LineChart
-        style={{
-          paddingTop: 10,
-          paddingRight: 10,
-        }}
+        style={styles.chart}
         data={formatData(data)}
         width={Dimensions.get('screen').width - (data.length > 10 ? 40 : 15)}
         height={100}
@@ -55,7 +54,7 @@ const styles = StyleSheet.create({
   wrapper: {
     marginHorizontal: 20,
     marginVertical: 0,
-    borderRadius: 6,
+    borderRadius: 2,
     backgroundColor: Constant.WHITE_COLOR,
     elevation: 5,
     shadowColor: Constant.SHADOW_COLOR,
@@ -66,16 +65,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 4,
   },
+  chart: {
+    paddingTop: 10,
+    paddingRight: 10,
+  },
 });
 const EmptyWrapper = styled.View`
   height: 100px;
   justify-content: center;
   align-items: center;
 `;
-
-LineGraph.defaultProps = {
-  data: [],
-};
-LineGraph.propTypes = {
-  data: PropTypes.array,
-};
