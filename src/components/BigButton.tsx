@@ -29,13 +29,13 @@ export const MainBigButton: React.FC<ButtonProps> = ({ text, onPress }) => {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: Constant.MAIN_COLOR,
-    paddingVertical: 14,
     alignItems: 'center',
-    marginHorizontal: 20,
-    marginVertical: 8,
+    backgroundColor: Constant.MAIN_COLOR,
     borderRadius: 2,
     elevation: 4,
+    marginHorizontal: 20,
+    marginVertical: 8,
+    paddingVertical: 14,
     shadowColor: Constant.SHADOW_COLOR,
     shadowOffset: {
       width: 0,
@@ -46,17 +46,17 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: Constant.WHITE_COLOR,
-    fontWeight: '600',
     fontSize: 16,
+    fontWeight: '600',
   },
   mainButton: {
     backgroundColor: Constant.MAIN_COLOR,
+    borderRadius: 2,
     borderWidth: 0,
     paddingVertical: 20,
-    borderRadius: 2,
   },
   mainButtonText: {
-    fontWeight: 'bold',
     color: Constant.WHITE_COLOR,
+    fontWeight: 'bold',
   },
 });

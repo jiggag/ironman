@@ -51,12 +51,16 @@ const LineGraph: React.FC<LineGraphProps> = ({ data }) => (
 export default LineGraph;
 
 const styles = StyleSheet.create({
+  chart: {
+    paddingRight: 10,
+    paddingTop: 10,
+  },
   wrapper: {
+    backgroundColor: Constant.WHITE_COLOR,
+    borderRadius: 2,
+    elevation: 5,
     marginHorizontal: 20,
     marginVertical: 0,
-    borderRadius: 2,
-    backgroundColor: Constant.WHITE_COLOR,
-    elevation: 5,
     shadowColor: Constant.SHADOW_COLOR,
     shadowOffset: {
       width: 2,
@@ -64,10 +68,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.2,
     shadowRadius: 4,
-  },
-  chart: {
-    paddingTop: 10,
-    paddingRight: 10,
   },
 });
 const EmptyWrapper = styled.View`

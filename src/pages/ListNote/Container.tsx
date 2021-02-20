@@ -1,21 +1,22 @@
 import React, { useRef, useEffect, useCallback } from 'react';
-import Spinner from 'react-native-loading-spinner-overlay';
 import { BackHandler } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
+import Spinner from 'react-native-loading-spinner-overlay';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Toast from 'react-native-simple-toast';
-import Presenter from './Presenter';
+import { useDispatch, useSelector } from 'react-redux';
+import { getListRequest } from '../../reducers/note';
+import { RootReducer } from '../../types';
 import { handleConfirm } from '../../utils';
 import { deleteAccessToken } from '../../utils/auth';
-import { getListRequest } from '../../reducers/note';
+import Presenter from './Presenter';
 import styles from './styles';
 
 const Container = ({ route: { params } }) => {
   const navigation = useNavigation();
   const isFocused = useIsFocused();
   const dispatch = useDispatch();
-  const { list, graph, isLoading } = useSelector(store => store.note);
+  const { list, graph, isLoading } = useSelector((store: RootReducer) => store.note);
   const getList = useCallback(isPaging => dispatch(getListRequest(isPaging)), [dispatch]);
   const isBackPress = useRef<boolean>(false);
 

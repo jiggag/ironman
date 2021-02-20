@@ -1,18 +1,19 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import Spinner from 'react-native-loading-spinner-overlay';
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
+import Spinner from 'react-native-loading-spinner-overlay';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { useDispatch, useSelector } from 'react-redux';
+import { getNoteRequest, deleteNoteRequest } from '../../reducers/note';
+import { RootReducer } from '../../types';
 import { handleConfirm } from '../../utils';
 import Presenter from './Presenter';
 import styles from './styles';
-import { getNoteRequest, deleteNoteRequest } from '../../reducers/note';
 
 const Container = ({ route: { params } }) => {
   const navigation = useNavigation();
   const [id] = useState(params.id);
   const dispatch = useDispatch();
-  const { note, isLoading } = useSelector(store => store.note);
+  const { note, isLoading } = useSelector((store: RootReducer) => store.note);
   const getNote = useCallback(param => dispatch(getNoteRequest(param)), [dispatch]);
   const deleteNote = useCallback(param => dispatch(deleteNoteRequest(param)), [dispatch]);
 

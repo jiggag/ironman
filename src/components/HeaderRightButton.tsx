@@ -1,8 +1,8 @@
 import React, { memo } from 'react';
-import { View } from 'react-native-ui-lib';
 import {
   Text, TouchableOpacity, StyleProp, TextStyle,
 } from 'react-native';
+import { View } from 'react-native-ui-lib';
 
 interface HeaderRightButtonProps {
   isVisible: boolean;
@@ -13,16 +13,18 @@ interface HeaderRightButtonProps {
 }
 
 const HeaderRightButton = memo<HeaderRightButtonProps>(({
-  isVisible, buttonIdx, text, onPress, style
+  isVisible, buttonIdx, text, onPress, style,
 }) => {
-  return isVisible && (
-    <View right centerV marginR-10={!!buttonIdx}>
-      <TouchableOpacity activeOpacity={0.8} onPress={onPress}>
-        <View flex center>
-          <Text style={style}>{text}</Text>
-        </View>
-      </TouchableOpacity>
-    </View>
+  return (
+    isVisible && (
+      <View right centerV marginR-10={!!buttonIdx}>
+        <TouchableOpacity activeOpacity={0.8} onPress={onPress}>
+          <View flex center>
+            <Text style={style}>{text}</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+    )
   );
 });
 

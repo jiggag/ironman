@@ -1,5 +1,8 @@
-import { View } from 'react-native-ui-lib';
 import React, { memo } from 'react';
+import { View } from 'react-native-ui-lib';
+import _filter from 'lodash/filter';
+import _map from 'lodash/map';
+// eslint-disable-next-line import/no-cycle
 import { RadioButton, SubTitle } from './index';
 
 interface SelectRadioBoxProps {
@@ -20,8 +23,9 @@ const SelectRadioBox = memo(({
     <View marginB-10>
       <SubTitle title={title} />
       <View flex row>
-        {data.filter(({ visible }) => visible)
-          .map(({ id, value }) => (
+        {_map(
+          _filter(data, ({ visible }) => visible),
+          ({ id, value }) => (
             <View flex left key={id}>
               <RadioButton
                 onPress={() => onChangeNote({ [inputType]: id })}
@@ -29,7 +33,8 @@ const SelectRadioBox = memo(({
                 isSelected={inputValue === id}
               />
             </View>
-          ))}
+          ),
+        )}
       </View>
     </View>
   );

@@ -2,18 +2,19 @@ import { StyleSheet } from 'react-native';
 import Constant from '../../utils/constants';
 
 const styles = StyleSheet.create({
-  safeAreaView: {
-    backgroundColor: Constant.WHITE_COLOR,
-    flex: 1,
-  },
   container: {
     flex: 1,
   },
+  inputContent: {
+    display: 'flex',
+    flex: 1,
+    minHeight: 240,
+  },
   inputLine: {
-    borderRadius: 2,
     backgroundColor: Constant.WHITE_COLOR,
-    paddingHorizontal: 10,
+    borderRadius: 2,
     elevation: 5,
+    paddingHorizontal: 10,
     shadowColor: Constant.SHADOW_COLOR,
     shadowOffset: {
       width: 2,
@@ -23,15 +24,14 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
   },
   inputTitle: {
-    minHeight: 40,
     display: 'flex',
+    flex: 1,
+    minHeight: 40,
+  },
+  safeAreaView: {
+    backgroundColor: Constant.WHITE_COLOR,
     flex: 1,
   },
-  inputContent: {
-    minHeight: 240,
-    display: 'flex',
-    flex: 1,
-  }
 });
 
 export default styles;
