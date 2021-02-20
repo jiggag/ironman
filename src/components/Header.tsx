@@ -1,8 +1,9 @@
 import React, { memo, useCallback } from 'react';
-import { View } from 'react-native-ui-lib';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { useSelector } from 'react-redux';
+import { View } from 'react-native-ui-lib';
 import { useNavigation } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
+import { RootReducer } from '../types';
 import Constant from '../utils/constants';
 import HeaderRightButton from './HeaderRightButton';
 
@@ -23,7 +24,7 @@ const TYPE = {
 const Header = memo<HeaderType>(({
   onPress, onPressRightButton, onPressDelete, type,
 }) => {
-  const { auth } = useSelector(store => store.user);
+  const { auth } = useSelector((store: RootReducer) => store.user);
   const navigation = useNavigation();
 
   const onPressVoc = useCallback(() => {
@@ -39,13 +40,7 @@ const Header = memo<HeaderType>(({
           </View>
         </TouchableOpacity>
       </View>
-      <HeaderRightButton
-        isVisible
-        buttonIdx={2}
-        text="문의"
-        onPress={onPressVoc}
-        style={styles.deleteButtonText}
-      />
+      <HeaderRightButton isVisible buttonIdx={2} text="문의" onPress={onPressVoc} style={styles.deleteButtonText} />
       <HeaderRightButton
         isVisible={type === 'UPDATE'}
         buttonIdx={1}
@@ -67,10 +62,23 @@ const Header = memo<HeaderType>(({
 export default Header;
 
 const styles = StyleSheet.create({
+  backButtonText: {
+    color: Constant.SHADOW_COLOR,
+    fontSize: 14,
+    fontWeight: '600',
+    paddingHorizontal: 10,
+  },
+  deleteButtonText: {
+    color: Constant.WARN_COLOR,
+    fontSize: 14,
+    fontWeight: '600',
+    paddingHorizontal: 10,
+  },
   header: {
     backgroundColor: Constant.WHITE_COLOR,
-    height: 50,
     elevation: 5,
+    height: 50,
+    marginBottom: 2,
     shadowColor: Constant.SHADOW_COLOR,
     shadowOffset: {
       width: 0,
@@ -78,18 +86,5 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.1,
     shadowRadius: 1,
-    marginBottom: 2,
-  },
-  backButtonText: {
-    color: Constant.SHADOW_COLOR,
-    fontWeight: '600',
-    fontSize: 14,
-    paddingHorizontal: 10,
-  },
-  deleteButtonText: {
-    color: Constant.WARN_COLOR,
-    fontWeight: '600',
-    fontSize: 14,
-    paddingHorizontal: 10,
   },
 });

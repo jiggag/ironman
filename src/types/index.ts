@@ -16,3 +16,29 @@ export interface VocData {
   id: number;
   user_id: number;
 }
+
+export interface RootReducer {
+  note: NoteReducer;
+  user: UserReducer;
+  voc: VocReducer;
+}
+
+export interface NoteReducer {
+  isLoading: boolean;
+  page: number;
+  limit: number;
+  list: NoteData[];
+  graph: number[];
+  note: NoteData & {
+    stateText: string;
+    weatherText: string;
+  };
+}
+export interface UserReducer {
+  isLoading: boolean;
+  auth: string;
+}
+export interface VocReducer {
+  isLoading: boolean;
+  list: VocData[];
+}

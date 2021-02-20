@@ -2,18 +2,25 @@ import { StyleSheet } from 'react-native';
 import Constant from '../../utils/constants';
 
 const styles = StyleSheet.create({
-  safeAreaView: {
-    backgroundColor: Constant.WHITE_COLOR,
-    flex: 1,
-  },
   container: {
     flex: 1,
   },
-  inputLine: {
-    borderRadius: 2,
+  dateText: {
+    fontSize: 18,
+    fontWeight: '600',
+    height: 40,
+    textDecorationLine: 'underline',
+  },
+  input: {
+    display: 'flex',
+    flex: 1,
+    minHeight: 40,
+  },
+  inputBox: {
     backgroundColor: Constant.WHITE_COLOR,
-    paddingHorizontal: 10,
+    borderRadius: 2,
     elevation: 5,
+    padding: 10,
     shadowColor: Constant.SHADOW_COLOR,
     shadowOffset: {
       width: 2,
@@ -22,11 +29,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 4,
   },
-  inputBox: {
-    borderRadius: 2,
+  inputLine: {
     backgroundColor: Constant.WHITE_COLOR,
-    padding: 10,
+    borderRadius: 2,
     elevation: 5,
+    paddingHorizontal: 10,
     shadowColor: Constant.SHADOW_COLOR,
     shadowOffset: {
       width: 2,
@@ -36,11 +43,11 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
   },
   inputRow: {
-    borderRadius: 2,
     backgroundColor: Constant.WHITE_COLOR,
-    padding: 10,
-    marginVertical: 5,
+    borderRadius: 2,
     elevation: 5,
+    marginVertical: 5,
+    padding: 10,
     shadowColor: Constant.SHADOW_COLOR,
     shadowOffset: {
       width: 2,
@@ -49,16 +56,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 4,
   },
-  input: {
-    minHeight: 40,
-    display: 'flex',
+  safeAreaView: {
+    backgroundColor: Constant.WHITE_COLOR,
     flex: 1,
-  },
-  dateText: {
-    fontSize: 18,
-    fontWeight: '600',
-    textDecorationLine: 'underline',
-    height: 40,
   },
 });
 

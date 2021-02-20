@@ -1,19 +1,20 @@
 import React, { useEffect, useCallback } from 'react';
-import Spinner from 'react-native-loading-spinner-overlay';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import messaging from '@react-native-firebase/messaging';
 import RNKakaoLogins from '@react-native-seoul/kakao-login';
 import { useNavigation, CommonActions } from '@react-navigation/native';
+import Spinner from 'react-native-loading-spinner-overlay';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
-import messaging from '@react-native-firebase/messaging';
-import styles from './styles';
-import Presenter from './Presenter';
-import { getAccessToken } from '../../utils/auth';
 import { getUserRequest, postUserRequest } from '../../reducers/user';
+import { RootReducer } from '../../types';
+import { getAccessToken } from '../../utils/auth';
+import Presenter from './Presenter';
+import styles from './styles';
 
 const Container = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const { auth, isLoading } = useSelector(store => store.user);
+  const { auth, isLoading } = useSelector((store: RootReducer) => store.user);
 
   const onPress = useCallback(async () => {
     const fcmToken = await messaging().getToken();
@@ -31,9 +32,14 @@ const Container = () => {
               return;
             }
             const { id, email, phone_number: phone } = result;
-            dispatch(postUserRequest({
-              id, email, phone, fcmToken,
-            }));
+            dispatch(
+              postUserRequest({
+                id,
+                email,
+                phone,
+                fcmToken,
+              }),
+            );
           });
         }
       });
@@ -49,10 +55,7 @@ const Container = () => {
   useEffect(() => {
     // 백그라운드 상태에서 푸시 눌렀을때
     messaging().onNotificationOpenedApp(remoteMessage => {
-      console.log(
-        'Notification caused app to open from background state:',
-        remoteMessage,
-      );
+      console.log('Notification caused app to open from background state:', remoteMessage);
       if (remoteMessage?.data?.navigation) {
         const routes = JSON.parse(remoteMessage?.data?.navigation);
         if (routes?.length) {

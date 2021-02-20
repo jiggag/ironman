@@ -1,13 +1,13 @@
 import React, { memo } from 'react';
-import { View } from 'react-native-ui-lib';
 import { Text, TouchableOpacity } from 'react-native';
+import { View } from 'react-native-ui-lib';
 import moment from 'moment';
 import _find from 'lodash/find';
+import { NoteData } from '../../types';
+import { weatherList } from '../../utils/common';
 import styles, {
   State, StateText, Weather, WeatherText,
 } from './styles';
-import { weatherList } from '../../utils/common';
-import type { NoteData } from '../../types';
 
 interface NoteProps {
   data: NoteData;

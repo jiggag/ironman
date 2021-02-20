@@ -1,13 +1,13 @@
 import React, { memo, useCallback } from 'react';
-import { Text, View } from 'react-native-ui-lib';
 import { FlatList, ListRenderItemInfo } from 'react-native';
-import styles, { Title, Content } from './styles';
+import { Text, View } from 'react-native-ui-lib';
 import { Header } from '../../components';
 import { VocData } from '../../types';
+import styles, { Title, Content } from './styles';
 
 interface VocProps {
-  list: VocData[],
-  onPressBack: () => void,
+  list: VocData[];
+  onPressBack: () => void;
 }
 
 const VocComponent = ({ title, content }) => {
@@ -28,9 +28,7 @@ const ListEmptyComponent = memo(() => (
 const Presenter = memo(({ list, onPressBack }: VocProps) => {
   const keyExtractor = useCallback((item, index) => `${item.id}${index}`, []);
 
-  const renderItem = useCallback(({ item }: ListRenderItemInfo<VocData>) => (
-    <VocComponent {...item} />
-  ), []);
+  const renderItem = useCallback(({ item }: ListRenderItemInfo<VocData>) => <VocComponent {...item} />, []);
 
   return (
     <>

@@ -1,15 +1,16 @@
 import React, { useState, useCallback } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import Spinner from 'react-native-loading-spinner-overlay';
-// import ImagePicker from 'react-native-image-picker';
-import moment from 'moment';
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
+import moment from 'moment';
+import Spinner from 'react-native-loading-spinner-overlay';
+import { SafeAreaView } from 'react-native-safe-area-context';
+// import ImagePicker from 'react-native-image-picker';
+import { useDispatch, useSelector } from 'react-redux';
+import _noop from 'lodash/noop';
+import { createNoteRequest } from '../../reducers/note';
+import { NoteData, RootReducer } from '../../types';
 import { handleAlert } from '../../utils';
 import Presenter from './Presenter';
 import styles from './styles';
-import { createNoteRequest } from '../../reducers/note';
-import { NoteData } from '../../types';
 
 const Container = () => {
   const navigation = useNavigation();
@@ -32,12 +33,12 @@ const Container = () => {
   });
   const [image] = useState(null);
   const dispatch = useDispatch();
-  const { isLoading } = useSelector(store => store.note);
+  const { isLoading } = useSelector((store: RootReducer) => store.note);
   const createNote = useCallback(param => dispatch(createNoteRequest(param)), [dispatch]);
 
   const onPress = useCallback(() => {
     if (!note.title) {
-      return handleAlert('', '제목을 입력해주세요', () => {});
+      return handleAlert('', '제목을 입력해주세요', _noop);
     }
     createNote({
       note: {
@@ -50,12 +51,12 @@ const Container = () => {
         image: !!image && image.name,
       },
       cbSuccess: () => navigation.navigate('ListNote', { update: true }),
-      cbFailure: message => handleAlert('노트 생성 실패', message, () => {}),
+      cbFailure: message => handleAlert('노트 생성 실패', message, _noop),
     });
   }, [createNote, image, navigation, note]);
 
   const onChangeNote = useCallback((value: Record<string, string | number | Record<number, string>>) => {
-    setNote((prev) => ({ ...prev, ...value }));
+    setNote(prev => ({ ...prev, ...value }));
   }, []);
 
   // const onPressImage = () => {

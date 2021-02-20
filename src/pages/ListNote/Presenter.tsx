@@ -1,13 +1,11 @@
 import React, { memo, useCallback } from 'react';
+import { Text, FlatList, ListRenderItemInfo } from 'react-native';
 import { View } from 'react-native-ui-lib';
-import {
-  Text, FlatList, ListRenderItemInfo,
-} from 'react-native';
-import styles from './styles';
-import HeaderComponent from './Header';
 import { Header } from '../../components';
+import { NoteData } from '../../types';
+import HeaderComponent from './Header';
 import NoteComponent from './Note';
-import type { NoteData } from '../../types';
+import styles from './styles';
 
 interface ListType {
   list: NoteData[];
@@ -29,9 +27,10 @@ const Presenter = memo(({
 }: ListType) => {
   const keyExtractor = useCallback((item, index) => `${item.id}${index}`, []);
 
-  const renderItem = useCallback(({ item }: ListRenderItemInfo<NoteData>) => (
-    <NoteComponent data={item} onPress={onPress} />
-  ), [onPress]);
+  const renderItem = useCallback(
+    ({ item }: ListRenderItemInfo<NoteData>) => <NoteComponent data={item} onPress={onPress} />,
+    [onPress],
+  );
 
   return (
     <>

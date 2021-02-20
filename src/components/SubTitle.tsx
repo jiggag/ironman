@@ -10,9 +10,7 @@ interface SubTitleProps {
 
 const SubTitle = memo<SubTitleProps>(({ title, style }) => {
   const customStyle = useMemo<StyleProp<TextStyle>>(() => [styles.subTitle, style], [style]);
-  return (
-    <Text style={customStyle}>{title}</Text>
-  );
+  return <Text style={customStyle}>{title}</Text>;
 });
 
 export default SubTitle;
@@ -21,7 +19,7 @@ const styles = StyleSheet.create({
   subTitle: {
     fontSize: 16,
     fontWeight: '500',
-    textDecorationLine: 'underline',
     marginVertical: 4,
+    textDecorationLine: 'underline',
   },
 });

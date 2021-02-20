@@ -1,8 +1,5 @@
-import {
-  takeLeading, call, put,
-} from 'redux-saga/effects';
 import Sentry from '@sentry/react-native';
-import { RESTful, RETURN_CODE } from '../utils';
+import { takeLeading, call, put } from 'redux-saga/effects';
 import {
   sendVocFailure,
   sendVocRequest,
@@ -11,12 +8,13 @@ import {
   getVocRequest,
   getVocSuccess,
 } from '../reducers/voc';
+import { RESTful, RETURN_CODE } from '../utils';
 
 function* workSendVoc(action) {
   try {
     const { data, cb } = action.payload;
-    const { return_code } = yield call(RESTful, 'POST', '/voc', data);
-    if (return_code === RETURN_CODE.SUCCESS) {
+    const { return_code: returnCode } = yield call(RESTful, 'POST', '/voc', data);
+    if (returnCode === RETURN_CODE.SUCCESS) {
       yield put(sendVocSuccess());
       yield call(cb);
     } else {
@@ -30,12 +28,11 @@ function* workSendVoc(action) {
   }
 }
 
-
 function* workGetVoc(action) {
   try {
-    const { return_code, return_data } = yield call(RESTful, 'GET', '/voc', action.payload);
-    if (return_code === RETURN_CODE.SUCCESS) {
-      yield put(getVocSuccess(return_data));
+    const { return_code: returnCode, return_data: returnData } = yield call(RESTful, 'GET', '/voc', action.payload);
+    if (returnCode === RETURN_CODE.SUCCESS) {
+      yield put(getVocSuccess(returnData));
     } else {
       console.error('%c%s', 'background: #00ff00; color: #ffffff', '[GET] (/voc)', '\n', 'api error');
       yield put(getVocFailure());
