@@ -125,7 +125,7 @@ export default class App extends React.PureComponent {
         {isShowBanner && (
           <BannerAd
             unitId={Platform.OS === 'ios' ? Config.ADMOB_UNIT_ID_IOS : Config.ADMOB_UNIT_ID_AOS}
-            size={BannerAdSize.FULL_BANNER}
+            size={BannerAdSize.SMART_BANNER}
             requestOptions={{
               requestNonPersonalizedAdsOnly: true,
             }}
