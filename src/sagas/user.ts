@@ -1,8 +1,5 @@
-import {
-  takeLeading, call, put,
-} from 'redux-saga/effects';
 import Sentry from '@sentry/react-native';
-import { RESTful, RETURN_CODE, handleAlert } from '../utils';
+import { takeLeading, call, put } from 'redux-saga/effects';
 import {
   getUserFailure,
   getUserRequest,
@@ -11,16 +8,22 @@ import {
   postUserRequest,
   postUserSuccess,
 } from '../reducers/user';
+import { RESTful, RETURN_CODE, handleAlert } from '../utils';
 import { setAccessToken, deleteAccessToken } from '../utils/auth';
 
 function* workGetUser(action) {
   try {
-    const { return_code, return_message, return_data } = yield call(RESTful, 'GET', '/user', action.payload);
-    if (return_code === RETURN_CODE.SUCCESS) {
-      yield put(getUserSuccess(return_data));
+    const { return_code: returnCode, return_message: returnMessage, return_data: returnData } = yield call(
+      RESTful,
+      'GET',
+      '/user',
+      action.payload,
+    );
+    if (returnCode === RETURN_CODE.SUCCESS) {
+      yield put(getUserSuccess(returnData));
     } else {
       yield put(getUserFailure());
-      yield handleAlert('로그인 실패', return_message, () => {
+      yield handleAlert('로그인 실패', returnMessage, () => {
         deleteAccessToken();
       });
     }
@@ -34,18 +37,16 @@ function* workGetUser(action) {
 function* workPostUser(action) {
   try {
     const {
-      return_code,
-      return_message,
+      return_code: returnCode,
+      return_message: returnMessage,
       return_data: { accessToken, ...rest },
     } = yield call(RESTful, 'POST', '/user', action.payload);
-    if (return_code === RETURN_CODE.SUCCESS) {
+    if (returnCode === RETURN_CODE.SUCCESS) {
       yield setAccessToken(accessToken);
       yield put(postUserSuccess({ ...rest }));
     } else {
       yield put(postUserFailure());
-      yield handleAlert('회원가입 실패', return_message, () => {
-        deleteAccessToken();
-      });
+      yield handleAlert('회원가입 실패', returnMessage, deleteAccessToken);
     }
   } catch (e) {
     yield Sentry.captureException(e);

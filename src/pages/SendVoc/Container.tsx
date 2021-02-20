@@ -1,14 +1,14 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { useNavigation } from '@react-navigation/native';
-import Spinner from 'react-native-loading-spinner-overlay';
 import { RewardedAd, RewardedAdEventType } from '@react-native-firebase/admob';
+import { useNavigation } from '@react-navigation/native';
 import Config from 'react-native-config';
+import Spinner from 'react-native-loading-spinner-overlay';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { useDispatch, useSelector } from 'react-redux';
+import { sendVocRequest } from '../../reducers/voc';
+import { RootReducer, VocData } from '../../types';
 import Presenter from './Presenter';
 import styles from './styles';
-import { sendVocRequest } from '../../reducers/voc';
-import { VocData } from '../../types';
 
 const rewarded = RewardedAd.createForAdRequest(Config.ADMOB_UNIT_REWARD_ID, {
   requestNonPersonalizedAdsOnly: true,
@@ -17,7 +17,7 @@ const rewarded = RewardedAd.createForAdRequest(Config.ADMOB_UNIT_REWARD_ID, {
 const Container = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const { isLoading } = useSelector(store => store.voc);
+  const { isLoading } = useSelector((store: RootReducer) => store.voc);
   const [state, setState] = useState({
     title: '',
     content: '',

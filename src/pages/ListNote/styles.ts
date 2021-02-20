@@ -3,30 +3,18 @@ import styled from 'styled-components/native';
 import Constant from '../../utils/constants';
 
 const styles = StyleSheet.create({
-  safeAreaView: {
-    backgroundColor: Constant.WHITE_COLOR,
-    flex: 1,
-  },
   container: {
     flex: 1,
   },
-  emptyCard: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    flex: 1,
-  },
-  noteCard: {
-    borderRadius: 2,
-  },
   dateText: {
+    flex: 1,
     fontSize: 12,
     marginBottom: 4,
-    flex: 1,
   },
-  titleText: {
-    fontSize: 12,
-    fontWeight: '600',
-    marginTop: 2,
+  emptyCard: {
+    alignItems: 'center',
+    flex: 1,
+    justifyContent: 'center',
   },
   itemComponent: {
     backgroundColor: Constant.WHITE_COLOR,
@@ -39,6 +27,18 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.2,
     shadowRadius: 4,
+  },
+  noteCard: {
+    borderRadius: 2,
+  },
+  safeAreaView: {
+    backgroundColor: Constant.WHITE_COLOR,
+    flex: 1,
+  },
+  titleText: {
+    fontSize: 12,
+    fontWeight: '600',
+    marginTop: 2,
   },
 });
 
@@ -60,7 +60,7 @@ export const State = styled.View`
   padding: 2px 6px;
   align-self: center;
 `;
-export const StateText = styled.Text < { state: Number } > `
+export const StateText = styled.Text<{ state: number }>`
   font-size: 12px;
   font-weight: 600;
   color: ${({ state }) => {

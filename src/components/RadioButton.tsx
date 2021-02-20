@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
-import { View } from 'react-native-ui-lib';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View } from 'react-native-ui-lib';
 import Constant from '../utils/constants';
 
 interface RadioButtonProps {
@@ -25,12 +25,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   radio: {
-    height: 14,
-    width: 14,
+    backgroundColor: Constant.WHITE_COLOR,
     borderRadius: 14,
     borderWidth: 1,
-    backgroundColor: Constant.WHITE_COLOR,
     elevation: 5,
+    height: 14,
     shadowColor: Constant.SHADOW_COLOR,
     shadowOffset: {
       width: 0,
@@ -38,6 +37,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.2,
     shadowRadius: 2,
+    width: 14,
   },
   selectedRadio: {
     backgroundColor: Constant.MAIN_COLOR,

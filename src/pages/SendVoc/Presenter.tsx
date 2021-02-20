@@ -1,19 +1,19 @@
 import React, { memo } from 'react';
 import { TextInput, ScrollView } from 'react-native';
 import { View } from 'react-native-ui-lib';
-import styles from './styles';
 import { SubTitle, Header } from '../../components';
-import Constant from '../../utils/constants';
 import { VocData } from '../../types';
+import Constant from '../../utils/constants';
+import styles from './styles';
 
 interface VocType {
   state: {
-    title: string,
-    content: string,
-  },
-  onChangeText: (value: Partial<VocData>) => void,
-  onPressBack: () => void,
-  onPress: () => void,
+    title: string;
+    content: string;
+  };
+  onChangeText: (value: Partial<VocData>) => void;
+  onPressBack: () => void;
+  onPress: () => void;
 }
 
 const Presenter = memo(({
