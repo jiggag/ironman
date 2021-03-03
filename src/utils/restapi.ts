@@ -7,6 +7,7 @@ import { getAccessToken } from './auth';
 export const RETURN_CODE = Object.freeze({
   SUCCESS: 200,
   NETWORK_ERROR: 500,
+  INVALID_TOKEN: 9000,
 });
 
 export const METHOD = Object.freeze({
