@@ -1,6 +1,6 @@
+import Sentry from '@sentry/react-native';
 import Config from 'react-native-config';
 import SInfo from 'react-native-sensitive-info';
-import Sentry from '@sentry/react-native';
 
 const keyObject = {
   sharedPreferencesName: Config.APP_NAME,
