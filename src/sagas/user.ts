@@ -20,12 +20,16 @@ function* workGetUser(action) {
       action.payload,
     );
     if (returnCode === RETURN_CODE.SUCCESS) {
+      const { accessToken } = returnData;
+      yield setAccessToken(accessToken);
       yield put(getUserSuccess(returnData));
     } else {
       yield put(getUserFailure());
-      yield handleAlert('로그인 실패', returnMessage, () => {
-        deleteAccessToken();
-      });
+      yield handleAlert(
+        '로그인 실패',
+        returnCode === RETURN_CODE.INVALID_TOKEN ? '로그인이 만료되었습니다. 다시 로그인해주세요,' : returnMessage,
+        deleteAccessToken,
+      );
     }
   } catch (e) {
     yield Sentry.captureException(e);
