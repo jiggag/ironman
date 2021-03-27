@@ -8,6 +8,7 @@ import {
 import _filter from 'lodash/filter';
 import _find from 'lodash/find';
 import _forEach from 'lodash/forEach';
+import { LogEvent } from '@analytics/index';
 import {
   getListRequest,
   getListSuccess,
@@ -120,6 +121,8 @@ function* workCreateNote(action) {
     const { note, cbSuccess, cbFailure } = action.payload;
     const { return_code: returnCode, return_message: returnMessage } = yield call(RESTful, 'POST', '/note', note);
     if (returnCode === RETURN_CODE.SUCCESS) {
+      LogEvent('create_note');
+
       const registTopic = yield call(AsyncStorage.getItem, '@topic');
       if (moment(registTopic, 'YYYYMMDD').isBefore(note.date)) {
         const topic = moment(note.date).format('YYYYMMDD');
