@@ -20,10 +20,6 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>FacebookAppID</key>
-  <string>440594457173994</string>
-  <key>FacebookDisplayName</key>
-  <string>여기나저기나</string>
   <key>LSApplicationQueriesSchemes</key>
   <array>
     <string>fbapi</string>
@@ -46,6 +42,10 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>FacebookAppID</key>
+	<string>440594457173994</string>
+	<key>FacebookDisplayName</key>
+	<string>여기나저기나</string>
 	<key>KAKAO_APP_KEY</key>
 	<string>$(KAKAO_APP_KEY)</string>
 	<key>LSApplicationQueriesSchemes</key>

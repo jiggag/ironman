@@ -70,7 +70,7 @@
     "react-native": "0.64.0",
     "react-native-chart-kit": "file:./src/lib/react-native-chart-kit/",
     "react-native-code-push": "^7.0.0",
-    "react-native-config": "^1.4.1",
+    "react-native-config": "^1.4.2",
     "react-native-datepicker": "^1.7.2",
     "react-native-fast-image": "^7.0.2",
     "react-native-fbsdk-next": "^4.0.0",
