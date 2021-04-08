@@ -1,10 +1,10 @@
 apply plugin: "com.android.application"
+apply plugin: "com.bugsnag.android.gradle"
 
 project.ext.envConfigFiles = [
     debug: ".env",
     release: ".env.production",
 ]
-
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 
 import com.android.build.OutputFile
@@ -22,7 +22,9 @@ import com.android.build.OutputFile
  *   // the name of the generated asset file containing your JS bundle
  *   bundleAssetName: "index.android.bundle",
  *
- *   // the entry file for bundle generation
+ *   // the entry file for bundle generation. If none specified and
+ *   // "index.android.js" exists, it will be used. Otherwise "index.js" is
+ *   // default. Can be overridden with ENTRY_FILE environment variable.
  *   entryFile: "index.android.js",
  *
  *   // https://reactnative.dev/docs/performance#enable-the-ram-format
@@ -83,11 +85,11 @@ import com.android.build.OutputFile
  */
 
 project.ext.react = [
-    enableHermes: false,  // clean and rebuild if changing
+    entryFile: "index.js",
+    enableHermes: true,  // clean and rebuild if changing
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
-apply from: "../../node_modules/@sentry/react-native/sentry.gradle"
 apply from: "../../node_modules/react-native-code-push/android/codepush.gradle"
 
 /**
@@ -103,7 +105,7 @@ def enableSeparateBuildPerCPUArchitecture = true
 /**
  * Run Proguard to shrink the Java bytecode in release builds.
  */
-def enableProguardInReleaseBuilds = false
+def enableProguardInReleaseBuilds = true
 
 /**
  * The preferred build flavor of JavaScriptCore.
@@ -128,11 +130,12 @@ def jscFlavor = 'org.webkit:android-jsc:+'
 def enableHermes = project.ext.react.get("enableHermes", false);
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    ndkVersion rootProject.ext.ndkVersion
 
     lintOptions {
         checkReleaseBuilds false
     }
+    compileSdkVersion rootProject.ext.compileSdkVersion
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -147,6 +150,7 @@ android {
         versionCode 1029
         versionName "1.0.12003"
         multiDexEnabled true
+        manifestPlaceholders = [bugsnagApiKey: project.env.get("BUGSNAG_API_KEY")]
     }
     splits {
         abi {
@@ -178,10 +182,14 @@ android {
             resValue "string", "CodePushDeploymentKey", '""'
         }
         release {
-            resValue "string", "CodePushDeploymentKey", project.env.get("CODE_PUSH_AOS_KEY")
+            // Caution! In production, you need to generate your own keystore file.
+            // see https://reactnative.dev/docs/signed-apk-android.
+            // Example: versionCode 1 will generate 1001 for armeabi-v7a, 1002 for x86, etc.
             signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
+            shrinkResources enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            resValue "string", "CodePushDeploymentKey", project.env.get("CODE_PUSH_AOS_KEY")
         }
     }
 
@@ -199,7 +207,6 @@ android {
 
         }
     }
-
 }
 
 dependencies {
@@ -207,20 +214,23 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation 'com.google.android.gms:play-services-auth:9.2.1'
-    implementation 'androidx.appcompat:appcompat:1.0.0'
 
     implementation 'com.google.android.play:core:1.6.1'
 
-    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+    implementation 'androidx.multidex:multidex:2.0.1'
 
-    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha02'
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
       exclude group:'com.facebook.fbjni'
     }
+
     debugImplementation("com.facebook.flipper:flipper-network-plugin:${FLIPPER_VERSION}") {
         exclude group:'com.facebook.flipper'
+        exclude group:'com.squareup.okhttp3', module:'okhttp'
     }
+
     debugImplementation("com.facebook.flipper:flipper-fresco-plugin:${FLIPPER_VERSION}") {
         exclude group:'com.facebook.flipper'
     }
@@ -243,6 +253,16 @@ task copyDownloadableDepsToLibs(type: Copy) {
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
 apply plugin: 'com.google.gms.google-services'
+apply from: "../../node_modules/@bugsnag/react-native/bugsnag-react-native.gradle"
+bugsnag {
+   variantFilter { variant ->
+       // disables plugin for all variants of the 'staging' productFlavor
+       def name = variant.name.toLowerCase()
+       if (name.contains("staging") || name.contains("debug")) {
+           enabled = false
+       }
+   }
+}
 googleServices {
     disableVersionCheck = true
 }

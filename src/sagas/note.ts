@@ -1,6 +1,6 @@
 import { AsyncStorage } from 'react-native';
+import Bugsnag from '@bugsnag/react-native';
 import messaging from '@react-native-firebase/messaging';
-import Sentry from '@sentry/react-native';
 import moment from 'moment';
 import {
   select, call, put, takeEvery, takeLatest,
@@ -33,7 +33,7 @@ const format = (newList, originData, page) => {
   const list = [].concat(page > 1 ? oriList : []);
   const graph = [].concat(page > 1 ? oriGraph : []);
   graph.reverse();
-  _forEach(newList, data => {
+  _forEach(newList, (data) => {
     list.push(data);
     graph.push(6 - data.state);
   });
@@ -57,7 +57,7 @@ function* workGetList(action) {
       yield put(getListFailure());
     }
   } catch (e) {
-    yield Sentry.captureException(e);
+    Bugsnag.notify(e);
     console.error('%c%s', 'background: #00ff00; color: #ffffff', '[GET] (list note)', '\n', e);
     yield put(getListFailure());
   }
@@ -90,7 +90,7 @@ function* workGetNote(action) {
       yield put(getNoteFailure());
     }
   } catch (e) {
-    yield Sentry.captureException(e);
+    Bugsnag.notify(e);
     console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (detail note)', '\n', e);
     yield put(getNoteFailure());
   }
@@ -107,7 +107,7 @@ function* workDeleteNote(action) {
       yield put(deleteNoteFailure());
     }
   } catch (e) {
-    yield Sentry.captureException(e);
+    Bugsnag.notify(e);
     console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (/deleteNote)', '\n', e);
     yield put(deleteNoteFailure());
   }
@@ -134,7 +134,7 @@ function* workCreateNote(action) {
       yield put(createNoteFailure());
     }
   } catch (e) {
-    yield Sentry.captureException(e);
+    Bugsnag.notify(e);
     console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (/note)', '\n', e);
     yield put(createNoteFailure());
   }
@@ -152,7 +152,7 @@ function* workUpdateNote(action) {
       yield put(updateNoteFailure());
     }
   } catch (e) {
-    yield Sentry.captureException(e);
+    Bugsnag.notify(e);
     console.error('%c%s', 'background: #00ff00; color: #ffffff', '[PUT] (/note)', '\n', e);
     yield put(updateNoteFailure());
   }

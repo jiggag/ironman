@@ -1,4 +1,4 @@
-import Sentry from '@sentry/react-native';
+import Bugsnag from '@bugsnag/react-native';
 import { takeLeading, call, put } from 'redux-saga/effects';
 import {
   getUserFailure,
@@ -32,7 +32,7 @@ function* workGetUser(action) {
       );
     }
   } catch (e) {
-    yield Sentry.captureException(e);
+    Bugsnag.notify(e);
     console.error('%c%s', 'background: #00ff00; color: #ffffff', '[GET] (/user)', '\n', e);
     yield put(getUserFailure());
   }
@@ -53,7 +53,7 @@ function* workPostUser(action) {
       yield handleAlert('회원가입 실패', returnMessage, deleteAccessToken);
     }
   } catch (e) {
-    yield Sentry.captureException(e);
+    Bugsnag.notify(e);
     console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (/user)', '\n', e);
     yield put(postUserFailure());
   }

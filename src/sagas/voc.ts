@@ -1,4 +1,4 @@
-import Sentry from '@sentry/react-native';
+import Bugsnag from '@bugsnag/react-native';
 import { takeLeading, call, put } from 'redux-saga/effects';
 import {
   sendVocFailure,
@@ -22,7 +22,7 @@ function* workSendVoc(action) {
       yield put(sendVocFailure());
     }
   } catch (e) {
-    yield Sentry.captureException(e);
+    Bugsnag.notify(e);
     console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (/voc)', '\n', e);
     yield put(sendVocFailure());
   }
@@ -38,7 +38,7 @@ function* workGetVoc(action) {
       yield put(getVocFailure());
     }
   } catch (e) {
-    yield Sentry.captureException(e);
+    Bugsnag.notify(e);
     console.error('%c%s', 'background: #00ff00; color: #ffffff', '[GET] (/voc)', '\n', e);
     yield put(getVocFailure());
   }
