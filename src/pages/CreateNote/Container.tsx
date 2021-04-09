@@ -3,12 +3,11 @@ import { useNavigation } from '@react-navigation/native';
 import moment from 'moment';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { SafeAreaView } from 'react-native-safe-area-context';
-// import ImagePicker from 'react-native-image-picker';
 import { useDispatch, useSelector } from 'react-redux';
 import _noop from 'lodash/noop';
-import { createNoteRequest } from '../../reducers/note';
+import { createNoteRequest } from '@reducers/note';
+import { handleAlert } from '@utils/index';
 import { NoteData, RootReducer } from '../../types';
-import { handleAlert } from '../../utils';
 import Presenter from './Presenter';
 import styles from './styles';
 
@@ -31,10 +30,9 @@ const Container = () => {
     etc: '',
     state: 1,
   });
-  const [image] = useState(null);
   const dispatch = useDispatch();
   const { isLoading } = useSelector((store: RootReducer) => store.note);
-  const createNote = useCallback(param => dispatch(createNoteRequest(param)), [dispatch]);
+  const createNote = useCallback((param) => dispatch(createNoteRequest(param)), [dispatch]);
 
   const onPress = useCallback(() => {
     if (!note.title) {
@@ -45,67 +43,23 @@ const Container = () => {
         ...note,
         food: JSON.stringify(note.food),
         done: JSON.stringify(note.done),
-        date: moment(note.date)
-          .startOf('days')
-          .valueOf(),
-        image: !!image && image.name,
+        date: moment(note.date).startOf('days').valueOf(),
+        image: '',
       },
       cbSuccess: () => navigation.navigate('ListNote', { update: true }),
-      cbFailure: message => handleAlert('노트 생성 실패', message, _noop),
+      cbFailure: (message) => handleAlert('노트 생성 실패', message, _noop),
     });
-  }, [createNote, image, navigation, note]);
+  }, [createNote, navigation, note]);
 
   const onChangeNote = useCallback((value: Record<string, string | number | Record<number, string>>) => {
-    setNote(prev => ({ ...prev, ...value }));
+    setNote((prev) => ({ ...prev, ...value }));
   }, []);
-
-  // const onPressImage = () => {
-  // const options = {
-  //   quality: 0.95,
-  //   maxWidth: 1000,
-  //   maxHeight: 1000,
-  //   title: '',
-  //   cancelButtonTitle: '취소',
-  //   takePhotoButtonTitle: '사진찍기',
-  //   chooseFromLibraryButtonTitle: '사진선택',
-  // };
-
-  // ImagePicker.showImagePicker(options, response => {
-  //   if (response.didCancel) {
-  //     handleAlert('사진', 'User cancelled photo picker', () => {});
-  //   } else if (response.error) {
-  //     handleAlert('사진', `ImagePicker Error: ${response.error}`, () => {});
-  //   } else if (response.customButton) {
-  //     handleAlert('사진', `User tapped custom button: ${response.customButton}`, () => {});
-  //   } else {
-  //     const imageObject = {
-  //       uri: response.uri,
-  //       name: response.fileName ? response.fileName : 'filename',
-  //       type: null,
-  //     };
-  //     if (Platform.OS === 'android') {
-  //       imageObject.type = response.type;
-  //     }
-  //     handleAlert('사진', `성공: ${imageObject.uri}/ ${imageObject.name} /${imageObject.type}`, () => {});
-  //
-  //     // multipart formdata => 서버에 저장된 이미지 경로를 가져와서 그려줘야하는듯
-  //     setImage(imageObject);
-  //   }
-  // });
-  // };
 
   const onPressBack = useCallback(() => navigation.goBack(), [navigation]);
 
   return (
     <SafeAreaView style={styles.safeAreaView}>
-      <Presenter
-        note={note}
-        // image={image}
-        onPress={onPress}
-        onChangeNote={onChangeNote}
-        // onPressImage={onPressImage}
-        onPressBack={onPressBack}
-      />
+      <Presenter note={note} onPress={onPress} onChangeNote={onChangeNote} onPressBack={onPressBack} />
       <Spinner visible={isLoading} />
     </SafeAreaView>
   );

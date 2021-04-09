@@ -3,9 +3,9 @@ import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { View } from 'react-native-ui-lib';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
+import Constant from '@utils/constants';
 import { RootReducer } from '../types';
-import Constant from '../utils/constants';
-import HeaderRightButton from './HeaderRightButton';
+import { HeaderRightButton } from './HeaderRightButton';
 
 interface HeaderType {
   onPress: () => void;
@@ -21,7 +21,7 @@ const TYPE = {
   SEND: '보내기',
 };
 
-const Header = memo<HeaderType>(({
+export const Header = memo<HeaderType>(({
   onPress, onPressRightButton, onPressDelete, type,
 }) => {
   const { auth } = useSelector((store: RootReducer) => store.user);
@@ -51,15 +51,13 @@ const Header = memo<HeaderType>(({
       <HeaderRightButton
         isVisible={!!type}
         buttonIdx={0}
-        text={TYPE[type]}
+        text={TYPE[type as string]}
         onPress={onPressRightButton}
         style={styles.backButtonText}
       />
     </View>
   );
 });
-
-export default Header;
 
 const styles = StyleSheet.create({
   backButtonText: {

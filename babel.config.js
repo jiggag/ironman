@@ -15,8 +15,8 @@ module.exports = {
         root: ['.'],
         extensions: ['.ios.js', '.android.js', '.js', '.ts', '.tsx', '.json'],
         alias: {
-          '@components': './src/components',
           '@actions': './src/actions',
+          '@components': './src/components',
           '@reducers': './src/reducers',
           '@sagas': './src/sagas',
           '@utils': './src/utils',

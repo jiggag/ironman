@@ -2,11 +2,13 @@ import React, { memo } from 'react';
 import { Text, ScrollView } from 'react-native';
 import { View } from 'react-native-ui-lib';
 import moment from 'moment';
-import { TextInput, SubTitle, Header } from '../../components';
-import SelectInputBox from '../../components/SelectInputBox';
+import { Header } from '@components/Header';
+import { SelectInputBox } from '@components/SelectInputBox';
+import { SubTitle } from '@components/SubTitle';
+import { TextInput } from '@components/TextInput';
+import { foodList, doneList } from '@utils/common';
+import Constant from '@utils/constants';
 import { NoteData } from '../../types';
-import { foodList, doneList } from '../../utils/common';
-import Constant from '../../utils/constants';
 import styles from './styles';
 
 interface DetailType {

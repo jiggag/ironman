@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { View } from 'react-native';
-import { MainBigButton } from '../../components/BigButton';
+import { MainBigButton } from '@components/BigButton';
 import styles from './styles';
 
 interface Intro {

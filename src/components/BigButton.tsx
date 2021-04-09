@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import {
   Text, TouchableOpacity, StyleSheet, StyleProp, ViewStyle, TextStyle,
 } from 'react-native';
-import Constant from '../utils/constants';
+import Constant from '@utils/constants';
 
 interface ButtonProps {
   onPress: () => void;
@@ -10,7 +10,7 @@ interface ButtonProps {
   buttonStyle?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
 }
-const BigButton: React.FC<ButtonProps> = ({
+export const BigButton: React.FC<ButtonProps> = ({
   onPress, text, buttonStyle, textStyle,
 }) => {
   const customButtonStyle = useMemo<StyleProp<ViewStyle>>(() => [styles.button, buttonStyle], [buttonStyle]);
@@ -20,8 +20,6 @@ const BigButton: React.FC<ButtonProps> = ({
     </TouchableOpacity>
   );
 };
-
-export default BigButton;
 
 export const MainBigButton: React.FC<ButtonProps> = ({ text, onPress }) => {
   return <BigButton text={text} onPress={onPress} buttonStyle={styles.mainButton} textStyle={styles.mainButtonText} />;

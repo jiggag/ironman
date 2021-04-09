@@ -5,10 +5,10 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Toast from 'react-native-simple-toast';
 import { useDispatch, useSelector } from 'react-redux';
-import { getListRequest } from '../../reducers/note';
+import { getListRequest } from '@reducers/note';
+import { deleteAccessToken } from '@utils/auth';
+import { handleConfirm } from '@utils/index';
 import { RootReducer } from '../../types';
-import { handleConfirm } from '../../utils';
-import { deleteAccessToken } from '../../utils/auth';
 import Presenter from './Presenter';
 import styles from './styles';
 
@@ -17,12 +17,12 @@ const Container = ({ route: { params } }) => {
   const isFocused = useIsFocused();
   const dispatch = useDispatch();
   const { list, graph, isLoading } = useSelector((store: RootReducer) => store.note);
-  const getList = useCallback(isPaging => dispatch(getListRequest(isPaging)), [dispatch]);
+  const getList = useCallback((isPaging) => dispatch(getListRequest(isPaging)), [dispatch]);
   const isBackPress = useRef<boolean>(false);
 
   const onActionToCreate = useCallback(() => navigation.navigate('CreateNote'), [navigation]);
 
-  const onPress = useCallback(id => navigation.navigate('DetailNote', { id }), [navigation]);
+  const onPress = useCallback((id) => navigation.navigate('DetailNote', { id }), [navigation]);
 
   const onPressBack = useCallback(() => {
     return handleConfirm('정말', '로그아웃할거에요?', () => {

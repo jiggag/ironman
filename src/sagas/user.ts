@@ -1,4 +1,4 @@
-import Sentry from '@sentry/react-native';
+import Bugsnag from '@bugsnag/react-native';
 import { takeLeading, call, put } from 'redux-saga/effects';
 import {
   getUserFailure,
@@ -7,9 +7,9 @@ import {
   postUserFailure,
   postUserRequest,
   postUserSuccess,
-} from '../reducers/user';
-import { RESTful, RETURN_CODE, handleAlert } from '../utils';
-import { setAccessToken, deleteAccessToken } from '../utils/auth';
+} from '@reducers/user';
+import { setAccessToken, deleteAccessToken } from '@utils/auth';
+import { RESTful, RETURN_CODE, handleAlert } from '@utils/index';
 
 function* workGetUser(action) {
   try {
@@ -24,7 +24,7 @@ function* workGetUser(action) {
       yield setAccessToken(accessToken);
       yield put(getUserSuccess(returnData));
     } else {
-      yield put(getUserFailure());
+      yield put(getUserFailure({}));
       yield handleAlert(
         '로그인 실패',
         returnCode === RETURN_CODE.INVALID_TOKEN ? '로그인이 만료되었습니다. 다시 로그인해주세요,' : returnMessage,
@@ -32,9 +32,9 @@ function* workGetUser(action) {
       );
     }
   } catch (e) {
-    yield Sentry.captureException(e);
+    Bugsnag.notify(e);
     console.error('%c%s', 'background: #00ff00; color: #ffffff', '[GET] (/user)', '\n', e);
-    yield put(getUserFailure());
+    yield put(getUserFailure({}));
   }
 }
 
@@ -49,13 +49,13 @@ function* workPostUser(action) {
       yield setAccessToken(accessToken);
       yield put(postUserSuccess({ ...rest }));
     } else {
-      yield put(postUserFailure());
+      yield put(postUserFailure({}));
       yield handleAlert('회원가입 실패', returnMessage, deleteAccessToken);
     }
   } catch (e) {
-    yield Sentry.captureException(e);
+    Bugsnag.notify(e);
     console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (/user)', '\n', e);
-    yield put(postUserFailure());
+    yield put(postUserFailure({}));
   }
 }
 

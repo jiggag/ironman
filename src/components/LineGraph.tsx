@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import { LineChart, LineChartData } from 'react-native-chart-kit';
 import styled from 'styled-components/native';
-import Constant from '../utils/constants';
+import Constant from '@utils/constants';
 
 const formatData = (data: number[]): LineChartData => ({
   labels: [],
@@ -18,7 +18,7 @@ const formatData = (data: number[]): LineChartData => ({
 interface LineGraphProps {
   data: number[];
 }
-const LineGraph: React.FC<LineGraphProps> = ({ data }) => (
+export const LineGraph: React.FC<LineGraphProps> = ({ data }) => (
   <View style={styles.wrapper}>
     {data.length ? (
       <LineChart
@@ -47,8 +47,6 @@ const LineGraph: React.FC<LineGraphProps> = ({ data }) => (
     )}
   </View>
 );
-
-export default LineGraph;
 
 const styles = StyleSheet.create({
   chart: {

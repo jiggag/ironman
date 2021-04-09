@@ -1,13 +1,11 @@
 import React from 'react';
 import { AppRegistry } from 'react-native';
-import { init as SentryInit } from '@sentry/react-native';
+import Bugsnag from '@bugsnag/react-native';
 import codePush from 'react-native-code-push';
-import Config from 'react-native-config';
+import { codeBundleId } from './package.json';
 import App from './src/App';
 
-SentryInit({
-  dsn: Config.SENTRY_DSN,
-});
+Bugsnag.start({ codeBundleId });
 
 function HeadlessCheck({ isHeadless }) {
   if (isHeadless) {

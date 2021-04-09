@@ -1,8 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, SliceCaseReducers } from '@reduxjs/toolkit';
 import _filter from 'lodash/filter';
 import _find from 'lodash/find';
+import { NoteData, NoteReducer } from '../types';
 
-const noteSlice = createSlice({
+const noteSlice = createSlice<NoteReducer, SliceCaseReducers<NoteReducer>, 'note'>({
   name: 'note',
   initialState: {
     isLoading: false,
@@ -23,7 +24,7 @@ const noteSlice = createSlice({
       state.graph = graph;
       state.isLoading = false;
     },
-    getListFailure: state => {
+    getListFailure: (state) => {
       state.isLoading = false;
     },
     getNoteRequest: (state, action) => {
@@ -33,7 +34,7 @@ const noteSlice = createSlice({
       state.note = action.payload;
       state.isLoading = false;
     },
-    getNoteFailure: state => {
+    getNoteFailure: (state) => {
       state.isLoading = false;
     },
     createNoteRequest: (state, action) => {
@@ -43,7 +44,7 @@ const noteSlice = createSlice({
       state.list.push(action.payload);
       state.isLoading = false;
     },
-    createNoteFailure: state => {
+    createNoteFailure: (state) => {
       state.isLoading = false;
     },
     updateNoteRequest: (state, action) => {
@@ -51,12 +52,11 @@ const noteSlice = createSlice({
     },
     updateNoteSuccess: (state, action) => {
       const {
-        id: noteId, title, date, image, state: faceState, weather, food, done, etc,
+        id: noteId, title, date, state: faceState, weather, food, done, etc,
       } = action.payload;
-      const updateNote = _find(state.list, ({ id }) => id === noteId);
+      const updateNote = _find(state.list, ({ id }) => id === noteId) as NoteData;
       updateNote.title = title;
       updateNote.date = date;
-      updateNote.image = image;
       updateNote.state = faceState;
       updateNote.weather = weather;
       updateNote.food = food;
@@ -64,7 +64,7 @@ const noteSlice = createSlice({
       updateNote.etc = etc;
       state.isLoading = false;
     },
-    updateNoteFailure: state => {
+    updateNoteFailure: (state) => {
       state.isLoading = false;
     },
     deleteNoteRequest: (state, action) => {
@@ -75,7 +75,7 @@ const noteSlice = createSlice({
       state.list = _filter(state.list, ({ id }) => id !== noteId);
       state.isLoading = false;
     },
-    deleteNoteFailure: state => {
+    deleteNoteFailure: (state) => {
       state.isLoading = false;
     },
   },

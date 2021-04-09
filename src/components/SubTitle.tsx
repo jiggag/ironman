@@ -8,12 +8,10 @@ interface SubTitleProps {
   style?: StyleProp<TextStyle>;
 }
 
-const SubTitle = memo<SubTitleProps>(({ title, style }) => {
+export const SubTitle = memo<SubTitleProps>(({ title, style }) => {
   const customStyle = useMemo<StyleProp<TextStyle>>(() => [styles.subTitle, style], [style]);
   return <Text style={customStyle}>{title}</Text>;
 });
-
-export default SubTitle;
 
 const styles = StyleSheet.create({
   subTitle: {
