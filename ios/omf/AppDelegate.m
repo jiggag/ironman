@@ -3,9 +3,9 @@
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
-#import <KakaoOpenSDK/KakaoOpenSDK.h>
 #import "ReactNativeConfig.h"
 #import <Firebase.h>
+#import <RNKakaoLogins.h>
 
 #import <Bugsnag/Bugsnag.h>
 #import <CodePush/CodePush.h>
@@ -78,30 +78,13 @@ static void InitializeFlipper(UIApplication *application) {
 #endif
 }
 
-
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation {
-  if ([KOSession isKakaoAccountLoginCallback:url]) {
-    return [KOSession handleOpenURL:url];
-  }
-  
-  return false;
-}
-
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
             options:(NSDictionary<NSString *,id> *)options {
-  if ([KOSession isKakaoAccountLoginCallback:url]) {
-    return [KOSession handleOpenURL:url];
+  if([RNKakaoLogins isKakaoTalkLoginUrl:url]) {
+     return [RNKakaoLogins handleOpenUrl: url];
   }
-  
-  return false;
-}
 
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-  [KOSession handleDidBecomeActive];
+  return NO;
 }
-
 
 @end

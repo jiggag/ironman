@@ -776,7 +776,7 @@
   resolved "https://registry.yarnpkg.com/@bugsnag/plugin-react/-/plugin-react-7.9.2.tgz#30c4980b588ef004edbdda7f83697018243cc85e"
   integrity sha512-HAaFn/z7jbzX6AixC3CYGu/GalAeD9wCGCGiVG/9Oyzk0ioeO97WcaDMWTC9EtfHYOEirOpSLUIfMn9OCLZ0fQ==
 
-"@bugsnag/react-native@^7.5.1":
+"@bugsnag/react-native@^7.9.2":
   version "7.9.2"
   resolved "https://registry.yarnpkg.com/@bugsnag/react-native/-/react-native-7.9.2.tgz#ac1b8985441864dc303a92de0d12bc6fce1744d3"
   integrity sha512-3SualkGdrEzubg8xSsK4rdyZDUYO8tquGAgPF8GIMHmS9E/xdzrcLBPNNRkrM6Mm88VWh06fWG62zZQ4h+G9tg==
@@ -1276,12 +1276,12 @@
   resolved "https://registry.yarnpkg.com/@react-native-firebase/messaging/-/messaging-10.8.1.tgz#da9e0db91645e70e7853e5b91c06771fffbea8bb"
   integrity sha512-DVgibb4XERG+5TQQiHKJ1qF+5cbpfiKGRFze9WcbE+FxSYwNMIzyt6u3l7WMBLz6wXcqAq3zLRo6SBbSt37uDw==
 
-"@react-native-seoul/kakao-login@^2.4.1":
-  version "2.10.2"
-  resolved "https://registry.yarnpkg.com/@react-native-seoul/kakao-login/-/kakao-login-2.10.2.tgz#b46a53038530ff035781af063f5ef2d66bf39c18"
-  integrity sha512-GX5iOlJYfWItcUYUBqcK+RJepaP+J/qnlIr9nkOmD1dWR7iQNDJa5ltwrFwV7UHYOxjNoN846Hmr9PWnyOzweQ==
+"@react-native-seoul/kakao-login@^3.0.6":
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/@react-native-seoul/kakao-login/-/kakao-login-3.0.6.tgz#1fdfb73658701bf2ae77a26cd062dfa6f7876605"
+  integrity sha512-s+GTD1d581AF3Q6bybh11+Q87mAxpmUe5d8Z1ec+QrKDbC10AX0haq/FLLEseVToBqVgBwuK3ToQnObccu9KYQ==
   dependencies:
-    dooboolab-welcome "^1.1.0"
+    dooboolab-welcome "^1.2.0"
 
 "@react-native/assets@1.0.0":
   version "1.0.0"
@@ -3400,7 +3400,7 @@ domutils@^1.5.1, domutils@^1.7.0:
     dom-serializer "0"
     domelementtype "1"
 
-dooboolab-welcome@^1.1.0:
+dooboolab-welcome@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/dooboolab-welcome/-/dooboolab-welcome-1.2.0.tgz#295818ce85a8e97dc90c0ec0510b4008e2d722dc"
   integrity sha512-XgEbjJHAsKLge/e8jtuHsv84Ovg1Gx0GvnOTOmOlVGV1643nduTAkT3fyo/mxKbzvyXBr47RHaJAY4R2toI0UA==

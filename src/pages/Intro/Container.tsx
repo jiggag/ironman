@@ -1,16 +1,25 @@
 import React, { useEffect, useCallback } from 'react';
+import Bugsnag from '@bugsnag/react-native';
 import messaging from '@react-native-firebase/messaging';
-import RNKakaoLogins from '@react-native-seoul/kakao-login';
+import {
+  login,
+  getProfile,
+  KakaoProfile,
+} from '@react-native-seoul/kakao-login';
 import { useNavigation, CommonActions } from '@react-navigation/native';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserRequest, postUserRequest } from '../../reducers/user';
 import { RootReducer } from '../../types';
+import { handleAlert } from '../../utils';
 import { getAccessToken } from '../../utils/auth';
 import Presenter from './Presenter';
 import styles from './styles';
 
+interface Profile extends KakaoProfile {
+  id: string | null;
+}
 const Container = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -22,27 +31,24 @@ const Container = () => {
     if (token) {
       dispatch(getUserRequest({ fcmToken }));
     } else {
-      await RNKakaoLogins.login((err, res) => {
-        if (err) {
-          return;
+      try {
+        const isLogin = await login();
+        if (!isLogin) {
+          throw new Error('카카오 로그인 실패');
         }
-        if (res) {
-          RNKakaoLogins.getProfile(async (error, result) => {
-            if (error) {
-              return;
-            }
-            const { id, email, phone_number: phone } = result;
-            dispatch(
-              postUserRequest({
-                id,
-                email,
-                phone,
-                fcmToken,
-              }),
-            );
-          });
-        }
-      });
+        const { email, phoneNumber: phone, id } = await getProfile() as Profile;
+        dispatch(
+          postUserRequest({
+            id,
+            email,
+            phone,
+            fcmToken,
+          }),
+        );
+      } catch (err) {
+        Bugsnag.notify(err);
+        handleAlert('알림', '카카오 로그인에 실패하였습니다', () => null);
+      }
     }
   }, [dispatch]);
 
@@ -71,7 +77,9 @@ const Container = () => {
   }, [navigation]);
 
   useEffect(() => {
-    onPress();
+    (async () => {
+      await onPress();
+    })();
   }, [onPress]);
 
   return (
