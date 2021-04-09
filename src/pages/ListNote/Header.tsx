@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { View } from 'react-native-ui-lib';
-import { LineGraph } from '../../components';
+import { LineGraph } from '@components/LineGraph';
 
 const Header = memo(({ data }: { data: number[] }) => {
   return (

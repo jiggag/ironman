@@ -34,9 +34,12 @@ if (__DEV__ && false) {
 
 const Stack = createStackNavigator();
 
-export default class App extends React.PureComponent {
-  constructor() {
-    super();
+interface State {
+  isShowBanner: boolean;
+}
+export default class App extends React.PureComponent<undefined, State> {
+  constructor(props) {
+    super(props);
     this.state = {
       isShowBanner: false,
     };

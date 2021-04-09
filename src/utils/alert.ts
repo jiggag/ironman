@@ -1,4 +1,5 @@
 import { Alert } from 'react-native';
+import _constant from 'lodash/constant';
 
 const handleAlert = (title: string, message: string, onPress: () => void) => {
   Alert.alert(
@@ -24,7 +25,7 @@ const handleConfirm = (title: string, message: string, onPress: () => void, onPr
       },
       {
         text: '취소',
-        onPress: onPressCancel || (() => null),
+        onPress: onPressCancel || _constant(null),
       },
     ],
     { cancelable: false },

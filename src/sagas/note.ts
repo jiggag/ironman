@@ -24,14 +24,17 @@ import {
   updateNoteRequest,
   updateNoteSuccess,
   updateNoteFailure,
-} from '../reducers/note';
-import { RESTful, RETURN_CODE } from '../utils';
-import { stateList, weatherList } from '../utils/common';
+} from '@reducers/note';
+import { stateList, weatherList } from '@utils/common';
+import { RESTful, RETURN_CODE } from '@utils/index';
+import {
+  NoteData, NoteReducer, RadioData, RootReducer,
+} from '../types';
 
-const format = (newList, originData, page) => {
+const format = (newList: NoteData[], originData: NoteReducer, page: number) => {
   const { list: oriList, graph: oriGraph } = originData;
-  const list = [].concat(page > 1 ? oriList : []);
-  const graph = [].concat(page > 1 ? oriGraph : []);
+  const list = page > 1 ? [...oriList] : [];
+  const graph = page > 1 ? [...oriGraph] : [];
   graph.reverse();
   _forEach(newList, (data) => {
     list.push(data);
@@ -42,7 +45,7 @@ const format = (newList, originData, page) => {
 
 function* workGetList(action) {
   try {
-    const { note } = yield select();
+    const { note }: RootReducer = yield select();
     const { page, limit } = note;
     const newPage = action.payload ? page + 1 : 1;
     const { return_code: returnCode, return_data: returnData } = yield call(RESTful, 'GET', '/list', {
@@ -54,12 +57,12 @@ function* workGetList(action) {
       yield put(getListSuccess(formatted));
     } else {
       console.error('%c%s', 'background: #00ff00; color: #ffffff', '[GET] (list note)', '\n', 'api return errpr');
-      yield put(getListFailure());
+      yield put(getListFailure({}));
     }
   } catch (e) {
     Bugsnag.notify(e);
     console.error('%c%s', 'background: #00ff00; color: #ffffff', '[GET] (list note)', '\n', e);
-    yield put(getListFailure());
+    yield put(getListFailure({}));
   }
 }
 function* workGetNote(action) {
@@ -72,8 +75,8 @@ function* workGetNote(action) {
       const {
         state, weather, food, done, ...rest
       } = filtered[0];
-      const { value: stateText } = _find(stateList, { id: state });
-      const { value: weatherText } = _find(weatherList, { id: weather });
+      const { value: stateText } = _find(stateList, { id: state }) as RadioData;
+      const { value: weatherText } = _find(weatherList, { id: weather }) as RadioData;
       yield put(
         getNoteSuccess({
           ...rest,
@@ -87,12 +90,12 @@ function* workGetNote(action) {
       );
     } else {
       console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (detail note)', '\n', 'not found data');
-      yield put(getNoteFailure());
+      yield put(getNoteFailure({}));
     }
   } catch (e) {
     Bugsnag.notify(e);
     console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (detail note)', '\n', e);
-    yield put(getNoteFailure());
+    yield put(getNoteFailure({}));
   }
 }
 function* workDeleteNote(action) {
@@ -104,12 +107,12 @@ function* workDeleteNote(action) {
       yield put(deleteNoteSuccess(id));
     } else {
       console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (/deleteNote)', '\n', 'api error');
-      yield put(deleteNoteFailure());
+      yield put(deleteNoteFailure({}));
     }
   } catch (e) {
     Bugsnag.notify(e);
     console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (/deleteNote)', '\n', e);
-    yield put(deleteNoteFailure());
+    yield put(deleteNoteFailure({}));
   }
 }
 function* workCreateNote(action) {
@@ -131,12 +134,12 @@ function* workCreateNote(action) {
     } else {
       console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (/note)', '\n', 'api error');
       yield call(cbFailure, returnMessage);
-      yield put(createNoteFailure());
+      yield put(createNoteFailure({}));
     }
   } catch (e) {
     Bugsnag.notify(e);
     console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (/note)', '\n', e);
-    yield put(createNoteFailure());
+    yield put(createNoteFailure({}));
   }
 }
 function* workUpdateNote(action) {
@@ -149,12 +152,12 @@ function* workUpdateNote(action) {
     } else {
       console.error('%c%s', 'background: #00ff00; color: #ffffff', '[PUT] (/note)', '\n', 'api error');
       yield call(cbFailure, returnMessage);
-      yield put(updateNoteFailure());
+      yield put(updateNoteFailure({}));
     }
   } catch (e) {
     Bugsnag.notify(e);
     console.error('%c%s', 'background: #00ff00; color: #ffffff', '[PUT] (/note)', '\n', e);
-    yield put(updateNoteFailure());
+    yield put(updateNoteFailure({}));
   }
 }
 

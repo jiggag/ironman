@@ -18,12 +18,11 @@
     "target": "esnext",
     "baseUrl": ".",
     "paths": {
-      "*": ["src/*"],
-      "@components/*": ["src/components/*"],
       "@actions/*": ["src/actions/*"],
+      "@components/*": ["src/components/*"],
       "@reducers/*": ["src/reducers/*"],
       "@sagas/*": ["src/sagas/*"],
-      "@utils/*": ["src/utils/*"],
+      "@utils/*": ["src/utils/*"]
     }
   },
   "exclude": [

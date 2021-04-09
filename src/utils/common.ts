@@ -1,11 +1,13 @@
-export const stateList = [
+import { RadioData } from '../types';
+
+export const stateList: RadioData[] = [
   { id: 1, value: '좋음', visible: true },
   { id: 2, value: '괜찮음', visible: true },
   { id: 3, value: '그냥', visible: true },
   { id: 4, value: '안좋음', visible: true },
   { id: 5, value: '심함', visible: true },
 ];
-export const weatherList = [
+export const weatherList: RadioData[] = [
   { id: 1, value: '더움', visible: true },
   { id: 2, value: '따뜻함', visible: false },
   { id: 3, value: '딱좋음', visible: true },
@@ -14,7 +16,7 @@ export const weatherList = [
   { id: 6, value: '습함', visible: true },
   { id: 7, value: '건조함', visible: true },
 ];
-export const foodList = [
+export const foodList: Omit<RadioData, 'visible'>[] = [
   { id: 1, value: '매움' },
   { id: 2, value: '뜨거움' },
   { id: 3, value: '알콜' },
@@ -22,7 +24,7 @@ export const foodList = [
   { id: 5, value: '짠거' },
   { id: 6, value: '기타' },
 ];
-export const doneList = [
+export const doneList: Omit<RadioData, 'visible'>[] = [
   { id: 1, value: '스트레스' },
   { id: 2, value: '과격한 운동' },
   { id: 3, value: '사우나' },

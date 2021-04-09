@@ -1,6 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, SliceCaseReducers } from '@reduxjs/toolkit';
+import { VocReducer } from '../types';
 
-const vocSlice = createSlice({
+const vocSlice = createSlice<VocReducer, SliceCaseReducers<VocReducer>, 'voc'>({
   name: 'voc',
   initialState: {
     isLoading: false,

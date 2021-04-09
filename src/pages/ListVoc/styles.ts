@@ -1,6 +1,6 @@
 import { Text, StyleSheet } from 'react-native';
 import styled from 'styled-components';
-import Constant from '../../utils/constants';
+import Constant from '@utils/constants';
 
 const styles = StyleSheet.create({
   container: {

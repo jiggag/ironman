@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
-import { getVocRequest } from '../../reducers/voc';
+import { getVocRequest } from '@reducers/voc';
 import { RootReducer } from '../../types';
 import Presenter from './Presenter';
 import styles from './styles';

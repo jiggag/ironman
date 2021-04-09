@@ -29,10 +29,12 @@ export interface NoteReducer {
   limit: number;
   list: NoteData[];
   graph: number[];
-  note: NoteData & {
-    stateText: string;
-    weatherText: string;
-  };
+  note: Partial<
+    NoteData & {
+      stateText: string;
+      weatherText: string;
+    }
+  >;
 }
 export interface UserReducer {
   isLoading: boolean;
@@ -41,4 +43,10 @@ export interface UserReducer {
 export interface VocReducer {
   isLoading: boolean;
   list: VocData[];
+}
+
+export interface RadioData {
+  id: number;
+  value: string;
+  visible: boolean;
 }

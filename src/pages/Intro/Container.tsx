@@ -1,19 +1,16 @@
 import React, { useEffect, useCallback } from 'react';
 import Bugsnag from '@bugsnag/react-native';
 import messaging from '@react-native-firebase/messaging';
-import {
-  login,
-  getProfile,
-  KakaoProfile,
-} from '@react-native-seoul/kakao-login';
+import { login, getProfile, KakaoProfile } from '@react-native-seoul/kakao-login';
 import { useNavigation, CommonActions } from '@react-navigation/native';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserRequest, postUserRequest } from '../../reducers/user';
+import _constant from 'lodash/constant';
+import { getUserRequest, postUserRequest } from '@reducers/user';
+import { getAccessToken } from '@utils/auth';
+import { handleAlert } from '@utils/index';
 import { RootReducer } from '../../types';
-import { handleAlert } from '../../utils';
-import { getAccessToken } from '../../utils/auth';
 import Presenter from './Presenter';
 import styles from './styles';
 
@@ -36,7 +33,7 @@ const Container = () => {
         if (!isLogin) {
           throw new Error('카카오 로그인 실패');
         }
-        const { email, phoneNumber: phone, id } = await getProfile() as Profile;
+        const { email, phoneNumber: phone, id } = (await getProfile()) as Profile;
         dispatch(
           postUserRequest({
             id,
@@ -47,7 +44,7 @@ const Container = () => {
         );
       } catch (err) {
         Bugsnag.notify(err);
-        handleAlert('알림', '카카오 로그인에 실패하였습니다', () => null);
+        handleAlert('알림', '카카오 로그인에 실패하였습니다', _constant(null));
       }
     }
   }, [dispatch]);
@@ -60,7 +57,7 @@ const Container = () => {
 
   useEffect(() => {
     // 백그라운드 상태에서 푸시 눌렀을때
-    messaging().onNotificationOpenedApp(remoteMessage => {
+    messaging().onNotificationOpenedApp((remoteMessage) => {
       console.log('Notification caused app to open from background state:', remoteMessage);
       if (remoteMessage?.data?.navigation) {
         const routes = JSON.parse(remoteMessage?.data?.navigation);

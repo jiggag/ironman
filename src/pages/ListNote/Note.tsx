@@ -3,8 +3,8 @@ import { Text, TouchableOpacity } from 'react-native';
 import { View } from 'react-native-ui-lib';
 import moment from 'moment';
 import _find from 'lodash/find';
+import { weatherList } from '@utils/common';
 import { NoteData } from '../../types';
-import { weatherList } from '../../utils/common';
 import styles, {
   State, StateText, Weather, WeatherText,
 } from './styles';
@@ -25,7 +25,7 @@ const Note = memo(({ data, onPress }: NoteProps) => {
           <View flex row>
             <Text style={styles.dateText}>{moment(date).format('YYYY.MM.DD')}</Text>
             <Weather>
-              <WeatherText>{_find(weatherList, { id: weather }).value}</WeatherText>
+              <WeatherText>{_find(weatherList, { id: weather })?.value}</WeatherText>
             </Weather>
             <State>
               <StateText state={state}>{state}</StateText>

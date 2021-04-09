@@ -7,24 +7,24 @@ import {
   getVocFailure,
   getVocRequest,
   getVocSuccess,
-} from '../reducers/voc';
-import { RESTful, RETURN_CODE } from '../utils';
+} from '@reducers/voc';
+import { RESTful, RETURN_CODE } from '@utils/index';
 
 function* workSendVoc(action) {
   try {
     const { data, cb } = action.payload;
     const { return_code: returnCode } = yield call(RESTful, 'POST', '/voc', data);
     if (returnCode === RETURN_CODE.SUCCESS) {
-      yield put(sendVocSuccess());
+      yield put(sendVocSuccess({}));
       yield call(cb);
     } else {
       console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (/voc)', '\n', 'api error');
-      yield put(sendVocFailure());
+      yield put(sendVocFailure({}));
     }
   } catch (e) {
     Bugsnag.notify(e);
     console.error('%c%s', 'background: #00ff00; color: #ffffff', '[POST] (/voc)', '\n', e);
-    yield put(sendVocFailure());
+    yield put(sendVocFailure({}));
   }
 }
 
@@ -35,12 +35,12 @@ function* workGetVoc(action) {
       yield put(getVocSuccess(returnData));
     } else {
       console.error('%c%s', 'background: #00ff00; color: #ffffff', '[GET] (/voc)', '\n', 'api error');
-      yield put(getVocFailure());
+      yield put(getVocFailure({}));
     }
   } catch (e) {
     Bugsnag.notify(e);
     console.error('%c%s', 'background: #00ff00; color: #ffffff', '[GET] (/voc)', '\n', e);
-    yield put(getVocFailure());
+    yield put(getVocFailure({}));
   }
 }
 
