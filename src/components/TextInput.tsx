@@ -6,4 +6,5 @@ export const TextInput = styled(TextInputOrigin)`
   min-height: 40px;
   display: flex;
   flex: 1;
+  color: #000000;
 `;
