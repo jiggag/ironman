@@ -12,7 +12,7 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		1F19CFF225D61DF400B9789F /* Appcenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F19CFF125D61DF400B9789F /* Appcenter-Config.plist */; };
+		1F89444D26209E7B009F4E6E /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F89444C26209E7B009F4E6E /* AppCenter-Config.plist */; };
 		1FD2F45E261F5D760075F890 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1FD2F45D261F5D760075F890 /* GoogleService-Info.plist */; };
 		1FD2F464261F619D0075F890 /* libreact-native-config.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD2F463261F619C0075F890 /* libreact-native-config.a */; };
 		1FD2F6102620867D0075F890 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD2F60F2620867D0075F890 /* File.swift */; };
@@ -42,8 +42,8 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = omf/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = omf/main.m; sourceTree = "<group>"; };
 		1815FF863A828443D734E8E6 /* Pods-omf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-omf.release.xcconfig"; path = "Target Support Files/Pods-omf/Pods-omf.release.xcconfig"; sourceTree = "<group>"; };
-		1F19CFF125D61DF400B9789F /* Appcenter-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Appcenter-Config.plist"; path = "omf/Appcenter-Config.plist"; sourceTree = "<group>"; };
 		1F49947B2545B49700015A42 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		1F89444C26209E7B009F4E6E /* AppCenter-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "AppCenter-Config.plist"; path = "omf/AppCenter-Config.plist"; sourceTree = "<group>"; };
 		1FD2F45D261F5D760075F890 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1FD2F463261F619C0075F890 /* libreact-native-config.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-config.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FD2F60E2620867C0075F890 /* omf-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "omf-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -97,9 +97,9 @@
 		13B07FAE1A68108700A75B9A /* omf */ = {
 			isa = PBXGroup;
 			children = (
-				1F19CFF125D61DF400B9789F /* Appcenter-Config.plist */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				1F89444C26209E7B009F4E6E /* AppCenter-Config.plist */,
 				1FD2F45D261F5D760075F890 /* GoogleService-Info.plist */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
@@ -261,7 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				1F19CFF225D61DF400B9789F /* Appcenter-Config.plist in Resources */,
+				1F89444D26209E7B009F4E6E /* AppCenter-Config.plist in Resources */,
 				1FD2F45E261F5D760075F890 /* GoogleService-Info.plist in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 			);
