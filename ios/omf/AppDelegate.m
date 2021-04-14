@@ -7,6 +7,7 @@
 #import <Firebase.h>
 #import <RNKakaoLogins.h>
 
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <Bugsnag/Bugsnag.h>
 #import <CodePush/CodePush.h>
 #import <AppCenterReactNative.h>
@@ -50,6 +51,9 @@ static void InitializeFlipper(UIApplication *application) {
   [AppCenterReactNativeAnalytics registerWithInitiallyEnabled:true];
   [AppCenterReactNativeCrashes registerWithAutomaticProcessing];
 
+  [[FBSDKApplicationDelegate sharedInstance] application:application
+                             didFinishLaunchingWithOptions:launchOptions];
+
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
                                                    moduleName:@"omf"
@@ -80,9 +84,16 @@ static void InitializeFlipper(UIApplication *application) {
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
             options:(NSDictionary<NSString *,id> *)options {
+  [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                 openURL:url
+                                                 options:options];
+
   if([RNKakaoLogins isKakaoTalkLoginUrl:url]) {
      return [RNKakaoLogins handleOpenUrl: url];
   }
+
+  return false;
+}
 
   return NO;
 }

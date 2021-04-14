@@ -18,6 +18,7 @@
     "target": "esnext",
     "baseUrl": ".",
     "paths": {
+      "@analytics/*": ["src/analytics/*"],
       "@actions/*": ["src/actions/*"],
       "@components/*": ["src/components/*"],
       "@reducers/*": ["src/reducers/*"],
