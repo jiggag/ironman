@@ -10,6 +10,7 @@
     "resolveJsonModule": true,
     "typeRoots": ["./node_modules/@types", "./src/types"],
     "isolatedModules": true,
+    "strictFunctionTypes": true,
     "jsx": "react",
     "lib": ["es6"],
     "moduleResolution": "node",

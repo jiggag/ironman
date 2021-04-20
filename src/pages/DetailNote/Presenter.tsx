@@ -13,10 +13,12 @@ import styles from './styles';
 
 interface DetailType {
   onPressBack: () => void;
-  note: NoteData & {
-    stateText: string;
-    weatherText: string;
-  };
+  note: Partial<
+    NoteData & {
+      stateText: string;
+      weatherText: string;
+    }
+  >;
   onPressDelete: () => void;
   onPressUpdate: () => void;
 }
@@ -66,8 +68,8 @@ const Presenter = memo(
               <Text>{weatherText}</Text>
             </View>
           </View>
-          <SelectInputBox data={foodList} title="식단" inputValue={food} inputType="food" editable={false} />
-          <SelectInputBox data={doneList} title="한 일" inputValue={done} inputType="food" editable={false} />
+          <SelectInputBox data={foodList} title="식단" inputValue={food || {}} inputType="food" editable={false} />
+          <SelectInputBox data={doneList} title="한 일" inputValue={done || {}} inputType="food" editable={false} />
           <View marginB-10>
             <SubTitle title="기타" />
             <View style={styles.inputBox}>

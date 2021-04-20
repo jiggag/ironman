@@ -15,7 +15,7 @@ const Container = () => {
   const onPressBack = useCallback(() => navigation.goBack(), [navigation]);
 
   useEffect(() => {
-    dispatch(getVocRequest());
+    dispatch(getVocRequest({}));
   }, [dispatch]);
 
   return (
