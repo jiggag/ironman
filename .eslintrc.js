@@ -102,6 +102,7 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/no-explicit-any': 'error',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/method-signature-style': ['error', 'property'],
     'import/prefer-default-export': 'off',
     'import/no-unresolved': 'off',
     'import/order': [
