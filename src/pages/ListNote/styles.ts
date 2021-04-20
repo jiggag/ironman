@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   dateText: {
+    color: Constant.BLACK,
     flex: 1,
     fontSize: 12,
     marginBottom: 4,
@@ -36,6 +37,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   titleText: {
+    color: Constant.BLACK,
     fontSize: 12,
     fontWeight: '600',
     marginTop: 2,
@@ -44,7 +46,7 @@ const styles = StyleSheet.create({
 
 export const Food = styled.View`
   border-radius: 30px;
-  background: #fff;
+  background: #ffffff;
   border: 1px solid #666;
   padding: 2px 4px;
   align-self: center;
@@ -52,11 +54,11 @@ export const Food = styled.View`
 `;
 export const Category = styled.Text`
   font-size: 12px;
-  color: #666;
+  color: #666666;
 `;
 export const State = styled.View`
   border-radius: 30px;
-  background: #333;
+  background: #333333;
   padding: 2px 6px;
   align-self: center;
 `;
@@ -88,6 +90,7 @@ export const Weather = styled.View`
 `;
 export const WeatherText = styled.Text`
   font-size: 12px;
+  color: #000000;
 `;
 
 export default styles;

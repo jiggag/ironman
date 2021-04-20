@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     backgroundColor: Constant.MAIN_COLOR,
   },
   valueText: {
+    color: Constant.BLACK,
     fontSize: 12,
     marginLeft: 2,
     marginRight: 8,

@@ -28,7 +28,7 @@ export const SelectInputBox = memo<SelectInputBoxProps>(
         {_map(data, ({ id, value }) => (
           <View style={styles.inputRow} flex row key={id}>
             <View flex-1>
-              <Text>{value}</Text>
+              <Text style={styles.itemTitle}>{value}</Text>
             </View>
             <View flex-3>
               <TextInput
@@ -67,5 +67,8 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.2,
     shadowRadius: 4,
+  },
+  itemTitle: {
+    color: Constant.BLACK,
   },
 });

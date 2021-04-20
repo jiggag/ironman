@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   dateText: {
+    color: Constant.BLACK,
     fontSize: 18,
     fontWeight: '600',
     height: 40,

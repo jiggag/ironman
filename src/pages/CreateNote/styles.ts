@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   dateText: {
+    color: Constant.BLACK,
     fontSize: 18,
     fontWeight: '600',
   },

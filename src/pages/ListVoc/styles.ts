@@ -19,10 +19,12 @@ const styles = StyleSheet.create({
 });
 
 export const Title = styled(Text)`
+  color: #000000;
   margin-bottom: 5px;
   font-size: 16px;
 `;
 export const Content = styled(Text)`
+  color: #000000;
   font-size: 12px;
 `;
 
