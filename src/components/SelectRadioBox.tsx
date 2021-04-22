@@ -2,23 +2,20 @@ import React, { memo } from 'react';
 import { View } from 'react-native-ui-lib';
 import _filter from 'lodash/filter';
 import _map from 'lodash/map';
-// eslint-disable-next-line import/no-cycle
-import { RadioButton, SubTitle } from './index';
+import { RadioData } from '../types';
+import { RadioButton } from './RadioButton';
+import { SubTitle } from './SubTitle';
 
 interface SelectRadioBoxProps {
-  data: {
-    id: number;
-    value: string;
-    visible: boolean;
-  }[];
+  data: RadioData[];
   onChangeNote: (param: Record<string, number>) => void;
   inputValue: number;
   inputType: string;
   title: string;
 }
-const SelectRadioBox = memo(({
+export const SelectRadioBox = memo<SelectRadioBoxProps>(({
   title, data, onChangeNote, inputValue, inputType,
-}: SelectRadioBoxProps) => {
+}) => {
   return (
     <View marginB-10>
       <SubTitle title={title} />
@@ -39,5 +36,3 @@ const SelectRadioBox = memo(({
     </View>
   );
 });
-
-export default SelectRadioBox;

@@ -3,10 +3,9 @@ import { Text, StyleSheet } from 'react-native';
 import { View } from 'react-native-ui-lib';
 import _constant from 'lodash/constant';
 import _map from 'lodash/map';
-import Constant from '../utils/constants';
-import TextInput from './TextInput';
-// eslint-disable-next-line import/no-cycle
-import { SubTitle } from './index';
+import Constant from '@utils/constants';
+import { SubTitle } from './SubTitle';
+import { TextInput } from './TextInput';
 
 interface SelectInputBoxProps {
   data: {
@@ -19,17 +18,17 @@ interface SelectInputBoxProps {
   editable?: boolean;
   onChangeNote?: (param: Record<string, Record<number, string>>) => void;
 }
-const SelectInputBox = memo(
+export const SelectInputBox = memo<SelectInputBoxProps>(
   ({
     title, data, onChangeNote, inputValue, inputType, editable = true,
-  }: SelectInputBoxProps) => {
+  }) => {
     return (
       <View marginB-10>
         <SubTitle title={title} />
         {_map(data, ({ id, value }) => (
           <View style={styles.inputRow} flex row key={id}>
             <View flex-1>
-              <Text>{value}</Text>
+              <Text style={styles.itemTitle}>{value}</Text>
             </View>
             <View flex-3>
               <TextInput
@@ -38,7 +37,7 @@ const SelectInputBox = memo(
                 underlineColorAndroid="transparent"
                 onChangeText={
                   editable && onChangeNote
-                    ? value => onChangeNote({ [inputType]: { ...inputValue, [id]: value } })
+                    ? (value) => onChangeNote({ [inputType]: { ...inputValue, [id]: value } })
                     : _constant(null)
                 }
                 value={inputValue && inputValue[id]}
@@ -54,8 +53,6 @@ const SelectInputBox = memo(
   },
 );
 
-export default SelectInputBox;
-
 const styles = StyleSheet.create({
   inputRow: {
     backgroundColor: Constant.WHITE_COLOR,
@@ -70,5 +67,8 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.2,
     shadowRadius: 4,
+  },
+  itemTitle: {
+    color: Constant.BLACK,
   },
 });

@@ -5,19 +5,18 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
 import _noop from 'lodash/noop';
-import { updateNoteRequest } from '../../reducers/note';
+import { updateNoteRequest } from '@reducers/note';
+import { handleAlert } from '@utils/index';
 import { RootReducer } from '../../types';
-import { handleAlert } from '../../utils';
 import Presenter from './Presenter';
 import styles from './styles';
 
 const Container = ({ route: { params } }) => {
   const navigation = useNavigation();
   const [note, setNote] = useState(params.originNote);
-  const [image] = useState(null);
   const dispatch = useDispatch();
   const { isLoading } = useSelector((store: RootReducer) => store.note);
-  const updateNote = useCallback(param => dispatch(updateNoteRequest(param)), [dispatch]);
+  const updateNote = useCallback((param) => dispatch(updateNoteRequest(param)), [dispatch]);
 
   const onPress = useCallback(async () => {
     updateNote({
@@ -26,15 +25,15 @@ const Container = ({ route: { params } }) => {
         food: JSON.stringify(note.food),
         done: JSON.stringify(note.done),
         date: moment(note.date).valueOf(),
-        image: !!image && image.name,
+        image: '',
       },
       cbSuccess: () => navigation.navigate('DetailNote', { update: true, id: note.id }),
-      cbFailure: message => handleAlert('노트 수정 실패', message, _noop),
+      cbFailure: (message) => handleAlert('노트 수정 실패', message, _noop),
     });
-  }, [updateNote, navigation, note, image]);
+  }, [updateNote, navigation, note]);
 
-  const onChangeNote = useCallback(value => {
-    setNote(prev => ({ ...prev, ...value }));
+  const onChangeNote = useCallback((value) => {
+    setNote((prev) => ({ ...prev, ...value }));
   }, []);
 
   const onPressBack = useCallback(() => navigation.goBack(), [navigation]);

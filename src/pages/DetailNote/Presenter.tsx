@@ -2,19 +2,23 @@ import React, { memo } from 'react';
 import { Text, ScrollView } from 'react-native';
 import { View } from 'react-native-ui-lib';
 import moment from 'moment';
-import { TextInput, SubTitle, Header } from '../../components';
-import SelectInputBox from '../../components/SelectInputBox';
+import { Header } from '@components/Header';
+import { SelectInputBox } from '@components/SelectInputBox';
+import { SubTitle } from '@components/SubTitle';
+import { TextInput } from '@components/TextInput';
+import { foodList, doneList } from '@utils/common';
+import Constant from '@utils/constants';
 import { NoteData } from '../../types';
-import { foodList, doneList } from '../../utils/common';
-import Constant from '../../utils/constants';
 import styles from './styles';
 
 interface DetailType {
   onPressBack: () => void;
-  note: NoteData & {
-    stateText: string;
-    weatherText: string;
-  };
+  note: Partial<
+    NoteData & {
+      stateText: string;
+      weatherText: string;
+    }
+  >;
   onPressDelete: () => void;
   onPressUpdate: () => void;
 }
@@ -64,8 +68,8 @@ const Presenter = memo(
               <Text>{weatherText}</Text>
             </View>
           </View>
-          <SelectInputBox data={foodList} title="식단" inputValue={food} inputType="food" editable={false} />
-          <SelectInputBox data={doneList} title="한 일" inputValue={done} inputType="food" editable={false} />
+          <SelectInputBox data={foodList} title="식단" inputValue={food || {}} inputType="food" editable={false} />
+          <SelectInputBox data={doneList} title="한 일" inputValue={done || {}} inputType="food" editable={false} />
           <View marginB-10>
             <SubTitle title="기타" />
             <View style={styles.inputBox}>

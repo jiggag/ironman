@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { View } from 'react-native-ui-lib';
-import Constant from '../utils/constants';
+import Constant from '@utils/constants';
 
 interface RadioButtonProps {
   onPress: () => void;
@@ -9,16 +9,14 @@ interface RadioButtonProps {
   isSelected: boolean;
 }
 
-const RadioButton = memo<RadioButtonProps>(({ onPress, value, isSelected }) => (
+export const RadioButton = memo<RadioButtonProps>(({ onPress, value, isSelected }) => (
   <TouchableOpacity activeOpacity={0.5} style={styles.button} onPress={onPress}>
     <View row>
-      <View style={[styles.radio, !!isSelected && styles.selectedRadio]} />
+      <View style={[styles.radio, isSelected && styles.selectedRadio]} />
       <Text style={styles.valueText}>{value}</Text>
     </View>
   </TouchableOpacity>
 ));
-
-export default RadioButton;
 
 const styles = StyleSheet.create({
   button: {
@@ -43,6 +41,7 @@ const styles = StyleSheet.create({
     backgroundColor: Constant.MAIN_COLOR,
   },
   valueText: {
+    color: Constant.BLACK,
     fontSize: 12,
     marginLeft: 2,
     marginRight: 8,

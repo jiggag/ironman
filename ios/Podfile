@@ -1,27 +1,41 @@
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-platform :ios, '10.0'
+# 카카오 min target -> 11.0
+# 페이스북 -> 9.0
+# 같이 쓰기 위한 방법..?
+# def import_facebook_pods
+#   platform :ios, '11.0'
+#
+#   pod 'KakaoSDK'
+# end
+
+platform :ios, '11.0'
 
 use_modular_headers!
 
 target 'omf' do
   config = use_native_modules!
+  use_react_native!(
+    :path => config[:reactNativePath],
+    # to enable hermes on iOS, change `false` to `true` and then install pods
+    :hermes_enabled => false
+  )
 
-  use_react_native!(:path => config["reactNativePath"])
-
-  pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec', :modular_headers => false
-  pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec', :modular_headers => false
-  pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec', :modular_headers => false
+  pod 'KakaoSDK'
 
   target 'omfTests' do
     inherit! :complete
     # Pods for testing
   end
 
-  use_flipper!
-end
+  # Enables Flipper.
+  #
+  # Note that if you have use_frameworks! enabled, Flipper will not work and
+  # you should disable the next line.
+  use_flipper!()
 
-post_install do |installer|
-  flipper_post_install(installer)
+  post_install do |installer|
+    react_native_post_install(installer)
+  end
 end

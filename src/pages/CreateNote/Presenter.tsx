@@ -3,14 +3,16 @@ import { ScrollView } from 'react-native';
 import { View } from 'react-native-ui-lib';
 import moment from 'moment';
 import DatePicker from 'react-native-datepicker';
-import { TextInput, SubTitle, Header } from '../../components';
-import SelectInputBox from '../../components/SelectInputBox';
-import SelectRadioBox from '../../components/SelectRadioBox';
-import { NoteData } from '../../types';
+import { Header } from '@components/Header';
+import { SelectInputBox } from '@components/SelectInputBox';
+import { SelectRadioBox } from '@components/SelectRadioBox';
+import { SubTitle } from '@components/SubTitle';
+import { TextInput } from '@components/TextInput';
 import {
   stateList, weatherList, foodList, doneList,
-} from '../../utils/common';
-import Constant from '../../utils/constants';
+} from '@utils/common';
+import Constant from '@utils/constants';
+import { NoteData } from '../../types';
 import styles from './styles';
 
 interface NoteType {
@@ -42,7 +44,7 @@ const Presenter = memo(
                 dateInput: styles.dateInput,
                 dateText: styles.dateText,
               }}
-              onDateChange={date => onChangeNote({ date: moment(date, 'YYYY.MM.DD').valueOf() })}
+              onDateChange={(date) => onChangeNote({ date: moment(date, 'YYYY.MM.DD').valueOf() })}
             />
           </View>
           <View marginB-10>
@@ -51,7 +53,7 @@ const Presenter = memo(
               <TextInput
                 placeholder="제목을 입력하세요"
                 underlineColorAndroid="transparent"
-                onChangeText={title => onChangeNote({ title })}
+                onChangeText={(title) => onChangeNote({ title })}
                 value={title}
                 placeholderTextColor={Constant.PLACEHOLDER_COLOR}
               />
@@ -85,7 +87,7 @@ const Presenter = memo(
               <TextInput
                 placeholder="Etc 입력하세요"
                 underlineColorAndroid="transparent"
-                onChangeText={etc => onChangeNote({ etc })}
+                onChangeText={(etc) => onChangeNote({ etc })}
                 value={etc}
                 placeholderTextColor={Constant.PLACEHOLDER_COLOR}
                 multiline

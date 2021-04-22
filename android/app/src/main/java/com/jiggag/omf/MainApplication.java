@@ -15,40 +15,42 @@ import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.bugsnag.android.Bugsnag;
+import com.microsoft.codepush.react.CodePush;
 
 import java.lang.reflect.InvocationTargetException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
-import com.microsoft.codepush.react.CodePush;
 
 public class MainApplication extends Application implements ReactApplication {
 
-  private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
-    @Override
-    public boolean getUseDeveloperSupport() {
-      return BuildConfig.DEBUG;
-    }
+  private final ReactNativeHost mReactNativeHost =
+      new ReactNativeHost(this) {
+        @Override
+        public boolean getUseDeveloperSupport() {
+          return BuildConfig.DEBUG;
+        }
 
-    @Override
-    protected List<ReactPackage> getPackages() {
-      @SuppressWarnings("UnnecessaryLocalVariable")
-      List<ReactPackage> packages = new PackageList(this).getPackages();
-      // Packages that cannot be autolinked yet can be added manually here, for example:
-      // packages.add(new MainReactPackage());
-      return packages;
-    }
+        @Override
+        protected List<ReactPackage> getPackages() {
+          @SuppressWarnings("UnnecessaryLocalVariable")
+          List<ReactPackage> packages = new PackageList(this).getPackages();
+          // Packages that cannot be autolinked yet can be added manually here, for example:
+          // packages.add(new MyReactNativePackage());
+          return packages;
+        }
 
-    @Override
-    protected String getJSMainModuleName() {
-      return "index";
-    }
+        @Override
+        protected String getJSMainModuleName() {
+          return "index";
+        }
 
-    @Override
-    protected String getJSBundleFile() {
-        return CodePush.getJSBundleFile();
-    }
-  };
+        @Override
+        protected String getJSBundleFile() {
+          return CodePush.getJSBundleFile();
+        }
+      };
 
   @Override
   public ReactNativeHost getReactNativeHost() {
@@ -64,6 +66,7 @@ public class MainApplication extends Application implements ReactApplication {
     }
     super.onCreate();
 //    getHashKey();
+    Bugsnag.start(this);
     SoLoader.init(this, /* native exopackage */ false);
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
   }
@@ -105,10 +108,10 @@ public class MainApplication extends Application implements ReactApplication {
          We use reflection here to pick up the class that initializes Flipper,
         since Flipper library is not available in release mode
         */
-        Class<?> aClass = Class.forName("com.jiggag.omf.ReactNativeFlipper");
+        Class<?> aClass = Class.forName("com.jiggag.omf");
         aClass
-                .getMethod("initializeFlipper", Context.class, ReactInstanceManager.class)
-                .invoke(null, context, reactInstanceManager);
+            .getMethod("initializeFlipper", Context.class, ReactInstanceManager.class)
+            .invoke(null, context, reactInstanceManager);
       } catch (ClassNotFoundException e) {
         e.printStackTrace();
       } catch (NoSuchMethodException e) {

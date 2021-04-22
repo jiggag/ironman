@@ -1,6 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, SliceCaseReducers } from '@reduxjs/toolkit';
+import { UserReducer } from '../types';
 
-const userSlice = createSlice({
+const userSlice = createSlice<UserReducer, SliceCaseReducers<UserReducer>, 'user'>({
   name: 'user',
   initialState: {
     isLoading: false,
@@ -11,7 +12,7 @@ const userSlice = createSlice({
       state.auth = '';
       state.isLoading = true;
     },
-    getUserFailure: state => {
+    getUserFailure: (state) => {
       state.isLoading = false;
     },
     getUserSuccess: (state, action) => {
@@ -22,7 +23,7 @@ const userSlice = createSlice({
       state.auth = '';
       state.isLoading = true;
     },
-    postUserFailure: state => {
+    postUserFailure: (state) => {
       state.isLoading = false;
     },
     postUserSuccess: (state, action) => {

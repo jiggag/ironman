@@ -1,6 +1,6 @@
 import { Text, StyleSheet } from 'react-native';
 import styled from 'styled-components';
-import Constant from '../../utils/constants';
+import Constant from '@utils/constants';
 
 const styles = StyleSheet.create({
   container: {
@@ -19,10 +19,12 @@ const styles = StyleSheet.create({
 });
 
 export const Title = styled(Text)`
+  color: #000000;
   margin-bottom: 5px;
   font-size: 16px;
 `;
 export const Content = styled(Text)`
+  color: #000000;
   font-size: 12px;
 `;
 

@@ -1,4 +1,4 @@
-import Sentry from '@sentry/react-native';
+import Bugsnag from '@bugsnag/react-native';
 import axios, { Method } from 'axios';
 import Q from 'q';
 import Config from 'react-native-config';
@@ -32,7 +32,7 @@ const createInstance = async () => {
     });
     return instance;
   } catch (e) {
-    Sentry.captureException(e);
+    Bugsnag.notify(e);
     throw Error(e);
   }
 };
@@ -40,7 +40,7 @@ export default (method: Method, url: string, params?: unknown) => {
   try {
     const deferred = Q.defer();
     createInstance()
-      .then(instance => {
+      .then((instance) => {
         const config = {
           method,
           url,
@@ -64,12 +64,12 @@ export default (method: Method, url: string, params?: unknown) => {
       .then(({ data }) => {
         return deferred.resolve(data);
       })
-      .catch(err => {
+      .catch((err) => {
         deferred.reject(err);
       });
     return deferred.promise;
   } catch (error) {
-    Sentry.captureException(error);
+    Bugsnag.notify(error);
     console.error(error);
     throw Error(error);
   }

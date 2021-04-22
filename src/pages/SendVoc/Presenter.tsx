@@ -1,9 +1,10 @@
 import React, { memo } from 'react';
 import { TextInput, ScrollView } from 'react-native';
 import { View } from 'react-native-ui-lib';
-import { SubTitle, Header } from '../../components';
+import { Header } from '@components/Header';
+import { SubTitle } from '@components/SubTitle';
+import Constant from '@utils/constants';
 import { VocData } from '../../types';
-import Constant from '../../utils/constants';
 import styles from './styles';
 
 interface VocType {
@@ -30,7 +31,7 @@ const Presenter = memo(({
               style={styles.inputTitle}
               placeholder="제목을 입력하세요"
               underlineColorAndroid="transparent"
-              onChangeText={title => onChangeText({ title })}
+              onChangeText={(title) => onChangeText({ title })}
               value={title}
               placeholderTextColor={Constant.PLACEHOLDER_COLOR}
             />
@@ -43,7 +44,7 @@ const Presenter = memo(({
               style={styles.inputContent}
               placeholder="내용을 입력하세요"
               underlineColorAndroid="transparent"
-              onChangeText={content => onChangeText({ content })}
+              onChangeText={(content) => onChangeText({ content })}
               value={content}
               placeholderTextColor={Constant.PLACEHOLDER_COLOR}
               multiline

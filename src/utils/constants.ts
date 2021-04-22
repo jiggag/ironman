@@ -6,6 +6,7 @@ const Constant = {
   PLACEHOLDER_COLOR: '#c9d6e3',
   SHADOW_COLOR: '#333333',
   WARN_COLOR: '#e34d10',
+  BLACK: '#000000',
 };
 
 export default Constant;

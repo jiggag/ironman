@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react';
 import { FlatList, ListRenderItemInfo } from 'react-native';
 import { Text, View } from 'react-native-ui-lib';
-import { Header } from '../../components';
+import { Header } from '@components/Header';
 import { VocData } from '../../types';
 import styles, { Title, Content } from './styles';
 

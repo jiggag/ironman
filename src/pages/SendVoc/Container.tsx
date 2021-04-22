@@ -5,7 +5,7 @@ import Config from 'react-native-config';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
-import { sendVocRequest } from '../../reducers/voc';
+import { sendVocRequest } from '@reducers/voc';
 import { RootReducer, VocData } from '../../types';
 import Presenter from './Presenter';
 import styles from './styles';
@@ -29,7 +29,7 @@ const Container = () => {
   }, []);
 
   const onChangeText = useCallback((value: Partial<VocData>) => {
-    setState(prev => ({ ...prev, ...value }));
+    setState((prev) => ({ ...prev, ...value }));
   }, []);
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const Container = () => {
 
       if (type === RewardedAdEventType.EARNED_REWARD) {
         console.log('User earned reward of ', reward);
-        setState(data => {
+        setState((data) => {
           dispatch(sendVocRequest({ data, cb: navigation.goBack }));
           return data;
         });

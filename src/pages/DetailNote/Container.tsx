@@ -3,9 +3,9 @@ import { useNavigation } from '@react-navigation/native';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
-import { getNoteRequest, deleteNoteRequest } from '../../reducers/note';
+import { getNoteRequest, deleteNoteRequest } from '@reducers/note';
+import { handleConfirm } from '@utils/index';
 import { RootReducer } from '../../types';
-import { handleConfirm } from '../../utils';
 import Presenter from './Presenter';
 import styles from './styles';
 
@@ -14,8 +14,8 @@ const Container = ({ route: { params } }) => {
   const [id] = useState(params.id);
   const dispatch = useDispatch();
   const { note, isLoading } = useSelector((store: RootReducer) => store.note);
-  const getNote = useCallback(param => dispatch(getNoteRequest(param)), [dispatch]);
-  const deleteNote = useCallback(param => dispatch(deleteNoteRequest(param)), [dispatch]);
+  const getNote = useCallback((param) => dispatch(getNoteRequest(param)), [dispatch]);
+  const deleteNote = useCallback((param) => dispatch(deleteNoteRequest(param)), [dispatch]);
 
   const onPressDelete = useCallback(() => {
     return handleConfirm('정말', '삭제하시겠습니까', () => {
