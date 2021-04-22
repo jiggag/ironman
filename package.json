@@ -1,6 +1,6 @@
 {
   "name": "omf",
-  "version": "1.0.12003",
+  "version": "1.0.12004",
   "codeBundleId": "0.0.2-1",
   "private": true,
   "scripts": {
@@ -10,9 +10,9 @@
     "reinstall": "rm -rf node_modules && yarn install",
     "ios:dev-build-origin": "rnsemup && xcodebuild -workspace ios/omf.xcworkspace -scheme omf clean archive",
     "ios:live-build-origin": "rnsemup && xcodebuild -workspace ios/omf.xcworkspace -scheme 'omf (Production)' clean archive",
-    "android:dev-build-origin": "rnsemup && cd android && ENVFILE=.env ./gradlew assembleRelease && cd .. && yarn open-android-build-folder",
-    "android:live-build-origin": "rnsemup && cd android && ENVFILE=.env.production ./gradlew assembleRelease && cd .. && yarn open-android-build-folder",
-    "android:live-bundle": "rnsemup && cd android && ENVFILE=.env.production ./gradlew bundleRelease && cd ..",
+    "android:dev-build-origin": "rnsemup && cd android && ENVFILE=.env ./gradlew assembleRelease && cd .. && yarn process-kill-java && yarn open-android-build-folder",
+    "android:live-build-origin": "rnsemup && cd android && ENVFILE=.env.production ./gradlew assembleRelease && cd .. && yarn process-kill-java && yarn open-android-build-folder",
+    "android:live-bundle": "rnsemup && cd android && ENVFILE=.env.production ./gradlew bundleRelease && cd .. && yarn process-kill-java",
     "open-android-build-folder": "open android/app/build/outputs/apk/release",
     "pod": "cd ios && pod install && cd ..",
     "test": "jest \"__tests__/.*\\.test\\.(ts|js)\"",
@@ -27,8 +27,8 @@
     "fastlane:deploy": "rnsemup && yarn reinstall && cd android && fastlane deploy --env production && cd ..",
     "precommit": "lint-staged",
     "postinstall": "patch-package && yarn pod",
-    "android:dev-build": "rnsemup && cd android && fastlane build && cd .. && yarn process-kill-java && yarn open-android-build-folder && yarn android:dev-code-push",
-    "android:live-build": "rnsemup && cd android && fastlane build --env production && yarn process-kill-java && cd .. && yarn open-android-build-folder && yarn android:live-code-push",
+    "android:dev-build": "rnsemup && cd android && fastlane beta && cd .. && yarn process-kill-java && yarn open-android-build-folder && yarn android:dev-code-push",
+    "android:live-build": "rnsemup && cd android && fastlane beta --env production && yarn process-kill-java && cd .. && yarn open-android-build-folder && yarn android:live-code-push",
     "ios:dev-build": "rnsemup && cd ios && fastlane beta && cd .. && yarn ios:dev-code-push",
     "ios:live-build": "rnsemup && cd ios && fastlane release && cd .. && yarn ios:live-code-push",
     "all:live-build": "rnsemup && yarn reinstall && yarn android:live-build && yarn ios:live-build",
@@ -40,7 +40,8 @@
     "ios:live-code-push": "yarn update-codepush-bundle-id && appcenter codepush release-react -a jiggag/ironman-ios -d Production --output-dir build/ios && yarn ios:bugsnag-sourcemap",
     "android:bugsnag-sourcemap": "scripts/bugsnag-sourcemap-android.sh",
     "ios:bugsnag-sourcemap": "scripts/bugsnag-sourcemap-ios.sh",
-    "update-codepush-bundle-id": "node ./scripts/updateCodePushBundleId.js"
+    "update-codepush-bundle-id": "node ./scripts/updateCodePushBundleId.js",
+    "apk:install": "adb install ./android/app/build/outputs/apk/release/app-arm64-v8a-release.apk"
   },
   "dependencies": {
     "@bugsnag/react-native": "^7.9.2",

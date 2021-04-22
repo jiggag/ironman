@@ -11,4 +11,4 @@
 
 -keep class com.jiggag.omf.BuildConfig { *; }
 
--keepresources string/build_config_package
+-keep class com.kakao.sdk.**.model.* { <fields>; }

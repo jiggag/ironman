@@ -147,8 +147,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         resValue "string", "build_config_package", "com.jiggag.omf"
-        versionCode 1029
-        versionName "1.0.12003"
+        versionCode 1030
+        versionName "1.0.12004"
         multiDexEnabled true
         manifestPlaceholders = [bugsnagApiKey: project.env.get("BUGSNAG_API_KEY")]
     }
@@ -180,6 +180,7 @@ android {
         debug {
             signingConfig signingConfigs.debug
             resValue "string", "CodePushDeploymentKey", '""'
+            resValue "string", "kakao_app_key", project.env.get("KAKAO_APP_KEY")
         }
         release {
             // Caution! In production, you need to generate your own keystore file.
@@ -190,6 +191,7 @@ android {
             shrinkResources enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             resValue "string", "CodePushDeploymentKey", project.env.get("CODE_PUSH_AOS_KEY")
+            resValue "string", "kakao_app_key", project.env.get("KAKAO_APP_KEY")
         }
     }
 
