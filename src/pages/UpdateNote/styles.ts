@@ -2,14 +2,6 @@ import { StyleSheet } from 'react-native';
 import Constant from '@utils/constants';
 
 const styles = StyleSheet.create({
-  buttonView: {},
-  cameraView: {
-    alignSelf: 'center',
-    borderColor: Constant.HIGHLIGHT_SUB_COLOR,
-    borderWidth: 1,
-    height: 300,
-    width: 300,
-  },
   container: {
     flex: 1,
   },
@@ -72,6 +64,9 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.2,
     shadowRadius: 4,
+  },
+  pickerWrapper: {
+    zIndex: 9,
   },
   safeAreaView: {
     backgroundColor: Constant.WHITE_COLOR,

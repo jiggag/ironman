@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { ScrollView } from 'react-native';
 import { View } from 'react-native-ui-lib';
 import moment from 'moment';
-import DatePicker from 'react-native-datepicker';
+import { DatePicker } from '@components/DatePicker';
 import { Header } from '@components/Header';
 import { SelectInputBox } from '@components/SelectInputBox';
 import { SelectRadioBox } from '@components/SelectRadioBox';
@@ -30,21 +30,13 @@ const Presenter = memo(
   }: NoteType) => (
     <>
       <Header onPress={onPressBack} onPressRightButton={onPress} type="SAVE" />
+
       <ScrollView style={styles.container}>
         <View paddingH-20>
-          <View marginB-10>
+          <View marginB-10 row style={styles.pickerWrapper}>
             <DatePicker
-              date={moment(date).toDate()}
-              mode="date"
-              format="YYYY.MM.DD"
-              confirmBtnText="확인"
-              cancelBtnText="취소"
-              customStyles={{
-                dateIcon: styles.dateIcon,
-                dateInput: styles.dateInput,
-                dateText: styles.dateText,
-              }}
-              onDateChange={(date) => onChangeNote({ date: moment(date, 'YYYY.MM.DD').valueOf() })}
+              date={date}
+              onChangeDate={(date) => onChangeNote({ date: moment(date, 'YYYY.MM.DD').valueOf() })}
             />
           </View>
           <View marginB-10>
@@ -95,26 +87,6 @@ const Presenter = memo(
             </View>
           </View>
         </View>
-        {/* <View marginB-10>
-        <View style={styles.cameraView}>
-          <TouchableOpacity activeOpacity={0.5} onPress={onPressImage}>
-            {
-              !!image ?
-              <FastImage
-                source={image}
-                resizeMode={FastImage.resizeMode.cover}
-                style={{ width: '100%', height: '100%' }}
-              /> :
-              <FastImage
-                source={require('../../assets/camera.png')}
-                resizeMode={FastImage.resizeMode.center}
-                style={{ width: '100%', height: '100%' }}
-              />
-
-            }
-          </TouchableOpacity>
-        </View>
-      </View> */}
       </ScrollView>
     </>
   ),

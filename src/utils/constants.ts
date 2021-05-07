@@ -7,6 +7,7 @@ const Constant = {
   SHADOW_COLOR: '#333333',
   WARN_COLOR: '#e34d10',
   BLACK: '#000000',
+  OPACITY_COLOR: '#00000032',
 };
 
 export default Constant;

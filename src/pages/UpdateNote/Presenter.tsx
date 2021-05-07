@@ -1,12 +1,13 @@
 import React, { memo } from 'react';
-import { TextInput, ScrollView } from 'react-native';
+import { ScrollView } from 'react-native';
 import { View } from 'react-native-ui-lib';
 import moment from 'moment';
-import DatePicker from 'react-native-datepicker';
+import { DatePicker } from '@components/DatePicker';
 import { Header } from '@components/Header';
 import { SelectInputBox } from '@components/SelectInputBox';
 import { SelectRadioBox } from '@components/SelectRadioBox';
 import { SubTitle } from '@components/SubTitle';
+import { TextInput } from '@components/TextInput';
 import {
   stateList, weatherList, foodList, doneList,
 } from '@utils/common';
@@ -31,19 +32,10 @@ const Presenter = memo(
       <Header onPress={onPressBack} onPressRightButton={onPress} type="SAVE" />
       <ScrollView style={styles.container}>
         <View paddingH-20>
-          <View marginB-10>
+          <View row marginB-10 style={styles.pickerWrapper}>
             <DatePicker
-              date={moment(date).toDate()}
-              mode="date"
-              format="YYYY.MM.DD"
-              confirmBtnText="확인"
-              cancelBtnText="취소"
-              customStyles={{
-                dateIcon: styles.dateIcon,
-                dateInput: styles.dateInput,
-                dateText: styles.dateText,
-              }}
-              onDateChange={(date) => onChangeNote({
+              date={date}
+              onChangeDate={(date) => onChangeNote({
                 date: moment(date, 'YYYY.MM.DD').startOf('days').valueOf(),
               })}
             />
@@ -52,7 +44,6 @@ const Presenter = memo(
             <SubTitle title="제목" />
             <View style={styles.inputLine}>
               <TextInput
-                style={styles.input}
                 placeholder="제목을 입력하세요"
                 underlineColorAndroid="transparent"
                 onChangeText={(title) => onChangeNote({ title })}
@@ -87,7 +78,6 @@ const Presenter = memo(
             <SubTitle title="기타" />
             <View style={styles.inputBox}>
               <TextInput
-                style={styles.input}
                 placeholder="Etc 입력하세요"
                 underlineColorAndroid="transparent"
                 onChangeText={(etc) => onChangeNote({ etc })}

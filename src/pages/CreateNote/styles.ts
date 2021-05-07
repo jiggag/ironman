@@ -2,31 +2,8 @@ import { StyleSheet } from 'react-native';
 import Constant from '@utils/constants';
 
 const styles = StyleSheet.create({
-  buttonView: {},
-  cameraView: {
-    alignSelf: 'center',
-    borderColor: Constant.HIGHLIGHT_SUB_COLOR,
-    borderWidth: 1,
-    height: 300,
-    width: 300,
-  },
   container: {
     flex: 1,
-  },
-  dateIcon: {
-    display: 'none',
-  },
-  dateInput: {
-    borderBottomWidth: 1,
-    borderWidth: 0,
-    height: 20,
-    left: 0,
-    position: 'absolute',
-  },
-  dateText: {
-    color: Constant.BLACK,
-    fontSize: 18,
-    fontWeight: '600',
   },
   inputBox: {
     backgroundColor: Constant.WHITE_COLOR,
@@ -53,6 +30,9 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.2,
     shadowRadius: 4,
+  },
+  pickerWrapper: {
+    zIndex: 9,
   },
   safeAreaView: {
     backgroundColor: Constant.WHITE_COLOR,
