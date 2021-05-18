@@ -74,7 +74,7 @@
     "react-native-chart-kit": "file:./src/lib/react-native-chart-kit/",
     "react-native-code-push": "^7.0.0",
     "react-native-config": "^1.4.2",
-    "react-native-fast-image": "^7.0.2",
+    "react-native-fast-image": "^8.3.0",
     "react-native-fbsdk-next": "^4.0.0",
     "react-native-flipper": "^0.87.0",
     "react-native-gesture-handler": "^1.8.0",
