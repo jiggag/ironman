@@ -25,6 +25,17 @@ export const MainBigButton: React.FC<ButtonProps> = ({ text, onPress }) => {
   return <BigButton text={text} onPress={onPress} buttonStyle={styles.mainButton} textStyle={styles.mainButtonText} />;
 };
 
+export const TextLineButton: React.FC<ButtonProps> = ({ text, onPress }) => {
+  return (
+    <BigButton
+      text={text}
+      onPress={onPress}
+      buttonStyle={styles.textLineButton}
+      textStyle={styles.textLineButtonText}
+    />
+  );
+};
+
 const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
@@ -56,5 +67,16 @@ const styles = StyleSheet.create({
   mainButtonText: {
     color: Constant.WHITE_COLOR,
     fontWeight: 'bold',
+  },
+  textLineButton: {
+    backgroundColor: undefined,
+    elevation: 0,
+    paddingVertical: 20,
+    shadowOpacity: 0,
+  },
+  textLineButtonText: {
+    color: Constant.MAIN_COLOR,
+    fontWeight: 'bold',
+    textDecorationLine: 'underline',
   },
 });

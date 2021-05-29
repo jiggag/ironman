@@ -1,13 +1,11 @@
 import { Platform } from 'react-native';
 
 const Constant = {
-  MAIN_COLOR: '#209EFF',
-  SUB_COLOR: '#eee',
-  HIGHLIGHT_SUB_COLOR: '#ddd',
-  WHITE_COLOR: '#ffffff',
-  PLACEHOLDER_COLOR: '#c9d6e3',
+  MAIN_COLOR: '#2F80ED',
+  WHITE_COLOR: '#F2F2F2',
+  PLACEHOLDER_COLOR: '#BDBDBD',
   SHADOW_COLOR: '#333333',
-  WARN_COLOR: '#e34d10',
+  WARN_COLOR: '#EB5757',
   BLACK: '#000000',
   OPACITY_COLOR: '#00000032',
 };

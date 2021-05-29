@@ -1,10 +1,13 @@
-import React, { useEffect, useCallback } from 'react';
+import React, {
+  useEffect, useCallback, useMemo, useRef,
+} from 'react';
+import { Animated } from 'react-native';
 import Bugsnag from '@bugsnag/react-native';
 import messaging from '@react-native-firebase/messaging';
 import { login, getProfile, KakaoProfile } from '@react-native-seoul/kakao-login';
 import { useNavigation, CommonActions } from '@react-navigation/native';
 import Spinner from 'react-native-loading-spinner-overlay';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
 import _constant from 'lodash/constant';
 import { getUserRequest, postUserRequest } from '@reducers/user';
@@ -12,15 +15,38 @@ import { getAccessToken } from '@utils/auth';
 import { handleAlert } from '@utils/index';
 import { RootReducer } from '../../types';
 import Presenter from './Presenter';
-import styles from './styles';
+import styles, { BUTTON_HEIGHT } from './styles';
+
+interface IntroProps {
+  setShowBanner: (isShow: boolean) => void;
+}
 
 interface Profile extends KakaoProfile {
   id: string | null;
 }
-const Container = () => {
+
+const Container = ({ setShowBanner }: IntroProps) => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const { bottom } = useSafeAreaInsets();
   const { auth, isLoading } = useSelector((store: RootReducer) => store.user);
+
+  const animatedHeight = useRef(new Animated.Value(0));
+  const animatedStyle = useMemo(
+    () => ({
+      transform: [
+        {
+          translateY: animatedHeight.current.interpolate({
+            inputRange: [0, 1],
+            outputRange: [BUTTON_HEIGHT + bottom, 0],
+          }),
+        },
+      ],
+      ...styles.loginPopup,
+      height: BUTTON_HEIGHT + bottom,
+    }),
+    [bottom],
+  );
 
   const onPress = useCallback(async () => {
     const fcmToken = await messaging().getToken();
@@ -50,10 +76,11 @@ const Container = () => {
   }, [dispatch]);
 
   useEffect(() => {
+    setShowBanner(!!auth);
     if (auth) {
       navigation.navigate('ListNote');
     }
-  }, [auth, navigation]);
+  }, [auth, navigation, setShowBanner]);
 
   useEffect(() => {
     // 백그라운드 상태에서 푸시 눌렀을때
@@ -74,14 +101,18 @@ const Container = () => {
   }, [navigation]);
 
   useEffect(() => {
-    (async () => {
-      await onPress();
-    })();
+    setTimeout(() => {
+      Animated.timing(animatedHeight.current, {
+        useNativeDriver: true,
+        toValue: 1,
+        duration: 500,
+      }).start();
+    }, 1000);
   }, [onPress]);
 
   return (
-    <SafeAreaView style={styles.safeAreaView}>
-      <Presenter onPress={onPress} />
+    <SafeAreaView edges={['top']} style={styles.safeAreaView}>
+      <Presenter onPress={onPress} animatedStyle={animatedStyle} />
       <Spinner visible={isLoading} />
     </SafeAreaView>
   );

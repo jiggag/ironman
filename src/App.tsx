@@ -108,6 +108,12 @@ export default class App extends React.PureComponent<undefined, State> {
     console.log('>>> onAdOpened');
   };
 
+  setShowBanner = (isShowBanner: boolean) => {
+    this.setState({
+      isShowBanner,
+    });
+  };
+
   render() {
     const { isShowBanner } = this.state;
 
@@ -117,8 +123,12 @@ export default class App extends React.PureComponent<undefined, State> {
           <PersistGate loading={null} persistor={persistor}>
             <NavigationContainer>
               <Stack.Navigator headerMode="none" initialRouteName="Intro">
-                <Stack.Screen name="Intro" component={Intro} />
-                <Stack.Screen name="ListNote" component={ListNote} />
+                <Stack.Screen name="Intro">
+                  {(props) => <Intro setShowBanner={this.setShowBanner} {...props} />}
+                </Stack.Screen>
+                <Stack.Screen name="ListNote">
+                  {(props) => <ListNote setShowBanner={this.setShowBanner} {...props} />}
+                </Stack.Screen>
                 <Stack.Screen name="CreateNote" component={CreateNote} />
                 <Stack.Screen name="DetailNote" component={DetailNote} />
                 <Stack.Screen name="UpdateNote" component={UpdateNote} />

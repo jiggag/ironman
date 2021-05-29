@@ -12,7 +12,16 @@ import { RootReducer } from '../../types';
 import Presenter from './Presenter';
 import styles from './styles';
 
-const Container = ({ route: { params } }) => {
+interface ListNoteProps {
+  setShowBanner: (isShow: boolean) => void;
+  route: {
+    params?: {
+      update?: boolean;
+    };
+  };
+}
+
+const Container = ({ route: { params }, setShowBanner }: ListNoteProps) => {
   const navigation = useNavigation();
   const isFocused = useIsFocused();
   const dispatch = useDispatch();
@@ -27,9 +36,10 @@ const Container = ({ route: { params } }) => {
   const onPressBack = useCallback(() => {
     return handleConfirm('정말', '로그아웃할거에요?', () => {
       deleteAccessToken();
+      setShowBanner(false);
       return navigation.goBack();
     });
-  }, [navigation]);
+  }, [navigation, setShowBanner]);
 
   const onNext = useCallback(() => {
     getList(true);
