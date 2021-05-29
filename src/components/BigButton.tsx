@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   textLineButton: {
-    backgroundColor: undefined,
+    backgroundColor: Constant.WHITE_COLOR,
     elevation: 0,
     paddingVertical: 20,
     shadowOpacity: 0,

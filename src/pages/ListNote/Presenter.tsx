@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, useMemo } from 'react';
 import { Text, FlatList, ListRenderItemInfo } from 'react-native';
 import { View } from 'react-native-ui-lib';
 import { Header } from '@components/Header';
@@ -25,6 +25,13 @@ const ListEmptyComponent = memo(() => (
 const Presenter = memo(({
   list, graph, onActionToCreate, onPress, onPressBack, onNext,
 }: ListType) => {
+  const dynamicStyle = useMemo(
+    () => ({
+      contentContainer: { flex: list.length ? undefined : 1 },
+    }),
+    [list.length],
+  );
+
   const keyExtractor = useCallback((item, index) => `${item.id}${index}`, []);
 
   const renderItem = useCallback(
@@ -37,6 +44,7 @@ const Presenter = memo(({
       <Header onPress={onPressBack} onPressRightButton={onActionToCreate} type="CREATE" />
       <FlatList
         style={styles.container}
+        contentContainerStyle={dynamicStyle.contentContainer}
         ListHeaderComponent={<HeaderComponent data={graph} />}
         ListEmptyComponent={<ListEmptyComponent />}
         data={list}

@@ -78,9 +78,6 @@ export default class App extends React.PureComponent<undefined, State> {
         tagForUnderAgeOfConsent: false,
       })
       .then((res) => {
-        this.setState({
-          isShowBanner: true,
-        });
         return res;
       })
       .catch((e) => {

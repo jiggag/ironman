@@ -76,9 +76,17 @@ const Container = ({ setShowBanner }: IntroProps) => {
   }, [dispatch]);
 
   useEffect(() => {
-    setShowBanner(!!auth);
     if (auth) {
-      navigation.navigate('ListNote');
+      Animated.timing(animatedHeight.current, {
+        useNativeDriver: true,
+        toValue: 0,
+        duration: 500,
+      }).start(() => {
+        setShowBanner(true);
+        navigation.navigate('ListNote');
+      });
+    } else {
+      setShowBanner(false);
     }
   }, [auth, navigation, setShowBanner]);
 
