@@ -7,11 +7,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 30,
   },
-  emptyCard: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center',
-  },
   safeAreaView: {
     backgroundColor: Constant.WHITE_COLOR,
     flex: 1,

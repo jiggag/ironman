@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { Animated, ViewStyle } from 'react-native';
 import Text from 'react-native-ui-lib/text';
 import View from 'react-native-ui-lib/view';
-import { TextLineButton } from '@components/BigButton';
+import { TextLineButton } from '@components/button/TextLineButton';
 import styles from './styles';
 
 interface Intro {

@@ -1,10 +1,11 @@
 import React, { memo, useCallback } from 'react';
-import { Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { View } from 'react-native-ui-lib';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
+import { BackButton } from '@components/header/BackButton';
 import Constant from '@utils/constants';
-import { RootReducer } from '../types';
+import { RootReducer } from '../../types';
 import { HeaderRightButton } from './HeaderRightButton';
 
 interface HeaderType {
@@ -33,13 +34,7 @@ export const Header = memo<HeaderType>(({
 
   return (
     <View row centerV paddingH-20 style={styles.header}>
-      <View flex left>
-        <TouchableOpacity activeOpacity={0.8} onPress={onPress}>
-          <View flex center>
-            <Text style={styles.backButtonText}>뒤로가기</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
+      <BackButton onPress={onPress} />
       <HeaderRightButton isVisible buttonIdx={2} text="문의" onPress={onPressVoc} style={styles.deleteButtonText} />
       <HeaderRightButton
         isVisible={type === 'UPDATE'}
@@ -53,14 +48,14 @@ export const Header = memo<HeaderType>(({
         buttonIdx={0}
         text={TYPE[type as string]}
         onPress={onPressRightButton}
-        style={styles.backButtonText}
+        style={styles.buttonText}
       />
     </View>
   );
 });
 
 const styles = StyleSheet.create({
-  backButtonText: {
+  buttonText: {
     color: Constant.SHADOW_COLOR,
     fontSize: 14,
     fontWeight: '600',

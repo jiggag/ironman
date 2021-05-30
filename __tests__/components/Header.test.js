@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { Provider } from 'react-redux';
-import Header from '../../src/components/Header';
+import { Header } from '../../src/components/header/Header';
 
 it('Renderer Component: Header', () => {
   const store = {
@@ -9,9 +9,9 @@ it('Renderer Component: Header', () => {
     subscribe: jest.fn(),
     getState: () => ({
       user: jest.fn(),
-    })
+    }),
   };
-  
+
   const createComponent = renderer.create(
     <Provider store={store}>
       <Header onPress={jest.fn()} onPressRightButton={jest.fn()} type="CREATE" />

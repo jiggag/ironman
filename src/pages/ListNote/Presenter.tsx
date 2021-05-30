@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useMemo } from 'react';
-import { Text, FlatList, ListRenderItemInfo } from 'react-native';
-import { View } from 'react-native-ui-lib';
-import { Header } from '@components/Header';
+import { FlatList, ListRenderItemInfo } from 'react-native';
+import { Header } from '@components/header/Header';
+import { ListEmpty } from '@components/list/ListEmpty';
 import { NoteData } from '../../types';
 import HeaderComponent from './Header';
 import NoteComponent from './Note';
@@ -15,12 +15,6 @@ interface ListType {
   onPressBack: () => void;
   onNext: () => void;
 }
-
-const ListEmptyComponent = memo(() => (
-  <View marginV-50 style={styles.emptyCard}>
-    <Text>기록을 남겨주세요</Text>
-  </View>
-));
 
 const Presenter = memo(({
   list, graph, onActionToCreate, onPress, onPressBack, onNext,
@@ -46,7 +40,7 @@ const Presenter = memo(({
         style={styles.container}
         contentContainerStyle={dynamicStyle.contentContainer}
         ListHeaderComponent={<HeaderComponent data={graph} />}
-        ListEmptyComponent={<ListEmptyComponent />}
+        ListEmptyComponent={<ListEmpty text="기록을 남겨주세요" />}
         data={list}
         renderItem={renderItem}
         keyExtractor={keyExtractor}

@@ -3,7 +3,7 @@ import { ScrollView } from 'react-native';
 import { View } from 'react-native-ui-lib';
 import moment from 'moment';
 import { DatePicker } from '@components/DatePicker';
-import { Header } from '@components/Header';
+import { Header } from '@components/header/Header';
 import { SelectInputBox } from '@components/SelectInputBox';
 import { SelectRadioBox } from '@components/SelectRadioBox';
 import { SubTitle } from '@components/SubTitle';

@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { TextInput, ScrollView } from 'react-native';
 import { View } from 'react-native-ui-lib';
-import { Header } from '@components/Header';
+import { Header } from '@components/header/Header';
 import { SubTitle } from '@components/SubTitle';
 import Constant from '@utils/constants';
 import { VocData } from '../../types';

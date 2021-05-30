@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { Text, ScrollView } from 'react-native';
 import { View } from 'react-native-ui-lib';
 import moment from 'moment';
-import { Header } from '@components/Header';
+import { Header } from '@components/header/Header';
 import { SelectInputBox } from '@components/SelectInputBox';
 import { SubTitle } from '@components/SubTitle';
 import { TextInput } from '@components/TextInput';

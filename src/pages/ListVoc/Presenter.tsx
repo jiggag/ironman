@@ -1,7 +1,8 @@
 import React, { memo, useCallback } from 'react';
 import { FlatList, ListRenderItemInfo } from 'react-native';
-import { Text, View } from 'react-native-ui-lib';
-import { Header } from '@components/Header';
+import { View } from 'react-native-ui-lib';
+import { Header } from '@components/header/Header';
+import { ListEmpty } from '@components/list/ListEmpty';
 import { VocData } from '../../types';
 import styles, { Title, Content } from './styles';
 
@@ -19,12 +20,6 @@ const VocComponent = ({ title, content }) => {
   );
 };
 
-const ListEmptyComponent = memo(() => (
-  <View marginV-50 style={styles.emptyCard}>
-    <Text>등록된 문의사항이 없습니다</Text>
-  </View>
-));
-
 const Presenter = memo(({ list, onPressBack }: VocProps) => {
   const keyExtractor = useCallback((item, index) => `${item.id}${index}`, []);
 
@@ -35,7 +30,7 @@ const Presenter = memo(({ list, onPressBack }: VocProps) => {
       <Header onPress={onPressBack} />
       <FlatList
         style={styles.container}
-        ListEmptyComponent={ListEmptyComponent}
+        ListEmptyComponent={<ListEmpty text="등록된 문의사항이 없습니다" />}
         data={list}
         renderItem={renderItem}
         keyExtractor={keyExtractor}

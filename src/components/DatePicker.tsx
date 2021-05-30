@@ -3,7 +3,7 @@ import { StyleSheet, TouchableWithoutFeedback, Dimensions } from 'react-native';
 import { View } from 'react-native-ui-lib';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import moment from 'moment';
-import { BigButton } from '@components/BigButton';
+import { BigButton } from '@components/button/BigButton';
 import Constant from '@utils/constants';
 
 interface DatePickerProps {

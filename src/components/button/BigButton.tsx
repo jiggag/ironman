@@ -4,16 +4,18 @@ import {
 } from 'react-native';
 import Constant from '@utils/constants';
 
-interface ButtonProps {
+export interface ButtonProps {
   onPress: () => void;
   text: string;
   buttonStyle?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
 }
+
 export const BigButton: React.FC<ButtonProps> = ({
   onPress, text, buttonStyle, textStyle,
 }) => {
   const customButtonStyle = useMemo<StyleProp<ViewStyle>>(() => [styles.button, buttonStyle], [buttonStyle]);
+
   return (
     <TouchableOpacity onPress={onPress} activeOpacity={0.5} style={customButtonStyle}>
       <Text style={[styles.buttonText, textStyle]}>{text}</Text>
@@ -23,17 +25,6 @@ export const BigButton: React.FC<ButtonProps> = ({
 
 export const MainBigButton: React.FC<ButtonProps> = ({ text, onPress }) => {
   return <BigButton text={text} onPress={onPress} buttonStyle={styles.mainButton} textStyle={styles.mainButtonText} />;
-};
-
-export const TextLineButton: React.FC<ButtonProps> = ({ text, onPress }) => {
-  return (
-    <BigButton
-      text={text}
-      onPress={onPress}
-      buttonStyle={styles.textLineButton}
-      textStyle={styles.textLineButtonText}
-    />
-  );
 };
 
 const styles = StyleSheet.create({
@@ -67,16 +58,5 @@ const styles = StyleSheet.create({
   mainButtonText: {
     color: Constant.WHITE_COLOR,
     fontWeight: 'bold',
-  },
-  textLineButton: {
-    backgroundColor: Constant.WHITE_COLOR,
-    elevation: 0,
-    paddingVertical: 20,
-    shadowOpacity: 0,
-  },
-  textLineButtonText: {
-    color: Constant.MAIN_COLOR,
-    fontWeight: 'bold',
-    textDecorationLine: 'underline',
   },
 });
