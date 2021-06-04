@@ -1,11 +1,12 @@
-import React, { memo, useCallback } from 'react';
-import { Text, FlatList, ListRenderItemInfo } from 'react-native';
-import { View } from 'react-native-ui-lib';
-import { Header } from '@components/Header';
+import React, { memo, useCallback, useMemo } from 'react';
+import { FlatList, ListRenderItemInfo } from 'react-native';
+import { useDynamicValue } from 'react-native-dynamic';
+import { BUTTON_TYPE, Header } from '@components/header/Header';
+import { ListEmpty } from '@components/list/ListEmpty';
 import { NoteData } from '../../types';
 import HeaderComponent from './Header';
 import NoteComponent from './Note';
-import styles from './styles';
+import { dynamicStyles } from './styles';
 
 interface ListType {
   list: NoteData[];
@@ -16,15 +17,17 @@ interface ListType {
   onNext: () => void;
 }
 
-const ListEmptyComponent = memo(() => (
-  <View marginV-50 style={styles.emptyCard}>
-    <Text>기록을 남겨주세요</Text>
-  </View>
-));
-
 const Presenter = memo(({
   list, graph, onActionToCreate, onPress, onPressBack, onNext,
 }: ListType) => {
+  const styles = useDynamicValue(dynamicStyles);
+  const customStyle = useMemo(
+    () => ({
+      contentContainer: { flex: list.length ? undefined : 1 },
+    }),
+    [list.length],
+  );
+
   const keyExtractor = useCallback((item, index) => `${item.id}${index}`, []);
 
   const renderItem = useCallback(
@@ -34,11 +37,12 @@ const Presenter = memo(({
 
   return (
     <>
-      <Header onPress={onPressBack} onPressRightButton={onActionToCreate} type="CREATE" />
+      <Header onPress={onPressBack} onPressRightButton={onActionToCreate} type={BUTTON_TYPE.CREATE} />
       <FlatList
         style={styles.container}
+        contentContainerStyle={customStyle.contentContainer}
         ListHeaderComponent={<HeaderComponent data={graph} />}
-        ListEmptyComponent={<ListEmptyComponent />}
+        ListEmptyComponent={<ListEmpty text="기록을 남겨주세요" />}
         data={list}
         renderItem={renderItem}
         keyExtractor={keyExtractor}

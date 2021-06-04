@@ -1,7 +1,8 @@
 import React, { memo } from 'react';
-import { Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 import { View } from 'react-native-ui-lib';
-import Constant from '@utils/constants';
+import { DynamicStyleSheet, DynamicValue, useDynamicValue } from 'react-native-dynamic';
+import { FontSize, Theme } from '@utils/constants';
 
 interface RadioButtonProps {
   onPress: () => void;
@@ -9,26 +10,30 @@ interface RadioButtonProps {
   isSelected: boolean;
 }
 
-export const RadioButton = memo<RadioButtonProps>(({ onPress, value, isSelected }) => (
-  <TouchableOpacity activeOpacity={0.5} style={styles.button} onPress={onPress}>
-    <View row>
-      <View style={[styles.radio, isSelected && styles.selectedRadio]} />
-      <Text style={styles.valueText}>{value}</Text>
-    </View>
-  </TouchableOpacity>
-));
+export const RadioButton = memo<RadioButtonProps>(({ onPress, value, isSelected }) => {
+  const styles = useDynamicValue(dynamicStyles);
+  return (
+    <TouchableOpacity activeOpacity={0.5} style={styles.button} onPress={onPress}>
+      <View row centerV>
+        <View style={[styles.radio, isSelected && styles.selectedRadio]} />
+        <Text style={styles.valueText}>{value}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+});
 
-const styles = StyleSheet.create({
+const dynamicStyles = new DynamicStyleSheet({
   button: {
     alignItems: 'center',
   },
   radio: {
-    backgroundColor: Constant.WHITE_COLOR,
+    backgroundColor: new DynamicValue(Theme.light.background, Theme.dark.background),
     borderRadius: 14,
     borderWidth: 1,
+    borderColor: new DynamicValue(Theme.light.subBase, Theme.dark.subBase),
     elevation: 5,
     height: 14,
-    shadowColor: Constant.SHADOW_COLOR,
+    shadowColor: new DynamicValue(Theme.light.shadow, Theme.dark.shadow),
     shadowOffset: {
       width: 0,
       height: 2,
@@ -38,11 +43,11 @@ const styles = StyleSheet.create({
     width: 14,
   },
   selectedRadio: {
-    backgroundColor: Constant.MAIN_COLOR,
+    backgroundColor: new DynamicValue(Theme.light.highlight, Theme.dark.highlight),
   },
   valueText: {
-    color: Constant.BLACK,
-    fontSize: 12,
+    color: new DynamicValue(Theme.light.shadow, Theme.dark.shadow),
+    fontSize: FontSize.normal,
     marginLeft: 2,
     marginRight: 8,
   },

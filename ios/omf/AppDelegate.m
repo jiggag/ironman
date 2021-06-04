@@ -95,7 +95,4 @@ static void InitializeFlipper(UIApplication *application) {
   return false;
 }
 
-  return NO;
-}
-
 @end

@@ -1,10 +1,11 @@
 import React, { memo, useCallback } from 'react';
-import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { View } from 'react-native-ui-lib';
 import { useNavigation } from '@react-navigation/native';
+import { DynamicStyleSheet, DynamicValue, useDynamicValue } from 'react-native-dynamic';
 import { useSelector } from 'react-redux';
-import Constant from '@utils/constants';
-import { RootReducer } from '../types';
+import { BackButton } from '@components/header/BackButton';
+import { FontSize, FontWeight, Theme } from '@utils/constants';
+import { RootReducer } from '../../types';
 import { HeaderRightButton } from './HeaderRightButton';
 
 interface HeaderType {
@@ -14,7 +15,14 @@ interface HeaderType {
   type?: string;
 }
 
-const TYPE = {
+export enum BUTTON_TYPE {
+  CREATE = 'CREATE',
+  UPDATE = 'UPDATE',
+  SAVE = 'SAVE',
+  SEND = 'SEND',
+}
+
+const BUTTON_TEXT = {
   CREATE: '생성',
   UPDATE: '수정',
   SAVE: '저장',
@@ -24,6 +32,7 @@ const TYPE = {
 export const Header = memo<HeaderType>(({
   onPress, onPressRightButton, onPressDelete, type,
 }) => {
+  const styles = useDynamicValue(dynamicStyles);
   const { auth } = useSelector((store: RootReducer) => store.user);
   const navigation = useNavigation();
 
@@ -33,13 +42,7 @@ export const Header = memo<HeaderType>(({
 
   return (
     <View row centerV paddingH-20 style={styles.header}>
-      <View flex left>
-        <TouchableOpacity activeOpacity={0.8} onPress={onPress}>
-          <View flex center>
-            <Text style={styles.backButtonText}>뒤로가기</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
+      <BackButton onPress={onPress} />
       <HeaderRightButton isVisible buttonIdx={2} text="문의" onPress={onPressVoc} style={styles.deleteButtonText} />
       <HeaderRightButton
         isVisible={type === 'UPDATE'}
@@ -51,33 +54,33 @@ export const Header = memo<HeaderType>(({
       <HeaderRightButton
         isVisible={!!type}
         buttonIdx={0}
-        text={TYPE[type as string]}
+        text={BUTTON_TEXT[type as string]}
         onPress={onPressRightButton}
-        style={styles.backButtonText}
+        style={styles.buttonText}
       />
     </View>
   );
 });
 
-const styles = StyleSheet.create({
-  backButtonText: {
-    color: Constant.SHADOW_COLOR,
-    fontSize: 14,
-    fontWeight: '600',
+const dynamicStyles = new DynamicStyleSheet({
+  buttonText: {
+    color: new DynamicValue(Theme.light.shadow, Theme.dark.shadow),
+    fontSize: FontSize.normal,
+    fontWeight: FontWeight.bold,
     paddingHorizontal: 10,
   },
   deleteButtonText: {
-    color: Constant.WARN_COLOR,
-    fontSize: 14,
-    fontWeight: '600',
+    color: new DynamicValue(Theme.light.sub, Theme.dark.sub),
+    fontSize: FontSize.normal,
+    fontWeight: FontWeight.bold,
     paddingHorizontal: 10,
   },
   header: {
-    backgroundColor: Constant.WHITE_COLOR,
+    backgroundColor: new DynamicValue(Theme.light.background, Theme.dark.background),
     elevation: 5,
     height: 50,
     marginBottom: 2,
-    shadowColor: Constant.SHADOW_COLOR,
+    shadowColor: new DynamicValue(Theme.light.shadow, Theme.dark.shadow),
     shadowOffset: {
       width: 0,
       height: 1,

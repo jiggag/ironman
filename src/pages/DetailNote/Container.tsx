@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { useDynamicValue } from 'react-native-dynamic';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,9 +8,11 @@ import { getNoteRequest, deleteNoteRequest } from '@reducers/note';
 import { handleConfirm } from '@utils/index';
 import { RootReducer } from '../../types';
 import Presenter from './Presenter';
-import styles from './styles';
+import { dynamicStyles } from './styles';
 
 const Container = ({ route: { params } }) => {
+  const styles = useDynamicValue(dynamicStyles);
+
   const navigation = useNavigation();
   const [id] = useState(params.id);
   const dispatch = useDispatch();

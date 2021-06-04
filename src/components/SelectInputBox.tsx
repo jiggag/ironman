@@ -1,9 +1,10 @@
 import React, { memo } from 'react';
-import { Text, StyleSheet } from 'react-native';
+import { Text } from 'react-native';
 import { View } from 'react-native-ui-lib';
+import { DynamicStyleSheet, DynamicValue, useDynamicValue } from 'react-native-dynamic';
 import _constant from 'lodash/constant';
 import _map from 'lodash/map';
-import Constant from '@utils/constants';
+import Constant, { Theme } from '@utils/constants';
 import { SubTitle } from './SubTitle';
 import { TextInput } from './TextInput';
 
@@ -22,6 +23,7 @@ export const SelectInputBox = memo<SelectInputBoxProps>(
   ({
     title, data, onChangeNote, inputValue, inputType, editable = true,
   }) => {
+    const styles = useDynamicValue(dynamicStyles);
     return (
       <View marginB-10>
         <SubTitle title={title} />
@@ -32,6 +34,7 @@ export const SelectInputBox = memo<SelectInputBoxProps>(
             </View>
             <View flex-3>
               <TextInput
+                style={styles.itemTitle}
                 scrollEnabled={false}
                 placeholder={editable ? '입력하세요' : ''}
                 underlineColorAndroid="transparent"
@@ -53,14 +56,14 @@ export const SelectInputBox = memo<SelectInputBoxProps>(
   },
 );
 
-const styles = StyleSheet.create({
+const dynamicStyles = new DynamicStyleSheet({
   inputRow: {
-    backgroundColor: Constant.WHITE_COLOR,
+    backgroundColor: new DynamicValue(Theme.light.background, Theme.dark.background),
     borderRadius: 2,
     elevation: 5,
     marginVertical: 5,
     padding: 10,
-    shadowColor: Constant.SHADOW_COLOR,
+    shadowColor: new DynamicValue(Theme.light.shadow, Theme.dark.shadow),
     shadowOffset: {
       width: 2,
       height: 2,
@@ -69,6 +72,6 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
   },
   itemTitle: {
-    color: Constant.BLACK,
+    color: new DynamicValue(Theme.light.shadow, Theme.dark.shadow),
   },
 });

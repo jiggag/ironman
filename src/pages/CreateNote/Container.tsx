@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import moment from 'moment';
+import { useDynamicValue } from 'react-native-dynamic';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,10 +10,14 @@ import { createNoteRequest } from '@reducers/note';
 import { handleAlert } from '@utils/index';
 import { NoteData, RootReducer } from '../../types';
 import Presenter from './Presenter';
-import styles from './styles';
+import { dynamicStyles } from './styles';
 
 const Container = () => {
+  const styles = useDynamicValue(dynamicStyles);
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const { isLoading } = useSelector((store: RootReducer) => store.note);
+
   /*
     Weather 날씨: radio [너무 더움, 조금 더움, 살만함, 조금 추움, 너무 추움]
     Food 식단: text
@@ -30,9 +35,13 @@ const Container = () => {
     etc: '',
     state: 1,
   });
-  const dispatch = useDispatch();
-  const { isLoading } = useSelector((store: RootReducer) => store.note);
+  const [scrollEnabled, setIsScrollEnabled] = useState(true);
+
   const createNote = useCallback((param) => dispatch(createNoteRequest(param)), [dispatch]);
+
+  const setScrollEnabled = useCallback((flag: boolean) => {
+    setIsScrollEnabled(flag);
+  }, []);
 
   const onPress = useCallback(() => {
     if (!note.title) {
@@ -59,7 +68,14 @@ const Container = () => {
 
   return (
     <SafeAreaView style={styles.safeAreaView}>
-      <Presenter note={note} onPress={onPress} onChangeNote={onChangeNote} onPressBack={onPressBack} />
+      <Presenter
+        scrollEnabled={scrollEnabled}
+        setScrollEnabled={setScrollEnabled}
+        note={note}
+        onPress={onPress}
+        onChangeNote={onChangeNote}
+        onPressBack={onPressBack}
+      />
       <Spinner visible={isLoading} />
     </SafeAreaView>
   );

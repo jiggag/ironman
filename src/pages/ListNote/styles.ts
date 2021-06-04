@@ -1,15 +1,15 @@
-import { StyleSheet } from 'react-native';
+import { DynamicStyleSheet, DynamicValue } from 'react-native-dynamic';
 import styled from 'styled-components/native';
-import Constant from '@utils/constants';
+import { FontWeight, FontSize, Theme } from '@utils/constants';
 
-const styles = StyleSheet.create({
+export const dynamicStyles = new DynamicStyleSheet({
   container: {
     flex: 1,
   },
   dateText: {
-    color: Constant.BLACK,
+    color: new DynamicValue(Theme.light.shadow, Theme.dark.shadow),
     flex: 1,
-    fontSize: 12,
+    fontSize: FontSize.small,
     marginBottom: 4,
   },
   emptyCard: {
@@ -18,10 +18,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   itemComponent: {
-    backgroundColor: Constant.WHITE_COLOR,
+    backgroundColor: new DynamicValue(Theme.light.background, Theme.dark.background),
     borderRadius: 2,
     elevation: 5,
-    shadowColor: Constant.SHADOW_COLOR,
+    shadowColor: new DynamicValue(Theme.light.shadow, Theme.dark.shadow),
     shadowOffset: {
       width: 2,
       height: 2,
@@ -33,38 +33,31 @@ const styles = StyleSheet.create({
     borderRadius: 2,
   },
   safeAreaView: {
-    backgroundColor: Constant.WHITE_COLOR,
+    backgroundColor: new DynamicValue(Theme.light.background, Theme.dark.background),
     flex: 1,
   },
   titleText: {
-    color: Constant.BLACK,
-    fontSize: 12,
-    fontWeight: '600',
+    color: new DynamicValue(Theme.light.shadow, Theme.dark.shadow),
+    fontSize: FontSize.normal,
+    fontWeight: FontWeight.normal,
     marginTop: 2,
   },
 });
 
-export const Food = styled.View`
+export const State = styled.View<{ color: string; borderColor: string }>`
   border-radius: 30px;
-  background: #ffffff;
-  border: 1px solid #666;
-  padding: 2px 4px;
+  background: ${({ color }) => color};
+  border-color: ${({ borderColor }) => borderColor};
+  border-width: 1px;
+  width: 18px;
+  height: 18px;
+  justify-content: center;
   align-self: center;
-  margin: 0 2px;
-`;
-export const Category = styled.Text`
-  font-size: 12px;
-  color: #666666;
-`;
-export const State = styled.View`
-  border-radius: 30px;
-  background: #333333;
-  padding: 2px 6px;
-  align-self: center;
+  align-items: center;
 `;
 export const StateText = styled.Text<{ state: number }>`
-  font-size: 12px;
-  font-weight: 600;
+  font-size: ${FontSize.small}px;
+  font-weight: ${FontWeight.bold};
   color: ${({ state }) => {
     if (state === 5) {
       return '#ff0000';
@@ -81,16 +74,15 @@ export const StateText = styled.Text<{ state: number }>`
     return '#0bd9fd';
   }};
 `;
-export const Weather = styled.View`
+export const Weather = styled.View<{ color: string }>`
   border-radius: 30px;
   border-width: 1px;
   padding: 2px 6px;
   align-self: center;
   margin-right: 6px;
+  border-color: ${({ color }) => color};
 `;
-export const WeatherText = styled.Text`
-  font-size: 12px;
-  color: #000000;
+export const WeatherText = styled.Text<{ color: string }>`
+  font-size: ${FontSize.small}px;
+  color: ${({ color }) => color};
 `;
-
-export default styles;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform, StatusBar } from 'react-native';
 import admob, { MaxAdContentRating, BannerAdSize, BannerAd } from '@react-native-firebase/admob';
 import messaging from '@react-native-firebase/messaging';
 import { NavigationContainer } from '@react-navigation/native';
@@ -7,6 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Config from 'react-native-config';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+import { Color } from '@utils/constants';
 import {
   Intro, ListNote, CreateNote, DetailNote, UpdateNote, SendVoc, ListVoc,
 } from './pages';
@@ -78,9 +79,6 @@ export default class App extends React.PureComponent<undefined, State> {
         tagForUnderAgeOfConsent: false,
       })
       .then((res) => {
-        this.setState({
-          isShowBanner: true,
-        });
         return res;
       })
       .catch((e) => {
@@ -108,17 +106,28 @@ export default class App extends React.PureComponent<undefined, State> {
     console.log('>>> onAdOpened');
   };
 
+  setShowBanner = (isShowBanner: boolean) => {
+    this.setState({
+      isShowBanner,
+    });
+  };
+
   render() {
     const { isShowBanner } = this.state;
 
     return (
       <>
+        <StatusBar barStyle="dark-content" backgroundColor={Color.white} />
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
             <NavigationContainer>
               <Stack.Navigator headerMode="none" initialRouteName="Intro">
-                <Stack.Screen name="Intro" component={Intro} />
-                <Stack.Screen name="ListNote" component={ListNote} />
+                <Stack.Screen name="Intro">
+                  {(props) => <Intro setShowBanner={this.setShowBanner} {...props} />}
+                </Stack.Screen>
+                <Stack.Screen name="ListNote">
+                  {(props) => <ListNote setShowBanner={this.setShowBanner} {...props} />}
+                </Stack.Screen>
                 <Stack.Screen name="CreateNote" component={CreateNote} />
                 <Stack.Screen name="DetailNote" component={DetailNote} />
                 <Stack.Screen name="UpdateNote" component={UpdateNote} />

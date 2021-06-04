@@ -1,31 +1,25 @@
-import { Text, StyleSheet } from 'react-native';
+import { Text } from 'react-native';
+import { DynamicStyleSheet, DynamicValue } from 'react-native-dynamic';
 import styled from 'styled-components';
-import Constant from '@utils/constants';
+import { FontSize, Theme } from '@utils/constants';
 
-const styles = StyleSheet.create({
+export const dynamicStyles = new DynamicStyleSheet({
   container: {
     flex: 1,
     paddingHorizontal: 30,
   },
-  emptyCard: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center',
-  },
   safeAreaView: {
-    backgroundColor: Constant.WHITE_COLOR,
+    backgroundColor: new DynamicValue(Theme.light.background, Theme.dark.background),
     flex: 1,
   },
 });
 
-export const Title = styled(Text)`
-  color: #000000;
+export const Title = styled(Text)<{ color: string }>`
+  color: ${({ color }) => color};
   margin-bottom: 5px;
-  font-size: 16px;
+  font-size: ${FontSize.button}px;
 `;
-export const Content = styled(Text)`
-  color: #000000;
-  font-size: 12px;
+export const Content = styled(Text)<{ color: string }>`
+  color: ${({ color }) => color};
+  font-size: ${FontSize.normal}px;
 `;
-
-export default styles;

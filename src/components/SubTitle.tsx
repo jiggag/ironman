@@ -1,8 +1,7 @@
 import React, { memo, useMemo } from 'react';
-import {
-  Text, StyleSheet, StyleProp, TextStyle,
-} from 'react-native';
-import Constant from '@utils/constants';
+import { Text, StyleProp, TextStyle } from 'react-native';
+import { DynamicStyleSheet, DynamicValue, useDynamicValue } from 'react-native-dynamic';
+import { FontSize, FontWeight, Theme } from '@utils/constants';
 
 interface SubTitleProps {
   title: string;
@@ -10,15 +9,16 @@ interface SubTitleProps {
 }
 
 export const SubTitle = memo<SubTitleProps>(({ title, style }) => {
-  const customStyle = useMemo<StyleProp<TextStyle>>(() => [styles.subTitle, style], [style]);
+  const styles = useDynamicValue(dynamicStyles);
+  const customStyle = useMemo<StyleProp<TextStyle>>(() => [styles.subTitle, style], [style, styles.subTitle]);
   return <Text style={customStyle}>{title}</Text>;
 });
 
-const styles = StyleSheet.create({
+const dynamicStyles = new DynamicStyleSheet({
   subTitle: {
-    color: Constant.BLACK,
-    fontSize: 16,
-    fontWeight: '500',
+    color: new DynamicValue(Theme.light.shadow, Theme.dark.shadow),
+    fontSize: FontSize.normal,
+    fontWeight: FontWeight.bold,
     marginVertical: 4,
     textDecorationLine: 'underline',
   },
