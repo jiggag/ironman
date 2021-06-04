@@ -59,13 +59,13 @@ const Presenter = memo(
           <View marginB-10>
             <SubTitle title="상태" />
             <View row>
-              <Text>{stateText}</Text>
+              <Text style={styles.inputText}>{stateText}</Text>
             </View>
           </View>
           <View marginB-10>
             <SubTitle title="날씨" />
             <View row>
-              <Text>{weatherText}</Text>
+              <Text style={styles.inputText}>{weatherText}</Text>
             </View>
           </View>
           <SelectInputBox data={foodList} title="식단" inputValue={food || {}} inputType="food" editable={false} />

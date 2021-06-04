@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform, StatusBar } from 'react-native';
 import admob, { MaxAdContentRating, BannerAdSize, BannerAd } from '@react-native-firebase/admob';
 import messaging from '@react-native-firebase/messaging';
 import { NavigationContainer } from '@react-navigation/native';
@@ -7,6 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Config from 'react-native-config';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+import { Color } from '@utils/constants';
 import {
   Intro, ListNote, CreateNote, DetailNote, UpdateNote, SendVoc, ListVoc,
 } from './pages';
@@ -116,6 +117,7 @@ export default class App extends React.PureComponent<undefined, State> {
 
     return (
       <>
+        <StatusBar barStyle="dark-content" backgroundColor={Color.white} />
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
             <NavigationContainer>

@@ -57,6 +57,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 4,
   },
+  inputText: {
+    color: Constant.BLACK,
+    fontSize: 14,
+    fontWeight: '600',
+  },
   safeAreaView: {
     backgroundColor: Constant.WHITE_COLOR,
     flex: 1,
