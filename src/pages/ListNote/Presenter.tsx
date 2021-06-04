@@ -1,11 +1,12 @@
 import React, { memo, useCallback, useMemo } from 'react';
 import { FlatList, ListRenderItemInfo } from 'react-native';
+import { useDynamicValue } from 'react-native-dynamic';
 import { BUTTON_TYPE, Header } from '@components/header/Header';
 import { ListEmpty } from '@components/list/ListEmpty';
 import { NoteData } from '../../types';
 import HeaderComponent from './Header';
 import NoteComponent from './Note';
-import styles from './styles';
+import { dynamicStyles } from './styles';
 
 interface ListType {
   list: NoteData[];
@@ -19,7 +20,8 @@ interface ListType {
 const Presenter = memo(({
   list, graph, onActionToCreate, onPress, onPressBack, onNext,
 }: ListType) => {
-  const dynamicStyle = useMemo(
+  const styles = useDynamicValue(dynamicStyles);
+  const customStyle = useMemo(
     () => ({
       contentContainer: { flex: list.length ? undefined : 1 },
     }),
@@ -38,7 +40,7 @@ const Presenter = memo(({
       <Header onPress={onPressBack} onPressRightButton={onActionToCreate} type={BUTTON_TYPE.CREATE} />
       <FlatList
         style={styles.container}
-        contentContainerStyle={dynamicStyle.contentContainer}
+        contentContainerStyle={customStyle.contentContainer}
         ListHeaderComponent={<HeaderComponent data={graph} />}
         ListEmptyComponent={<ListEmpty text="기록을 남겨주세요" />}
         data={list}

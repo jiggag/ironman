@@ -1,11 +1,13 @@
 import React, { memo } from 'react';
-import { TextInput, ScrollView } from 'react-native';
+import { ScrollView } from 'react-native';
 import { View } from 'react-native-ui-lib';
+import { useDynamicValue } from 'react-native-dynamic';
 import { BUTTON_TYPE, Header } from '@components/header/Header';
 import { SubTitle } from '@components/SubTitle';
+import { TextInput } from '@components/TextInput';
 import Constant from '@utils/constants';
 import { VocData } from '../../types';
-import styles from './styles';
+import { dynamicStyles } from './styles';
 
 interface VocType {
   state: {
@@ -19,41 +21,44 @@ interface VocType {
 
 const Presenter = memo(({
   state: { title, content }, onChangeText, onPressBack, onPress,
-}: VocType) => (
-  <>
-    <Header onPress={onPressBack} onPressRightButton={onPress} type={BUTTON_TYPE.SEND} />
-    <ScrollView style={styles.container}>
-      <View paddingH-30>
-        <View marginB-10>
-          <SubTitle title="제목" />
-          <View style={styles.inputLine}>
-            <TextInput
-              style={styles.inputTitle}
-              placeholder="제목을 입력하세요"
-              underlineColorAndroid="transparent"
-              onChangeText={(title) => onChangeText({ title })}
-              value={title}
-              placeholderTextColor={Constant.PLACEHOLDER_COLOR}
-            />
+}: VocType) => {
+  const styles = useDynamicValue(dynamicStyles);
+  return (
+    <>
+      <Header onPress={onPressBack} onPressRightButton={onPress} type={BUTTON_TYPE.SEND} />
+      <ScrollView style={styles.container}>
+        <View paddingH-30>
+          <View marginB-10>
+            <SubTitle title="제목" />
+            <View style={styles.inputLine}>
+              <TextInput
+                style={styles.inputTitle}
+                placeholder="제목을 입력하세요"
+                underlineColorAndroid="transparent"
+                onChangeText={(title) => onChangeText({ title })}
+                value={title}
+                placeholderTextColor={Constant.PLACEHOLDER_COLOR}
+              />
+            </View>
+          </View>
+          <View marginB-10>
+            <SubTitle title="내용" />
+            <View style={styles.inputLine}>
+              <TextInput
+                style={styles.inputContent}
+                placeholder="내용을 입력하세요"
+                underlineColorAndroid="transparent"
+                onChangeText={(content) => onChangeText({ content })}
+                value={content}
+                placeholderTextColor={Constant.PLACEHOLDER_COLOR}
+                multiline
+              />
+            </View>
           </View>
         </View>
-        <View marginB-10>
-          <SubTitle title="내용" />
-          <View style={styles.inputLine}>
-            <TextInput
-              style={styles.inputContent}
-              placeholder="내용을 입력하세요"
-              underlineColorAndroid="transparent"
-              onChangeText={(content) => onChangeText({ content })}
-              value={content}
-              placeholderTextColor={Constant.PLACEHOLDER_COLOR}
-              multiline
-            />
-          </View>
-        </View>
-      </View>
-    </ScrollView>
-  </>
-));
+      </ScrollView>
+    </>
+  );
+});
 
 export default Presenter;

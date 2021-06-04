@@ -6,17 +6,18 @@ import Bugsnag from '@bugsnag/react-native';
 import messaging from '@react-native-firebase/messaging';
 import { login, getProfile, KakaoProfile } from '@react-native-seoul/kakao-login';
 import { useNavigation, CommonActions } from '@react-navigation/native';
+import { useDynamicValue } from 'react-native-dynamic';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
 import _constant from 'lodash/constant';
 import { getUserRequest, postUserRequest } from '@reducers/user';
 import { getAccessToken } from '@utils/auth';
-import { Color } from '@utils/constants';
+import { Theme } from '@utils/constants';
 import { handleAlert } from '@utils/index';
 import { RootReducer } from '../../types';
 import Presenter from './Presenter';
-import styles, { BUTTON_HEIGHT } from './styles';
+import { dynamicStyles, BUTTON_HEIGHT } from './styles';
 
 interface IntroProps {
   setShowBanner: (isShow: boolean) => void;
@@ -27,6 +28,7 @@ interface Profile extends KakaoProfile {
 }
 
 const Container = ({ setShowBanner }: IntroProps) => {
+  const styles = useDynamicValue(dynamicStyles);
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const { bottom } = useSafeAreaInsets();
@@ -46,7 +48,7 @@ const Container = ({ setShowBanner }: IntroProps) => {
       ...styles.loginPopup,
       height: BUTTON_HEIGHT + bottom,
     }),
-    [bottom],
+    [bottom, styles.loginPopup],
   );
 
   const onPress = useCallback(async () => {
@@ -121,7 +123,7 @@ const Container = ({ setShowBanner }: IntroProps) => {
 
   return (
     <SafeAreaView edges={['top']} style={styles.safeAreaView}>
-      <StatusBar backgroundColor={Color.blue} barStyle="light-content" />
+      <StatusBar backgroundColor={useDynamicValue(Theme.light.base, Theme.dark.base)} barStyle="light-content" />
       <Presenter onPress={onPress} animatedStyle={animatedStyle} />
       <Spinner visible={isLoading} />
     </SafeAreaView>

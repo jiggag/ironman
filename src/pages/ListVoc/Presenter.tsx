@@ -1,10 +1,12 @@
 import React, { memo, useCallback } from 'react';
 import { FlatList, ListRenderItemInfo } from 'react-native';
 import { View } from 'react-native-ui-lib';
+import { useDynamicValue } from 'react-native-dynamic';
 import { Header } from '@components/header/Header';
 import { ListEmpty } from '@components/list/ListEmpty';
+import { Theme } from '@utils/constants';
 import { VocData } from '../../types';
-import styles, { Title, Content } from './styles';
+import { dynamicStyles, Title, Content } from './styles';
 
 interface VocProps {
   list: VocData[];
@@ -12,15 +14,18 @@ interface VocProps {
 }
 
 const VocComponent = ({ title, content }) => {
+  const color = useDynamicValue(Theme.light.shadow, Theme.dark.shadow);
   return (
     <View flex paddingV-15>
-      <Title>{title}</Title>
-      <Content>{content}</Content>
+      <Title color={color}>{title}</Title>
+      <Content color={color}>{content}</Content>
     </View>
   );
 };
 
 const Presenter = memo(({ list, onPressBack }: VocProps) => {
+  const styles = useDynamicValue(dynamicStyles);
+
   const keyExtractor = useCallback((item, index) => `${item.id}${index}`, []);
 
   const renderItem = useCallback(({ item }: ListRenderItemInfo<VocData>) => <VocComponent {...item} />, []);

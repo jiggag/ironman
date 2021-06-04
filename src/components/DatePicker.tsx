@@ -1,14 +1,11 @@
-import React, {
-  forwardRef, memo, useCallback, useState,
-} from 'react';
-import {
-  StyleSheet, TouchableWithoutFeedback, Dimensions, Platform,
-} from 'react-native';
+import React, { memo, useCallback, useState } from 'react';
+import { TouchableWithoutFeedback, Dimensions, Platform } from 'react-native';
 import { View } from 'react-native-ui-lib';
 import DateTimePicker, { Event } from '@react-native-community/datetimepicker';
 import moment from 'moment';
+import { DynamicStyleSheet, DynamicValue, useDynamicValue } from 'react-native-dynamic';
 import { BigButton } from '@components/button/BigButton';
-import Constant, { FontSize, FontWeight } from '@utils/constants';
+import Constant, { FontSize, FontWeight, Theme } from '@utils/constants';
 
 interface DatePickerProps {
   onChangeDate: (date: Date) => void;
@@ -18,6 +15,8 @@ interface DatePickerProps {
 
 export const DatePicker = memo<DatePickerProps>(({ onChangeDate, date, setScrollEnabled }) => {
   const [isShowPicker, setIsShowPicker] = useState<boolean>(false);
+
+  const styles = useDynamicValue(dynamicStyles);
 
   const onPress = useCallback(() => {
     setIsShowPicker((prev) => {
@@ -75,21 +74,23 @@ export const DatePicker = memo<DatePickerProps>(({ onChangeDate, date, setScroll
   );
 });
 
-const styles = StyleSheet.create({
+const dynamicStyles = new DynamicStyleSheet({
   dateDisplay: {
-    backgroundColor: Constant.WHITE_COLOR,
+    backgroundColor: new DynamicValue(Theme.light.background, Theme.dark.background),
     borderBottomWidth: 1,
+    borderColor: new DynamicValue(Theme.light.shadow, Theme.dark.shadow),
     marginHorizontal: 0,
     marginVertical: 0,
     paddingHorizontal: 0,
     paddingVertical: 0,
     shadowOpacity: 0,
+    elevation: 0,
   },
   datePicker: {
-    backgroundColor: Constant.WHITE_COLOR,
+    backgroundColor: new DynamicValue(Theme.light.background, Theme.dark.background),
   },
   dateText: {
-    color: Constant.BLACK,
+    color: new DynamicValue(Theme.light.shadow, Theme.dark.shadow),
     fontSize: FontSize.button,
     fontWeight: FontWeight.bold,
   },

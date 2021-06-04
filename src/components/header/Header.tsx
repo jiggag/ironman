@@ -1,10 +1,10 @@
 import React, { memo, useCallback } from 'react';
-import { StyleSheet } from 'react-native';
 import { View } from 'react-native-ui-lib';
 import { useNavigation } from '@react-navigation/native';
+import { DynamicStyleSheet, DynamicValue, useDynamicValue } from 'react-native-dynamic';
 import { useSelector } from 'react-redux';
 import { BackButton } from '@components/header/BackButton';
-import Constant, { FontSize, FontWeight } from '@utils/constants';
+import { FontSize, FontWeight, Theme } from '@utils/constants';
 import { RootReducer } from '../../types';
 import { HeaderRightButton } from './HeaderRightButton';
 
@@ -32,6 +32,7 @@ const BUTTON_TEXT = {
 export const Header = memo<HeaderType>(({
   onPress, onPressRightButton, onPressDelete, type,
 }) => {
+  const styles = useDynamicValue(dynamicStyles);
   const { auth } = useSelector((store: RootReducer) => store.user);
   const navigation = useNavigation();
 
@@ -61,25 +62,25 @@ export const Header = memo<HeaderType>(({
   );
 });
 
-const styles = StyleSheet.create({
+const dynamicStyles = new DynamicStyleSheet({
   buttonText: {
-    color: Constant.SHADOW_COLOR,
+    color: new DynamicValue(Theme.light.shadow, Theme.dark.shadow),
     fontSize: FontSize.normal,
     fontWeight: FontWeight.bold,
     paddingHorizontal: 10,
   },
   deleteButtonText: {
-    color: Constant.WARN_COLOR,
+    color: new DynamicValue(Theme.light.sub, Theme.dark.sub),
     fontSize: FontSize.normal,
     fontWeight: FontWeight.bold,
     paddingHorizontal: 10,
   },
   header: {
-    backgroundColor: Constant.WHITE_COLOR,
+    backgroundColor: new DynamicValue(Theme.light.background, Theme.dark.background),
     elevation: 5,
     height: 50,
     marginBottom: 2,
-    shadowColor: Constant.SHADOW_COLOR,
+    shadowColor: new DynamicValue(Theme.light.shadow, Theme.dark.shadow),
     shadowOffset: {
       width: 0,
       height: 1,

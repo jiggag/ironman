@@ -1,7 +1,7 @@
-import { StyleSheet } from 'react-native';
-import Constant from '@utils/constants';
+import { DynamicStyleSheet, DynamicValue } from 'react-native-dynamic';
+import { Theme } from '@utils/constants';
 
-const styles = StyleSheet.create({
+export const dynamicStyles = new DynamicStyleSheet({
   container: {
     flex: 1,
   },
@@ -9,13 +9,14 @@ const styles = StyleSheet.create({
     display: 'flex',
     flex: 1,
     minHeight: 240,
+    color: new DynamicValue(Theme.light.shadow, Theme.dark.shadow),
   },
   inputLine: {
-    backgroundColor: Constant.WHITE_COLOR,
+    backgroundColor: new DynamicValue(Theme.light.background, Theme.dark.background),
     borderRadius: 2,
     elevation: 5,
     paddingHorizontal: 10,
-    shadowColor: Constant.SHADOW_COLOR,
+    shadowColor: new DynamicValue(Theme.light.shadow, Theme.dark.shadow),
     shadowOffset: {
       width: 2,
       height: 2,
@@ -27,11 +28,10 @@ const styles = StyleSheet.create({
     display: 'flex',
     flex: 1,
     minHeight: 40,
+    color: new DynamicValue(Theme.light.shadow, Theme.dark.shadow),
   },
   safeAreaView: {
-    backgroundColor: Constant.WHITE_COLOR,
+    backgroundColor: new DynamicValue(Theme.light.background, Theme.dark.background),
     flex: 1,
   },
 });
-
-export default styles;

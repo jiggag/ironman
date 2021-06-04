@@ -27,6 +27,10 @@ export const Theme = {
     main: Color.red,
     sub: Color.red,
     option: Color.gray,
+    shadow: Color.black,
+    subBase: Color.white,
+    background: Color.white,
+    highlight: Color.blue,
   },
   dark: {
     base: Color.black,
@@ -34,6 +38,10 @@ export const Theme = {
     main: Color.blue,
     sub: Color.red,
     option: Color.gray,
+    shadow: Color.white,
+    subBase: Color.white,
+    background: Color.black,
+    highlight: Color.blue,
   },
 };
 

@@ -1,11 +1,11 @@
-import { StyleSheet } from 'react-native';
+import { DynamicStyleSheet, DynamicValue } from 'react-native-dynamic';
 import {
-  Color, DefaultFontStyle, FontSize, FontWeight,
+  Color, DefaultFontStyle, FontSize, FontWeight, Theme,
 } from '@utils/constants';
 
 export const BUTTON_HEIGHT = 90;
 
-const styles = StyleSheet.create({
+export const dynamicStyles = new DynamicStyleSheet({
   loginPopup: {
     backgroundColor: Color.white,
     borderTopLeftRadius: 40,
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     height: BUTTON_HEIGHT,
     justifyContent: 'center',
     position: 'absolute',
-    shadowColor: Color.black,
+    shadowColor: new DynamicValue(Theme.light.shadow, Theme.dark.shadow),
     shadowOffset: {
       width: 5,
       height: -10,
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     fontWeight: FontWeight.bold,
   },
   safeAreaView: {
-    backgroundColor: Color.blue,
+    backgroundColor: new DynamicValue(Theme.light.base, Theme.dark.base),
     flex: 1,
   },
   wrapper: {
@@ -39,5 +39,3 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-
-export default styles;

@@ -1,12 +1,12 @@
-import { StyleSheet } from 'react-native';
-import Constant, { FontSize, FontWeight } from '@utils/constants';
+import { DynamicStyleSheet, DynamicValue } from 'react-native-dynamic';
+import { FontSize, FontWeight, Theme } from '@utils/constants';
 
-const styles = StyleSheet.create({
+export const dynamicStyles = new DynamicStyleSheet({
   container: {
     flex: 1,
   },
   dateText: {
-    color: Constant.BLACK,
+    color: new DynamicValue(Theme.light.shadow, Theme.dark.shadow),
     fontSize: FontSize.button,
     fontWeight: FontWeight.bold,
     height: 40,
@@ -18,11 +18,11 @@ const styles = StyleSheet.create({
     minHeight: 40,
   },
   inputBox: {
-    backgroundColor: Constant.WHITE_COLOR,
+    backgroundColor: new DynamicValue(Theme.light.background, Theme.dark.background),
     borderRadius: 2,
     elevation: 5,
     padding: 10,
-    shadowColor: Constant.SHADOW_COLOR,
+    shadowColor: new DynamicValue(Theme.light.shadow, Theme.dark.shadow),
     shadowOffset: {
       width: 2,
       height: 2,
@@ -31,11 +31,11 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
   },
   inputLine: {
-    backgroundColor: Constant.WHITE_COLOR,
+    backgroundColor: new DynamicValue(Theme.light.background, Theme.dark.background),
     borderRadius: 2,
     elevation: 5,
     paddingHorizontal: 10,
-    shadowColor: Constant.SHADOW_COLOR,
+    shadowColor: new DynamicValue(Theme.light.shadow, Theme.dark.shadow),
     shadowOffset: {
       width: 2,
       height: 2,
@@ -44,12 +44,12 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
   },
   inputRow: {
-    backgroundColor: Constant.WHITE_COLOR,
+    backgroundColor: new DynamicValue(Theme.light.background, Theme.dark.background),
     borderRadius: 2,
     elevation: 5,
     marginVertical: 5,
     padding: 10,
-    shadowColor: Constant.SHADOW_COLOR,
+    shadowColor: new DynamicValue(Theme.light.shadow, Theme.dark.shadow),
     shadowOffset: {
       width: 2,
       height: 2,
@@ -58,14 +58,16 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
   },
   inputText: {
-    color: Constant.BLACK,
+    color: new DynamicValue(Theme.light.shadow, Theme.dark.shadow),
     fontSize: FontSize.normal,
     fontWeight: FontWeight.bold,
   },
+  inputSubText: {
+    color: new DynamicValue(Theme.light.shadow, Theme.dark.shadow),
+    fontSize: FontSize.normal,
+  },
   safeAreaView: {
-    backgroundColor: Constant.WHITE_COLOR,
+    backgroundColor: new DynamicValue(Theme.light.background, Theme.dark.background),
     flex: 1,
   },
 });
-
-export default styles;
