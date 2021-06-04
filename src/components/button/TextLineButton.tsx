@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { BigButton, ButtonProps } from '@components/button/BigButton';
-import Constant from '@utils/constants';
+import Constant, { FontWeight } from '@utils/constants';
 
 export const TextLineButton: React.FC<ButtonProps> = ({ text, onPress }) => {
   return (
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   },
   textLineButtonText: {
     color: Constant.MAIN_COLOR,
-    fontWeight: 'bold',
+    fontWeight: FontWeight.bold,
     textDecorationLine: 'underline',
   },
 });

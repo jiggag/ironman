@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useMemo } from 'react';
 import { FlatList, ListRenderItemInfo } from 'react-native';
-import { Header } from '@components/header/Header';
+import { BUTTON_TYPE, Header } from '@components/header/Header';
 import { ListEmpty } from '@components/list/ListEmpty';
 import { NoteData } from '../../types';
 import HeaderComponent from './Header';
@@ -35,7 +35,7 @@ const Presenter = memo(({
 
   return (
     <>
-      <Header onPress={onPressBack} onPressRightButton={onActionToCreate} type="CREATE" />
+      <Header onPress={onPressBack} onPressRightButton={onActionToCreate} type={BUTTON_TYPE.CREATE} />
       <FlatList
         style={styles.container}
         contentContainerStyle={dynamicStyle.contentContainer}

@@ -1,7 +1,7 @@
 import React, {
   useEffect, useCallback, useMemo, useRef,
 } from 'react';
-import { Animated } from 'react-native';
+import { Animated, StatusBar } from 'react-native';
 import Bugsnag from '@bugsnag/react-native';
 import messaging from '@react-native-firebase/messaging';
 import { login, getProfile, KakaoProfile } from '@react-native-seoul/kakao-login';
@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import _constant from 'lodash/constant';
 import { getUserRequest, postUserRequest } from '@reducers/user';
 import { getAccessToken } from '@utils/auth';
+import { Color } from '@utils/constants';
 import { handleAlert } from '@utils/index';
 import { RootReducer } from '../../types';
 import Presenter from './Presenter';
@@ -120,6 +121,7 @@ const Container = ({ setShowBanner }: IntroProps) => {
 
   return (
     <SafeAreaView edges={['top']} style={styles.safeAreaView}>
+      <StatusBar backgroundColor={Color.blue} barStyle="light-content" />
       <Presenter onPress={onPress} animatedStyle={animatedStyle} />
       <Spinner visible={isLoading} />
     </SafeAreaView>

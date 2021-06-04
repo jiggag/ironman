@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { Provider } from 'react-redux';
-import { Header } from '../../src/components/header/Header';
+import { BUTTON_TYPE, Header } from '../../src/components/header/Header';
 
 it('Renderer Component: Header', () => {
   const store = {
@@ -14,7 +14,7 @@ it('Renderer Component: Header', () => {
 
   const createComponent = renderer.create(
     <Provider store={store}>
-      <Header onPress={jest.fn()} onPressRightButton={jest.fn()} type="CREATE" />
+      <Header onPress={jest.fn()} onPressRightButton={jest.fn()} type={BUTTON_TYPE.CREATE} />
     </Provider>
   );
   let createHeader = createComponent.toJSON();
@@ -22,7 +22,7 @@ it('Renderer Component: Header', () => {
 
   const updateComponent = renderer.create(
     <Provider store={store}>
-      <Header onPress={jest.fn()} onPressRightButton={jest.fn()} onPressDelete={jest.fn()} type="UPDATE" />
+      <Header onPress={jest.fn()} onPressRightButton={jest.fn()} onPressDelete={jest.fn()} type={BUTTON_TYPE.UPDATE} />
     </Provider>
   );
   let updateHeader = updateComponent.toJSON();

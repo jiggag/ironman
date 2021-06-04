@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
-import Constant from '@utils/constants';
+import Constant, { FontWeight, FontSize, Color } from '@utils/constants';
 
 const styles = StyleSheet.create({
   container: {
@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   dateText: {
     color: Constant.BLACK,
     flex: 1,
-    fontSize: 12,
+    fontSize: FontSize.small,
     marginBottom: 4,
   },
   emptyCard: {
@@ -38,33 +38,24 @@ const styles = StyleSheet.create({
   },
   titleText: {
     color: Constant.BLACK,
-    fontSize: 12,
-    fontWeight: '600',
+    fontSize: FontSize.normal,
+    fontWeight: FontWeight.normal,
     marginTop: 2,
   },
 });
 
-export const Food = styled.View`
-  border-radius: 30px;
-  background: #ffffff;
-  border: 1px solid #666;
-  padding: 2px 4px;
-  align-self: center;
-  margin: 0 2px;
-`;
-export const Category = styled.Text`
-  font-size: 12px;
-  color: #666666;
-`;
 export const State = styled.View`
   border-radius: 30px;
-  background: #333333;
-  padding: 2px 6px;
+  background: ${Color.black};
+  width: 18px;
+  height: 18px;
+  justify-content: center;
   align-self: center;
+  align-items: center;
 `;
 export const StateText = styled.Text<{ state: number }>`
-  font-size: 12px;
-  font-weight: 600;
+  font-size: ${FontSize.small}px;
+  font-weight: ${FontWeight.bold};
   color: ${({ state }) => {
     if (state === 5) {
       return '#ff0000';
@@ -87,10 +78,11 @@ export const Weather = styled.View`
   padding: 2px 6px;
   align-self: center;
   margin-right: 6px;
+  border-color: ${Color.black};
 `;
 export const WeatherText = styled.Text`
-  font-size: 12px;
-  color: #000000;
+  font-size: ${FontSize.small}px;
+  color: ${Color.black};
 `;
 
 export default styles;

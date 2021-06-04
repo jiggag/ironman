@@ -4,7 +4,7 @@ import { View } from 'react-native-ui-lib';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import { BackButton } from '@components/header/BackButton';
-import Constant from '@utils/constants';
+import Constant, { FontSize, FontWeight } from '@utils/constants';
 import { RootReducer } from '../../types';
 import { HeaderRightButton } from './HeaderRightButton';
 
@@ -15,7 +15,14 @@ interface HeaderType {
   type?: string;
 }
 
-const TYPE = {
+export enum BUTTON_TYPE {
+  CREATE = 'CREATE',
+  UPDATE = 'UPDATE',
+  SAVE = 'SAVE',
+  SEND = 'SEND',
+}
+
+const BUTTON_TEXT = {
   CREATE: '생성',
   UPDATE: '수정',
   SAVE: '저장',
@@ -46,7 +53,7 @@ export const Header = memo<HeaderType>(({
       <HeaderRightButton
         isVisible={!!type}
         buttonIdx={0}
-        text={TYPE[type as string]}
+        text={BUTTON_TEXT[type as string]}
         onPress={onPressRightButton}
         style={styles.buttonText}
       />
@@ -57,14 +64,14 @@ export const Header = memo<HeaderType>(({
 const styles = StyleSheet.create({
   buttonText: {
     color: Constant.SHADOW_COLOR,
-    fontSize: 14,
-    fontWeight: '600',
+    fontSize: FontSize.normal,
+    fontWeight: FontWeight.bold,
     paddingHorizontal: 10,
   },
   deleteButtonText: {
     color: Constant.WARN_COLOR,
-    fontSize: 14,
-    fontWeight: '600',
+    fontSize: FontSize.normal,
+    fontWeight: FontWeight.bold,
     paddingHorizontal: 10,
   },
   header: {

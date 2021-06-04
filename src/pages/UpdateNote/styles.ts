@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import Constant from '@utils/constants';
+import Constant, { FontSize, FontWeight } from '@utils/constants';
 
 const styles = StyleSheet.create({
   container: {
@@ -17,8 +17,8 @@ const styles = StyleSheet.create({
   },
   dateText: {
     color: Constant.BLACK,
-    fontSize: 18,
-    fontWeight: '600',
+    fontSize: FontSize.button,
+    fontWeight: FontWeight.bold,
   },
   input: {
     display: 'flex',

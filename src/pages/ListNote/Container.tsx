@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useCallback } from 'react';
-import { BackHandler } from 'react-native';
+import { BackHandler, StatusBar } from 'react-native';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -7,6 +7,7 @@ import Toast from 'react-native-simple-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { getListRequest } from '@reducers/note';
 import { deleteAccessToken } from '@utils/auth';
+import { Color } from '@utils/constants';
 import { handleConfirm } from '@utils/index';
 import { RootReducer } from '../../types';
 import Presenter from './Presenter';
@@ -81,6 +82,7 @@ const Container = ({ route: { params }, setShowBanner }: ListNoteProps) => {
 
   return (
     <SafeAreaView style={styles.safeAreaView}>
+      <StatusBar backgroundColor={Color.white} barStyle="dark-content" />
       <Presenter
         list={list}
         graph={graph}

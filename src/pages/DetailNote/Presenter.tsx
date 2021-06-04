@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { Text, ScrollView } from 'react-native';
 import { View } from 'react-native-ui-lib';
 import moment from 'moment';
-import { Header } from '@components/header/Header';
+import { BUTTON_TYPE, Header } from '@components/header/Header';
 import { SelectInputBox } from '@components/SelectInputBox';
 import { SubTitle } from '@components/SubTitle';
 import { TextInput } from '@components/TextInput';
@@ -33,7 +33,12 @@ const Presenter = memo(
     onPressUpdate,
   }: DetailType) => (
     <>
-      <Header onPress={onPressBack} onPressRightButton={onPressUpdate} onPressDelete={onPressDelete} type="UPDATE" />
+      <Header
+        onPress={onPressBack}
+        onPressRightButton={onPressUpdate}
+        onPressDelete={onPressDelete}
+        type={BUTTON_TYPE.UPDATE}
+      />
       <ScrollView style={styles.container}>
         <View paddingH-20>
           <View marginB-10>

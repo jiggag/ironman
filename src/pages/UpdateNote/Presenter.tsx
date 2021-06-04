@@ -3,7 +3,7 @@ import { ScrollView } from 'react-native';
 import { View } from 'react-native-ui-lib';
 import moment from 'moment';
 import { DatePicker } from '@components/DatePicker';
-import { Header } from '@components/header/Header';
+import { BUTTON_TYPE, Header } from '@components/header/Header';
 import { SelectInputBox } from '@components/SelectInputBox';
 import { SelectRadioBox } from '@components/SelectRadioBox';
 import { SubTitle } from '@components/SubTitle';
@@ -36,7 +36,7 @@ const Presenter = memo(
     scrollEnabled,
   }: UpdateType) => (
     <>
-      <Header onPress={onPressBack} onPressRightButton={onPress} type="SAVE" />
+      <Header onPress={onPressBack} onPressRightButton={onPress} type={BUTTON_TYPE.SAVE} />
       <ScrollView style={styles.container} scrollEnabled={scrollEnabled}>
         <View paddingH-20>
           <View row marginB-10 style={styles.pickerWrapper}>

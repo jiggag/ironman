@@ -8,7 +8,7 @@ import { View } from 'react-native-ui-lib';
 import DateTimePicker, { Event } from '@react-native-community/datetimepicker';
 import moment from 'moment';
 import { BigButton } from '@components/button/BigButton';
-import Constant from '@utils/constants';
+import Constant, { FontSize, FontWeight } from '@utils/constants';
 
 interface DatePickerProps {
   onChangeDate: (date: Date) => void;
@@ -90,8 +90,8 @@ const styles = StyleSheet.create({
   },
   dateText: {
     color: Constant.BLACK,
-    fontSize: 18,
-    fontWeight: '600',
+    fontSize: FontSize.button,
+    fontWeight: FontWeight.bold,
   },
   dateWrapper: {
     backgroundColor: Constant.OPACITY_COLOR,

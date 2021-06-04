@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { View } from 'react-native-ui-lib';
-import Constant from '@utils/constants';
+import Constant, { FontSize, FontWeight } from '@utils/constants';
 
 interface BackButtonProps {
   onPress: () => void;
@@ -22,8 +22,8 @@ export const BackButton = memo<BackButtonProps>(({ onPress }) => {
 const styles = StyleSheet.create({
   backButtonText: {
     color: Constant.SHADOW_COLOR,
-    fontSize: 14,
-    fontWeight: '600',
+    fontSize: FontSize.normal,
+    fontWeight: FontWeight.bold,
     paddingHorizontal: 10,
   },
 });

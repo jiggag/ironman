@@ -2,7 +2,7 @@ import React, { memo, useMemo } from 'react';
 import {
   Text, StyleSheet, StyleProp, TextStyle,
 } from 'react-native';
-import Constant from '@utils/constants';
+import Constant, { FontSize, FontWeight } from '@utils/constants';
 
 interface SubTitleProps {
   title: string;
@@ -17,8 +17,8 @@ export const SubTitle = memo<SubTitleProps>(({ title, style }) => {
 const styles = StyleSheet.create({
   subTitle: {
     color: Constant.BLACK,
-    fontSize: 16,
-    fontWeight: '500',
+    fontSize: FontSize.normal,
+    fontWeight: FontWeight.bold,
     marginVertical: 4,
     textDecorationLine: 'underline',
   },

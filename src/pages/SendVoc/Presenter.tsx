@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { TextInput, ScrollView } from 'react-native';
 import { View } from 'react-native-ui-lib';
-import { Header } from '@components/header/Header';
+import { BUTTON_TYPE, Header } from '@components/header/Header';
 import { SubTitle } from '@components/SubTitle';
 import Constant from '@utils/constants';
 import { VocData } from '../../types';
@@ -21,7 +21,7 @@ const Presenter = memo(({
   state: { title, content }, onChangeText, onPressBack, onPress,
 }: VocType) => (
   <>
-    <Header onPress={onPressBack} onPressRightButton={onPress} type="SEND" />
+    <Header onPress={onPressBack} onPressRightButton={onPress} type={BUTTON_TYPE.SEND} />
     <ScrollView style={styles.container}>
       <View paddingH-30>
         <View marginB-10>

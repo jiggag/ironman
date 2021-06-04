@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import {
   Text, TouchableOpacity, StyleSheet, StyleProp, ViewStyle, TextStyle,
 } from 'react-native';
-import Constant from '@utils/constants';
+import Constant, { FontSize, FontWeight } from '@utils/constants';
 
 export interface ButtonProps {
   onPress: () => void;
@@ -46,8 +46,8 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: Constant.WHITE_COLOR,
-    fontSize: 16,
-    fontWeight: '600',
+    fontSize: FontSize.button,
+    fontWeight: FontWeight.bold,
   },
   mainButton: {
     backgroundColor: Constant.MAIN_COLOR,
@@ -57,6 +57,6 @@ const styles = StyleSheet.create({
   },
   mainButtonText: {
     color: Constant.WHITE_COLOR,
-    fontWeight: 'bold',
+    fontWeight: FontWeight.bold,
   },
 });
