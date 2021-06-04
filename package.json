@@ -1,7 +1,7 @@
 {
   "name": "omf",
-  "version": "1.0.12004",
-  "codeBundleId": "0.0.2-1",
+  "version": "1.0.12005",
+  "codeBundleId": "0.0.5-1",
   "private": true,
   "scripts": {
     "start": "react-native start",
