@@ -147,8 +147,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         resValue "string", "build_config_package", "com.jiggag.omf"
-        versionCode 1030
-        versionName "1.0.12004"
+        versionCode 1031
+        versionName "1.0.12005"
         multiDexEnabled true
         manifestPlaceholders = [bugsnagApiKey: project.env.get("BUGSNAG_API_KEY")]
     }
