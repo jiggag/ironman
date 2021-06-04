@@ -14,6 +14,7 @@ import styles from './styles';
 const Container = ({ route: { params } }) => {
   const navigation = useNavigation();
   const [note, setNote] = useState(params.originNote);
+  const [scrollEnabled, setScrollEnabled] = useState(true);
   const dispatch = useDispatch();
   const { isLoading } = useSelector((store: RootReducer) => store.note);
   const updateNote = useCallback((param) => dispatch(updateNoteRequest(param)), [dispatch]);
@@ -40,7 +41,14 @@ const Container = ({ route: { params } }) => {
 
   return (
     <SafeAreaView style={styles.safeAreaView}>
-      <Presenter note={note} onPress={onPress} onChangeNote={onChangeNote} onPressBack={onPressBack} />
+      <Presenter
+        scrollEnabled={scrollEnabled}
+        setScrollEnabled={setScrollEnabled}
+        note={note}
+        onPress={onPress}
+        onChangeNote={onChangeNote}
+        onPressBack={onPressBack}
+      />
       <Spinner visible={isLoading} />
     </SafeAreaView>
   );

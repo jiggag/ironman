@@ -1,28 +1,40 @@
-import React, { memo, useCallback, useState } from 'react';
-import { StyleSheet, TouchableWithoutFeedback, Dimensions } from 'react-native';
+import React, {
+  forwardRef, memo, useCallback, useState,
+} from 'react';
+import {
+  StyleSheet, TouchableWithoutFeedback, Dimensions, Platform,
+} from 'react-native';
 import { View } from 'react-native-ui-lib';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePicker, { Event } from '@react-native-community/datetimepicker';
 import moment from 'moment';
 import { BigButton } from '@components/button/BigButton';
 import Constant from '@utils/constants';
 
 interface DatePickerProps {
   onChangeDate: (date: Date) => void;
+  setScrollEnabled: (enable: boolean) => void;
   date: number;
 }
 
-export const DatePicker = memo<DatePickerProps>(({ onChangeDate, date }) => {
+export const DatePicker = memo<DatePickerProps>(({ onChangeDate, date, setScrollEnabled }) => {
   const [isShowPicker, setIsShowPicker] = useState<boolean>(false);
 
   const onPress = useCallback(() => {
-    setIsShowPicker((prev) => !prev);
-  }, []);
+    setIsShowPicker((prev) => {
+      const next = !prev;
+      setScrollEnabled(!next);
+      return next;
+    });
+  }, [setScrollEnabled]);
 
   const onChange = useCallback(
-    (e, date) => {
-      onChangeDate(date);
+    (e: Event, date) => {
+      if (date) {
+        onChangeDate(date);
+      }
+      onPress();
     },
-    [onChangeDate],
+    [onPress, onChangeDate],
   );
 
   return (
@@ -33,23 +45,32 @@ export const DatePicker = memo<DatePickerProps>(({ onChangeDate, date }) => {
         buttonStyle={styles.dateDisplay}
         textStyle={styles.dateText}
       />
-      {isShowPicker && (
-        <View style={styles.dateWrapper}>
-          <TouchableWithoutFeedback onPress={onPress}>
-            <View flex />
-          </TouchableWithoutFeedback>
-          <View flex style={styles.datePicker}>
-            <DateTimePicker
-              testID="dateTimePicker"
-              value={moment(date).toDate()}
-              mode="date"
-              is24Hour={false}
-              display="spinner"
-              onChange={onChange}
-            />
+      {isShowPicker
+        && (Platform.OS === 'ios' ? (
+          <View style={styles.dateWrapper}>
+            <TouchableWithoutFeedback onPress={onPress}>
+              <View flex />
+            </TouchableWithoutFeedback>
+            <View flex style={styles.datePicker}>
+              <DateTimePicker
+                testID="dateTimePicker"
+                value={moment(date).toDate()}
+                mode="date"
+                is24Hour={false}
+                display="spinner"
+                onChange={onChange}
+              />
+            </View>
           </View>
-        </View>
-      )}
+        ) : (
+          <DateTimePicker
+            testID="dateTimePicker"
+            value={moment(date).toDate()}
+            mode="date"
+            is24Hour={false}
+            onChange={onChange}
+          />
+        ))}
     </>
   );
 });

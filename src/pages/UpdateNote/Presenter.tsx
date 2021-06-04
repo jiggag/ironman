@@ -20,21 +20,29 @@ interface UpdateType {
   onPress: () => void;
   onChangeNote: (param: Record<string, string | number | Record<number, string>>) => void;
   note: NoteData;
+  setScrollEnabled: (enabled: boolean) => void;
+  scrollEnabled: boolean;
 }
 
 const Presenter = memo(
   ({
-    onPressBack, note: {
+    onPressBack,
+    note: {
       title, date, food, done, etc, state, weather,
-    }, onPress, onChangeNote,
+    },
+    onPress,
+    onChangeNote,
+    setScrollEnabled,
+    scrollEnabled,
   }: UpdateType) => (
     <>
       <Header onPress={onPressBack} onPressRightButton={onPress} type="SAVE" />
-      <ScrollView style={styles.container}>
+      <ScrollView style={styles.container} scrollEnabled={scrollEnabled}>
         <View paddingH-20>
           <View row marginB-10 style={styles.pickerWrapper}>
             <DatePicker
               date={date}
+              setScrollEnabled={setScrollEnabled}
               onChangeDate={(date) => onChangeNote({
                 date: moment(date, 'YYYY.MM.DD').startOf('days').valueOf(),
               })}
