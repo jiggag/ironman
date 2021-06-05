@@ -215,15 +215,15 @@ dependencies {
 //    implementation project(':react-native-image-picker') // 아직 사용하지 않는 라이브러리
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
-    implementation 'com.google.android.gms:play-services-auth:9.2.1'
+    implementation 'com.google.android.gms:play-services-auth:19.0.0'
 
-    implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
-    implementation 'com.google.android.play:core:1.6.1'
+    implementation 'com.facebook.android:facebook-android-sdk:9.0.0'
+    implementation 'com.google.android.play:core:1.10.0'
 
     implementation 'androidx.multidex:multidex:2.0.1'
 
-    implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
-    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha02'
+    implementation 'androidx.appcompat:appcompat:1.4.0-alpha02'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01'
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
       exclude group:'com.facebook.fbjni'
